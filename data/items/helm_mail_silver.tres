@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/icons/helm_mail_silver.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/hero/equipment/helm_mail_silver.png" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"helm_mail_silver"
+display_name = "Kroužková kapuce"
+description = "Stříbrná kroužková kapuce."
+icon = ExtResource("2")
+slot = 2
+layer_sheet = ExtResource("3")
+defense = 2
+price = 60

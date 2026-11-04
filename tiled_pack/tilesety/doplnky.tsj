@@ -1,0 +1,1686 @@
+{
+"type": "tileset",
+"version": "1.10",
+"name": "doplnky",
+"tilewidth": 672,
+"tileheight": 533,
+"columns": 0,
+"tilecount": 44,
+"margin": 0,
+"spacing": 0,
+"objectalignment": "bottom",
+"tiles": [
+{
+"id": 0,
+"image": "objekty/doplnky/doplnky_000.png",
+"imagewidth": 42,
+"imageheight": 46,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_000"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,7"
+}
+]
+},
+{
+"id": 1,
+"image": "objekty/doplnky/doplnky_001.png",
+"imagewidth": 40,
+"imageheight": 47,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_001"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "17,8"
+}
+]
+},
+{
+"id": 2,
+"image": "objekty/doplnky/doplnky_002.png",
+"imagewidth": 42,
+"imageheight": 48,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_002"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,8"
+}
+]
+},
+{
+"id": 3,
+"image": "objekty/doplnky/doplnky_003.png",
+"imagewidth": 40,
+"imageheight": 45,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_003"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "17,8"
+}
+]
+},
+{
+"id": 4,
+"image": "objekty/doplnky/doplnky_004.png",
+"imagewidth": 36,
+"imageheight": 39,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_004"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,6"
+}
+]
+},
+{
+"id": 5,
+"image": "objekty/doplnky/doplnky_005.png",
+"imagewidth": 36,
+"imageheight": 39,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_005"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,6"
+}
+]
+},
+{
+"id": 6,
+"image": "objekty/doplnky/doplnky_006.png",
+"imagewidth": 118,
+"imageheight": 41,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_006"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "50,7"
+}
+]
+},
+{
+"id": 7,
+"image": "objekty/doplnky/doplnky_007.png",
+"imagewidth": 98,
+"imageheight": 90,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_007"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "68,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "44,14"
+}
+]
+},
+{
+"id": 8,
+"image": "objekty/doplnky/doplnky_008.png",
+"imagewidth": 98,
+"imageheight": 90,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_008"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "68,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "44,14"
+}
+]
+},
+{
+"id": 9,
+"image": "objekty/doplnky/doplnky_009.png",
+"imagewidth": 38,
+"imageheight": 38,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_009"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "16,6"
+}
+]
+},
+{
+"id": 10,
+"image": "objekty/doplnky/doplnky_010.png",
+"imagewidth": 58,
+"imageheight": 37,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_010"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "20"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "24,6"
+}
+]
+},
+{
+"id": 11,
+"image": "objekty/doplnky/doplnky_011.png",
+"imagewidth": 50,
+"imageheight": 48,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_011"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "17"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "21,8"
+}
+]
+},
+{
+"id": 12,
+"image": "objekty/doplnky/doplnky_012.png",
+"imagewidth": 50,
+"imageheight": 96,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_012"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "17"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "21,15"
+}
+]
+},
+{
+"id": 13,
+"image": "objekty/doplnky/doplnky_013.png",
+"imagewidth": 412,
+"imageheight": 287,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_013"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "288,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "185,14"
+}
+]
+},
+{
+"id": 14,
+"image": "objekty/doplnky/doplnky_014.png",
+"imagewidth": 46,
+"imageheight": 48,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_014"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "16"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "19,8"
+}
+]
+},
+{
+"id": 15,
+"image": "objekty/doplnky/doplnky_015.png",
+"imagewidth": 44,
+"imageheight": 60,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_015"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,11"
+}
+]
+},
+{
+"id": 16,
+"image": "objekty/doplnky/doplnky_016.png",
+"imagewidth": 44,
+"imageheight": 120,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_016"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "15"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,19"
+}
+]
+},
+{
+"id": 17,
+"image": "objekty/doplnky/doplnky_017.png",
+"imagewidth": 272,
+"imageheight": 380,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_017"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "190,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "122,14"
+}
+]
+},
+{
+"id": 18,
+"image": "objekty/doplnky/doplnky_018.png",
+"imagewidth": 672,
+"imageheight": 533,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_018"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "470,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "302,14"
+}
+]
+},
+{
+"id": 19,
+"image": "objekty/doplnky/doplnky_019.png",
+"imagewidth": 188,
+"imageheight": 324,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_019"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "131,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "85,14"
+}
+]
+},
+{
+"id": 20,
+"image": "objekty/doplnky/doplnky_020.png",
+"imagewidth": 50,
+"imageheight": 111,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_020"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "17"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "21,18"
+}
+]
+},
+{
+"id": 21,
+"image": "objekty/doplnky/doplnky_021.png",
+"imagewidth": 142,
+"imageheight": 277,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_021"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "43,10"
+}
+]
+},
+{
+"id": 22,
+"image": "objekty/doplnky/doplnky_022.png",
+"imagewidth": 40,
+"imageheight": 45,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_022"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "17,7"
+}
+]
+},
+{
+"id": 23,
+"image": "objekty/doplnky/doplnky_023.png",
+"imagewidth": 36,
+"imageheight": 31,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_023"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,5"
+}
+]
+},
+{
+"id": 24,
+"image": "objekty/doplnky/doplnky_024.png",
+"imagewidth": 50,
+"imageheight": 42,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_024"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "17"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "21,7"
+}
+]
+},
+{
+"id": 25,
+"image": "objekty/doplnky/doplnky_025.png",
+"imagewidth": 26,
+"imageheight": 35,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_025"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "11,6"
+}
+]
+},
+{
+"id": 26,
+"image": "objekty/doplnky/doplnky_026.png",
+"imagewidth": 96,
+"imageheight": 44,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_026"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "40,7"
+}
+]
+},
+{
+"id": 27,
+"image": "objekty/doplnky/doplnky_027.png",
+"imagewidth": 32,
+"imageheight": 43,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_027"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "13,7"
+}
+]
+},
+{
+"id": 28,
+"image": "objekty/doplnky/doplnky_028.png",
+"imagewidth": 36,
+"imageheight": 29,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_028"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,5"
+}
+]
+},
+{
+"id": 29,
+"image": "objekty/doplnky/doplnky_029.png",
+"imagewidth": 38,
+"imageheight": 30,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_029"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "16,5"
+}
+]
+},
+{
+"id": 30,
+"image": "objekty/doplnky/doplnky_030.png",
+"imagewidth": 32,
+"imageheight": 48,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_030"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "13,8"
+}
+]
+},
+{
+"id": 31,
+"image": "objekty/doplnky/doplnky_031.png",
+"imagewidth": 62,
+"imageheight": 43,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_031"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "21"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "26,7"
+}
+]
+},
+{
+"id": 32,
+"image": "objekty/doplnky/doplnky_032.png",
+"imagewidth": 28,
+"imageheight": 35,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_032"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "12,6"
+}
+]
+},
+{
+"id": 33,
+"image": "objekty/doplnky/doplnky_033.png",
+"imagewidth": 76,
+"imageheight": 38,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_033"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "32,6"
+}
+]
+},
+{
+"id": 34,
+"image": "objekty/doplnky/doplnky_034.png",
+"imagewidth": 34,
+"imageheight": 45,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_034"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "14,7"
+}
+]
+},
+{
+"id": 35,
+"image": "objekty/doplnky/doplnky_035.png",
+"imagewidth": 128,
+"imageheight": 43,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_035"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "54,7"
+}
+]
+},
+{
+"id": 36,
+"image": "objekty/doplnky/doplnky_036.png",
+"imagewidth": 44,
+"imageheight": 47,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_036"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "15"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,8"
+}
+]
+},
+{
+"id": 37,
+"image": "objekty/doplnky/doplnky_037.png",
+"imagewidth": 28,
+"imageheight": 47,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_037"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "12,8"
+}
+]
+},
+{
+"id": 38,
+"image": "objekty/doplnky/doplnky_038.png",
+"imagewidth": 50,
+"imageheight": 48,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_038"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "17"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "21,8"
+}
+]
+},
+{
+"id": 39,
+"image": "objekty/doplnky/doplnky_039.png",
+"imagewidth": 90,
+"imageheight": 88,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_039"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "8"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "27,8"
+}
+]
+},
+{
+"id": 40,
+"image": "objekty/doplnky/doplnky_040.png",
+"imagewidth": 36,
+"imageheight": 39,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_040"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,6"
+}
+]
+},
+{
+"id": 41,
+"image": "objekty/doplnky/doplnky_041.png",
+"imagewidth": 36,
+"imageheight": 39,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_041"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,6"
+}
+]
+},
+{
+"id": 42,
+"image": "objekty/doplnky/doplnky_042.png",
+"imagewidth": 98,
+"imageheight": 141,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_042"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "68,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "44,14"
+}
+]
+},
+{
+"id": 43,
+"image": "objekty/doplnky/doplnky_043.png",
+"imagewidth": 50,
+"imageheight": 143,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "doplnky_043"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "8"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,8"
+}
+]
+}
+]
+}

@@ -1,0 +1,14 @@
+{
+ "type": "tileset",
+ "version": "1.10",
+ "name": "zem1",
+ "image": "obrazky/titleset_zem.png",
+ "imagewidth": 720,
+ "imageheight": 864,
+ "tilewidth": 24,
+ "tileheight": 24,
+ "columns": 30,
+ "tilecount": 1080,
+ "margin": 0,
+ "spacing": 0
+}

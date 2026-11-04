@@ -1,0 +1,24 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/characters/character.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/character/npc.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="3"]
+[ext_resource type="Resource" path="res://data/items/helm_hood_slate.tres" id="4"]
+[ext_resource type="Resource" path="res://data/items/boots_sandals_maroon.tres" id="5"]
+[ext_resource type="Resource" path="res://data/items/sword_wood.tres" id="s0"]
+[ext_resource type="Resource" path="res://data/items/sword_steel.tres" id="s1"]
+[ext_resource type="Resource" path="res://data/items/helm_mail_silver.tres" id="s2"]
+[ext_resource type="Resource" path="res://data/items/helm_armet_steel.tres" id="s3"]
+[ext_resource type="Resource" path="res://data/items/helm_hood_slate.tres" id="s4"]
+[ext_resource type="Resource" path="res://data/items/boots_armour_silver.tres" id="s5"]
+[ext_resource type="Resource" path="res://data/items/boots_sandals_maroon.tres" id="s6"]
+[ext_resource type="Resource" path="res://data/items/torch.tres" id="s7"]
+
+[node name="Merchant" instance=ExtResource("1")]
+script = ExtResource("2")
+display_name = "Obchodník"
+team = &"npc"
+tint = Color(1, 0.92, 0.7, 1)
+invulnerable = true
+start_items = Array[ExtResource("3")]([ExtResource("4"), ExtResource("5")])
+shop_stock = Array[ExtResource("3")]([ExtResource("s0"), ExtResource("s1"), ExtResource("s2"), ExtResource("s3"), ExtResource("s4"), ExtResource("s5"), ExtResource("s6"), ExtResource("s7")])

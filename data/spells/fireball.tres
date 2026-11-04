@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/spell_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"fireball"
+display_name = "Ohnivá koule"
+description = "Vystřelí ohnivou kouli ve směru pohledu."
+effect = 0
+mana_cost = 6
+power = 8
+color = Color(1, 0.5, 0.1, 1)

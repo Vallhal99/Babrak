@@ -1,0 +1,1671 @@
+{
+"type": "tileset",
+"version": "1.10",
+"name": "okoli2",
+"tilewidth": 266,
+"tileheight": 285,
+"columns": 0,
+"tilecount": 44,
+"margin": 0,
+"spacing": 0,
+"objectalignment": "bottom",
+"tiles": [
+{
+"id": 0,
+"image": "objekty/okoli2/okoli2_000.png",
+"imagewidth": 52,
+"imageheight": 34,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_000"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "18"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "22,5"
+}
+]
+},
+{
+"id": 1,
+"image": "objekty/okoli2/okoli2_001.png",
+"imagewidth": 36,
+"imageheight": 34,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_001"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,5"
+}
+]
+},
+{
+"id": 2,
+"image": "objekty/okoli2/okoli2_002.png",
+"imagewidth": 44,
+"imageheight": 37,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_002"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "15"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,6"
+}
+]
+},
+{
+"id": 3,
+"image": "objekty/okoli2/okoli2_003.png",
+"imagewidth": 46,
+"imageheight": 34,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_003"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "19,6"
+}
+]
+},
+{
+"id": 4,
+"image": "objekty/okoli2/okoli2_004.png",
+"imagewidth": 36,
+"imageheight": 37,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_004"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,6"
+}
+]
+},
+{
+"id": 5,
+"image": "objekty/okoli2/okoli2_005.png",
+"imagewidth": 34,
+"imageheight": 42,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_005"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "14,7"
+}
+]
+},
+{
+"id": 6,
+"image": "objekty/okoli2/okoli2_006.png",
+"imagewidth": 26,
+"imageheight": 30,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_006"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "11,5"
+}
+]
+},
+{
+"id": 7,
+"image": "objekty/okoli2/okoli2_007.png",
+"imagewidth": 146,
+"imageheight": 154,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_007"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "44,10"
+}
+]
+},
+{
+"id": 8,
+"image": "objekty/okoli2/okoli2_008.png",
+"imagewidth": 36,
+"imageheight": 26,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_008"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "10"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,5"
+}
+]
+},
+{
+"id": 9,
+"image": "objekty/okoli2/okoli2_009.png",
+"imagewidth": 32,
+"imageheight": 32,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_009"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "13,5"
+}
+]
+},
+{
+"id": 10,
+"image": "objekty/okoli2/okoli2_010.png",
+"imagewidth": 34,
+"imageheight": 26,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_010"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "10"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "14,5"
+}
+]
+},
+{
+"id": 11,
+"image": "objekty/okoli2/okoli2_011.png",
+"imagewidth": 32,
+"imageheight": 26,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_011"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "13,5"
+}
+]
+},
+{
+"id": 12,
+"image": "objekty/okoli2/okoli2_012.png",
+"imagewidth": 122,
+"imageheight": 41,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_012"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "51,7"
+}
+]
+},
+{
+"id": 13,
+"image": "objekty/okoli2/okoli2_013.png",
+"imagewidth": 30,
+"imageheight": 26,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_013"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "10"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "13,5"
+}
+]
+},
+{
+"id": 14,
+"image": "objekty/okoli2/okoli2_014.png",
+"imagewidth": 36,
+"imageheight": 31,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_014"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,5"
+}
+]
+},
+{
+"id": 15,
+"image": "objekty/okoli2/okoli2_015.png",
+"imagewidth": 148,
+"imageheight": 39,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_015"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "62,6"
+}
+]
+},
+{
+"id": 16,
+"image": "objekty/okoli2/okoli2_016.png",
+"imagewidth": 42,
+"imageheight": 32,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_016"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,5"
+}
+]
+},
+{
+"id": 17,
+"image": "objekty/okoli2/okoli2_017.png",
+"imagewidth": 28,
+"imageheight": 29,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_017"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "12,5"
+}
+]
+},
+{
+"id": 18,
+"image": "objekty/okoli2/okoli2_018.png",
+"imagewidth": 26,
+"imageheight": 41,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_018"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "11,7"
+}
+]
+},
+{
+"id": 19,
+"image": "objekty/okoli2/okoli2_019.png",
+"imagewidth": 170,
+"imageheight": 265,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_019"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "51,12"
+}
+]
+},
+{
+"id": 20,
+"image": "objekty/okoli2/okoli2_020.png",
+"imagewidth": 48,
+"imageheight": 38,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_020"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "20,7"
+}
+]
+},
+{
+"id": 21,
+"image": "objekty/okoli2/okoli2_021.png",
+"imagewidth": 226,
+"imageheight": 39,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_021"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "95,6"
+}
+]
+},
+{
+"id": 22,
+"image": "objekty/okoli2/okoli2_022.png",
+"imagewidth": 38,
+"imageheight": 44,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_022"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "16,7"
+}
+]
+},
+{
+"id": 23,
+"image": "objekty/okoli2/okoli2_023.png",
+"imagewidth": 46,
+"imageheight": 41,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_023"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "16"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "19,7"
+}
+]
+},
+{
+"id": 24,
+"image": "objekty/okoli2/okoli2_024.png",
+"imagewidth": 24,
+"imageheight": 8,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_024"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "deco"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "none"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": false
+}
+]
+},
+{
+"id": 25,
+"image": "objekty/okoli2/okoli2_025.png",
+"imagewidth": 146,
+"imageheight": 44,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_025"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "61,8"
+}
+]
+},
+{
+"id": 26,
+"image": "objekty/okoli2/okoli2_026.png",
+"imagewidth": 204,
+"imageheight": 174,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_026"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "61,14"
+}
+]
+},
+{
+"id": 27,
+"image": "objekty/okoli2/okoli2_027.png",
+"imagewidth": 48,
+"imageheight": 137,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_027"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "8"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "14,8"
+}
+]
+},
+{
+"id": 28,
+"image": "objekty/okoli2/okoli2_028.png",
+"imagewidth": 206,
+"imageheight": 240,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_028"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "62,14"
+}
+]
+},
+{
+"id": 29,
+"image": "objekty/okoli2/okoli2_029.png",
+"imagewidth": 220,
+"imageheight": 165,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_029"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "66,15"
+}
+]
+},
+{
+"id": 30,
+"image": "objekty/okoli2/okoli2_030.png",
+"imagewidth": 136,
+"imageheight": 142,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_030"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "95,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "61,14"
+}
+]
+},
+{
+"id": 31,
+"image": "objekty/okoli2/okoli2_031.png",
+"imagewidth": 194,
+"imageheight": 95,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_031"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "58,14"
+}
+]
+},
+{
+"id": 32,
+"image": "objekty/okoli2/okoli2_032.png",
+"imagewidth": 44,
+"imageheight": 186,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_032"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "8"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "13,8"
+}
+]
+},
+{
+"id": 33,
+"image": "objekty/okoli2/okoli2_033.png",
+"imagewidth": 136,
+"imageheight": 178,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_033"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "41,10"
+}
+]
+},
+{
+"id": 34,
+"image": "objekty/okoli2/okoli2_034.png",
+"imagewidth": 128,
+"imageheight": 219,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_034"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "38,9"
+}
+]
+},
+{
+"id": 35,
+"image": "objekty/okoli2/okoli2_035.png",
+"imagewidth": 114,
+"imageheight": 78,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_035"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "48,12"
+}
+]
+},
+{
+"id": 36,
+"image": "objekty/okoli2/okoli2_036.png",
+"imagewidth": 44,
+"imageheight": 27,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_036"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "15"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,5"
+}
+]
+},
+{
+"id": 37,
+"image": "objekty/okoli2/okoli2_037.png",
+"imagewidth": 56,
+"imageheight": 34,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_037"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "19"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "24,5"
+}
+]
+},
+{
+"id": 38,
+"image": "objekty/okoli2/okoli2_038.png",
+"imagewidth": 42,
+"imageheight": 23,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_038"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "deco"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "none"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": false
+}
+]
+},
+{
+"id": 39,
+"image": "objekty/okoli2/okoli2_039.png",
+"imagewidth": 74,
+"imageheight": 30,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_039"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "31,5"
+}
+]
+},
+{
+"id": 40,
+"image": "objekty/okoli2/okoli2_040.png",
+"imagewidth": 12,
+"imageheight": 17,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_040"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "deco"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "none"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": false
+}
+]
+},
+{
+"id": 41,
+"image": "objekty/okoli2/okoli2_041.png",
+"imagewidth": 148,
+"imageheight": 285,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_041"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "103,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "67,14"
+}
+]
+},
+{
+"id": 42,
+"image": "objekty/okoli2/okoli2_042.png",
+"imagewidth": 266,
+"imageheight": 134,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_042"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "186,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "120,14"
+}
+]
+},
+{
+"id": 43,
+"image": "objekty/okoli2/okoli2_043.png",
+"imagewidth": 106,
+"imageheight": 65,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "okoli2_043"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "45,10"
+}
+]
+}
+]
+}

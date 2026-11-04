@@ -1,0 +1,176 @@
+{
+"type": "tileset",
+"version": "1.10",
+"name": "terrain",
+"image": "terrain.png",
+"imagewidth": 192,
+"imageheight": 48,
+"tilewidth": 24,
+"tileheight": 24,
+"columns": 8,
+"tilecount": 16,
+"margin": 0,
+"spacing": 0,
+"tiles": [
+{
+"id": 0,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "grass"
+}
+]
+},
+{
+"id": 1,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "grass_meadow"
+}
+]
+},
+{
+"id": 2,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "grass_dark"
+}
+]
+},
+{
+"id": 3,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "leaf_grass"
+}
+]
+},
+{
+"id": 4,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "flowers"
+}
+]
+},
+{
+"id": 5,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "forest_floor"
+}
+]
+},
+{
+"id": 6,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "dry_grass"
+}
+]
+},
+{
+"id": 7,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "dirt"
+}
+]
+},
+{
+"id": 8,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "dirt_rock"
+}
+]
+},
+{
+"id": 9,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "sand"
+}
+]
+},
+{
+"id": 10,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "cobble"
+}
+]
+},
+{
+"id": 11,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "stone_dark"
+}
+]
+},
+{
+"id": 12,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "brick_tan"
+}
+]
+},
+{
+"id": 13,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "wood_floor"
+}
+]
+},
+{
+"id": 14,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "marble"
+}
+]
+},
+{
+"id": 15,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "mossy_ground"
+}
+]
+}
+]
+}

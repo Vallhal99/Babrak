@@ -1,0 +1,850 @@
+{
+"type": "tileset",
+"version": "1.10",
+"name": "rm_stromy01",
+"tilewidth": 330,
+"tileheight": 502,
+"columns": 0,
+"tilecount": 22,
+"margin": 0,
+"spacing": 0,
+"objectalignment": "bottom",
+"tiles": [
+{
+"id": 0,
+"image": "objekty/rm_stromy01/rm_stromy01_000.png",
+"imagewidth": 106,
+"imageheight": 87,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_000"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "32,8"
+}
+]
+},
+{
+"id": 1,
+"image": "objekty/rm_stromy01/rm_stromy01_001.png",
+"imagewidth": 80,
+"imageheight": 40,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_001"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "34,7"
+}
+]
+},
+{
+"id": 2,
+"image": "objekty/rm_stromy01/rm_stromy01_002.png",
+"imagewidth": 228,
+"imageheight": 232,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_002"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "68,16"
+}
+]
+},
+{
+"id": 3,
+"image": "objekty/rm_stromy01/rm_stromy01_003.png",
+"imagewidth": 266,
+"imageheight": 248,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_003"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "80,19"
+}
+]
+},
+{
+"id": 4,
+"image": "objekty/rm_stromy01/rm_stromy01_004.png",
+"imagewidth": 74,
+"imageheight": 37,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_004"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "22"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "31,7"
+}
+]
+},
+{
+"id": 5,
+"image": "objekty/rm_stromy01/rm_stromy01_005.png",
+"imagewidth": 46,
+"imageheight": 36,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_005"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "19,6"
+}
+]
+},
+{
+"id": 6,
+"image": "objekty/rm_stromy01/rm_stromy01_006.png",
+"imagewidth": 42,
+"imageheight": 30,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_006"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,5"
+}
+]
+},
+{
+"id": 7,
+"image": "objekty/rm_stromy01/rm_stromy01_007.png",
+"imagewidth": 108,
+"imageheight": 39,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_007"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "24"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "45,7"
+}
+]
+},
+{
+"id": 8,
+"image": "objekty/rm_stromy01/rm_stromy01_008.png",
+"imagewidth": 150,
+"imageheight": 502,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_008"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "45,11"
+}
+]
+},
+{
+"id": 9,
+"image": "objekty/rm_stromy01/rm_stromy01_009.png",
+"imagewidth": 118,
+"imageheight": 133,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_009"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "10"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "35,8"
+}
+]
+},
+{
+"id": 10,
+"image": "objekty/rm_stromy01/rm_stromy01_010.png",
+"imagewidth": 262,
+"imageheight": 188,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_010"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "79,18"
+}
+]
+},
+{
+"id": 11,
+"image": "objekty/rm_stromy01/rm_stromy01_011.png",
+"imagewidth": 142,
+"imageheight": 190,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_011"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "43,10"
+}
+]
+},
+{
+"id": 12,
+"image": "objekty/rm_stromy01/rm_stromy01_012.png",
+"imagewidth": 148,
+"imageheight": 179,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_012"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "44,10"
+}
+]
+},
+{
+"id": 13,
+"image": "objekty/rm_stromy01/rm_stromy01_013.png",
+"imagewidth": 48,
+"imageheight": 92,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_013"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "8"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "14,8"
+}
+]
+},
+{
+"id": 14,
+"image": "objekty/rm_stromy01/rm_stromy01_014.png",
+"imagewidth": 296,
+"imageheight": 284,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_014"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "89,21"
+}
+]
+},
+{
+"id": 15,
+"image": "objekty/rm_stromy01/rm_stromy01_015.png",
+"imagewidth": 46,
+"imageheight": 34,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_015"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "19,6"
+}
+]
+},
+{
+"id": 16,
+"image": "objekty/rm_stromy01/rm_stromy01_016.png",
+"imagewidth": 50,
+"imageheight": 40,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_016"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "15"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "21,7"
+}
+]
+},
+{
+"id": 17,
+"image": "objekty/rm_stromy01/rm_stromy01_017.png",
+"imagewidth": 330,
+"imageheight": 279,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_017"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "99,23"
+}
+]
+},
+{
+"id": 18,
+"image": "objekty/rm_stromy01/rm_stromy01_018.png",
+"imagewidth": 54,
+"imageheight": 94,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_018"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "8"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "16,8"
+}
+]
+},
+{
+"id": 19,
+"image": "objekty/rm_stromy01/rm_stromy01_019.png",
+"imagewidth": 46,
+"imageheight": 36,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_019"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "19,6"
+}
+]
+},
+{
+"id": 20,
+"image": "objekty/rm_stromy01/rm_stromy01_020.png",
+"imagewidth": 44,
+"imageheight": 33,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_020"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "18,6"
+}
+]
+},
+{
+"id": 21,
+"image": "objekty/rm_stromy01/rm_stromy01_021.png",
+"imagewidth": 50,
+"imageheight": 39,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "rm_stromy01_021"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "15"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "21,7"
+}
+]
+}
+]
+}

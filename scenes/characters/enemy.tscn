@@ -1,0 +1,45 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/characters/character.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/character/enemy.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="3"]
+[ext_resource type="Resource" path="res://data/items/sword_wood.tres" id="4"]
+[ext_resource type="Resource" path="res://data/items/boots_sandals_maroon.tres" id="5"]
+[ext_resource type="Script" path="res://scripts/data/loot_entry.gd" id="10"]
+[ext_resource type="Resource" path="res://data/items/torch.tres" id="6"]
+[ext_resource type="Resource" path="res://data/items/helm_hood_slate.tres" id="7"]
+[ext_resource type="Resource" path="res://data/items/boots_armour_silver.tres" id="8"]
+[ext_resource type="Resource" path="res://data/items/sword_steel.tres" id="9"]
+
+[sub_resource type="Resource" id="loot0"]
+script = ExtResource("10")
+item = ExtResource("6")
+chance = 0.4
+
+[sub_resource type="Resource" id="loot1"]
+script = ExtResource("10")
+item = ExtResource("7")
+chance = 0.3
+
+[sub_resource type="Resource" id="loot2"]
+script = ExtResource("10")
+item = ExtResource("8")
+chance = 0.25
+
+[sub_resource type="Resource" id="loot3"]
+script = ExtResource("10")
+item = ExtResource("9")
+chance = 0.2
+
+[node name="Enemy" instance=ExtResource("1")]
+script = ExtResource("2")
+display_name = "Zbojník"
+team = &"enemy"
+tint = Color(1, 0.75, 0.75, 1)
+base_max_hp = 14
+base_attack = 1
+xp_reward = 15
+gold_reward = 8
+walk_speed = 55.0
+start_items = Array[ExtResource("3")]([ExtResource("4"), ExtResource("5")])
+loot = Array[ExtResource("10")]([SubResource("loot0"), SubResource("loot1"), SubResource("loot2"), SubResource("loot3")])

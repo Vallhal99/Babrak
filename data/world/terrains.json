@@ -1,0 +1,68 @@
+{
+ "terrains": [
+  {
+   "name": "grass",
+   "texture": "res://assets/world/terrain/grass.png"
+  },
+  {
+   "name": "grass_meadow",
+   "texture": "res://assets/world/terrain/grass_meadow.png"
+  },
+  {
+   "name": "grass_dark",
+   "texture": "res://assets/world/terrain/grass_dark.png"
+  },
+  {
+   "name": "leaf_grass",
+   "texture": "res://assets/world/terrain/leaf_grass.png"
+  },
+  {
+   "name": "flowers",
+   "texture": "res://assets/world/terrain/flowers.png"
+  },
+  {
+   "name": "forest_floor",
+   "texture": "res://assets/world/terrain/forest_floor.png"
+  },
+  {
+   "name": "dry_grass",
+   "texture": "res://assets/world/terrain/dry_grass.png"
+  },
+  {
+   "name": "dirt",
+   "texture": "res://assets/world/terrain/dirt.png"
+  },
+  {
+   "name": "dirt_rock",
+   "texture": "res://assets/world/terrain/dirt_rock.png"
+  },
+  {
+   "name": "sand",
+   "texture": "res://assets/world/terrain/sand.png"
+  },
+  {
+   "name": "cobble",
+   "texture": "res://assets/world/terrain/cobble.png"
+  },
+  {
+   "name": "stone_dark",
+   "texture": "res://assets/world/terrain/stone_dark.png"
+  },
+  {
+   "name": "brick_tan",
+   "texture": "res://assets/world/terrain/brick_tan.png"
+  },
+  {
+   "name": "wood_floor",
+   "texture": "res://assets/world/terrain/wood_floor.png"
+  },
+  {
+   "name": "marble",
+   "texture": "res://assets/world/terrain/marble.png"
+  },
+  {
+   "name": "mossy_ground",
+   "texture": "res://assets/world/terrain/mossy_ground.png"
+  }
+ ]
+}

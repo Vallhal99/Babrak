@@ -1,0 +1,21 @@
+config_version=5
+
+[application]
+
+config/name="Hero RPG"
+run/main_scene="res://scenes/ui/main_menu.tscn"
+config/features=PackedStringArray("4.7")
+
+[autoload]
+
+Inputs="*res://scripts/core/inputs.gd"
+ItemDB="*res://scripts/data/item_db.gd"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=720
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
