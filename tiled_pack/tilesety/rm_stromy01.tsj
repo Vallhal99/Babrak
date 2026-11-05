@@ -24,12 +24,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "bush"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "9"
+"value": "24"
 },
 {
 "name": "sway",
@@ -42,9 +42,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "32,8"
+"value": "45,16"
 }
 ]
 },
@@ -78,6 +88,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
 },
 {
 "name": "shadow_size",
@@ -118,6 +138,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "68,16"
@@ -154,6 +184,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
 },
 {
 "name": "shadow_size",
@@ -194,6 +234,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "31,7"
@@ -230,6 +280,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
 },
 {
 "name": "shadow_size",
@@ -270,6 +330,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "18,5"
@@ -306,6 +376,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
 },
 {
 "name": "shadow_size",
@@ -346,6 +426,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u0161t\u00edhl\u00fd strom"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "45,11"
@@ -382,6 +472,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
 },
 {
 "name": "shadow_size",
@@ -422,6 +522,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "79,18"
@@ -458,6 +568,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
 },
 {
 "name": "shadow_size",
@@ -498,6 +618,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "44,10"
@@ -534,6 +664,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
 },
 {
 "name": "shadow_size",
@@ -574,6 +714,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "89,21"
@@ -610,6 +760,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
 },
 {
 "name": "shadow_size",
@@ -650,6 +810,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "21,7"
@@ -686,6 +856,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
 },
 {
 "name": "shadow_size",
@@ -726,6 +906,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listnat\u00fd strom"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "16,8"
@@ -762,6 +952,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
 },
 {
 "name": "shadow_size",
@@ -802,6 +1002,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bush"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159 (\u017elutozelen\u00fd)"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "18,6"
@@ -822,12 +1032,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "bush"
+"value": "plant"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "15"
+"value": "none"
 },
 {
 "name": "sway",
@@ -837,12 +1047,17 @@
 {
 "name": "shadow",
 "type": "bool",
-"value": true
+"value": false
 },
 {
-"name": "shadow_size",
+"name": "tags",
 "type": "string",
-"value": "21,7"
+"value": "plant,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "listy"
 }
 ]
 }

@@ -24,12 +24,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "bush"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "11"
+"value": "24"
 },
 {
 "name": "sway",
@@ -42,9 +42,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bush,dark_forest"
+},
+{
+"name": "label",
+"type": "string",
+"value": "velk\u00fd ke\u0159 (tyrkysov\u00fd)"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "37,9"
+"value": "52,16"
 }
 ]
 },
@@ -80,6 +90,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,dark_forest,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "strom (tyrkysov\u00fd)"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "67,16"
@@ -100,12 +120,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "102,26"
+"value": "24"
 },
 {
 "name": "sway",
@@ -118,9 +138,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "cliff,wall,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kamenn\u00e1 st\u011bna"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "66,14"
+"value": "61,21"
 }
 ]
 },
@@ -138,17 +168,17 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "tree"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "163,26"
+"value": "14"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
@@ -156,9 +186,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,deciduous,dark_forest,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "strom (tyrkysov\u00fd)"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "105,14"
+"value": "70,16"
 }
 ]
 },
@@ -176,12 +216,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "134,26"
+"value": "24"
 },
 {
 "name": "sway",
@@ -194,9 +234,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "cave,rock,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "jeskyn\u011b + sk\u00e1la"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "86,14"
+"value": "81,15"
 }
 ]
 },
@@ -232,6 +282,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "rock,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u0161ed\u00e9 kameny"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "44,14"
@@ -252,27 +312,32 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "plant"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "232,26"
+"value": "none"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
-"value": true
+"value": false
 },
 {
-"name": "shadow_size",
+"name": "tags",
 "type": "string",
-"value": "149,14"
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "drobn\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -306,6 +371,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "tree,stump,wood"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kompozit kmeny + pa\u0159ez"
 },
 {
 "name": "shadow_size",
@@ -346,6 +421,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "rock,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u0161ed\u00e9 kameny"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "18,8"
@@ -382,6 +467,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "rock,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u0161ed\u00e9 kameny"
 },
 {
 "name": "shadow_size",
@@ -422,6 +517,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "log,wood,forest,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "padl\u00fd kmen"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "30,6"
@@ -442,12 +547,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "prop"
+"value": "deco"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "17"
+"value": "none"
 },
 {
 "name": "sway",
@@ -457,12 +562,17 @@
 {
 "name": "shadow",
 "type": "bool",
-"value": true
+"value": false
 },
 {
-"name": "shadow_size",
+"name": "tags",
 "type": "string",
-"value": "21,7"
+"value": "paving,path_ok,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u0161lapac\u00ed kameny"
 }
 ]
 },
@@ -498,6 +608,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "stump,wood,forest,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "dut\u00fd kmen"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "16,14"
@@ -518,7 +638,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -528,12 +648,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "mushroom,forest,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u010derven\u00e9 houbi\u010dky"
 }
 ]
 },
@@ -551,7 +681,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -561,12 +691,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "mushroom,forest,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u010derven\u00e9 houbi\u010dky"
 }
 ]
 },
@@ -584,7 +724,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -594,12 +734,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "mushroom,forest,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u010derven\u00e9 houbi\u010dky"
 }
 ]
 },
@@ -617,7 +767,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -627,12 +777,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "mushroom,forest,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u010derven\u00e9 houbi\u010dky"
 }
 ]
 },
@@ -650,12 +810,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "bush"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "14"
+"value": "24"
 },
 {
 "name": "sway",
@@ -668,9 +828,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bush,rock"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ke\u0159e s kamenem"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "51,12"
+"value": "71,17"
 }
 ]
 },
@@ -688,17 +858,17 @@
 {
 "name": "kind",
 "type": "string",
-"value": "prop"
+"value": "tree"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "24"
+"value": "8"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
@@ -706,9 +876,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,conifer,dark_forest"
+},
+{
+"name": "label",
+"type": "string",
+"value": "koruna smrku (okraj lesa)"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "40,13"
+"value": "29,8"
 }
 ]
 },
@@ -726,7 +906,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -736,12 +916,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -759,7 +949,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -769,12 +959,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -792,7 +992,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -802,12 +1002,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -825,7 +1035,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -835,12 +1045,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -858,7 +1078,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -868,12 +1088,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -891,7 +1121,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -901,12 +1131,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -924,7 +1164,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -934,12 +1174,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -957,7 +1207,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -967,12 +1217,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -990,7 +1250,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1000,12 +1260,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1023,7 +1293,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1033,12 +1303,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1056,7 +1336,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1066,12 +1346,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1089,7 +1379,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1099,12 +1389,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1122,7 +1422,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1132,12 +1432,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1155,27 +1465,32 @@
 {
 "name": "kind",
 "type": "string",
-"value": "prop"
+"value": "plant"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "7"
+"value": "none"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
-"value": true
+"value": false
 },
 {
-"name": "shadow_size",
+"name": "tags",
 "type": "string",
-"value": "9,5"
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "drobn\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1193,7 +1508,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1203,12 +1518,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "drobn\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1226,7 +1551,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1236,12 +1561,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "drobn\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1259,7 +1594,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1269,12 +1604,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "drobn\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1292,12 +1637,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "prop"
+"value": "deco"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "24"
+"value": "none"
 },
 {
 "name": "sway",
@@ -1307,12 +1652,17 @@
 {
 "name": "shadow",
 "type": "bool",
-"value": true
+"value": false
 },
 {
-"name": "shadow_size",
+"name": "tags",
 "type": "string",
-"value": "57,5"
+"value": "earth,ground_cover"
+},
+{
+"name": "label",
+"type": "string",
+"value": "tmav\u00fd pruh zeminy"
 }
 ]
 },
@@ -1330,12 +1680,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "bush"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "14"
+"value": "24"
 },
 {
 "name": "sway",
@@ -1348,9 +1698,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bush,dark_forest"
+},
+{
+"name": "label",
+"type": "string",
+"value": "velk\u00fd ke\u0159"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "106,25"
+"value": "148,33"
 }
 ]
 },
@@ -1368,27 +1728,32 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "deco"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "14"
+"value": "none"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": true
+"value": false
 },
 {
 "name": "shadow",
 "type": "bool",
-"value": true
+"value": false
 },
 {
-"name": "shadow_size",
+"name": "tags",
 "type": "string",
-"value": "58,14"
+"value": "mound,terrain_piece"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kope\u010dky tr\u00e1vy (okraje)"
 }
 ]
 },
@@ -1406,7 +1771,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1416,12 +1781,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "drobn\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1439,7 +1814,7 @@
 {
 "name": "kind",
 "type": "string",
-"value": "deco"
+"value": "plant"
 },
 {
 "name": "collision",
@@ -1449,12 +1824,22 @@
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
 "type": "bool",
 "value": false
+},
+{
+"name": "tags",
+"type": "string",
+"value": "flower,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "drobn\u00e9 kv\u00edtky"
 }
 ]
 },
@@ -1472,17 +1857,17 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "tree"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "92,26"
+"value": "11"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": false
+"value": true
 },
 {
 "name": "shadow",
@@ -1490,9 +1875,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tree,conifer,dark_forest,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "vysok\u00fd smrk"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "59,14"
+"value": "40,9"
 }
 ]
 },
@@ -1510,12 +1905,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "bush"
+"value": "plant"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "12"
+"value": "none"
 },
 {
 "name": "sway",
@@ -1525,12 +1920,17 @@
 {
 "name": "shadow",
 "type": "bool",
-"value": true
+"value": false
 },
 {
-"name": "shadow_size",
+"name": "tags",
 "type": "string",
-"value": "18,8"
+"value": "grass,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "trs tr\u00e1vy"
 }
 ]
 },
@@ -1548,12 +1948,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "bush"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "14"
+"value": "24"
 },
 {
 "name": "sway",
@@ -1566,9 +1966,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bush,dark_forest"
+},
+{
+"name": "label",
+"type": "string",
+"value": "velk\u00fd ke\u0159 (tyrkysov\u00fd)"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "58,14"
+"value": "81,24"
 }
 ]
 },
@@ -1604,6 +2014,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "stump,wood,forest,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "dut\u00fd kmen"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "22,17"
@@ -1624,17 +2044,17 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "14"
+"value": "24"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": true
+"value": false
 },
 {
 "name": "shadow",
@@ -1642,9 +2062,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "cliff,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u00fates s tr\u00e1vou"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "69,16"
+"value": "97,24"
 }
 ]
 }

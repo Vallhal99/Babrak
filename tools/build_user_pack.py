@@ -55,7 +55,13 @@ def classify(img):
     else: kind = "deco"
     return kind
 
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import object_catalog
+CAT = object_catalog.load()
+
 def props_for(name, kind, w, h):
+    e = CAT.get(name)
+    if e: kind = e["kind"]
     if kind == "tree": col, sw, sh, ss = str(max(8, min(14, int(w * .09)))), True, True, (w * .3, max(8, w * .07))
     elif kind == "bush": col, sw, sh, ss = str(max(6, min(24, int(w * .3)))), True, True, (w * .42, max(5, h * .18))
     elif kind == "prop": col, sw, sh, ss = str(max(6, min(24, int(w * .35)))), False, True, (w * .42, max(5, h * .16))
@@ -63,6 +69,7 @@ def props_for(name, kind, w, h):
     elif kind == "plant": col, sw, sh, ss = "none", True, False, (0, 0)
     else: col, sw, sh, ss = "none", False, False, (0, 0)
     pr = [P("id", "string", name), P("kind", "string", kind), P("collision", "string", col), P("sway", "bool", sw), P("shadow", "bool", sh)]
+    if e: pr += [P("tags", "string", ",".join(e["tags"])), P("label", "string", e["name"])]
     if sh: pr.append(P("shadow_size", "string", f"{ss[0]:.0f},{ss[1]:.0f}"))
     return pr
 

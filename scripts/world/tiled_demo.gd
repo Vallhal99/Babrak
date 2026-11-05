@@ -6,6 +6,7 @@ extends Node2D
 @onready var _panel: InventoryPanel = $InventoryPanel
 @onready var _hud: Hud = $Hud
 var _day_night := DayNight.new()
+var _atm := Atmosphere.new()
 
 
 func _ready() -> void:
@@ -31,10 +32,13 @@ func _ready() -> void:
 	add_child(_day_night)
 	_day_night.time_changed.connect(_apply_time)
 	_day_night.set_time(0.5)
+	add_child(_atm)
+	_atm.set_time(0.5)
 	_add_overlay()
 
 
 func _apply_time(t: float) -> void:
+	_atm.set_time(t)
 	var night := smoothstep(0.2, 1.0, t)
 	for f in get_tree().get_nodes_in_group(&"campfires"):
 		var fire := f as Campfire
@@ -46,15 +50,8 @@ func _add_overlay() -> void:
 	var layer := CanvasLayer.new()
 	layer.layer = 8
 	add_child(layer)
-	var vig := ColorRect.new()
-	vig.set_anchors_preset(Control.PRESET_FULL_RECT)
-	vig.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var vm := ShaderMaterial.new()
-	vm.shader = load("res://shaders/vignette.gdshader")
-	vig.material = vm
-	layer.add_child(vig)
 	var l := Label.new()
-	l.text = "WASD / šipky – pohyb   Shift – běh   I – inventář   N – den / soumrak / noc"
+	l.text = "WASD / šipky – pohyb   Shift – běh   I – inventář   N – den/soumrak/noc   B – počasí"
 	l.position = Vector2(12, 684)
 	l.add_theme_color_override(&"font_shadow_color", Color(0, 0, 0, 0.9))
 	l.add_theme_constant_override(&"shadow_offset_x", 1)
@@ -68,3 +65,5 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed(&"toggle_night"):
 		_day_night.cycle()
+	elif event is InputEventKey and event.pressed and event.keycode == KEY_B:
+		_atm.set_weather((_atm.weather + 1) % 4 as Atmosphere.Weather)

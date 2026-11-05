@@ -1,0 +1,1686 @@
+{
+ "version": 1,
+ "tag_rules": {
+  "path": {
+   "forbid": [
+    "tree",
+    "bush",
+    "rock",
+    "boulder",
+    "log",
+    "stump",
+    "barrel",
+    "crate",
+    "chest",
+    "tent",
+    "well",
+    "statue",
+    "portal",
+    "ritual",
+    "hay",
+    "sack",
+    "pot",
+    "bucket",
+    "rope",
+    "tool",
+    "flowerbed",
+    "hedge",
+    "cliff",
+    "grave"
+   ],
+   "allow": [
+    "grass",
+    "flower",
+    "small",
+    "paving",
+    "sign",
+    "mushroom"
+   ],
+   "note": "na cestě jen drobnosti; cedule jen u okraje"
+  },
+  "forest": {
+   "prefer": [
+    "tree",
+    "bush",
+    "fern",
+    "mushroom",
+    "log",
+    "stump",
+    "rock",
+    "dead",
+    "dark_forest"
+   ],
+   "forbid": [
+    "barrel",
+    "crate",
+    "chest",
+    "tent",
+    "village",
+    "bouquet",
+    "indoor",
+    "cultivated",
+    "ritual"
+   ]
+  },
+  "camp": {
+   "prefer": [
+    "tent",
+    "campfire",
+    "barrel",
+    "crate",
+    "pot",
+    "bucket",
+    "chest",
+    "firewood",
+    "sack",
+    "tool",
+    "log",
+    "hay"
+   ],
+   "forbid": [
+    "tree",
+    "portal",
+    "graveyard",
+    "bouquet"
+   ],
+   "near": "campfire"
+  },
+  "meadow": {
+   "prefer": [
+    "grass",
+    "flower",
+    "bush",
+    "rock",
+    "flowerbed"
+   ],
+   "forbid": [
+    "indoor",
+    "bouquet",
+    "ritual",
+    "graveyard"
+   ]
+  },
+  "swamp": {
+   "prefer": [
+    "swamp",
+    "dead",
+    "fern",
+    "mushroom",
+    "bones"
+   ],
+   "forbid": [
+    "cultivated",
+    "village"
+   ]
+  },
+  "village": {
+   "prefer": [
+    "village",
+    "well",
+    "barrel",
+    "crate",
+    "sack",
+    "hay",
+    "sign",
+    "flowerbed",
+    "hedge"
+   ],
+   "forbid": [
+    "bones",
+    "dead",
+    "ritual"
+   ]
+  }
+ },
+ "unknown_for_user": [
+  "doplnky_007/008 – brána: dungeon/rituál?",
+  "doplnky_037 – stojan: k čemu slouží?",
+  "okoli2_028/030 – jáma a pahorek: terén nebo ozdoba?",
+  "kompozity (doplnky_013/018/019/021, okoli3_004/007/017/038): rozřezat"
+ ],
+ "items": [
+  {
+   "s": "okoli1",
+   "r": "000-002",
+   "name": "trs trávy",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "ground_cover",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "003-006",
+   "name": "trs trávy s kvítky",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "flower",
+    "ground_cover",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "007-008",
+   "name": "pruh trávy",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "ground_cover"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "009-010",
+   "name": "pruh kvetoucí trávy",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "flower",
+    "ground_cover"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "011",
+   "name": "velký záhon květin",
+   "kind": "plant",
+   "tags": [
+    "flowerbed",
+    "flower",
+    "cultivated"
+   ],
+   "note": "kompozit"
+  },
+  {
+   "s": "okoli1",
+   "r": "012",
+   "name": "skalní špice",
+   "kind": "prop",
+   "tags": [
+    "rock",
+    "boulder",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "013-014",
+   "name": "velký trs trávy",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "ground_cover"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "015",
+   "name": "kvetoucí trs růžový",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "flower",
+    "ground_cover"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "016",
+   "name": "stéblo trávy",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "017",
+   "name": "kamenná studna",
+   "kind": "prop",
+   "tags": [
+    "well",
+    "structure",
+    "village",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "018-021",
+   "name": "fialové kvítky (levandule)",
+   "kind": "plant",
+   "tags": [
+    "flower",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "022-023",
+   "name": "žlutá vysoká rostlina",
+   "kind": "plant",
+   "tags": [
+    "flower",
+    "plant"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "024",
+   "name": "velký skalní blok",
+   "kind": "prop",
+   "tags": [
+    "rock",
+    "boulder",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "025-028",
+   "name": "fialové květy",
+   "kind": "plant",
+   "tags": [
+    "flower",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "029",
+   "name": "záhon květin velký",
+   "kind": "plant",
+   "tags": [
+    "flowerbed",
+    "flower",
+    "cultivated"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "030-031",
+   "name": "fialové květy skupina",
+   "kind": "plant",
+   "tags": [
+    "flower"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "032-033",
+   "name": "žlutá vysoká květina",
+   "kind": "plant",
+   "tags": [
+    "flower"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "034-035",
+   "name": "červená tráva okrasná",
+   "kind": "plant",
+   "tags": [
+    "plant",
+    "ornamental"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "036",
+   "name": "stéblo",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "037",
+   "name": "kámen",
+   "kind": "prop",
+   "tags": [
+    "rock",
+    "boulder",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "038",
+   "name": "nízký keřík trávy",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "ground_cover"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "039-040",
+   "name": "žluté klasy",
+   "kind": "plant",
+   "tags": [
+    "plant",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "041-042",
+   "name": "červená rostlina vysoká",
+   "kind": "plant",
+   "tags": [
+    "plant",
+    "flower"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "043",
+   "name": "záhon květin",
+   "kind": "plant",
+   "tags": [
+    "flowerbed",
+    "flower",
+    "cultivated"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "044",
+   "name": "hromada kamení",
+   "kind": "prop",
+   "tags": [
+    "rock",
+    "pile",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "045",
+   "name": "keř (nejistý)",
+   "kind": "bush",
+   "tags": [
+    "bush"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "okoli1",
+   "r": "046-051",
+   "name": "červené trsy",
+   "kind": "plant",
+   "tags": [
+    "plant",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "052",
+   "name": "keř s fialovými květy",
+   "kind": "bush",
+   "tags": [
+    "bush",
+    "flower"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "053-055",
+   "name": "fialové cibulové květiny",
+   "kind": "plant",
+   "tags": [
+    "flower"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "056,059,061,063,065,066",
+   "name": "zelený keř",
+   "kind": "bush",
+   "tags": [
+    "bush"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "057,064,072",
+   "name": "keř s modrými květy",
+   "kind": "bush",
+   "tags": [
+    "bush",
+    "flower"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "060,062,067,068",
+   "name": "keř s oranžovými plody",
+   "kind": "bush",
+   "tags": [
+    "bush",
+    "flower"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "058",
+   "name": "žlutý strom s liánami (bažinatý)",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "swamp",
+    "deciduous",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "069-071",
+   "name": "klíček",
+   "kind": "plant",
+   "tags": [
+    "plant",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "073-074",
+   "name": "padlý kmen",
+   "kind": "prop",
+   "tags": [
+    "log",
+    "wood",
+    "forest",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "075-077,088-090",
+   "name": "pytel",
+   "kind": "prop",
+   "tags": [
+    "sack",
+    "container",
+    "farm",
+    "village"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "078-079",
+   "name": "kupka sena",
+   "kind": "prop",
+   "tags": [
+    "hay",
+    "farm",
+    "village"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "080-083,086-087,091-094,097",
+   "name": "mladá rostlina / kapradí",
+   "kind": "plant",
+   "tags": [
+    "plant",
+    "fern",
+    "forest",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "084,095",
+   "name": "muchomůrka",
+   "kind": "plant",
+   "tags": [
+    "mushroom",
+    "forest",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli1",
+   "r": "085,096",
+   "name": "pařez",
+   "kind": "prop",
+   "tags": [
+    "stump",
+    "wood",
+    "forest"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "000-003",
+   "name": "kytice (řezané květiny)",
+   "kind": "deco",
+   "tags": [
+    "bouquet",
+    "indoor",
+    "cultivated"
+   ],
+   "not_outdoor": true
+  },
+  {
+   "s": "okoli2",
+   "r": "004-006",
+   "name": "růže",
+   "kind": "plant",
+   "tags": [
+    "flower",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "007,019,026",
+   "name": "podzimní strom",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "autumn",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "008,010",
+   "name": "světlá tráva",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "ground_cover"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "009,011",
+   "name": "růžové kvítky",
+   "kind": "plant",
+   "tags": [
+    "flower",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "012-018",
+   "name": "květiny / kytice",
+   "kind": "plant",
+   "tags": [
+    "flower",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "020",
+   "name": "malý tmavý keřík",
+   "kind": "bush",
+   "tags": [
+    "bush"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "021-023",
+   "name": "keř růží",
+   "kind": "bush",
+   "tags": [
+    "bush",
+    "flower",
+    "cultivated"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "024",
+   "name": "větvička",
+   "kind": "deco",
+   "tags": [
+    "wood",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "025,027",
+   "name": "živý plot",
+   "kind": "bush",
+   "tags": [
+    "hedge",
+    "cultivated",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "028",
+   "name": "hlinitá jáma / útes",
+   "kind": "prop",
+   "tags": [
+    "cliff",
+    "hole",
+    "solid"
+   ],
+   "note": "velký, dej jako terén, ne ozdobu",
+   "uncertain": true
+  },
+  {
+   "s": "okoli2",
+   "r": "029",
+   "name": "velká koruna (shora)",
+   "kind": "bush",
+   "tags": [
+    "bush",
+    "canopy"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "okoli2",
+   "r": "030",
+   "name": "hliněný pahorek",
+   "kind": "prop",
+   "tags": [
+    "mound",
+    "earth"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "okoli2",
+   "r": "031",
+   "name": "dlouhý živý plot s plody",
+   "kind": "bush",
+   "tags": [
+    "hedge",
+    "cultivated",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "032",
+   "name": "cypřiš",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "conifer",
+    "cultivated",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "033-034",
+   "name": "listnatý strom",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "035",
+   "name": "plochý kámen",
+   "kind": "prop",
+   "tags": [
+    "rock",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "036-040",
+   "name": "drobné kameny",
+   "kind": "deco",
+   "tags": [
+    "rock",
+    "small",
+    "ground_cover"
+   ]
+  },
+  {
+   "s": "okoli2",
+   "r": "041",
+   "name": "dlažba / kamenný most",
+   "kind": "prop",
+   "tags": [
+    "paving",
+    "structure",
+    "path_ok"
+   ],
+   "uncertain": true,
+   "note": "kompozit 2 kusů"
+  },
+  {
+   "s": "okoli2",
+   "r": "042",
+   "name": "skalní útvar + menhir",
+   "kind": "prop",
+   "tags": [
+    "rock",
+    "pile",
+    "solid"
+   ],
+   "note": "kompozit"
+  },
+  {
+   "s": "okoli2",
+   "r": "043",
+   "name": "hromada kamení",
+   "kind": "prop",
+   "tags": [
+    "rock",
+    "pile",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "000,043",
+   "name": "velký keř (tyrkysový)",
+   "kind": "bush",
+   "tags": [
+    "bush",
+    "dark_forest"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "001,003",
+   "name": "strom (tyrkysový)",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "dark_forest",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "002",
+   "name": "kamenná stěna",
+   "kind": "prop",
+   "tags": [
+    "cliff",
+    "wall",
+    "solid"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "okoli3",
+   "r": "004",
+   "name": "jeskyně + skála",
+   "kind": "prop",
+   "tags": [
+    "cave",
+    "rock",
+    "solid"
+   ],
+   "uncertain": true,
+   "note": "kompozit"
+  },
+  {
+   "s": "okoli3",
+   "r": "005,008,009",
+   "name": "šedé kameny",
+   "kind": "prop",
+   "tags": [
+    "rock",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "006,032-035,039,040",
+   "name": "drobné kvítky",
+   "kind": "plant",
+   "tags": [
+    "flower",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "007",
+   "name": "kompozit kmeny + pařez",
+   "kind": "prop",
+   "tags": [
+    "tree",
+    "stump",
+    "wood"
+   ],
+   "uncertain": true,
+   "note": "kompozit, nepoužívat"
+  },
+  {
+   "s": "okoli3",
+   "r": "010",
+   "name": "padlý kmen",
+   "kind": "prop",
+   "tags": [
+    "log",
+    "wood",
+    "forest",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "011",
+   "name": "šlapací kameny",
+   "kind": "deco",
+   "tags": [
+    "paving",
+    "path_ok",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "012,044",
+   "name": "dutý kmen",
+   "kind": "prop",
+   "tags": [
+    "stump",
+    "wood",
+    "forest",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "013-016",
+   "name": "červené houbičky",
+   "kind": "plant",
+   "tags": [
+    "mushroom",
+    "forest",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "017",
+   "name": "keře s kamenem",
+   "kind": "bush",
+   "tags": [
+    "bush",
+    "rock"
+   ],
+   "uncertain": true,
+   "note": "kompozit"
+  },
+  {
+   "s": "okoli3",
+   "r": "018",
+   "name": "koruna smrku (okraj lesa)",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "conifer",
+    "dark_forest"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "okoli3",
+   "r": "019-031",
+   "name": "modré / červené kvítky",
+   "kind": "plant",
+   "tags": [
+    "flower",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "036",
+   "name": "tmavý pruh zeminy",
+   "kind": "deco",
+   "tags": [
+    "earth",
+    "ground_cover"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "okoli3",
+   "r": "037",
+   "name": "velký keř",
+   "kind": "bush",
+   "tags": [
+    "bush",
+    "dark_forest"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "038",
+   "name": "kopečky trávy (okraje)",
+   "kind": "deco",
+   "tags": [
+    "mound",
+    "terrain_piece"
+   ],
+   "uncertain": true,
+   "note": "kompozit"
+  },
+  {
+   "s": "okoli3",
+   "r": "041",
+   "name": "vysoký smrk",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "conifer",
+    "dark_forest",
+    "solid"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "042",
+   "name": "trs trávy",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "small"
+   ]
+  },
+  {
+   "s": "okoli3",
+   "r": "045",
+   "name": "útes s trávou",
+   "kind": "prop",
+   "tags": [
+    "cliff",
+    "solid"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "doplnky",
+   "r": "000,015",
+   "name": "sud",
+   "kind": "prop",
+   "tags": [
+    "barrel",
+    "container",
+    "village",
+    "camp",
+    "solid"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "001",
+   "name": "hrob se křížem",
+   "kind": "prop",
+   "tags": [
+    "grave",
+    "graveyard",
+    "solid"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "002",
+   "name": "náhrobek",
+   "kind": "prop",
+   "tags": [
+    "grave",
+    "graveyard",
+    "solid"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "003,022",
+   "name": "džbán / hliněná nádoba",
+   "kind": "prop",
+   "tags": [
+    "pot",
+    "container",
+    "village",
+    "camp"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "004,005,040,041,042",
+   "name": "vědro / škopek",
+   "kind": "prop",
+   "tags": [
+    "bucket",
+    "container",
+    "village",
+    "camp"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "006",
+   "name": "dřevěná cedule",
+   "kind": "prop",
+   "tags": [
+    "sign",
+    "wood",
+    "village",
+    "path_ok"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "007,008",
+   "name": "kamenná brána / rituální portál",
+   "kind": "prop",
+   "tags": [
+    "portal",
+    "ritual",
+    "ruin",
+    "solid"
+   ],
+   "ritual": true,
+   "uncertain": true
+  },
+  {
+   "s": "doplnky",
+   "r": "009,023,028,029",
+   "name": "bedna",
+   "kind": "prop",
+   "tags": [
+    "crate",
+    "container",
+    "village",
+    "camp"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "010",
+   "name": "ohniště z klacků",
+   "kind": "prop",
+   "tags": [
+    "campfire",
+    "camp",
+    "fire"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "doplnky",
+   "r": "011",
+   "name": "truhla",
+   "kind": "prop",
+   "tags": [
+    "chest",
+    "container",
+    "camp",
+    "solid"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "012",
+   "name": "socha anděla",
+   "kind": "prop",
+   "tags": [
+    "statue",
+    "graveyard",
+    "ruin",
+    "solid"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "013",
+   "name": "kompozit: ohniště, studna, truhly, kmeny",
+   "kind": "prop",
+   "tags": [
+    "composite"
+   ],
+   "uncertain": true,
+   "note": "rozřezat ručně"
+  },
+  {
+   "s": "doplnky",
+   "r": "014",
+   "name": "rozcestník",
+   "kind": "prop",
+   "tags": [
+    "sign",
+    "wood",
+    "path_ok",
+    "village"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "016",
+   "name": "kamenný sloup",
+   "kind": "prop",
+   "tags": [
+    "wall",
+    "ruin",
+    "solid"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "017",
+   "name": "stan",
+   "kind": "building",
+   "tags": [
+    "tent",
+    "camp",
+    "solid"
+   ],
+   "uncertain": true,
+   "note": "2 kusy: rozložený a hotový stan"
+  },
+  {
+   "s": "doplnky",
+   "r": "018",
+   "name": "kompozit: zdi, most, truhlík",
+   "kind": "prop",
+   "tags": [
+    "composite"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "doplnky",
+   "r": "019",
+   "name": "kompozit: skála, žebřík, seno",
+   "kind": "prop",
+   "tags": [
+    "composite"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "doplnky",
+   "r": "020",
+   "name": "žebřík",
+   "kind": "prop",
+   "tags": [
+    "ladder",
+    "wood",
+    "structure"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "021",
+   "name": "kompozit: pytle, seno, nádoby",
+   "kind": "prop",
+   "tags": [
+    "composite"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "doplnky",
+   "r": "024",
+   "name": "hromada rudy / kamení",
+   "kind": "prop",
+   "tags": [
+    "ore",
+    "rock",
+    "pile"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "025,032",
+   "name": "dveře / deska",
+   "kind": "prop",
+   "tags": [
+    "door",
+    "wood",
+    "structure"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "026",
+   "name": "štípané dříví",
+   "kind": "prop",
+   "tags": [
+    "firewood",
+    "wood",
+    "camp"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "027",
+   "name": "police / regál",
+   "kind": "prop",
+   "tags": [
+    "shelf",
+    "furniture",
+    "indoor",
+    "village"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "030",
+   "name": "dřevěný kozlík",
+   "kind": "prop",
+   "tags": [
+    "tool",
+    "wood",
+    "village",
+    "camp"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "031",
+   "name": "kladivo",
+   "kind": "prop",
+   "tags": [
+    "tool",
+    "small",
+    "camp"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "033",
+   "name": "krumpáč",
+   "kind": "prop",
+   "tags": [
+    "tool",
+    "small",
+    "camp"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "034",
+   "name": "bedýnka (vejce?)",
+   "kind": "prop",
+   "tags": [
+    "crate",
+    "small",
+    "village"
+   ],
+   "uncertain": true
+  },
+  {
+   "s": "doplnky",
+   "r": "035",
+   "name": "svinuté lano",
+   "kind": "prop",
+   "tags": [
+    "rope",
+    "small",
+    "camp",
+    "ship"
+   ],
+   "not_on_path": true
+  },
+  {
+   "s": "doplnky",
+   "r": "036",
+   "name": "hromádka zlata",
+   "kind": "prop",
+   "tags": [
+    "treasure",
+    "small"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "037",
+   "name": "kamenný stojan",
+   "kind": "prop",
+   "tags": [
+    "structure",
+    "ritual",
+    "solid"
+   ],
+   "ritual": true,
+   "uncertain": true
+  },
+  {
+   "s": "doplnky",
+   "r": "038",
+   "name": "velká bedna",
+   "kind": "prop",
+   "tags": [
+    "crate",
+    "container",
+    "village",
+    "camp"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "039",
+   "name": "stoh sudů / sena",
+   "kind": "prop",
+   "tags": [
+    "hay",
+    "barrel",
+    "village",
+    "solid"
+   ]
+  },
+  {
+   "s": "doplnky",
+   "r": "043",
+   "name": "kolo sena",
+   "kind": "prop",
+   "tags": [
+    "hay",
+    "farm",
+    "village"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "000-022",
+   "name": "suché větve, kořeny, kosti",
+   "kind": "deco",
+   "tags": [
+    "dead",
+    "swamp",
+    "small",
+    "wood"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "006",
+   "name": "lebka",
+   "kind": "deco",
+   "tags": [
+    "bones",
+    "dead",
+    "grim",
+    "small"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "007",
+   "name": "kostra",
+   "kind": "deco",
+   "tags": [
+    "bones",
+    "dead",
+    "grim"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "023,029",
+   "name": "padlý suchý kmen",
+   "kind": "prop",
+   "tags": [
+    "log",
+    "dead",
+    "wood",
+    "solid"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "024",
+   "name": "hromádka kořenů",
+   "kind": "deco",
+   "tags": [
+    "dead",
+    "small"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "025",
+   "name": "velký zelený strom",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "solid",
+    "big"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "026-027,030-031",
+   "name": "pařez / dutý pařez",
+   "kind": "prop",
+   "tags": [
+    "stump",
+    "wood",
+    "solid"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "028,032-034",
+   "name": "suchý strom",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "dead",
+    "swamp",
+    "solid"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "035-038",
+   "name": "žlutý strom (bažinatý/podzimní)",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "autumn",
+    "swamp",
+    "solid"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "039-042",
+   "name": "malá rostlina",
+   "kind": "plant",
+   "tags": [
+    "plant",
+    "small"
+   ]
+  },
+  {
+   "s": "stromy02",
+   "r": "043-050",
+   "name": "kapradí / listy",
+   "kind": "plant",
+   "tags": [
+    "fern",
+    "plant",
+    "forest",
+    "small"
+   ]
+  },
+  {
+   "s": "rm_stromy01",
+   "r": "000-001,004-007,015-016,019-020",
+   "name": "keř (žlutozelený)",
+   "kind": "bush",
+   "tags": [
+    "bush"
+   ]
+  },
+  {
+   "s": "rm_stromy01",
+   "r": "002-003,009-014,017-018",
+   "name": "listnatý strom",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "solid"
+   ]
+  },
+  {
+   "s": "rm_stromy01",
+   "r": "008",
+   "name": "štíhlý strom",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "solid"
+   ]
+  },
+  {
+   "s": "rm_stromy01",
+   "r": "021",
+   "name": "listy",
+   "kind": "plant",
+   "tags": [
+    "plant",
+    "small"
+   ]
+  },
+  {
+   "s": "rm_stromy",
+   "r": "000",
+   "name": "obří dub",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "solid",
+    "big"
+   ]
+  },
+  {
+   "s": "rm_stromy",
+   "r": "001,008",
+   "name": "smrk",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "conifer",
+    "solid"
+   ]
+  },
+  {
+   "s": "rm_stromy",
+   "r": "002-003,013-014,043-045",
+   "name": "listnatý strom",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "solid"
+   ]
+  },
+  {
+   "s": "rm_stromy",
+   "r": "004,009,015,019-020,023-024,030-031,035,039-040",
+   "name": "keř",
+   "kind": "bush",
+   "tags": [
+    "bush"
+   ]
+  },
+  {
+   "s": "rm_stromy",
+   "r": "005-007,010,018,032,034,042",
+   "name": "trs trávy / rostliny",
+   "kind": "plant",
+   "tags": [
+    "grass",
+    "plant",
+    "small"
+   ],
+   "note": "042 může být bonsai – ověřit",
+   "uncertain": true
+  },
+  {
+   "s": "rm_stromy",
+   "r": "011-012,016-017",
+   "name": "květiny",
+   "kind": "plant",
+   "tags": [
+    "flower",
+    "small"
+   ]
+  },
+  {
+   "s": "rm_stromy",
+   "r": "021,026,029",
+   "name": "štíhlý keř / cypřiš",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "conifer",
+    "cultivated",
+    "solid"
+   ]
+  },
+  {
+   "s": "rm_stromy",
+   "r": "022,041",
+   "name": "živý plot",
+   "kind": "bush",
+   "tags": [
+    "hedge",
+    "cultivated",
+    "solid"
+   ]
+  },
+  {
+   "s": "rm_stromy",
+   "r": "025,027-028,037",
+   "name": "menší strom",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "small_tree",
+    "solid"
+   ]
+  },
+  {
+   "s": "rm_stromy",
+   "r": "033,036,038",
+   "name": "akácie / bonsaj",
+   "kind": "tree",
+   "tags": [
+    "tree",
+    "deciduous",
+    "exotic",
+    "solid"
+   ]
+  }
+ ]
+}

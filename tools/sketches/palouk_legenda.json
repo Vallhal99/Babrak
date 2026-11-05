@@ -1,0 +1,167 @@
+{
+ "colors": {
+  "#1d4d1a": "forest",
+  "#3a7d2c": "meadow",
+  "#b08a50": "path",
+  "#966466": "camp",
+  "#787878": "rocky"
+ },
+ "zones": {
+  "forest": {
+   "terrain": "forest_floor",
+   "mix": [
+    [
+     "leaf_grass",
+     0.2
+    ],
+    [
+     "grass_dark",
+     0.2
+    ]
+   ],
+   "profile": "forest",
+   "scatter": [
+    {
+     "tags": [
+      "tree"
+     ],
+     "density": 0.045,
+     "min_dist": 70,
+     "min_h": 110
+    },
+    {
+     "tags": [
+      "bush"
+     ],
+     "density": 0.02,
+     "min_dist": 40
+    },
+    {
+     "tags": [
+      "fern",
+      "mushroom"
+     ],
+     "density": 0.02,
+     "min_dist": 16
+    },
+    {
+     "tags": [
+      "log",
+      "stump"
+     ],
+     "density": 0.004,
+     "min_dist": 60
+    },
+    {
+     "tags": [
+      "rock"
+     ],
+     "density": 0.004,
+     "min_dist": 50,
+     "max_h": 80
+    }
+   ]
+  },
+  "meadow": {
+   "terrain": "grass",
+   "mix": [
+    [
+     "grass_meadow",
+     0.25
+    ],
+    [
+     "flowers",
+     0.08
+    ]
+   ],
+   "profile": "meadow",
+   "scatter": [
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.06,
+     "min_dist": 14,
+     "max_h": 50
+    },
+    {
+     "tags": [
+      "flower"
+     ],
+     "density": 0.03,
+     "min_dist": 18,
+     "max_h": 60
+    },
+    {
+     "tags": [
+      "bush"
+     ],
+     "density": 0.006,
+     "min_dist": 60
+    },
+    {
+     "tags": [
+      "tree"
+     ],
+     "density": 0.002,
+     "min_dist": 150,
+     "min_h": 110
+    }
+   ]
+  },
+  "path": {
+   "terrain": "dirt",
+   "profile": "path",
+   "scatter": [
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.01,
+     "min_dist": 24,
+     "max_h": 30
+    }
+   ]
+  },
+  "camp": {
+   "terrain": "dirt",
+   "mix": [
+    [
+     "dirt_rock",
+     0.2
+    ]
+   ],
+   "profile": "camp",
+   "camp": true,
+   "scatter": [
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.01,
+     "min_dist": 30,
+     "max_h": 30
+    }
+   ]
+  },
+  "rocky": {
+   "terrain": "stone_dark",
+   "mix": [
+    [
+     "cobble",
+     0.3
+    ]
+   ],
+   "profile": "forest",
+   "scatter": [
+    {
+     "tags": [
+      "rock"
+     ],
+     "density": 0.08,
+     "min_dist": 30
+    }
+   ]
+  }
+ }
+}

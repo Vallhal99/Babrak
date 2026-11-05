@@ -42,6 +42,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "barrel,container,village,camp,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "sud"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "18,7"
@@ -78,6 +88,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "grave,graveyard,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "hrob se k\u0159\u00ed\u017eem"
 },
 {
 "name": "shadow_size",
@@ -118,6 +138,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "grave,graveyard,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "n\u00e1hrobek"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "18,8"
@@ -138,17 +168,17 @@
 {
 "name": "kind",
 "type": "string",
-"value": "bush"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "12"
+"value": "14"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": true
+"value": false
 },
 {
 "name": "shadow",
@@ -156,9 +186,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "pot,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "d\u017eb\u00e1n / hlin\u011bn\u00e1 n\u00e1doba"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "17,8"
+"value": "17,7"
 }
 ]
 },
@@ -192,6 +232,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "bucket,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "v\u011bdro / \u0161kopek"
 },
 {
 "name": "shadow_size",
@@ -232,6 +282,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bucket,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "v\u011bdro / \u0161kopek"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "15,6"
@@ -270,6 +330,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "sign,wood,village,path_ok"
+},
+{
+"name": "label",
+"type": "string",
+"value": "d\u0159ev\u011bn\u00e1 cedule"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "50,7"
@@ -290,12 +360,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "68,26"
+"value": "24"
 },
 {
 "name": "sway",
@@ -308,9 +378,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "portal,ritual,ruin,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kamenn\u00e1 br\u00e1na / ritu\u00e1ln\u00ed port\u00e1l"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "44,14"
+"value": "41,14"
 }
 ]
 },
@@ -328,12 +408,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "68,26"
+"value": "24"
 },
 {
 "name": "sway",
@@ -346,9 +426,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "portal,ritual,ruin,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kamenn\u00e1 br\u00e1na / ritu\u00e1ln\u00ed port\u00e1l"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "44,14"
+"value": "41,14"
 }
 ]
 },
@@ -382,6 +472,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "crate,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "bedna"
 },
 {
 "name": "shadow_size",
@@ -422,6 +522,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "campfire,camp,fire"
+},
+{
+"name": "label",
+"type": "string",
+"value": "ohni\u0161t\u011b z klack\u016f"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "24,6"
@@ -458,6 +568,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "chest,container,camp,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "truhla"
 },
 {
 "name": "shadow_size",
@@ -498,6 +618,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "statue,graveyard,ruin,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "socha and\u011bla"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "21,15"
@@ -518,12 +648,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "288,26"
+"value": "24"
 },
 {
 "name": "sway",
@@ -536,9 +666,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "composite"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kompozit: ohni\u0161t\u011b, studna, truhly, kmeny"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "185,14"
+"value": "173,46"
 }
 ]
 },
@@ -574,6 +714,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "sign,wood,path_ok,village"
+},
+{
+"name": "label",
+"type": "string",
+"value": "rozcestn\u00edk"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "19,8"
@@ -594,17 +744,17 @@
 {
 "name": "kind",
 "type": "string",
-"value": "bush"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "13"
+"value": "15"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": true
+"value": false
 },
 {
 "name": "shadow",
@@ -612,9 +762,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "barrel,container,village,camp,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "sud"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "18,11"
+"value": "18,10"
 }
 ]
 },
@@ -648,6 +808,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "wall,ruin,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kamenn\u00fd sloup"
 },
 {
 "name": "shadow_size",
@@ -688,6 +858,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tent,camp,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "stan"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "122,14"
@@ -708,12 +888,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "470,26"
+"value": "24"
 },
 {
 "name": "sway",
@@ -726,9 +906,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "composite"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kompozit: zdi, most, truhl\u00edk"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "302,14"
+"value": "282,85"
 }
 ]
 },
@@ -746,12 +936,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "131,26"
+"value": "24"
 },
 {
 "name": "sway",
@@ -764,9 +954,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "composite"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kompozit: sk\u00e1la, \u017eeb\u0159\u00edk, seno"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "85,14"
+"value": "79,52"
 }
 ]
 },
@@ -802,6 +1002,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "ladder,wood,structure"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u017eeb\u0159\u00edk"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "21,18"
@@ -822,17 +1032,17 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "12"
+"value": "24"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": true
+"value": false
 },
 {
 "name": "shadow",
@@ -840,9 +1050,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "composite"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kompozit: pytle, seno, n\u00e1doby"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "43,10"
+"value": "60,44"
 }
 ]
 },
@@ -876,6 +1096,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "pot,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "d\u017eb\u00e1n / hlin\u011bn\u00e1 n\u00e1doba"
 },
 {
 "name": "shadow_size",
@@ -916,6 +1146,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "crate,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "bedna"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "15,5"
@@ -952,6 +1192,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "ore,rock,pile"
+},
+{
+"name": "label",
+"type": "string",
+"value": "hromada rudy / kamen\u00ed"
 },
 {
 "name": "shadow_size",
@@ -992,6 +1242,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "door,wood,structure"
+},
+{
+"name": "label",
+"type": "string",
+"value": "dve\u0159e / deska"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "11,6"
@@ -1028,6 +1288,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "firewood,wood,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "\u0161t\u00edpan\u00e9 d\u0159\u00edv\u00ed"
 },
 {
 "name": "shadow_size",
@@ -1068,6 +1338,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "shelf,furniture,indoor,village"
+},
+{
+"name": "label",
+"type": "string",
+"value": "police / reg\u00e1l"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "13,7"
@@ -1104,6 +1384,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "crate,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "bedna"
 },
 {
 "name": "shadow_size",
@@ -1144,6 +1434,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "crate,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "bedna"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "16,5"
@@ -1180,6 +1480,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "tool,wood,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "d\u0159ev\u011bn\u00fd kozl\u00edk"
 },
 {
 "name": "shadow_size",
@@ -1220,6 +1530,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tool,small,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kladivo"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "26,7"
@@ -1256,6 +1576,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "door,wood,structure"
+},
+{
+"name": "label",
+"type": "string",
+"value": "dve\u0159e / deska"
 },
 {
 "name": "shadow_size",
@@ -1296,6 +1626,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "tool,small,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "krump\u00e1\u010d"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "32,6"
@@ -1332,6 +1672,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "crate,small,village"
+},
+{
+"name": "label",
+"type": "string",
+"value": "bed\u00fdnka (vejce?)"
 },
 {
 "name": "shadow_size",
@@ -1372,6 +1722,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "rope,small,camp,ship"
+},
+{
+"name": "label",
+"type": "string",
+"value": "svinut\u00e9 lano"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "54,7"
@@ -1408,6 +1768,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "treasure,small"
+},
+{
+"name": "label",
+"type": "string",
+"value": "hrom\u00e1dka zlata"
 },
 {
 "name": "shadow_size",
@@ -1448,6 +1818,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "structure,ritual,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kamenn\u00fd stojan"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "12,8"
@@ -1486,6 +1866,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "crate,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "velk\u00e1 bedna"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "21,8"
@@ -1506,17 +1896,17 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "8"
+"value": "24"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": true
+"value": false
 },
 {
 "name": "shadow",
@@ -1524,9 +1914,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "hay,barrel,village,solid"
+},
+{
+"name": "label",
+"type": "string",
+"value": "stoh sud\u016f / sena"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "27,8"
+"value": "38,14"
 }
 ]
 },
@@ -1560,6 +1960,16 @@
 "name": "shadow",
 "type": "bool",
 "value": true
+},
+{
+"name": "tags",
+"type": "string",
+"value": "bucket,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "v\u011bdro / \u0161kopek"
 },
 {
 "name": "shadow_size",
@@ -1600,6 +2010,16 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bucket,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "v\u011bdro / \u0161kopek"
+},
+{
 "name": "shadow_size",
 "type": "string",
 "value": "15,6"
@@ -1620,12 +2040,12 @@
 {
 "name": "kind",
 "type": "string",
-"value": "building"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "68,26"
+"value": "24"
 },
 {
 "name": "sway",
@@ -1638,9 +2058,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "bucket,container,village,camp"
+},
+{
+"name": "label",
+"type": "string",
+"value": "v\u011bdro / \u0161kopek"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "44,14"
+"value": "41,23"
 }
 ]
 },
@@ -1658,17 +2088,17 @@
 {
 "name": "kind",
 "type": "string",
-"value": "tree"
+"value": "prop"
 },
 {
 "name": "collision",
 "type": "string",
-"value": "8"
+"value": "17"
 },
 {
 "name": "sway",
 "type": "bool",
-"value": true
+"value": false
 },
 {
 "name": "shadow",
@@ -1676,9 +2106,19 @@
 "value": true
 },
 {
+"name": "tags",
+"type": "string",
+"value": "hay,farm,village"
+},
+{
+"name": "label",
+"type": "string",
+"value": "kolo sena"
+},
+{
 "name": "shadow_size",
 "type": "string",
-"value": "15,8"
+"value": "21,23"
 }
 ]
 }
