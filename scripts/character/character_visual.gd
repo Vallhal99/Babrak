@@ -55,6 +55,9 @@ func bind(equipment: Equipment) -> void:
 
 
 func play(new_anim: StringName, new_dir: int = dir, restart := false) -> void:
+	var resolved := AnimCatalog.resolve(new_anim, new_dir)
+	new_anim = resolved[0]
+	new_dir = resolved[1]
 	if new_anim == anim and new_dir == dir and not restart and not _done:
 		return
 	if new_anim != anim or restart or _done:

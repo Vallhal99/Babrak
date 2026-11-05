@@ -195,7 +195,8 @@ func _process(delta: float) -> void:
 func _animate(input: Vector2) -> void:
 	if input != Vector2.ZERO:
 		facing = dir_from(input)
-		visual.play(loco(&"run" if run_input else &"walk"), facing)
+		var move := loco(&"run" if run_input else &"walk")
+		visual.play(move, AnimCatalog.dir8(input) if AnimCatalog.DIAG.has(move) else facing)
 		return
 	var idle := loco(&"idle")
 	if idle == &"idle" and _stance_timer > 0.0:

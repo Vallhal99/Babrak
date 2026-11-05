@@ -20,13 +20,18 @@ func _ready() -> void:
 	_check(hero.attack_power() == 7 and hero.defense() == 5, "staty z vybavení")
 	# všechny animace a směry (včetně kombinovaných) nesmí spadnout
 	for a in AnimCatalog.ANIMS:
-		for d in 4:
+		for d in 8:
 			hero.visual.play(a, d, true)
 			for i in 40:
 				hero.visual._process(0.05)
+	_check(AnimCatalog.dir8(Vector2(1, 1)) == AnimCatalog.Dir.DOWN_RIGHT and AnimCatalog.dir8(Vector2(-1, 0)) == AnimCatalog.Dir.LEFT, "8 směrů z vektoru")
+	_check(AnimCatalog.resolve(&"walk", AnimCatalog.Dir.UP_LEFT) == [&"walk_diag", 0] and AnimCatalog.resolve(&"idle", AnimCatalog.Dir.DOWN_LEFT) == [&"idle", AnimCatalog.Dir.DOWN], "diagonály: jen chůze/běh mají vlastní animaci")
 	hero.visual.play(&"walk", AnimCatalog.Dir.LEFT, true)
 	main.get_node("Map").set_night(true)
 	await _shot("/tmp/claude-0/shot_walk.png")
+	hero.visual.play(&"walk", AnimCatalog.Dir.DOWN_RIGHT, true)
+	hero.visual._process(0.3)
+	await _shot("/tmp/claude-0/shot_diag.png")
 	# souboj: nepřítel vedle hrdiny
 	enemy.global_position = hero.global_position + Vector2(40, 0)
 	hero.facing = AnimCatalog.Dir.RIGHT

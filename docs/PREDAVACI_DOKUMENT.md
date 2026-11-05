@@ -151,3 +151,8 @@ Text k vložení jako první zpráva:
 - Layout: `AnimCatalog` má 70 řádků (+`slash_1h`, `watering`), `BIG_Y` = 4480. Nové sloty `TORSO`, `HANDS`.
 - Původní postava, předměty a nástroje: `archive/hero_v1/` (`.gdignore`). Pochodeň je archivovaná (póza byla kreslená na staré tělo).
 - Známé mezery: brnění nemají některé animace (kroužková košile: combat/backslash/halfslash; všechny věci: slash_1h/watering) → postava je v nich bez nich; luk/kuše mají jen animaci `shoot`, střelba není implementovaná (nejsou v obchodě); 192px oversize efekty (Longsword/Blunt), `tool_axe`, `walk_128` luku nejsou využity; ikony rukavic/kabátu/kapuce jsou hrubé.
+
+### 9b. Osm směrů (5. 11. 2026)
+- Zdroj `tools/source_hero/Animace_doplnek/` (diagonální chůze 6 snímků, zvedání ze země ve 3 směrech, 80px snímky). `tools/hero8.py` je vycentruje do 64px buňky (patky na y=61) a vybavení pro diagonály **přefituje** z hotových vrstev: hlava = výřez z vrstvy posunutý na novou hlavu, tělo/nohy/boty = přebarvení těla barvami věci (podle světlosti). Není to ručně kreslené – detaily (plechy, kroužky) se ztrácejí.
+- Katalog: `Dir` má 8 hodnot; `walk_diag`/`run_diag` (řádky 70–73), `pickup` (74–77, UP = kopie DOWN), `BIG_Y` = 4992. `AnimCatalog.resolve()` pošle diagonálu jen chůzi/běhu, ostatní animace dostanou svislý směr. `Character.facing` zůstává 4směrový (boj), jen vizuál chůze/běhu používá `AnimCatalog.dir8()`.
+- Mezery: rukavice a zbraně nemají diagonální chůzi, zvedání ze země je jen tělo, barvy vlasů/kalhot nového těla se liší od 4směrového (hnědé vlasy, šedé šortky vs. zrzavé/bílé).

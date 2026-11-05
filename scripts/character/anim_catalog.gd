@@ -9,10 +9,12 @@ extends RefCounted
 
 const FRAME := 64
 const BIG := 128
-const BIG_Y := 4480   # kde v sheetu začíná oversize oblast (pod 70 řádky po 64 px)
+const BIG_Y := 4992   # kde v sheetu začíná oversize oblast (pod 78 řádky po 64 px)
 const BIG_OFFSET := 32  # 64px snímek leží uprostřed 128px snímku
 
-enum Dir { UP, LEFT, DOWN, RIGHT }
+## 4 směry mají všechny animace, diagonály jen chůze/běh (DIAG); jinde se použije svislý směr.
+enum Dir { UP, LEFT, DOWN, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT }
+const DIAG := {&"walk": &"walk_diag", &"run": &"run_diag"}
 
 const ANIMS := {
 	&"spellcast": {"row": 0, "frames": 7, "fps": 10.0, "hit_frame": 5},
@@ -33,11 +35,36 @@ const ANIMS := {
 	# Jednoruční / nové animace z balíčku postavy v2.
 	&"slash_1h": {"row": 54, "frames": 13, "fps": 16.0, "hit_frame": 7},
 	&"watering": {"row": 66, "frames": 8, "fps": 8.0},
+	# Osm směrů: diagonální chůze (řádky = Dir UP_LEFT..DOWN_RIGHT), běh je stejné snímky rychleji.
+	&"walk_diag": {"row": 70, "frames": 6, "fps": 8.0, "loop": true},
+	&"run_diag": {"row": 70, "frames": 6, "fps": 12.0, "loop": true},
+	# Zvedání ze země (experiment; vybavení zatím nepřefitované, směr UP = kopie DOWN).
+	&"pickup": {"row": 74, "frames": 5, "fps": 8.0},
 	# Pochodeň: zvednutá ruka (dokreslená póza), chůze = horní půlka pózy + nohy z walk/run.
 	&"torch_idle": {"row": 0, "frames": 8, "fps": 8.0, "loop": true, "extra": true, "alias": &"idle", "alias_div": 4},
 	&"torch_walk": {"row": 8, "frames": 9, "fps": 10.0, "loop": true, "top": &"torch_idle"},
 	&"torch_run": {"row": 38, "frames": 8, "fps": 12.0, "loop": true, "top": &"torch_idle"},
 }
+
+
+## Animace a řádek (0-3) pro směr 0-7: diagonála bez vlastní animace se kreslí svislým směrem.
+static func resolve(anim: StringName, dir: int) -> Array:
+	if dir < 4:
+		return [anim, dir]
+	if DIAG.has(anim):
+		return [DIAG[anim], dir - Dir.UP_LEFT]
+	return [anim, Dir.UP if dir == Dir.UP_LEFT or dir == Dir.UP_RIGHT else Dir.DOWN]
+
+
+## Nejbližší z 8 směrů pro vektor pohybu.
+static func dir8(v: Vector2) -> int:
+	var ax := absf(v.x)
+	var ay := absf(v.y)
+	if ax > 2.414 * ay or ay > 2.414 * ax:
+		return Character.dir_from(v)
+	if v.y < 0.0:
+		return Dir.UP_RIGHT if v.x > 0.0 else Dir.UP_LEFT
+	return Dir.DOWN_RIGHT if v.x > 0.0 else Dir.DOWN_LEFT
 
 
 static func frame_count(anim: StringName) -> int:

@@ -9,15 +9,18 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+from hero8 import Diagonals
+
 SRC = Path("tools/source_hero")
 OUT = Path("assets/characters/hero")
 CATALOG = Path("scripts/character/anim_catalog.gd").read_text()
 
 BIG, BIG_Y = 128, int(re.search(r"const BIG_Y := (\d+)", CATALOG).group(1))
 BIG_ROWS, W, W_BIG = 12, 832, 1664
-# animace katalogu, které mají zdroj v balíčku (torch_* se kreslí zvlášť); soubor se jmenuje jinak než animace jen u těchto:
+# animace katalogu, které mají zdroj v balíčku po animacích (torch_* a 8směrové řádky řeší jinde); soubor se jmenuje jinak jen u těchto:
 STEM = {"backslash": "1h_backslash", "halfslash": "1h_halfslash", "slash_1h": "1h_slash"}
-ROWS = {n: int(r) for n, r in re.findall(r'&"(\w+)": \{"row": (\d+)', CATALOG) if not n.startswith("torch")}
+CATALOG_ROWS = {n: int(r) for n, r in re.findall(r'&"(\w+)": \{"row": (\d+)', CATALOG)}
+ROWS = {n: r for n, r in CATALOG_ROWS.items() if not n.startswith("torch") and not n.endswith("_diag") and n != "pickup"}
 BIG_FILES = {"slash": ("slash_128", 0), "backslash": ("backslash_128", 4), "halfslash": ("halfslash_128", 8)}  # složka Nahy_boj
 
 
@@ -85,6 +88,8 @@ plain = fill_empty(from_sheet(SRC / "Nahy.png"), from_dir(SRC / "Nahy_standard")
 armed = fill_empty(from_dir(SRC / "Nahy_standard"), plain)                         # tělo s mečem u pasu (= Nahy_zbran)
 armed_big = read(SRC / "Nahy_zbran.png")[3456:]
 sword_main, sword_big = diff(armed, plain), diff(armed_big, body_big())
+diag = Diagonals(SRC / "Animace_doplnek", CATALOG_ROWS, (BIG_Y, W))
+plain = fill_empty(plain, diag.body())                                             # + diagonální chůze a zvedání ze země
 
 # --- vybavení: id, název, popis, slot, zdroj, základ, staty ---------------------------------------
 # zdroj: ("dir", složka s animacemi) | ("sheet", soubor); základ, od kterého se kompletní postava odečítá:
@@ -116,6 +121,9 @@ ITEMS = [
     dict(id="crossbow", name="Kuše", desc="Střelná zbraň (střelba zatím není).", slot="WEAPON", src=("dir", "Zbrane/Crossbow"), base="plain", attack="shoot", damage=4, price=140),
 ]
 # "shirt" = tělo + tričko (základ pro boty); kde tričko chybí, zůstane holé tělo
+# přefitování na diagonální chůzi: head = výřez hlavy, torso/legs/feet = přebarvení těla (viz tools/hero8.py)
+FIT = {"hood": ("head",), "mail_coif": ("head",), "close_helm": ("head",), "wizard_hat": ("head",),
+       "shirt": ("torso", "legs"), "chainmail": ("torso",), "frock_coat": ("torso",), "plate": ("torso",), "boots": ("feet",)}
 BASES = {"armed": armed, "plain": plain, "shirt": np.where(shirt_comp[..., 3:] > 0, shirt_comp, armed)}
 
 
@@ -169,6 +177,8 @@ for it in ITEMS:
     else:
         comp = from_dir(SRC / rel) if kind == "dir" else from_sheet(SRC / rel)
         main = comp if it["base"] == "none" else diff(comp, BASES[it["base"]])
+    if it["id"] in FIT:
+        main = fill_empty(main, diag.fit(main, FIT[it["id"]], plain, ROWS["walk"]))
     weapon = it["slot"] == "WEAPON"
     sheet = canvas(BIG_Y + (BIG_ROWS * BIG if big is not None else 0), W_BIG if big is not None else W)
     sheet[:BIG_Y, :W] = main
