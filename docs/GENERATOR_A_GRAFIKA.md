@@ -19,3 +19,13 @@ Výsledek otevři v Tiledu a dolaď ručně.
 `add_child(Atmosphere.new())` + `set_time(t)` + `set_weather(Atmosphere.Weather.RAIN)`. Obsahuje post-processing
 (`shaders/post_fx.gdshader`: bloom, grading, tilt-shift, vinětace), stíny mraků a mlhu (`shaders/clouds.gdshader`),
 částice pyl/světlušky, listí, déšť, sníh. V ukázce: N = denní doba, B = počasí. Test: `tests/atm_shot.tscn`.
+
+## HD-2D ukázka (oddělená, 2D verze zůstává)
+`scenes/demo/hd2d_demo.tscn` (F6): stejná mapa `data/world/palouk` a hrdina, ale ve 3D: země = vyrenderovaný 2D svět na rovině,
+objekty = nakloněné sprity se skutečnými stíny slunce, 3D světla (oheň), glow, mlha, tilt-shift. N = den/soumrak/noc.
+Hloubka ostrosti (DoF) funguje v rendereru Forward+/Mobile; v Compatibility ji nahrazuje tilt-shift shader.
+
+## Úprava slovníku
+Soubor `data/world/object_catalog.json`, položka = `{"s": sada, "r": "rozsah id", "name", "kind", "tags": [...]}`.
+Příklad: `{"s":"doplnky","r":"003,022","name":"džbán","kind":"prop","tags":["pot","container","village","camp"]}`.
+Po úpravě: `python3 tools/build_user_pack.py`, pak nové generování mapy.
