@@ -11,6 +11,20 @@ Konverzace byla jednou komprimována; části z doby před kompresí (postava, b
 - **Vize:** otevřený svět z uživatelových tilesetů s moderním osvětlením a atmosférou; uživatel dodá skicu/mapu, AI doplní detaily smysluplně.
 - **Uživatel:** Čech, chce stručné odpovědi, šetří tokeny.
 
+### 1b. ZÁKLADY HRY (doplněno z kódu a README; původní rozhovor o designu už nemám k dispozici, jen jeho výsledek v kódu)
+- **Název/spuštění:** „Hero RPG", `run/main_scene = res://scenes/ui/main_menu.tscn`, okno 960×720, filtr textur nearest (pixel art), autoloady `Inputs` (klávesy v kódu) a `ItemDB` (čte `data/items/*.tres`). Hlavní herní scéna `scenes/main.tscn` + `scripts/main.gd` (mapa, hrdina, UI, respawn nepřátel po 6 s, po smrti hrdiny restart scény po 2,5 s, startovní zlato 50, testovací vybavení = všechny předměty v batohu).
+- **Ovládání:** WASD/šipky pohyb, Shift běh, Space/J útok, Q kouzlo, E interakce (obchod), I/Tab inventář, N noc/den, Esc pauza.
+- **Postavy:** `Character` (základ pro hrdinu, nepřítele i NPC; `_think()` přepisují potomci) → `Hero` (vstup hráče), `Enemy` (AI: sight 200, attack_range 30, cooldown 1,2 s, `loot` = pole `LootEntry` s šancí), `Npc` (neutrální, nezranitelný, obchodník `merchant.tscn`, `shop_stock`, nekonečné zásoby, prodej za polovinu ceny).
+- **Staty:** hp 30, útok 2, obrana 0, mana 20 (regen 2/s), chůze 90, běh 150. Úroveň: každá = 5 bodů (`POINTS_PER_LEVEL`) do atributů `ATTRIBUTES`: Síla (+1 útok), Vitalita (+4 zdraví), Duch (+3 many), Obratnost (+3 % rychlosti). Nepřítel dává `xp_reward`, `gold_reward`.
+- **Vybavení:** sloty `ItemData.Slot` = NONE, WEAPON (Zbraň), HEAD (Hlava), FEET (Boty), OFFHAND (Druhá ruka). Předmět `ItemData` (.tres): id, název, ikona, slot, cena, `layer_sheet`, `extra_sheet`, `stance` (pochodeň = `torch`), `light` (poloměr světla), damage/defense/max_hp/max_mana, `attack_anim`. `Equipment` přesouvá mezi batohem (`Inventory`) a sloty, `sum_of()` sčítá staty. Existující předměty: sword_wood, sword_steel, helm_hood_slate, helm_armet_steel, helm_mail_silver, boots_sandals_maroon, boots_armour_silver, torch.
+- **Kouzla:** `SpellData` (.tres: PROJECTILE/HEAL, mana_cost, power, color, cast_anim); existují `fireball`, `heal`; sesílání = animace `spellcast`, efekt na `hit_frame`, nový efekt = větev v `Character._release_spell`; projektil `scripts/combat/projectile.gd`.
+- **Vrstvená postava:** `CharacterVisual` skládá tělo + sloty vybavení z vrstev, každá vrstva = 2 sprity (horní/dolní půlka, dělí se v pasu `SPLIT_Y`=42), sdílený čas → vrstvy jsou synchronní; pořadí kreslení `DRAW_ORDER`. `AnimCatalog` = layout spritesheetu 64 px snímky, 4 směry (up, left, down, right), oversize oblast 128 px dole (efekty zbraní, `BIG_Y`=3456); animace: spellcast, thrust, walk, slash, shoot, hurt, climb, idle, jump, sit, emote, run, combat, backslash, halfslash + pochodňové `torch_*` (horní půlka z dokreslené pózy, nohy z walk/run). **Sdílené animace** = všechny postavy používají stejný layout sheetu (cíl projektu).
+- **UI:** `Hud` (životy/mana/XP, layer 5), `InventoryPanel` (záložky Postava, Kouzla), `ShopPanel`, `PauseMenu`, `ExitDialog`, `main_menu`.
+- **Jak přidávat (pravidla z README):** předmět = nový `.tres` v `data/items/`; slot = `ItemData.Slot`+`SLOT_NAMES`+`CharacterVisual.DRAW_ORDER`+`InventoryPanel.SLOTS`; animace = řádek v `AnimCatalog.ANIMS`; zbraň = sheet 1664×4992 ve stejném layoutu jako `full_sheet_with_sword.png`, ostatní vybavení sheet 832×3456; nová postava = scéna zděděná z `scenes/characters/character.tscn` + skript s `_think()`; kouzlo = `.tres` v `data/spells/`.
+- **Nástroje postavy:** `tools/build_torch.py` (póza zvednuté ruky + plamen), `tools/build_assets.py` (z `full_sheet_with_sword.png` udělá `hero_base.png`, vrstvu meče, ikony). Test: `godot --headless --path . res://tests/smoke_test.tscn`.
+- **[neznámé]** Příběh, svět, herní smyčka a cíle (quest, bossové, progres) – v kódu ani v dostupných podkladech nejsou; pokud jsme je dříve probírali, jsou ztracené. Nová AI se má uživatele zeptat, nebo je doplnit z jeho odpovědi.
+- **Renderer:** `project.godot` nenastavuje `rendering_method` → platí výchozí (Forward+ **[předpoklad]**); u uživatele nepotvrzeno.
+
 ---
 ## 2. DOSAVADNÍ PRÁCE
 ### Hotovo (potvrzeno testy / snímky)
@@ -54,7 +68,7 @@ Konverzace byla jednou komprimována; části z doby před kompresí (postava, b
 - Nejisté štítky: `doplnky_007/008` (kamenná brána – rituál/dungeon?), `doplnky_037` (stojan?), `okoli2_028/030` (jáma a pahorek – terén či ozdoba?), `okoli2_041`, `okoli1_045`.
 - Netestováno: transponované (rotované) dlaždice z Tiledu.
 - Klasifikace druhů v `classify()` byla odhad podle tvaru/barvy; slovník ji nyní přepisuje.
-- Který renderer uživatel používá (Compatibility/Forward+) – **[neznámé]** (v `project.godot` je sekce `[rendering]`, nebyla zkontrolována).
+- Renderer: `project.godot` ho nenastavuje (výchozí Forward+ **[předpoklad]**); u uživatele nepotvrzeno. Screenshoty se dělaly v Compatibility (opengl3).
 
 ---
 ## 4. TECHNICKÉ INFORMACE
@@ -126,7 +140,7 @@ Poslední hotové: HD-2D ukázka (snímky den/soumrak/noc vs. 2D) byla doručena
 # INSTRUKCE PRO NOVÝ CHAT
 Text k vložení jako první zpráva:
 
-> Pokračuješ v mém projektu **Hero RPG** (Godot 4.7, GDScript, Final Fantasy/Zelda styl). Repozitář: `https://github.com/Vallhal99/Babrak` (dřív babrak), větev main, soubor **`docs/PREDAVACI_DOKUMENT.md`** je kompletní předávací dokument – přečti ho celý a také `docs/GENERATOR_A_GRAFIKA.md` a `docs/TILED.md`. Neznáš naši předchozí konverzaci; vše potřebné je v dokumentu.
+> Pokračuješ v mém projektu **Hero RPG** (Godot 4.7, GDScript, Final Fantasy/Zelda styl). Repozitář: `https://github.com/Vallhal99/Babrak` (dřív babrak), větev main, soubor **`docs/PREDAVACI_DOKUMENT.md`** je kompletní předávací dokument – přečti ho celý a také `README.md` (základy hry: staty, vybavení, kouzla, vrstvená postava), `docs/GENERATOR_A_GRAFIKA.md` a `docs/TILED.md`. Neznáš naši předchozí konverzaci (příběh a herní cíle jsem ti nemohl předat – zeptej se mě na ně); vše potřebné je v dokumentu.
 > Stručně: mapu dělám v Tiledu (24 px mřížka, mé vlastní tilesety), ty ji doplňuješ nástroji v `tools/` (importér, merge, generátor mapy ze skici podle slovníku objektů `data/world/object_catalog.json`). Godot streamuje chunky přes `TiledWorld`. Máme hotovou 2D atmosféru/post-processing a oddělenou HD-2D ukázku (`scenes/demo/hd2d_demo.tscn`, 3D se stíny); stávající 2D verzi nikdy nepřepisuj.
 > Pravidla: odpovídej česky a stručně, šetři tokeny; neměň mřížku 24 px ani pořadí tilesetů; změny testuj screenshotem (xvfb + godot, viz dokument; `pkill -f` nepoužívat; import spouštět na pozadí); ukazuj vizuální výsledky; commit zakonči řádky Co-Authored-By/Claude-Session podle dokumentu.
 > Nejdřív ověř, že projekt běží, a pak se mě krátce zeptej: (1) zůstaneme u 2D (stíny slunce/ohně, normal mapy) nebo půjdeme do HD-2D? (2) potvrdím ti nejisté objekty ze slovníku (brána `doplnky_007/008`, stojan `doplnky_037`, jáma/pahorek `okoli2_028/030`). Do mé odpovědi nic nepřepisuj ani nemaž.
