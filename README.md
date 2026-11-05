@@ -6,8 +6,8 @@ Spuštění: otevřít projekt, F5. Ovládání: WASD/šipky, Shift = běh, Spac
 - `scripts/data/` – `ItemData` (Resource), `ItemDB` (autoload, čte `data/items/*.tres`), `Inventory`, `Equipment`
 - `scripts/character/` – `AnimCatalog` (layout sheetu), `CharacterVisual` (vrstvy + animace), `Character` (základ: staty, boj, vybavení), `Hero` (vstup hráče), `Enemy` (AI)
 - `scripts/world/game_map.gd` – mapa + zdi, `scripts/ui/inventory_panel.gd` – inventář
-- `tools/build_torch.py` – dokreslí pózu zvednuté ruky + plamen pochodně
-- `tools/build_assets.py` – z `full_sheet_with_sword.png` udělá `hero_base.png` (tělo) + vrstvu meče + ikony
+- `tools/build_hero.py` – z balíčku `tools/source_hero/` (renderované kompletní postavy) vyrobí tělo, vrstvy vybavení (rozdíl proti holému tělu), ikony a `data/items/*.tres`; vypíše chybějící animace u každé věci
+- `archive/hero_v1/` – původní postava, předměty a nástroje (`.gdignore`, Godot je ignoruje)
 
 ## Systémy
 - **Staty/level:** `Character` (hp, mana, xp, `gain_xp`). Každá úroveň = 5 dovednostních bodů (`spend_point`) do atributů v `Character.ATTRIBUTES` (nový atribut = řádek tam + efekt v max_hp/max_mana/attack_power/speed_mult). Nepřítel dává `xp_reward`.
@@ -18,13 +18,14 @@ Spuštění: otevřít projekt, F5. Ovládání: WASD/šipky, Shift = běh, Spac
 ## Postavy
 NPC: `Npc` (neutrální, `invulnerable`, stojí) – scéna `merchant.tscn`. Ukončení hry potvrzuje `ExitDialog`. Obchod: E u NPC se `shop_stock` → `ShopPanel` (zlato, `ItemData.price`).
 Nová postava = nová scéna zděděná z `scenes/characters/character.tscn` + skript s `_think()`. Vzhled/staty/vybavení (`start_items`) se nastavují v inspektoru.
-Pochodeň: předmět ve slotu OFFHAND se `stance = torch` přepne chůzi/stání na `torch_*` animace (horní půlka = dokreslená póza, nohy z walk/run).
+Pochodeň: mechanika `stance`/`torch_*` zůstává v kódu, ale pochodeň je zatím archivovaná (nová póza pro nové tělo se nekreslila).
 
 ## Jak přidávat
 - **Předmět:** nový `.tres` v `data/items/` (slot, `layer_sheet`, ikona). Nic dalšího.
 - **Slot (tělo, nohy, ruce, štít…):** `ItemData.Slot` + `SLOT_NAMES`, `CharacterVisual.DRAW_ORDER`, `InventoryPanel.SLOTS`.
 - **Animace:** řádek v `AnimCatalog.ANIMS`.
-- **Zbraň:** sheet ve stejném layoutu jako `full_sheet_with_sword.png` (1664×4992; dole 128px efekty), jen samotná zbraň; `attack_anim` určuje útok.
-- **Ostatní vybavení:** sheet 832×3456 ve stejném layoutu jako ostatní.
+- **Layout sheetu:** 832 px široký, 70 řádků po 64 px (`AnimCatalog.ANIMS`), pod nimi (od `BIG_Y`) 128px oversize efekty zbraně (jen meč).
+- **Nová věc z balíčku:** přidat složku do `tools/source_hero/` + řádek do `ITEMS` v `tools/build_hero.py` a spustit ho (vznikne sheet, ikona i `.tres`).
+- **Sloty:** Zbraň, Hlava, Tělo, Rukavice, Boty, Druhá ruka; pořadí kreslení `CharacterVisual.DRAW_ORDER`.
 
 Test: `godot --headless --path . res://tests/smoke_test.tscn`

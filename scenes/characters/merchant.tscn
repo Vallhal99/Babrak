@@ -1,18 +1,24 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/characters/character.tscn" id="1"]
 [ext_resource type="Script" path="res://scripts/character/npc.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/data/item_data.gd" id="3"]
-[ext_resource type="Resource" path="res://data/items/helm_hood_slate.tres" id="4"]
-[ext_resource type="Resource" path="res://data/items/boots_sandals_maroon.tres" id="5"]
-[ext_resource type="Resource" path="res://data/items/sword_wood.tres" id="s0"]
-[ext_resource type="Resource" path="res://data/items/sword_steel.tres" id="s1"]
-[ext_resource type="Resource" path="res://data/items/helm_mail_silver.tres" id="s2"]
-[ext_resource type="Resource" path="res://data/items/helm_armet_steel.tres" id="s3"]
-[ext_resource type="Resource" path="res://data/items/helm_hood_slate.tres" id="s4"]
-[ext_resource type="Resource" path="res://data/items/boots_armour_silver.tres" id="s5"]
-[ext_resource type="Resource" path="res://data/items/boots_sandals_maroon.tres" id="s6"]
-[ext_resource type="Resource" path="res://data/items/torch.tres" id="s7"]
+[ext_resource type="Resource" path="res://data/items/hood.tres" id="i_hood"]
+[ext_resource type="Resource" path="res://data/items/boots.tres" id="i_boots"]
+[ext_resource type="Resource" path="res://data/items/sword.tres" id="i_sword"]
+[ext_resource type="Resource" path="res://data/items/longsword.tres" id="i_longsword"]
+[ext_resource type="Resource" path="res://data/items/dagger.tres" id="i_dagger"]
+[ext_resource type="Resource" path="res://data/items/axe.tres" id="i_axe"]
+[ext_resource type="Resource" path="res://data/items/blunt.tres" id="i_blunt"]
+[ext_resource type="Resource" path="res://data/items/staff.tres" id="i_staff"]
+[ext_resource type="Resource" path="res://data/items/mail_coif.tres" id="i_mail_coif"]
+[ext_resource type="Resource" path="res://data/items/close_helm.tres" id="i_close_helm"]
+[ext_resource type="Resource" path="res://data/items/wizard_hat.tres" id="i_wizard_hat"]
+[ext_resource type="Resource" path="res://data/items/shirt.tres" id="i_shirt"]
+[ext_resource type="Resource" path="res://data/items/chainmail.tres" id="i_chainmail"]
+[ext_resource type="Resource" path="res://data/items/frock_coat.tres" id="i_frock_coat"]
+[ext_resource type="Resource" path="res://data/items/plate.tres" id="i_plate"]
+[ext_resource type="Resource" path="res://data/items/gloves.tres" id="i_gloves"]
 
 [node name="Merchant" instance=ExtResource("1")]
 script = ExtResource("2")
@@ -20,5 +26,5 @@ display_name = "Obchodník"
 team = &"npc"
 tint = Color(1, 0.92, 0.7, 1)
 invulnerable = true
-start_items = Array[ExtResource("3")]([ExtResource("4"), ExtResource("5")])
-shop_stock = Array[ExtResource("3")]([ExtResource("s0"), ExtResource("s1"), ExtResource("s2"), ExtResource("s3"), ExtResource("s4"), ExtResource("s5"), ExtResource("s6"), ExtResource("s7")])
+start_items = Array[ExtResource("3")]([ExtResource("i_hood"), ExtResource("i_boots")])
+shop_stock = Array[ExtResource("3")]([ExtResource("i_sword"), ExtResource("i_longsword"), ExtResource("i_dagger"), ExtResource("i_axe"), ExtResource("i_blunt"), ExtResource("i_staff"), ExtResource("i_hood"), ExtResource("i_mail_coif"), ExtResource("i_close_helm"), ExtResource("i_wizard_hat"), ExtResource("i_shirt"), ExtResource("i_chainmail"), ExtResource("i_frock_coat"), ExtResource("i_plate"), ExtResource("i_boots"), ExtResource("i_gloves")])

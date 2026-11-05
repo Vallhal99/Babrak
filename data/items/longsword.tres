@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/icons/longsword.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/hero/weapons/longsword.png" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"longsword"
+display_name = "Dlouhý meč"
+description = "Dlouhá čepel pro dva údery."
+icon = ExtResource("2")
+slot = 1
+layer_sheet = ExtResource("3")
+attack_anim = &"slash"
+damage = 5
+price = 120

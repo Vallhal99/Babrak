@@ -144,3 +144,10 @@ Text k vložení jako první zpráva:
 > Stručně: mapu dělám v Tiledu (24 px mřížka, mé vlastní tilesety), ty ji doplňuješ nástroji v `tools/` (importér, merge, generátor mapy ze skici podle slovníku objektů `data/world/object_catalog.json`). Godot streamuje chunky přes `TiledWorld`. Máme hotovou 2D atmosféru/post-processing a oddělenou HD-2D ukázku (`scenes/demo/hd2d_demo.tscn`, 3D se stíny); stávající 2D verzi nikdy nepřepisuj.
 > Pravidla: odpovídej česky a stručně, šetři tokeny; neměň mřížku 24 px ani pořadí tilesetů; změny testuj screenshotem (xvfb + godot, viz dokument; `pkill -f` nepoužívat; import spouštět na pozadí); ukazuj vizuální výsledky; commit zakonči řádky Co-Authored-By/Claude-Session podle dokumentu.
 > Nejdřív ověř, že projekt běží, a pak se mě krátce zeptej: (1) zůstaneme u 2D (stíny slunce/ohně, normal mapy) nebo půjdeme do HD-2D? (2) potvrdím ti nejisté objekty ze slovníku (brána `doplnky_007/008`, stojan `doplnky_037`, jáma/pahorek `okoli2_028/030`). Do mé odpovědi nic nepřepisuj ani nemaž.
+
+---
+## 9. POSTAVA V2 (5. 11. 2026)
+- Nová hlavní postava z balíčku `tools/source_hero/` (kompletní renderované sheety). `python3 tools/build_hero.py` z nich udělá `assets/characters/hero/{body,equipment,weapons}`, ikony a `data/items/*.tres` (18 předmětů: hlava 4, tělo 4, boty, rukavice, zbraně 8 vč. meče). Vrstva = rozdíl proti holému tělu; šest brnění/přileb je už izolovaných (`base="none"`).
+- Layout: `AnimCatalog` má 70 řádků (+`slash_1h`, `watering`), `BIG_Y` = 4480. Nové sloty `TORSO`, `HANDS`.
+- Původní postava, předměty a nástroje: `archive/hero_v1/` (`.gdignore`). Pochodeň je archivovaná (póza byla kreslená na staré tělo).
+- Známé mezery: brnění nemají některé animace (kroužková košile: combat/backslash/halfslash; všechny věci: slash_1h/watering) → postava je v nich bez nich; luk/kuše mají jen animaci `shoot`, střelba není implementovaná (nejsou v obchodě); 192px oversize efekty (Longsword/Blunt), `tool_axe`, `walk_128` luku nejsou využity; ikony rukavic/kabátu/kapuce jsou hrubé.

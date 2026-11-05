@@ -3,7 +3,7 @@ extends Resource
 ## Definice předmětu. Nový předmět = nový .tres v res://data/items/ (ItemDB ho najde sám).
 
 ## Nový slot: přidat sem + do SLOT_NAMES + do CharacterVisual.DRAW_ORDER + do InventoryPanel.SLOTS.
-enum Slot { NONE, WEAPON, HEAD, FEET, OFFHAND }
+enum Slot { NONE, WEAPON, HEAD, FEET, OFFHAND, TORSO, HANDS }
 
 const SLOT_NAMES := {
 	Slot.NONE: "",
@@ -11,6 +11,8 @@ const SLOT_NAMES := {
 	Slot.HEAD: "Hlava",
 	Slot.FEET: "Boty",
 	Slot.OFFHAND: "Druhá ruka",
+	Slot.TORSO: "Tělo",
+	Slot.HANDS: "Rukavice",
 }
 
 @export var id: StringName

@@ -9,7 +9,8 @@ signal frame_changed(anim: StringName, frame: int)
 
 ## Pořadí kreslení zdola nahoru. Slot NONE = tělo.
 const DRAW_ORDER: Array[int] = [
-	ItemData.Slot.NONE, ItemData.Slot.FEET, ItemData.Slot.HEAD, ItemData.Slot.OFFHAND, ItemData.Slot.WEAPON,
+	ItemData.Slot.NONE, ItemData.Slot.TORSO, ItemData.Slot.FEET, ItemData.Slot.HANDS, ItemData.Slot.HEAD,
+	ItemData.Slot.OFFHAND, ItemData.Slot.WEAPON,
 ]
 const ORIGIN := Vector2(-32, -61)  # levý horní roh 64px snímku vůči patám postavy
 const SPLIT_Y := 42  # pas: hranice horní/dolní půlky

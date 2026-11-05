@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/icons/frock_coat.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/hero/equipment/frock_coat.png" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"frock_coat"
+display_name = "Zelený kabát"
+description = "Elegantní zelený kabát."
+icon = ExtResource("2")
+slot = 5
+layer_sheet = ExtResource("3")
+defense = 1
+max_mana = 3
+price = 70

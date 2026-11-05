@@ -14,24 +14,20 @@ func _ready() -> void:
 	var merchant: Npc = main.get_node("Merchant")
 	_check(merchant.invulnerable and merchant.team == &"npc", "obchodník je neutrální")
 	var n := ItemDB.all().size()
-	_check(hero.inventory.ids().size() == n and n == 8, "batoh má 8 předmětů")
-	for id in [&"sword_steel", &"helm_armet_steel", &"boots_armour_silver", &"torch"]:
+	_check(hero.inventory.ids().size() == n and n == 18, "batoh má 18 předmětů")
+	for id in [&"longsword", &"close_helm", &"boots"]:
 		_check(hero.equipment.equip(ItemDB.get_item(id), hero.inventory), "equip " + id)
-	_check(hero.attack_power() == 5 and hero.defense() == 6, "staty z vybavení")
-	_check(hero.loco(&"walk") == &"torch_walk", "pochodeň mění chůzi")
-	_check(hero.get_node("Light").enabled, "pochodeň svítí")
+	_check(hero.attack_power() == 7 and hero.defense() == 5, "staty z vybavení")
 	# všechny animace a směry (včetně kombinovaných) nesmí spadnout
 	for a in AnimCatalog.ANIMS:
 		for d in 4:
 			hero.visual.play(a, d, true)
 			for i in 40:
 				hero.visual._process(0.05)
-	# torch_walk: horní půlka z pózy, nohy z walk
-	hero.visual.play(&"torch_walk", AnimCatalog.Dir.LEFT, true)
+	hero.visual.play(&"walk", AnimCatalog.Dir.LEFT, true)
 	main.get_node("Map").set_night(true)
-	await _shot("/tmp/claude-0/shot_torch.png")
+	await _shot("/tmp/claude-0/shot_walk.png")
 	# souboj: nepřítel vedle hrdiny
-	hero.equipment.unequip(ItemData.Slot.OFFHAND, hero.inventory)
 	enemy.global_position = hero.global_position + Vector2(40, 0)
 	hero.facing = AnimCatalog.Dir.RIGHT
 	var start_hp := enemy.hp
@@ -48,16 +44,15 @@ func _ready() -> void:
 	_check(enemy.dead, "nepřítel padl")
 	var drops := main.get_children().filter(func(c): return c is Pickup)
 	_check(drops.size() == 4, "spadly 4 předměty (%d)" % drops.size())
-	var before := hero.inventory.count(&"torch")
+	var before := hero.inventory.count(&"chainmail")
 	hero.global_position = (drops[0] as Pickup).global_position
 	for i in 60:
 		await get_tree().physics_frame
-	_check(hero.inventory.count(&"torch") + hero.inventory.count(&"helm_hood_slate") > before, "sebrání předmětu")
+	_check(hero.inventory.count(&"chainmail") + hero.inventory.count(&"hood") > before, "sebrání předmětu")
 	_check(hero.hp < hero.max_hp(), "nepřítel zranil hrdinu")
 	hero.equipment.unequip_all(hero.inventory)
 	_check(hero.inventory.ids().size() == n, "svlečeno vše zpět v batohu")
-	hero.equipment.equip(ItemDB.get_item(&"torch"), hero.inventory)
-	hero.equipment.equip(ItemDB.get_item(&"sword_wood"), hero.inventory)
+	hero.equipment.equip(ItemDB.get_item(&"sword"), hero.inventory)
 	main.get_node("Map").set_night(false)
 	panel.toggle()
 	_check(not hero.controls_enabled, "inventář zamkne ovládání")
@@ -73,12 +68,12 @@ func _ready() -> void:
 	await _shot("/tmp/claude-0/shot_shop.png")
 	var g0 := hero.gold
 	_check(g0 == 50 + 8, "zlato za zabití (%d)" % g0)
-	var sword := ItemDB.get_item(&"sword_steel")
+	var sword := ItemDB.get_item(&"longsword")
 	_check(not shop.buy(sword), "nelze koupit bez zlata")
 	hero.add_gold(100)
-	var cnt := hero.inventory.count(&"sword_steel")
-	_check(shop.buy(sword) and hero.gold == g0 + 100 - 120 + 0 and hero.inventory.count(&"sword_steel") == cnt + 1, "nákup")
-	_check(shop.sell(sword) and hero.gold == g0 + 100 - 120 + 60 and hero.inventory.count(&"sword_steel") == cnt, "prodej za polovinu")
+	var cnt := hero.inventory.count(&"longsword")
+	_check(shop.buy(sword) and hero.gold == g0 + 100 - 120 + 0 and hero.inventory.count(&"longsword") == cnt + 1, "nákup")
+	_check(shop.sell(sword) and hero.gold == g0 + 100 - 120 + 60 and hero.inventory.count(&"longsword") == cnt, "prodej za polovinu")
 	shop.close()
 	_check(hero.controls_enabled, "obchod zavřen")
 	# úroveň / mana / kouzla

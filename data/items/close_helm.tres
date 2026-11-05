@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/icons/close_helm.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/hero/equipment/close_helm.png" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"close_helm"
+display_name = "Uzavřená přilba"
+description = "Keramická uzavřená přilba."
+icon = ExtResource("2")
+slot = 2
+layer_sheet = ExtResource("3")
+defense = 4
+price = 120

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/icons/wizard_hat.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/hero/equipment/wizard_hat.png" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"wizard_hat"
+display_name = "Čarodějův klobouk"
+description = "Bílý nebeský klobouk."
+icon = ExtResource("2")
+slot = 2
+layer_sheet = ExtResource("3")
+defense = 1
+max_mana = 5
+price = 80

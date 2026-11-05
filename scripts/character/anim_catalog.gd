@@ -9,7 +9,7 @@ extends RefCounted
 
 const FRAME := 64
 const BIG := 128
-const BIG_Y := 3456   # kde v sheetu začíná oversize oblast
+const BIG_Y := 4480   # kde v sheetu začíná oversize oblast (pod 70 řádky po 64 px)
 const BIG_OFFSET := 32  # 64px snímek leží uprostřed 128px snímku
 
 enum Dir { UP, LEFT, DOWN, RIGHT }
@@ -30,6 +30,9 @@ const ANIMS := {
 	&"combat": {"row": 42, "frames": 2, "fps": 2.0, "loop": true},
 	&"backslash": {"row": 46, "frames": 13, "fps": 16.0, "big_row": 4, "hit_frame": 7},
 	&"halfslash": {"row": 50, "frames": 6, "fps": 14.0, "big_row": 8, "hit_frame": 3},
+	# Jednoruční / nové animace z balíčku postavy v2.
+	&"slash_1h": {"row": 54, "frames": 13, "fps": 16.0, "hit_frame": 7},
+	&"watering": {"row": 66, "frames": 8, "fps": 8.0},
 	# Pochodeň: zvednutá ruka (dokreslená póza), chůze = horní půlka pózy + nohy z walk/run.
 	&"torch_idle": {"row": 0, "frames": 8, "fps": 8.0, "loop": true, "extra": true, "alias": &"idle", "alias_div": 4},
 	&"torch_walk": {"row": 8, "frames": 9, "fps": 10.0, "loop": true, "top": &"torch_idle"},

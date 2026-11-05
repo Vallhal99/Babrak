@@ -5,7 +5,9 @@ extends CanvasLayer
 
 ## Pozice slotů kolem figuríny (sloupec, řádek). Střed (1,1) je figurína.
 const DOLL_GRID := {
+	ItemData.Slot.TORSO: Vector2i(0, 0),
 	ItemData.Slot.HEAD: Vector2i(1, 0),
+	ItemData.Slot.HANDS: Vector2i(2, 0),
 	ItemData.Slot.WEAPON: Vector2i(0, 1),
 	ItemData.Slot.OFFHAND: Vector2i(2, 1),
 	ItemData.Slot.FEET: Vector2i(1, 2),
