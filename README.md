@@ -5,7 +5,7 @@ Spuštění: otevřít projekt, F5. Ovládání: WASD/šipky, Shift = běh, Spac
 ## Struktura
 - `scripts/data/` – `ItemData` (Resource), `ItemDB` (autoload, čte `data/items/*.tres`), `Inventory`, `Equipment`
 - `scripts/character/` – `AnimCatalog` (layout sheetu), `CharacterVisual` (vrstvy + animace), `Character` (základ: staty, boj, vybavení), `Hero` (vstup hráče), `Enemy` (AI)
-- `scripts/world/game_map.gd` – mapa + zdi, `scripts/ui/inventory_panel.gd` – inventář
+- `scripts/world/hd2d_world.gd` – HD-2D svět (palouk, `TiledWorld` + 3D vykreslení), `scripts/ui/inventory_panel.gd` – inventář
 - `tools/build_hero.py` – z balíčku `tools/source_hero/` (renderované kompletní postavy) vyrobí tělo, vrstvy vybavení (rozdíl proti holému tělu), ikony a `data/items/*.tres`; vypíše chybějící animace u každé věci
 - `archive/hero_v1/` – původní postava, předměty a nástroje (`.gdignore`, Godot je ignoruje)
 
@@ -24,7 +24,7 @@ Pochodeň: mechanika `stance`/`torch_*` zůstává v kódu, ale pochodeň je zat
 - **Předmět:** nový `.tres` v `data/items/` (slot, `layer_sheet`, ikona). Nic dalšího.
 - **Slot (tělo, nohy, ruce, štít…):** `ItemData.Slot` + `SLOT_NAMES`, `CharacterVisual.DRAW_ORDER`, `InventoryPanel.SLOTS`.
 - **Animace:** řádek v `AnimCatalog.ANIMS`.
-- **Layout sheetu:** 832 px široký, 70 řádků po 64 px (`AnimCatalog.ANIMS`), pod nimi (od `BIG_Y`) 128px oversize efekty zbraně (jen meč).
+- **Layout sheetu:** 832 px široký, 70 řádků po 64 px (`AnimCatalog.ANIMS`), pod nimi (od `BIG_Y`) 192px oversize efekty zbraní (meč, dlouhý meč, kyj).
 - **Nová věc z balíčku:** přidat složku do `tools/source_hero/` + řádek do `ITEMS` v `tools/build_hero.py` a spustit ho (vznikne sheet, ikona i `.tres`).
 - **Sloty:** Zbraň, Hlava, Tělo, Rukavice, Boty, Druhá ruka; pořadí kreslení `CharacterVisual.DRAW_ORDER`.
 

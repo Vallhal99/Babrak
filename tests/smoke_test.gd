@@ -5,13 +5,14 @@ extends Node
 func _ready() -> void:
 	var main: Node = load("res://scenes/main.tscn").instantiate()
 	add_child(main)
+	await main.started
 	await get_tree().process_frame
-	var hero: Hero = main.get_node("Hero")
+	var hero: Hero = main.hero
 	var enemy: Enemy = get_tree().get_nodes_in_group(&"characters").filter(func(c): return c.team == &"enemy")[0]
 	var panel: InventoryPanel = main.get_node("InventoryPanel")
 	for entry in enemy.loot:
 		entry.chance = 1.0
-	var merchant: Npc = main.get_node("Merchant")
+	var merchant: Npc = main.merchant
 	_check(merchant.invulnerable and merchant.team == &"npc", "obchodník je neutrální")
 	var n := ItemDB.all().size()
 	_check(hero.inventory.ids().size() == n and n == 17, "batoh má 17 předmětů")
@@ -27,7 +28,7 @@ func _ready() -> void:
 	_check(AnimCatalog.dir8(Vector2(1, 1)) == AnimCatalog.Dir.DOWN_RIGHT and AnimCatalog.dir8(Vector2(-1, 0)) == AnimCatalog.Dir.LEFT, "8 směrů z vektoru")
 	_check(AnimCatalog.resolve(&"walk", AnimCatalog.Dir.UP_LEFT) == [&"walk_diag", 0] and AnimCatalog.resolve(&"idle", AnimCatalog.Dir.DOWN_LEFT) == [&"idle", AnimCatalog.Dir.DOWN], "diagonály: jen chůze/běh mají vlastní animaci")
 	hero.visual.play(&"walk", AnimCatalog.Dir.LEFT, true)
-	main.get_node("Map").set_night(true)
+	main.world.set_stage(2, true)
 	await _shot("/tmp/claude-0/shot_walk.png")
 	hero.visual.play(&"walk", AnimCatalog.Dir.DOWN_RIGHT, true)
 	hero.visual._process(0.3)
@@ -47,7 +48,7 @@ func _ready() -> void:
 		await get_tree().physics_frame
 		if enemy.dead: break
 	_check(enemy.dead, "nepřítel padl")
-	var drops := main.get_children().filter(func(c): return c is Pickup)
+	var drops: Array = main.world.actors.get_children().filter(func(c): return c is Pickup)
 	_check(drops.size() == 4, "spadly 4 předměty (%d)" % drops.size())
 	var before := hero.inventory.count(&"chainmail")
 	hero.global_position = (drops[0] as Pickup).global_position
@@ -58,7 +59,7 @@ func _ready() -> void:
 	hero.equipment.unequip_all(hero.inventory)
 	_check(hero.inventory.ids().size() == n, "svlečeno vše zpět v batohu")
 	hero.equipment.equip(ItemDB.get_item(&"sword"), hero.inventory)
-	main.get_node("Map").set_night(false)
+	main.world.set_stage(0, true)
 	panel.toggle()
 	_check(not hero.controls_enabled, "inventář zamkne ovládání")
 	await _shot("/tmp/claude-0/shot_inventory.png")

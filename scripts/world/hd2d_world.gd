@@ -1,98 +1,148 @@
+class_name Hd2dWorld
 extends Node3D
-## HD-2D ukázka (styl Octopath): stejná data a 2D logika jako tiled_demo, ale vykreslená ve 3D.
-## Země = vyrenderovaný 2D svět na rovině, objekty = svislé sprity (billboardy) se skutečnými stíny,
-## kamera nakloněná s perspektivou, 3D světla, glow, mlha, tilt-shift. Hrdina běží dál v 2D (vstup, kolize).
-## N = den / soumrak / noc
+## Herní svět v HD-2D (styl Octopath). Logika zůstává 2D (postavy žijí v `actors` ve 2D světě), vykreslení je 3D:
+## země = vyrenderovaný 2D svět na rovině, props a každá postava = svislý sprite (billboard) se skutečnými stíny,
+## kamera nakloněná s perspektivou, 3D světla, glow, mlha, tilt-shift. Dny: 0 den, 1 soumrak, 2 noc.
+##
+## Postava / předmět / projektil přidaný do `actors` dostane vlastní SubViewport a billboard (viditelnost
+## přes samostatnou 2D vrstvu, takže se nevykreslují do země).
+
+signal built
 
 const S := 0.02                       # 1 px = 0.02 m (1 m = 50 px)
 const WORLD_DIR := "res://data/world/palouk"
-const HERO_VP := 192
+const SIZES := {"character": [192, 70.0], "small": [128, 32.0]}  # [velikost viewportu px, výška středu nad zemí px]
+const MAX_LAYERS := 19           # bit 0 = země, bity 1.. = jednotlivé billboardy
 const TILT := 44.0                   # náklon spritů k+kameře (°), plný náklon = kolmo na pohled
 const UP := Vector3(0, 0.7193, -0.6947)  # směr „nahoru“ naklonného spritu (cos/sin TILT)
 const HERO_FEET := 70.0               # px nad zemí, kam míří střed kamery hrdinova viewportu
 
+var focus: Node2D                      ## co kamera sleduje (hrdina)
+var actors: Node2D                     ## sem patří postavy, předměty a projektily (2D logika)
+var start_position := Vector2.ZERO
+var tiled: TiledWorld
+
 var _ground_vp: SubViewport
-var _hero_vp: SubViewport
-var _hero_cam: Camera2D
-var _world: TiledWorld
-var _hero: Hero
-var _hero_sprite: Sprite3D
 var _cam: Camera3D
 var _sun: DirectionalLight3D
 var _env: Environment
 var _lights: Array[OmniLight3D] = []
 var _flames: Array[CPUParticles3D] = []
 var _stage := 0
-var _built := false
+var _cur := [0.0, 0.0]
+var _light_base := 2.0
+var _is_built := false
 var _tween: Tween
+var _free_layers: Array[int] = []
+var _billboards: Dictionary = {}       # Node2D -> [SubViewport, Camera2D, Sprite3D, výška středu]
 
 
 func _ready() -> void:
+	for i in range(MAX_LAYERS, 0, -1):
+		_free_layers.append(i)
 	_ground_vp = SubViewport.new()
 	_ground_vp.canvas_cull_mask = 1
 	_ground_vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	add_child(_ground_vp)
 	var root2d := Node2D.new()
 	_ground_vp.add_child(root2d)
-	_world = TiledWorld.new()
-	_world.world_dir = WORLD_DIR
-	_world.load_radius = 8
+	root2d.visibility_layer = 0xFFFFF   # kořen sám nic nekreslí; vrstvy řeší potomci (cull maska platí i pro podstrom)
+	tiled = TiledWorld.new()
+	tiled.world_dir = WORLD_DIR
+	tiled.load_radius = 8
 	var center := Node2D.new()
 	root2d.add_child(center)
-	_world.focus = center
-	root2d.add_child(_world)
-	var rect := Rect2()
-	_hero = (load("res://scenes/characters/hero.tscn") as PackedScene).instantiate()
-	_hero_vp = SubViewport.new()
-	_hero_vp.size = Vector2i(HERO_VP, HERO_VP)
-	_hero_vp.transparent_bg = true
-	_hero_vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-	_hero_vp.world_2d = _ground_vp.world_2d
-	add_child(_hero_vp)
-	_hero_vp.canvas_cull_mask = 2
-	_hero_vp.add_child(_hero)
-	_set_layer(_hero, 2)
-	_hero_cam = Camera2D.new()
-	_hero_vp.add_child(_hero_cam)
+	tiled.focus = center
+	root2d.add_child(tiled)
+	actors = Node2D.new()
+	actors.name = "Actors"
+	actors.visibility_layer = 0xFFFFF   # sám nic nekreslí; potomci se řídí vlastní vrstvou
+	actors.child_entered_tree.connect(_on_actor_added)
+	root2d.add_child(actors)
 	_build_environment()
 	await _wait_world()
-	rect = _world.bounds_px
+	var rect := tiled.bounds_px
 	center.position = rect.get_center()
-	_hero.position = _world.start_position
+	start_position = tiled.start_position
 	_ground_vp.size = Vector2i(rect.size)
 	var gcam := Camera2D.new()
 	gcam.position = rect.get_center()
 	_ground_vp.add_child(gcam)
 	_build_ground(rect)
 	_build_props()
-	_hero_sprite = Sprite3D.new()
-	_hero_sprite.texture = _hero_vp.get_texture()
-	_hero_sprite.pixel_size = S
-	_hero_sprite.rotation_degrees.x = -TILT
-	_hero_sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
-	_hero_sprite.alpha_scissor_threshold = 0.4
-	_hero_sprite.shaded = true
-	_hero_sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
-	add_child(_hero_sprite)
-	_built = true
+	_is_built = true
+	for a in actors.get_children():
+		_on_actor_added(a)
 	_apply_stage(0.0, 0.0)
+	built.emit()
 
 
 func _wait_world() -> void:
 	for _i in 900:
 		await get_tree().process_frame
-		if _world.all_ready() and _world.shown_chunks().size() > 0:
+		if tiled.all_ready() and tiled.shown_chunks().size() > 0:
 			for _j in 4:
 				await get_tree().process_frame
-			if _world.all_ready():
+			if tiled.all_ready():
 				return
 
 
-func _set_layer(n: Node, layer: int) -> void:
+# ---------- postavy a předměty jako billboardy ----------
+
+func add_actor(n: Node2D, pos: Vector2) -> void:
+	n.position = pos
+	actors.add_child(n)
+
+
+func _on_actor_added(n: Node) -> void:
+	if not _is_built or not (n is Node2D) or _billboards.has(n):
+		return
+	var kind := "character" if n is Character else "small"
+	var layer_bit: int = 1 << _free_layers.pop_back()
+	_watch(n, layer_bit)
+	var size: int = SIZES[kind][0]
+	var lift: float = SIZES[kind][1]
+	var vp := SubViewport.new()
+	vp.size = Vector2i(size, size)
+	vp.transparent_bg = true
+	vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	vp.world_2d = _ground_vp.world_2d
+	vp.canvas_cull_mask = layer_bit
+	var cam := Camera2D.new()
+	vp.add_child(cam)
+	add_child(vp)
+	var spr := Sprite3D.new()
+	spr.texture = vp.get_texture()
+	spr.pixel_size = S
+	spr.rotation_degrees.x = -TILT
+	spr.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+	spr.alpha_scissor_threshold = 0.4
+	spr.shaded = true
+	spr.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	add_child(spr)
+	_billboards[n] = [vp, cam, spr, lift, layer_bit]
+	n.tree_exiting.connect(_remove_billboard.bind(n))
+
+
+func _remove_billboard(n: Node) -> void:
+	var b: Array = _billboards.get(n, [])
+	if b.is_empty():
+		return
+	_billboards.erase(n)
+	_free_layers.append(int(log(b[4]) / log(2.0) + 0.5))
+	b[0].queue_free()
+	b[2].queue_free()
+
+
+## Nastaví vrstvu viditelnosti celému podstromu, i potomkům přidaným později (sprity se vytvářejí až v _ready).
+func _watch(n: Node, layer: int) -> void:
 	if n is CanvasItem:
 		(n as CanvasItem).visibility_layer = layer
+	var cb := _watch.bind(layer)
+	if not n.child_entered_tree.is_connected(cb):
+		n.child_entered_tree.connect(cb)
 	for c in n.get_children():
-		_set_layer(c, layer)
+		_watch(c, layer)
 
 
 func _build_environment() -> void:
@@ -130,7 +180,7 @@ func _build_environment() -> void:
 	_cam.far = 200.0
 	add_child(_cam)
 	var layer := CanvasLayer.new()
-	layer.layer = 3
+	layer.layer = -1   # pod HUD, nad 3D
 	add_child(layer)
 	var r := ColorRect.new()
 	r.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -143,21 +193,11 @@ func _build_environment() -> void:
 	m.set_shader_parameter("vignette", 0.35)
 	r.material = m
 	layer.add_child(r)
-	var l := Label.new()
-	l.text = "HD-2D ukázka   WASD – pohyb   N – den / soumrak / noc"
-	l.position = Vector2(12, 684)
-	l.add_theme_color_override(&"font_shadow_color", Color(0, 0, 0, 0.9))
-	l.add_theme_constant_override(&"shadow_offset_x", 1)
-	l.add_theme_constant_override(&"shadow_offset_y", 1)
-	var l2 := CanvasLayer.new()
-	l2.layer = 5
-	add_child(l2)
-	l2.add_child(l)
 
 
 func _build_ground(rect: Rect2) -> void:
 	# vlastní hrdina a props se do země nevykreslují (props jsou ve 3D)
-	_world.objects.visible = false
+	tiled.objects.visible = false
 	_ground_vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	var mi := MeshInstance3D.new()
 	var pm := PlaneMesh.new()
@@ -174,8 +214,8 @@ func _build_ground(rect: Rect2) -> void:
 
 func _build_props() -> void:
 	var n := 0
-	for c in _world.objects.get_children():
-		if c == _hero or not (c is Node2D):
+	for c in tiled.objects.get_children():
+		if not (c is Node2D):
 			continue
 		var spr: Sprite2D
 		for s in c.find_children("*", "Sprite2D", true, false):
@@ -250,21 +290,22 @@ func _flame(pos: Vector3) -> CPUParticles3D:
 
 
 func _process(delta: float) -> void:
-	if not _built:
+	if not _is_built:
 		return
-	var hp := _hero.global_position
-	_hero_cam.position = hp + Vector2(0, -HERO_FEET)
-	_hero_sprite.position = Vector3(hp.x * S, 0, hp.y * S) + UP * HERO_FEET * S
-	var target := Vector3(hp.x * S, 0.6, hp.y * S)
-	var offs := Vector3(0, 17.0, 14.0)
-	_cam.position = _cam.position.lerp(target + offs, clampf(delta * 5.0, 0.0, 1.0))
-	_cam.look_at(_cam.position - offs + Vector3(0, 0, 0))
+	for n: Node2D in _billboards:
+		var b: Array = _billboards[n]
+		var gp := n.global_position
+		(b[1] as Camera2D).position = gp + Vector2(0, -b[3])
+		(b[2] as Sprite3D).position = Vector3(gp.x * S, 0, gp.y * S) + UP * b[3] * S
+	if focus:
+		var hp := focus.global_position
+		var target := Vector3(hp.x * S, 0.6, hp.y * S)
+		var offs := Vector3(0, 17.0, 14.0)
+		_cam.position = _cam.position.lerp(target + offs, clampf(delta * 5.0, 0.0, 1.0))
+		_cam.look_at(_cam.position - offs)
 	var t := Time.get_ticks_msec() / 1000.0
 	for o in _lights:
 		o.light_energy = o.light_energy * 0.9 + (_light_base * (1.0 + 0.12 * sin(t * 17.0) * sin(t * 6.3))) * 0.1
-
-
-var _light_base := 2.0
 
 
 func _apply_stage(night: float, dusk: float) -> void:
@@ -284,16 +325,21 @@ func _apply_stage(night: float, dusk: float) -> void:
 	for f in _flames:
 		f.visible = maxf(dusk, night) > 0.15
 
+## Nastaví denní dobu (0 den, 1 soumrak, 2 noc); plynule, nebo hned.
+func set_stage(stage: int, instant := false) -> void:
+	_stage = stage
+	var goal: Array = [[0.0, 0.0], [0.0, 1.0], [1.0, 0.0]][stage]
+	if _tween:
+		_tween.kill()
+	if instant:
+		_cur = goal
+		_apply_stage(goal[0], goal[1])
+		return
+	var from := _cur
+	_tween = create_tween()
+	_tween.tween_method(func(k: float) -> void: _apply_stage(lerpf(from[0], goal[0], k), lerpf(from[1], goal[1], k)), 0.0, 1.0, 1.5)
+	_tween.finished.connect(func() -> void: _cur = goal)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"toggle_night"):
-		_stage = (_stage + 1) % 3
-		var goal: Array = [[0.0, 0.0], [0.0, 1.0], [1.0, 0.0]][_stage]
-		if _tween:
-			_tween.kill()
-		_tween = create_tween()
-		_tween.tween_method(func(k: float) -> void: _apply_stage(lerpf(_cur[0], goal[0], k), lerpf(_cur[1], goal[1], k)), 0.0, 1.0, 1.5)
-		_tween.finished.connect(func() -> void: _cur = goal)
 
-
-var _cur := [0.0, 0.0]
+func cycle_stage() -> void:
+	set_stage((_stage + 1) % 3)

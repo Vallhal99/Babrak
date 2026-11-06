@@ -38,7 +38,7 @@ Konverzace byla jednou komprimována; části z doby před kompresí (postava, b
 8. **Slovník objektů** `data/world/object_catalog.json` – všech 351 objektů (139 skupin přes rozsahy id), české názvy, `kind`, `tags`, pravidla zón `tag_rules` (path/forest/camp/meadow/swamp/village), příznaky `uncertain`, seznam `unknown_for_user`. Loader: `tools/object_catalog.py`. `build_user_pack.py` z něj přebírá `kind` a `tags`.
 9. **Generátor mapy ze skici** `tools/generate_map.py` + ukázka `tools/sketches/palouk.png`, `palouk_legenda.json`. Ověřeno v Godotu: cesta volná, les = stromy/keře/houby, tábor = stan/sudy/bedny/dříví kolem ohně.
 10. **Atmosféra + post-processing** (2D): `scripts/world/atmosphere.gd` (class `Atmosphere`), `shaders/post_fx.gdshader` (tilt-shift, bloom z mipmap, grading, vinětace), `shaders/clouds.gdshader` (stíny mraků + mlha ve světových souřadnicích), částice pyl/světlušky/listí/déšť/sníh. Integrováno do `tiled_demo` (N = denní doba, B = počasí). Test `tests/atm_shot.tscn`.
-11. **HD-2D ukázka** (oddělená): `scenes/demo/hd2d_demo.tscn` + `scripts/world/hd2d_demo.gd`, test `tests/hd2d_shot.tscn`.
+11. **HD-2D ukázka** (oddělená): nahrazena hrou: `scripts/world/hd2d_world.gd` (viz 9c).
 12. Dokumentace: `docs/TILED.md`, `docs/TILESETY_UZIVATEL.md`, `docs/GENERATOR_A_GRAFIKA.md`.
 
 ### Klíčová rozhodnutí
@@ -77,10 +77,10 @@ Konverzace byla jednou komprimována; části z doby před kompresí (postava, b
 - `scripts/world/`: `tiled_world.gd` (TiledWorld), `camp_world.gd`, `camp_demo.gd`, `tiled_demo.gd`, `prop_factory.gd`, `fx.gd`, `terrain_mask.gd`, `day_night.gd` (DayNight, CanvasModulate: 0 den, 0.5 soumrak, 1 noc, `counter_color()`), `campfire.gd` (group `campfires`), `atmosphere.gd`, `hd2d_demo.gd`.
 - `scripts/character/hero.gd` (class Hero), `scripts/ui/` (Hud layer 5, InventoryPanel 10, ShopPanel 11, PauseMenu 20).
 - `shaders/`: `ground_terrain.gdshader` (tex0..7, mask_a/mask_b, blur_px, tile, edge_noise), `ground.gdshader`, `sway.gdshader`, `vignette.gdshader`, `shafts.gdshader`, `post_fx.gdshader`, `clouds.gdshader`.
-- `scenes/`: `maps/camp_map.tscn`, `demo/camp_demo.tscn`, `demo/tiled_demo.tscn`, `demo/hd2d_demo.tscn`, `characters/hero.tscn`.
+- `scenes/`: `maps/camp_map.tscn`, `demo/camp_demo.tscn`, `demo/tiled_demo.tscn`, `characters/hero.tscn`.
 - `tools/`: `tiled_import.py`, `tiled_map.py`, `tiled_tool.py`, `build_world_assets.py`, `terrains_user.py`, `build_user_pack.py`, `object_catalog.py`, `generate_map.py`, `sketches/`, `source_tilesets/user/` (zdroje), `.gdignore`.
 - `data/world/`: `terrains.json`, `object_catalog.json`, `start/` (4 chunky), `palouk/` (vygenerovaná mapa, 4 chunky, hranice dlaždic [-50,-38,50,38], chunk 64).
-- `tiled_pack/` (`.gdignore`), `docs/`, `tests/` (`camp_shot`, `tiled_stream`, `tuft_orient`, `palouk_shot`, `atm_shot`, `hd2d_shot`).
+- `tiled_pack/` (`.gdignore`), `docs/`, `tests/` (`camp_shot`, `tiled_stream`, `tuft_orient`, `palouk_shot`, `atm_shot`).
 **Důležité parametry TiledWorld:** `world_dir`, `load_radius`=2, `unload_margin`=1, `rows_per_frame`=24, `tuft_density`, `edge_noise`=0.34, `terrain_texture_size`=48, `blur_px`=34, `MAX_SLOTS`=8 (mask_a RGBA sloty 1–4, mask_b RGB sloty 5–7, default `Color(0,0,0,0)`).
 **Tiled konvence:** vrstvy `ground`(hd), `walls`, `above`(above), `objects`; tile-objekty origin vlevo dole, `objectalignment bottom`; vlastnosti dlaždic `terrain`/`solid`; třídy objektů `prop`/`campfire`/`light`/`player_start`.
 **Formát slovníku:** `{"s":sada,"r":"000-005,010","name","kind","tags":[…],"uncertain"?,"note"?}`; sady: okoli1, okoli2, okoli3, doplnky, stromy02, rm_stromy01, rm_stromy. Id objektu = `sada_NNN`.
@@ -156,3 +156,11 @@ Text k vložení jako první zpráva:
 - Zdroj `tools/source_hero/Animace_doplnek/` (diagonální chůze 6 snímků, zvedání ze země ve 3 směrech, 80px snímky). `tools/hero8.py` je vycentruje do 64px buňky (patky na y=61) a vybavení pro diagonály **přefituje** z hotových vrstev: hlava = výřez z vrstvy posunutý na novou hlavu, tělo/nohy/boty = přebarvení těla barvami věci (podle světlosti). Není to ručně kreslené – detaily (plechy, kroužky) se ztrácejí.
 - Katalog: `Dir` má 8 hodnot; `walk_diag`/`run_diag` (řádky 70–73), `pickup` (74–77, UP = kopie DOWN), `BIG_Y` = 4992. `AnimCatalog.resolve()` pošle diagonálu jen chůzi/běhu, ostatní animace dostanou svislý směr. `Character.facing` zůstává 4směrový (boj), jen vizuál chůze/běhu používá `AnimCatalog.dir8()`.
 - Mezery: rukavice a zbraně nemají diagonální chůzi, zvedání ze země je jen tělo, barvy vlasů/kalhot nového těla se liší od 4směrového (hnědé vlasy, šedé šortky vs. zrzavé/bílé).
+
+## 9c. Aktuální stav hry (HD-2D, nahrazuje starší poznámky o test_map / hd2d_demo / BIG_Y)
+- První level (`test_map`, `GameMap`) je smazán. `scenes/main.tscn` = `Main` (Node2D) + `World` (`Hd2dWorld`, `scripts/world/hd2d_world.gd`) + UI. `main.gd` po signálu `World.built` vytvoří hrdinu, obchodníka a nepřátele (`world.add_actor(node, pos)`), signál `started`.
+- `Hd2dWorld`: 2D logika běží ve SubViewportu `ground_vp` (TiledWorld palouk + uzel `actors`); země i props se kreslí ve 3D. Každá postava/předmět/projektil přidaný do `actors` dostane vlastní SubViewport (192/128 px) + Sprite3D billboard; vrstva viditelnosti = jeden bit (max 19 současně). Pozor: cull maska platí pro celý podstrom, proto má kořen `root2d` i `actors` všechny vrstvy (`0xFFFFF`) a vrstvu řeší až potomci.
+- Den/soumrak/noc: `world.set_stage(0..2, instant)`, `cycle_stage()` (klávesa N). Kamera sleduje `world.focus`.
+- Postava: `body.png` (bez zbraně, bez vlasů) + `hair.png`; zbraň vždy jako vrstva s vlastními animacemi; helma s `hides_hair` skryje vlasy. Katalog animací `AnimCatalog` (BIG = 192, BIG_Y = 3968, 8 směrů jen pro chůzi/běh, `pickup` experimentálně). Generuje `python3 tools/build_hero.py` (z kořene projektu; zdroje v `tools/source_hero/`).
+- Doplněné vybavení je algoritmické (přebarvení těla + přenos hlavy, `tools/hero_fit.py`), ne ručně kreslené; chybí opasek s mečem v animacích, kde ho zdroj nemá; sekera vyřazena; kouzelnický klobouk vlasy neskrývá.
+- Test: `tests/smoke_test.tscn` (SMOKE OK), screenshoty v `/tmp/claude-0/shot_*.png`.

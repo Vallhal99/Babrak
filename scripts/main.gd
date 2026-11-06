@@ -1,37 +1,51 @@
 extends Node2D
-## Herní scéna: mapa + hrdina + UI + oživování nepřátel. Později se zde bude přepínat mapy.
+## Herní scéna: HD-2D svět + hrdina + obchodník + UI + oživování nepřátel.
 
+signal started
+
+const HERO := preload("res://scenes/characters/hero.tscn")
+const MERCHANT := preload("res://scenes/characters/merchant.tscn")
 const ENEMY := preload("res://scenes/characters/enemy.tscn")
 const ENEMY_RESPAWN := 6.0
-const ENEMY_SPOTS: Array[Vector2] = [Vector2(720, 330), Vector2(250, 450)]
+const MERCHANT_OFFSET := Vector2(-150, -60)
+const ENEMY_OFFSETS: Array[Vector2] = [Vector2(260, 40), Vector2(-120, 190)]
 
-@onready var _map: GameMap = $Map
-@onready var _hero: Hero = $Hero
+@onready var world: Hd2dWorld = $World
 @onready var _panel: InventoryPanel = $InventoryPanel
 @onready var _hud: Hud = $Hud
 @onready var _shop: ShopPanel = $ShopPanel
 
+var hero: Hero
+var merchant: Npc
+
 
 func _ready() -> void:
-	_hero.position = _map.start_position
+	await world.built
+	hero = HERO.instantiate()
+	hero.name = "Hero"
+	world.add_actor(hero, world.start_position)
+	world.focus = hero
+	merchant = MERCHANT.instantiate()
+	merchant.name = "Merchant"
+	world.add_actor(merchant, world.start_position + MERCHANT_OFFSET)
 	for item in ItemDB.all():  # testovací vybavení: všechno v batohu
-		_hero.inventory.add(item.id)
-	_panel.setup(_hero)
-	_hud.setup(_hero)
-	_shop.setup(_hero)
-	_hero.interacted.connect(_shop.open)
-	_hero.gold = 50  # startovní zlato (test)
-	_hero.died.connect(func() -> void:
+		hero.inventory.add(item.id)
+	_panel.setup(hero)
+	_hud.setup(hero)
+	_shop.setup(hero)
+	hero.interacted.connect(_shop.open)
+	hero.gold = 50  # startovní zlato (test)
+	hero.died.connect(func() -> void:
 		await get_tree().create_timer(2.5).timeout
 		get_tree().reload_current_scene())
-	for spot in ENEMY_SPOTS:
-		_spawn_enemy(spot)
+	for offset in ENEMY_OFFSETS:
+		_spawn_enemy(world.start_position + offset)
+	started.emit()
 
 
 func _spawn_enemy(pos: Vector2) -> void:
 	var enemy: Enemy = ENEMY.instantiate()
-	enemy.position = pos
-	add_child(enemy)
+	world.add_actor(enemy, pos)
 	enemy.died.connect(func() -> void:
 		await get_tree().create_timer(ENEMY_RESPAWN).timeout
 		if is_inside_tree():
@@ -43,4 +57,4 @@ func _input(event: InputEvent) -> void:
 		_panel.toggle()
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed(&"toggle_night"):
-		_map.set_night(not _map.is_night())
+		world.cycle_stage()
