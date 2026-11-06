@@ -10,7 +10,7 @@ extends Node3D
 signal built
 
 const S := 0.02                       # 1 px = 0.02 m (1 m = 50 px)
-const WORLD_DIR := "res://data/world/palouk"
+const WORLD_DIR := "res://data/world/babrak"
 const SIZES := {"character": [192, 70.0], "small": [128, 32.0]}  # [velikost viewportu px, výška středu nad zemí px]
 const MAX_LAYERS := 19           # bit 0 = země, bity 1.. = jednotlivé billboardy
 const TILT := 44.0                   # náklon spritů k+kameře (°), plný náklon = kolmo na pohled

@@ -4,11 +4,11 @@
 "name": "terrain",
 "image": "terrain.png",
 "imagewidth": 192,
-"imageheight": 48,
+"imageheight": 72,
 "tilewidth": 24,
 "tileheight": 24,
 "columns": 8,
-"tilecount": 16,
+"tilecount": 24,
 "margin": 0,
 "spacing": 0,
 "tiles": [
@@ -169,6 +169,46 @@
 "name": "terrain",
 "type": "string",
 "value": "mossy_ground"
+}
+]
+},
+{
+"id": 16,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "water"
+}
+]
+},
+{
+"id": 17,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "deep_water"
+}
+]
+},
+{
+"id": 18,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "rock"
+}
+]
+},
+{
+"id": 19,
+"properties": [
+{
+"name": "terrain",
+"type": "string",
+"value": "rock_dark"
 }
 ]
 }

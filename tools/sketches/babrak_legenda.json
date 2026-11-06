@@ -1,0 +1,780 @@
+{
+ "colors": {
+  "#0a2a5a": "deep_water",
+  "#2a6aa8": "water",
+  "#d8c890": "shore",
+  "#5aa83a": "meadow",
+  "#4a9a3a": "edge1",
+  "#52a03a": "edge2",
+  "#1d4d1a": "forest",
+  "#6ab84a": "glade",
+  "#b08a50": "path",
+  "#966466": "camp",
+  "#8a9a5a": "village",
+  "#a0a0a0": "square",
+  "#5a5a48": "graveyard",
+  "#8a6a40": "yard",
+  "#444455": "court",
+  "#787878": "mountain_edge",
+  "#606060": "mountain_deep"
+ },
+ "zones": {
+  "deep_water": {
+   "terrain": "deep_water",
+   "profile": "water",
+   "scatter": [],
+   "solid": true
+  },
+  "water": {
+   "terrain": "water",
+   "profile": "water",
+   "scatter": [],
+   "mix": [
+    [
+     "deep_water",
+     0.12
+    ]
+   ],
+   "solid": true
+  },
+  "shore": {
+   "terrain": "sand",
+   "profile": "meadow",
+   "scatter": [
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.01,
+     "min_dist": 30,
+     "max_h": 40
+    },
+    {
+     "tags": [
+      "rock"
+     ],
+     "density": 0.004,
+     "min_dist": 60,
+     "max_h": 70
+    }
+   ],
+   "mix": [
+    [
+     "dry_grass",
+     0.3
+    ]
+   ]
+  },
+  "meadow": {
+   "terrain": "grass",
+   "profile": "meadow",
+   "scatter": [
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.025,
+     "min_dist": 16,
+     "max_h": 50
+    },
+    {
+     "tags": [
+      "flower"
+     ],
+     "density": 0.014,
+     "min_dist": 22,
+     "max_h": 60
+    },
+    {
+     "tags": [
+      "bush"
+     ],
+     "density": 0.004,
+     "min_dist": 70
+    },
+    {
+     "tags": [
+      "tree"
+     ],
+     "density": 0.0015,
+     "min_dist": 160,
+     "min_h": 110
+    },
+    {
+     "tags": [
+      "rock"
+     ],
+     "density": 0.0008,
+     "min_dist": 90,
+     "max_h": 80
+    }
+   ],
+   "mix": [
+    [
+     "grass_meadow",
+     0.25
+    ],
+    [
+     "flowers",
+     0.08
+    ]
+   ]
+  },
+  "edge1": {
+   "terrain": "grass",
+   "profile": "meadow",
+   "scatter": [
+    {
+     "tags": [
+      "tree"
+     ],
+     "density": 0.03,
+     "min_dist": 90,
+     "min_h": 110
+    },
+    {
+     "tags": [
+      "bush"
+     ],
+     "density": 0.014,
+     "min_dist": 45
+    },
+    {
+     "tags": [
+      "grass",
+      "fern"
+     ],
+     "density": 0.02,
+     "min_dist": 18,
+     "max_h": 50
+    }
+   ],
+   "mix": [
+    [
+     "leaf_grass",
+     0.3
+    ],
+    [
+     "grass_dark",
+     0.2
+    ]
+   ]
+  },
+  "edge2": {
+   "terrain": "grass",
+   "profile": "meadow",
+   "scatter": [
+    {
+     "tags": [
+      "tree"
+     ],
+     "density": 0.009,
+     "min_dist": 120,
+     "min_h": 110
+    },
+    {
+     "tags": [
+      "bush"
+     ],
+     "density": 0.008,
+     "min_dist": 55
+    },
+    {
+     "tags": [
+      "grass",
+      "flower"
+     ],
+     "density": 0.02,
+     "min_dist": 18,
+     "max_h": 50
+    }
+   ],
+   "mix": [
+    [
+     "grass_meadow",
+     0.2
+    ],
+    [
+     "leaf_grass",
+     0.15
+    ]
+   ]
+  },
+  "forest": {
+   "terrain": "forest_floor",
+   "profile": "forest",
+   "scatter": [
+    {
+     "tags": [
+      "tree"
+     ],
+     "density": 0.045,
+     "min_dist": 70,
+     "min_h": 110
+    },
+    {
+     "tags": [
+      "bush"
+     ],
+     "density": 0.02,
+     "min_dist": 40
+    },
+    {
+     "tags": [
+      "fern",
+      "mushroom"
+     ],
+     "density": 0.02,
+     "min_dist": 16
+    },
+    {
+     "tags": [
+      "log",
+      "stump"
+     ],
+     "density": 0.004,
+     "min_dist": 60
+    },
+    {
+     "tags": [
+      "rock"
+     ],
+     "density": 0.004,
+     "min_dist": 50,
+     "max_h": 80
+    }
+   ],
+   "mix": [
+    [
+     "leaf_grass",
+     0.2
+    ],
+    [
+     "grass_dark",
+     0.2
+    ]
+   ]
+  },
+  "glade": {
+   "terrain": "grass_meadow",
+   "profile": "meadow",
+   "scatter": [
+    {
+     "tags": [
+      "flower"
+     ],
+     "density": 0.05,
+     "min_dist": 18,
+     "max_h": 60
+    },
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.03,
+     "min_dist": 16,
+     "max_h": 50
+    },
+    {
+     "tags": [
+      "mushroom",
+      "bush"
+     ],
+     "density": 0.01,
+     "min_dist": 40
+    }
+   ],
+   "mix": [
+    [
+     "flowers",
+     0.3
+    ]
+   ]
+  },
+  "path": {
+   "terrain": "dirt",
+   "profile": "path",
+   "scatter": [
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.01,
+     "min_dist": 24,
+     "max_h": 30
+    }
+   ]
+  },
+  "camp": {
+   "terrain": "dirt",
+   "profile": "camp",
+   "scatter": [
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.01,
+     "min_dist": 30,
+     "max_h": 30
+    }
+   ],
+   "mix": [
+    [
+     "dirt_rock",
+     0.2
+    ]
+   ],
+   "camp": true
+  },
+  "village": {
+   "terrain": "grass",
+   "profile": "village",
+   "scatter": [
+    {
+     "tags": [
+      "flowerbed"
+     ],
+     "density": 0.004,
+     "min_dist": 70
+    },
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.012,
+     "min_dist": 20,
+     "max_h": 40
+    },
+    {
+     "tags": [
+      "hay"
+     ],
+     "density": 0.0025,
+     "min_dist": 50
+    },
+    {
+     "tags": [
+      "hedge"
+     ],
+     "density": 0.0015,
+     "min_dist": 90
+    }
+   ],
+   "mix": [
+    [
+     "grass_meadow",
+     0.3
+    ],
+    [
+     "flowers",
+     0.06
+    ]
+   ]
+  },
+  "square": {
+   "terrain": "cobble",
+   "profile": "village",
+   "scatter": [],
+   "mix": [
+    [
+     "dirt_rock",
+     0.08
+    ]
+   ]
+  },
+  "graveyard": {
+   "terrain": "mossy_ground",
+   "profile": "village",
+   "scatter": [
+    {
+     "ids": [
+      "g_hrob_a",
+      "g_hrob_b",
+      "g_hrob_c",
+      "g_kriz_a",
+      "g_kriz_b",
+      "g_kriz_c",
+      "g_kriz_d"
+     ],
+     "density": 0.06,
+     "min_dist": 34
+    },
+    {
+     "ids": [
+      "g_kamen_a",
+      "g_kamen_b",
+      "g_andel",
+      "g_socha",
+      "g_lavice",
+      "g_rakev"
+     ],
+     "density": 0.006,
+     "min_dist": 60
+    },
+    {
+     "ids": [
+      "g_mrtvy_strom_a",
+      "g_mrtvy_strom_b",
+      "g_mrtvy_strom_c",
+      "g_mrtvy_strom_d",
+      "g_mrtvy_strom_e",
+      "g_mrtvy_strom_f"
+     ],
+     "density": 0.012,
+     "min_dist": 90
+    },
+    {
+     "ids": [
+      "g_lampa_a",
+      "g_lampa_b"
+     ],
+     "density": 0.003,
+     "min_dist": 120
+    }
+   ],
+   "mix": [
+    [
+     "dry_grass",
+     0.3
+    ],
+    [
+     "dirt_rock",
+     0.1
+    ]
+   ]
+  },
+  "yard": {
+   "terrain": "dirt",
+   "profile": "village",
+   "scatter": [
+    {
+     "tags": [
+      "hay"
+     ],
+     "density": 0.01,
+     "min_dist": 50
+    },
+    {
+     "tags": [
+      "grass"
+     ],
+     "density": 0.02,
+     "min_dist": 20,
+     "max_h": 30
+    }
+   ],
+   "mix": [
+    [
+     "dirt_rock",
+     0.1
+    ],
+    [
+     "grass",
+     0.2
+    ]
+   ]
+  },
+  "court": {
+   "terrain": "stone_dark",
+   "profile": "forest",
+   "scatter": [
+    {
+     "tags": [
+      "rock"
+     ],
+     "density": 0.03,
+     "min_dist": 50,
+     "max_h": 80
+    }
+   ],
+   "mix": [
+    [
+     "cobble",
+     0.3
+    ]
+   ]
+  },
+  "mountain_edge": {
+   "terrain": "rock",
+   "profile": "forest",
+   "scatter": [
+    {
+     "tags": [
+      "boulder",
+      "cliff"
+     ],
+     "density": 0.05,
+     "min_dist": 60,
+     "dist": [
+      1,
+      13
+     ]
+    },
+    {
+     "tags": [
+      "conifer"
+     ],
+     "density": 0.018,
+     "min_dist": 80,
+     "min_h": 110,
+     "dist": [
+      1,
+      13
+     ]
+    },
+    {
+     "tags": [
+      "rock"
+     ],
+     "density": 0.03,
+     "min_dist": 40,
+     "max_h": 80,
+     "dist": [
+      1,
+      13
+     ]
+    }
+   ],
+   "mix": [
+    [
+     "rock_dark",
+     0.35
+    ]
+   ],
+   "solid": true
+  },
+  "mountain_deep": {
+   "terrain": "rock_dark",
+   "profile": "forest",
+   "scatter": [],
+   "mix": [
+    [
+     "rock",
+     0.2
+    ]
+   ],
+   "solid": true
+  }
+ },
+ "place": [
+  {
+   "id": "v_dum_cihla_a",
+   "x": 122.5,
+   "y": 111.33
+  },
+  {
+   "id": "v_dum_vysoky",
+   "x": 133.33,
+   "y": 111.33
+  },
+  {
+   "id": "v_hostinec",
+   "x": 147.0,
+   "y": 111.33
+  },
+  {
+   "id": "v_dum_stit",
+   "x": 159.17,
+   "y": 111.33
+  },
+  {
+   "id": "v_zbrojirna",
+   "x": 125.83,
+   "y": 133.33
+  },
+  {
+   "id": "v_kovarna",
+   "x": 145.0,
+   "y": 133.33
+  },
+  {
+   "id": "v_dum_hodiny",
+   "x": 160.83,
+   "y": 134.17
+  },
+  {
+   "id": "okoli1_017",
+   "x": 141.67,
+   "y": 118.33,
+   "r": 14
+  },
+  {
+   "id": "v_stanek_lektvary",
+   "x": 134.33,
+   "y": 115.0,
+   "r": 14
+  },
+  {
+   "id": "v_stanek_zbrane",
+   "x": 149.67,
+   "y": 115.33,
+   "r": 14
+  },
+  {
+   "id": "v_lampa",
+   "x": 136.67,
+   "y": 111.33,
+   "r": 14
+  },
+  {
+   "id": "v_lampa",
+   "x": 147.0,
+   "y": 111.33,
+   "r": 14
+  },
+  {
+   "id": "v_lampa",
+   "x": 136.67,
+   "y": 126.0,
+   "r": 14
+  },
+  {
+   "id": "v_lampa",
+   "x": 147.0,
+   "y": 126.0,
+   "r": 14
+  },
+  {
+   "id": "v_lavice",
+   "x": 135.0,
+   "y": 123.0,
+   "r": 14
+  },
+  {
+   "id": "v_lavice",
+   "x": 148.67,
+   "y": 123.0,
+   "r": 14
+  },
+  {
+   "id": "v_ukazatel_b",
+   "x": 116.67,
+   "y": 115.0,
+   "r": 14
+  },
+  {
+   "id": "v_sud_a",
+   "x": 126.67,
+   "y": 112.0,
+   "r": 14
+  },
+  {
+   "id": "v_sud_b",
+   "x": 128.0,
+   "y": 112.67,
+   "r": 14
+  },
+  {
+   "id": "v_bedna",
+   "x": 154.17,
+   "y": 112.0,
+   "r": 14
+  },
+  {
+   "id": "v_zelenina_a",
+   "x": 128.33,
+   "y": 122.0,
+   "r": 14
+  },
+  {
+   "id": "v_zelenina_b",
+   "x": 155.83,
+   "y": 122.0,
+   "r": 14
+  },
+  {
+   "id": "v_klada",
+   "x": 154.17,
+   "y": 130.0,
+   "r": 14
+  },
+  {
+   "id": "v_sud_a",
+   "x": 135.83,
+   "y": 133.33,
+   "r": 14
+  },
+  {
+   "id": "v_bedna",
+   "x": 136.67,
+   "y": 134.0,
+   "r": 14
+  },
+  {
+   "id": "v_dum_cerveny",
+   "x": 150.83,
+   "y": 54.17
+  },
+  {
+   "id": "v_stodola",
+   "x": 139.17,
+   "y": 53.33
+  },
+  {
+   "id": "v_klada",
+   "x": 160.83,
+   "y": 55.83
+  },
+  {
+   "id": "v_sud_a",
+   "x": 157.5,
+   "y": 56.33
+  },
+  {
+   "id": "v_bedna",
+   "x": 145.83,
+   "y": 56.33
+  },
+  {
+   "id": "v_zelenina_a",
+   "x": 148.0,
+   "y": 60.0
+  },
+  {
+   "id": "v_zelenina_b",
+   "x": 154.17,
+   "y": 60.0
+  },
+  {
+   "id": "v_kostel",
+   "x": 47.0,
+   "y": 120.0
+  },
+  {
+   "id": "g_mauzoleum",
+   "x": 26.67,
+   "y": 120.83
+  },
+  {
+   "id": "g_krypta",
+   "x": 34.67,
+   "y": 120.0
+  },
+  {
+   "id": "g_brana",
+   "x": 39.17,
+   "y": 131.33
+  },
+  {
+   "id": "g_lampa_c",
+   "x": 31.67,
+   "y": 130.0
+  },
+  {
+   "id": "g_andel",
+   "x": 42.5,
+   "y": 125.83
+  },
+  {
+   "id": "g_lavice",
+   "x": 25.0,
+   "y": 128.0
+  },
+  {
+   "id": "okoli3_004",
+   "x": 101.67,
+   "y": 20.0,
+   "r": 60
+  }
+ ]
+}

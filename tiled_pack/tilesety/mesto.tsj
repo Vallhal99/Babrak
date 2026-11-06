@@ -1,0 +1,1078 @@
+{
+"type": "tileset",
+"version": "1.10",
+"name": "mesto",
+"tilewidth": 510,
+"tileheight": 606,
+"columns": 0,
+"tilecount": 28,
+"margin": 0,
+"spacing": 0,
+"objectalignment": "bottom",
+"tiles": [
+{
+"id": 0,
+"image": "objekty/mesto/v_dum_cerveny.png",
+"imagewidth": 384,
+"imageheight": 263,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_dum_cerveny"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "276,32"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "173,21"
+}
+]
+},
+{
+"id": 1,
+"image": "objekty/mesto/v_zbrojirna.png",
+"imagewidth": 384,
+"imageheight": 255,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_zbrojirna"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "276,31"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "173,20"
+}
+]
+},
+{
+"id": 2,
+"image": "objekty/mesto/v_dum_vysoky.png",
+"imagewidth": 276,
+"imageheight": 371,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_dum_vysoky"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "198,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "124,26"
+}
+]
+},
+{
+"id": 3,
+"image": "objekty/mesto/v_dum_uzky.png",
+"imagewidth": 170,
+"imageheight": 408,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_dum_uzky"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "122,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "76,26"
+}
+]
+},
+{
+"id": 4,
+"image": "objekty/mesto/v_dum_hodiny.png",
+"imagewidth": 246,
+"imageheight": 388,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_dum_hodiny"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "177,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "111,26"
+}
+]
+},
+{
+"id": 5,
+"image": "objekty/mesto/v_dum_cihla_a.png",
+"imagewidth": 240,
+"imageheight": 301,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_dum_cihla_a"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "172,37"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "108,24"
+}
+]
+},
+{
+"id": 6,
+"image": "objekty/mesto/v_dum_cihla_b.png",
+"imagewidth": 148,
+"imageheight": 294,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_dum_cihla_b"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "106,36"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "67,24"
+}
+]
+},
+{
+"id": 7,
+"image": "objekty/mesto/v_dum_cihla_c.png",
+"imagewidth": 214,
+"imageheight": 294,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_dum_cihla_c"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "154,36"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "96,24"
+}
+]
+},
+{
+"id": 8,
+"image": "objekty/mesto/v_kovarna.png",
+"imagewidth": 422,
+"imageheight": 326,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_kovarna"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "303,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "190,26"
+}
+]
+},
+{
+"id": 9,
+"image": "objekty/mesto/v_kouzelnik.png",
+"imagewidth": 394,
+"imageheight": 383,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_kouzelnik"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "283,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "177,26"
+}
+]
+},
+{
+"id": 10,
+"image": "objekty/mesto/v_vez.png",
+"imagewidth": 510,
+"imageheight": 606,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_vez"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "367,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "230,26"
+}
+]
+},
+{
+"id": 11,
+"image": "objekty/mesto/v_dum_velky.png",
+"imagewidth": 426,
+"imageheight": 381,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_dum_velky"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "306,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "192,26"
+}
+]
+},
+{
+"id": 12,
+"image": "objekty/mesto/v_dum_stit.png",
+"imagewidth": 186,
+"imageheight": 373,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_dum_stit"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "133,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "84,26"
+}
+]
+},
+{
+"id": 13,
+"image": "objekty/mesto/v_kostel.png",
+"imagewidth": 260,
+"imageheight": 475,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_kostel"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "187,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "117,26"
+}
+]
+},
+{
+"id": 14,
+"image": "objekty/mesto/v_hostinec.png",
+"imagewidth": 336,
+"imageheight": 382,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_hostinec"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "241,40"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "151,26"
+}
+]
+},
+{
+"id": 15,
+"image": "objekty/mesto/v_stodola.png",
+"imagewidth": 346,
+"imageheight": 188,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_stodola"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "249,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "156,15"
+}
+]
+},
+{
+"id": 16,
+"image": "objekty/mesto/v_stanek_lektvary.png",
+"imagewidth": 126,
+"imageheight": 97,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_stanek_lektvary"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "57,8"
+}
+]
+},
+{
+"id": 17,
+"image": "objekty/mesto/v_stanek_zbrane.png",
+"imagewidth": 98,
+"imageheight": 95,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_stanek_zbrane"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "44,8"
+}
+]
+},
+{
+"id": 18,
+"image": "objekty/mesto/v_ukazatel_a.png",
+"imagewidth": 38,
+"imageheight": 41,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_ukazatel_a"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "17,6"
+}
+]
+},
+{
+"id": 19,
+"image": "objekty/mesto/v_ukazatel_b.png",
+"imagewidth": 54,
+"imageheight": 75,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_ukazatel_b"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "13"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "24,6"
+}
+]
+},
+{
+"id": 20,
+"image": "objekty/mesto/v_klada.png",
+"imagewidth": 144,
+"imageheight": 50,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_klada"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "65,6"
+}
+]
+},
+{
+"id": 21,
+"image": "objekty/mesto/v_bedna.png",
+"imagewidth": 42,
+"imageheight": 40,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_bedna"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "10"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "19,6"
+}
+]
+},
+{
+"id": 22,
+"image": "objekty/mesto/v_zelenina_a.png",
+"imagewidth": 122,
+"imageheight": 48,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_zelenina_a"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "55,6"
+}
+]
+},
+{
+"id": 23,
+"image": "objekty/mesto/v_zelenina_b.png",
+"imagewidth": 122,
+"imageheight": 47,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_zelenina_b"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "55,6"
+}
+]
+},
+{
+"id": 24,
+"image": "objekty/mesto/v_lavice.png",
+"imagewidth": 142,
+"imageheight": 56,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_lavice"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "64,6"
+}
+]
+},
+{
+"id": 25,
+"image": "objekty/mesto/v_lampa.png",
+"imagewidth": 72,
+"imageheight": 102,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_lampa"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "32,8"
+}
+]
+},
+{
+"id": 26,
+"image": "objekty/mesto/v_sud_a.png",
+"imagewidth": 34,
+"imageheight": 39,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_sud_a"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "8"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,6"
+}
+]
+},
+{
+"id": 27,
+"image": "objekty/mesto/v_sud_b.png",
+"imagewidth": 34,
+"imageheight": 64,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "v_sud_b"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "8"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "15,6"
+}
+]
+}
+]
+}

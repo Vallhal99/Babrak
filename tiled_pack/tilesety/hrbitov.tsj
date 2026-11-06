@@ -1,0 +1,1116 @@
+{
+"type": "tileset",
+"version": "1.10",
+"name": "hrbitov",
+"tilewidth": 310,
+"tileheight": 228,
+"columns": 0,
+"tilecount": 29,
+"margin": 0,
+"spacing": 0,
+"objectalignment": "bottom",
+"tiles": [
+{
+"id": 0,
+"image": "objekty/hrbitov/g_mauzoleum.png",
+"imagewidth": 144,
+"imageheight": 180,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_mauzoleum"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "103,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "65,14"
+}
+]
+},
+{
+"id": 1,
+"image": "objekty/hrbitov/g_krypta.png",
+"imagewidth": 146,
+"imageheight": 138,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_krypta"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "105,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "66,11"
+}
+]
+},
+{
+"id": 2,
+"image": "objekty/hrbitov/g_hrobka.png",
+"imagewidth": 140,
+"imageheight": 174,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_hrobka"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "building"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "100,26"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "63,14"
+}
+]
+},
+{
+"id": 3,
+"image": "objekty/hrbitov/g_brana.png",
+"imagewidth": 310,
+"imageheight": 95,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_brana"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "140,8"
+}
+]
+},
+{
+"id": 4,
+"image": "objekty/hrbitov/g_brana_mala.png",
+"imagewidth": 96,
+"imageheight": 69,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_brana_mala"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "43,6"
+}
+]
+},
+{
+"id": 5,
+"image": "objekty/hrbitov/g_oblouk.png",
+"imagewidth": 114,
+"imageheight": 95,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_oblouk"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "51,8"
+}
+]
+},
+{
+"id": 6,
+"image": "objekty/hrbitov/g_lampa_a.png",
+"imagewidth": 36,
+"imageheight": 80,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_lampa_a"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "16,6"
+}
+]
+},
+{
+"id": 7,
+"image": "objekty/hrbitov/g_lampa_b.png",
+"imagewidth": 48,
+"imageheight": 126,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_lampa_b"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "22,10"
+}
+]
+},
+{
+"id": 8,
+"image": "objekty/hrbitov/g_lampa_c.png",
+"imagewidth": 112,
+"imageheight": 129,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_lampa_c"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "50,10"
+}
+]
+},
+{
+"id": 9,
+"image": "objekty/hrbitov/g_andel.png",
+"imagewidth": 46,
+"imageheight": 67,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_andel"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "21,6"
+}
+]
+},
+{
+"id": 10,
+"image": "objekty/hrbitov/g_socha.png",
+"imagewidth": 48,
+"imageheight": 59,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_socha"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "22,6"
+}
+]
+},
+{
+"id": 11,
+"image": "objekty/hrbitov/g_hrob_a.png",
+"imagewidth": 42,
+"imageheight": 53,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_hrob_a"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "10"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "19,6"
+}
+]
+},
+{
+"id": 12,
+"image": "objekty/hrbitov/g_kriz_a.png",
+"imagewidth": 36,
+"imageheight": 58,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_kriz_a"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "16,6"
+}
+]
+},
+{
+"id": 13,
+"image": "objekty/hrbitov/g_hrob_b.png",
+"imagewidth": 36,
+"imageheight": 52,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_hrob_b"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "16,6"
+}
+]
+},
+{
+"id": 14,
+"image": "objekty/hrbitov/g_kriz_b.png",
+"imagewidth": 36,
+"imageheight": 76,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_kriz_b"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "16,6"
+}
+]
+},
+{
+"id": 15,
+"image": "objekty/hrbitov/g_hrob_c.png",
+"imagewidth": 26,
+"imageheight": 62,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_hrob_c"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "6"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "12,6"
+}
+]
+},
+{
+"id": 16,
+"image": "objekty/hrbitov/g_kriz_c.png",
+"imagewidth": 38,
+"imageheight": 71,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_kriz_c"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "17,6"
+}
+]
+},
+{
+"id": 17,
+"image": "objekty/hrbitov/g_kriz_d.png",
+"imagewidth": 38,
+"imageheight": 82,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_kriz_d"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "17,7"
+}
+]
+},
+{
+"id": 18,
+"image": "objekty/hrbitov/g_lavice.png",
+"imagewidth": 98,
+"imageheight": 75,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_lavice"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "44,6"
+}
+]
+},
+{
+"id": 19,
+"image": "objekty/hrbitov/g_kamen_a.png",
+"imagewidth": 104,
+"imageheight": 45,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_kamen_a"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "47,6"
+}
+]
+},
+{
+"id": 20,
+"image": "objekty/hrbitov/g_kamen_b.png",
+"imagewidth": 152,
+"imageheight": 45,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_kamen_b"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "68,6"
+}
+]
+},
+{
+"id": 21,
+"image": "objekty/hrbitov/g_rakev.png",
+"imagewidth": 46,
+"imageheight": 91,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_rakev"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "21,7"
+}
+]
+},
+{
+"id": 22,
+"image": "objekty/hrbitov/g_mrtvy_strom_a.png",
+"imagewidth": 198,
+"imageheight": 228,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_mrtvy_strom_a"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "89,18"
+}
+]
+},
+{
+"id": 23,
+"image": "objekty/hrbitov/g_mrtvy_strom_b.png",
+"imagewidth": 108,
+"imageheight": 174,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_mrtvy_strom_b"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "9"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "49,14"
+}
+]
+},
+{
+"id": 24,
+"image": "objekty/hrbitov/g_mrtvy_strom_c.png",
+"imagewidth": 172,
+"imageheight": 120,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_mrtvy_strom_c"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "14"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "77,10"
+}
+]
+},
+{
+"id": 25,
+"image": "objekty/hrbitov/g_mrtvy_strom_d.png",
+"imagewidth": 126,
+"imageheight": 165,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_mrtvy_strom_d"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "11"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "57,13"
+}
+]
+},
+{
+"id": 26,
+"image": "objekty/hrbitov/g_mrtvy_strom_e.png",
+"imagewidth": 140,
+"imageheight": 134,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_mrtvy_strom_e"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "63,11"
+}
+]
+},
+{
+"id": 27,
+"image": "objekty/hrbitov/g_mrtvy_strom_f.png",
+"imagewidth": 84,
+"imageheight": 120,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_mrtvy_strom_f"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "tree"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "8"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "38,10"
+}
+]
+},
+{
+"id": 28,
+"image": "objekty/hrbitov/g_parez.png",
+"imagewidth": 48,
+"imageheight": 47,
+"properties": [
+{
+"name": "id",
+"type": "string",
+"value": "g_parez"
+},
+{
+"name": "kind",
+"type": "string",
+"value": "prop"
+},
+{
+"name": "collision",
+"type": "string",
+"value": "12"
+},
+{
+"name": "sway",
+"type": "bool",
+"value": false
+},
+{
+"name": "shadow",
+"type": "bool",
+"value": true
+},
+{
+"name": "shadow_size",
+"type": "string",
+"value": "22,6"
+}
+]
+}
+]
+}

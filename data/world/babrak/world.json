@@ -1,0 +1,6181 @@
+{
+ "version": 1,
+ "tile_size": [
+  24,
+  24
+ ],
+ "chunk_size": 64,
+ "bounds": [
+  -93,
+  -76,
+  92,
+  75
+ ],
+ "layers": [
+  {
+   "name": "ground",
+   "kind": "tiles",
+   "above": false,
+   "hd": true,
+   "visible": true,
+   "props": {
+    "hd": true
+   }
+  },
+  {
+   "name": "walls",
+   "kind": "tiles",
+   "above": false,
+   "hd": false,
+   "visible": true,
+   "props": {}
+  },
+  {
+   "name": "above",
+   "kind": "tiles",
+   "above": true,
+   "hd": false,
+   "visible": true,
+   "props": {
+    "above": true
+   }
+  },
+  {
+   "name": "objects",
+   "kind": "objects",
+   "above": false,
+   "hd": false,
+   "visible": true,
+   "props": {}
+  }
+ ],
+ "tilesets": [
+  {
+   "firstgid": 1,
+   "name": "terrain",
+   "tilewidth": 24,
+   "tileheight": 24,
+   "columns": 8,
+   "tilecount": 24,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "terrain": "grass"
+    },
+    "1": {
+     "terrain": "grass_meadow"
+    },
+    "2": {
+     "terrain": "grass_dark"
+    },
+    "3": {
+     "terrain": "leaf_grass"
+    },
+    "4": {
+     "terrain": "flowers"
+    },
+    "5": {
+     "terrain": "forest_floor"
+    },
+    "6": {
+     "terrain": "dry_grass"
+    },
+    "7": {
+     "terrain": "dirt"
+    },
+    "8": {
+     "terrain": "dirt_rock"
+    },
+    "9": {
+     "terrain": "sand"
+    },
+    "10": {
+     "terrain": "cobble"
+    },
+    "11": {
+     "terrain": "stone_dark"
+    },
+    "12": {
+     "terrain": "brick_tan"
+    },
+    "13": {
+     "terrain": "wood_floor"
+    },
+    "14": {
+     "terrain": "marble"
+    },
+    "15": {
+     "terrain": "mossy_ground"
+    },
+    "16": {
+     "terrain": "water"
+    },
+    "17": {
+     "terrain": "deep_water"
+    },
+    "18": {
+     "terrain": "rock"
+    },
+    "19": {
+     "terrain": "rock_dark"
+    }
+   },
+   "images": {},
+   "image": "res://assets/tilesets/babrak/terrain.png"
+  },
+  {
+   "firstgid": 25,
+   "name": "zem1",
+   "tilewidth": 24,
+   "tileheight": 24,
+   "columns": 30,
+   "tilecount": 1080,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {},
+   "images": {},
+   "image": "res://assets/tilesets/babrak/titleset_zem.png"
+  },
+  {
+   "firstgid": 1105,
+   "name": "zem2",
+   "tilewidth": 24,
+   "tileheight": 24,
+   "columns": 30,
+   "tilecount": 1080,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {},
+   "images": {},
+   "image": "res://assets/tilesets/babrak/tileset_zem2.png"
+  },
+  {
+   "firstgid": 2185,
+   "name": "zem3",
+   "tilewidth": 24,
+   "tileheight": 24,
+   "columns": 30,
+   "tilecount": 1080,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {},
+   "images": {},
+   "image": "res://assets/tilesets/babrak/titleset_zem3.png"
+  },
+  {
+   "firstgid": 3265,
+   "name": "okoli1",
+   "tilewidth": 376,
+   "tileheight": 240,
+   "columns": 0,
+   "tilecount": 98,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "id": "okoli1_000",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover,small",
+     "label": "trs tr\u00e1vy"
+    },
+    "1": {
+     "id": "okoli1_001",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover,small",
+     "label": "trs tr\u00e1vy"
+    },
+    "2": {
+     "id": "okoli1_002",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover,small",
+     "label": "trs tr\u00e1vy"
+    },
+    "3": {
+     "id": "okoli1_003",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,flower,ground_cover,small",
+     "label": "trs tr\u00e1vy s kv\u00edtky"
+    },
+    "4": {
+     "id": "okoli1_004",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,flower,ground_cover,small",
+     "label": "trs tr\u00e1vy s kv\u00edtky"
+    },
+    "5": {
+     "id": "okoli1_005",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,flower,ground_cover,small",
+     "label": "trs tr\u00e1vy s kv\u00edtky"
+    },
+    "6": {
+     "id": "okoli1_006",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,flower,ground_cover,small",
+     "label": "trs tr\u00e1vy s kv\u00edtky"
+    },
+    "7": {
+     "id": "okoli1_007",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover",
+     "label": "pruh tr\u00e1vy"
+    },
+    "8": {
+     "id": "okoli1_008",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover",
+     "label": "pruh tr\u00e1vy"
+    },
+    "9": {
+     "id": "okoli1_009",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,flower,ground_cover",
+     "label": "pruh kvetouc\u00ed tr\u00e1vy"
+    },
+    "10": {
+     "id": "okoli1_010",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,flower,ground_cover",
+     "label": "pruh kvetouc\u00ed tr\u00e1vy"
+    },
+    "11": {
+     "id": "okoli1_011",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flowerbed,flower,cultivated",
+     "label": "velk\u00fd z\u00e1hon kv\u011btin"
+    },
+    "12": {
+     "id": "okoli1_012",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,boulder,solid",
+     "label": "skaln\u00ed \u0161pice",
+     "shadow_size": "48,21"
+    },
+    "13": {
+     "id": "okoli1_013",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover",
+     "label": "velk\u00fd trs tr\u00e1vy"
+    },
+    "14": {
+     "id": "okoli1_014",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover",
+     "label": "velk\u00fd trs tr\u00e1vy"
+    },
+    "15": {
+     "id": "okoli1_015",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,flower,ground_cover",
+     "label": "kvetouc\u00ed trs r\u016f\u017eov\u00fd"
+    },
+    "16": {
+     "id": "okoli1_016",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,small",
+     "label": "st\u00e9blo tr\u00e1vy"
+    },
+    "17": {
+     "id": "okoli1_017",
+     "kind": "prop",
+     "collision": "17",
+     "sway": false,
+     "shadow": true,
+     "tags": "well,structure,village,solid",
+     "label": "kamenn\u00e1 studna",
+     "shadow_size": "21,7"
+    },
+    "18": {
+     "id": "okoli1_018",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "fialov\u00e9 kv\u00edtky (levandule)"
+    },
+    "19": {
+     "id": "okoli1_019",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "fialov\u00e9 kv\u00edtky (levandule)"
+    },
+    "20": {
+     "id": "okoli1_020",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "fialov\u00e9 kv\u00edtky (levandule)"
+    },
+    "21": {
+     "id": "okoli1_021",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "fialov\u00e9 kv\u00edtky (levandule)"
+    },
+    "22": {
+     "id": "okoli1_022",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,plant",
+     "label": "\u017elut\u00e1 vysok\u00e1 rostlina"
+    },
+    "23": {
+     "id": "okoli1_023",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,plant",
+     "label": "\u017elut\u00e1 vysok\u00e1 rostlina"
+    },
+    "24": {
+     "id": "okoli1_024",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,boulder,solid",
+     "label": "velk\u00fd skaln\u00ed blok",
+     "shadow_size": "63,19"
+    },
+    "25": {
+     "id": "okoli1_025",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "fialov\u00e9 kv\u011bty"
+    },
+    "26": {
+     "id": "okoli1_026",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "fialov\u00e9 kv\u011bty"
+    },
+    "27": {
+     "id": "okoli1_027",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "fialov\u00e9 kv\u011bty"
+    },
+    "28": {
+     "id": "okoli1_028",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "fialov\u00e9 kv\u011bty"
+    },
+    "29": {
+     "id": "okoli1_029",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flowerbed,flower,cultivated",
+     "label": "z\u00e1hon kv\u011btin velk\u00fd"
+    },
+    "30": {
+     "id": "okoli1_030",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower",
+     "label": "fialov\u00e9 kv\u011bty skupina"
+    },
+    "31": {
+     "id": "okoli1_031",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower",
+     "label": "fialov\u00e9 kv\u011bty skupina"
+    },
+    "32": {
+     "id": "okoli1_032",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower",
+     "label": "\u017elut\u00e1 vysok\u00e1 kv\u011btina"
+    },
+    "33": {
+     "id": "okoli1_033",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower",
+     "label": "\u017elut\u00e1 vysok\u00e1 kv\u011btina"
+    },
+    "34": {
+     "id": "okoli1_034",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,ornamental",
+     "label": "\u010derven\u00e1 tr\u00e1va okrasn\u00e1"
+    },
+    "35": {
+     "id": "okoli1_035",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,ornamental",
+     "label": "\u010derven\u00e1 tr\u00e1va okrasn\u00e1"
+    },
+    "36": {
+     "id": "okoli1_036",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,small",
+     "label": "st\u00e9blo"
+    },
+    "37": {
+     "id": "okoli1_037",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,boulder,solid",
+     "label": "k\u00e1men",
+     "shadow_size": "41,14"
+    },
+    "38": {
+     "id": "okoli1_038",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover",
+     "label": "n\u00edzk\u00fd ke\u0159\u00edk tr\u00e1vy"
+    },
+    "39": {
+     "id": "okoli1_039",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "\u017elut\u00e9 klasy"
+    },
+    "40": {
+     "id": "okoli1_040",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "\u017elut\u00e9 klasy"
+    },
+    "41": {
+     "id": "okoli1_041",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,flower",
+     "label": "\u010derven\u00e1 rostlina vysok\u00e1"
+    },
+    "42": {
+     "id": "okoli1_042",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,flower",
+     "label": "\u010derven\u00e1 rostlina vysok\u00e1"
+    },
+    "43": {
+     "id": "okoli1_043",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flowerbed,flower,cultivated",
+     "label": "z\u00e1hon kv\u011btin"
+    },
+    "44": {
+     "id": "okoli1_044",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,pile,solid",
+     "label": "hromada kamen\u00ed",
+     "shadow_size": "45,10"
+    },
+    "45": {
+     "id": "okoli1_045",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (nejist\u00fd)",
+     "shadow_size": "158,15"
+    },
+    "46": {
+     "id": "okoli1_046",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "\u010derven\u00e9 trsy"
+    },
+    "47": {
+     "id": "okoli1_047",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "\u010derven\u00e9 trsy"
+    },
+    "48": {
+     "id": "okoli1_048",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "\u010derven\u00e9 trsy"
+    },
+    "49": {
+     "id": "okoli1_049",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "\u010derven\u00e9 trsy"
+    },
+    "50": {
+     "id": "okoli1_050",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "\u010derven\u00e9 trsy"
+    },
+    "51": {
+     "id": "okoli1_051",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "\u010derven\u00e9 trsy"
+    },
+    "52": {
+     "id": "okoli1_052",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower",
+     "label": "ke\u0159 s fialov\u00fdmi kv\u011bty",
+     "shadow_size": "61,16"
+    },
+    "53": {
+     "id": "okoli1_053",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower",
+     "label": "fialov\u00e9 cibulov\u00e9 kv\u011btiny"
+    },
+    "54": {
+     "id": "okoli1_054",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower",
+     "label": "fialov\u00e9 cibulov\u00e9 kv\u011btiny"
+    },
+    "55": {
+     "id": "okoli1_055",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower",
+     "label": "fialov\u00e9 cibulov\u00e9 kv\u011btiny"
+    },
+    "56": {
+     "id": "okoli1_056",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "zelen\u00fd ke\u0159",
+     "shadow_size": "38,12"
+    },
+    "57": {
+     "id": "okoli1_057",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower",
+     "label": "ke\u0159 s modr\u00fdmi kv\u011bty",
+     "shadow_size": "38,12"
+    },
+    "58": {
+     "id": "okoli1_058",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,swamp,deciduous,solid",
+     "label": "\u017elut\u00fd strom s li\u00e1nami (ba\u017einat\u00fd)",
+     "shadow_size": "52,12"
+    },
+    "59": {
+     "id": "okoli1_059",
+     "kind": "bush",
+     "collision": "21",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "zelen\u00fd ke\u0159",
+     "shadow_size": "30,7"
+    },
+    "60": {
+     "id": "okoli1_060",
+     "kind": "bush",
+     "collision": "21",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower",
+     "label": "ke\u0159 s oran\u017eov\u00fdmi plody",
+     "shadow_size": "30,7"
+    },
+    "61": {
+     "id": "okoli1_061",
+     "kind": "bush",
+     "collision": "21",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "zelen\u00fd ke\u0159",
+     "shadow_size": "29,7"
+    },
+    "62": {
+     "id": "okoli1_062",
+     "kind": "bush",
+     "collision": "21",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower",
+     "label": "ke\u0159 s oran\u017eov\u00fdmi plody",
+     "shadow_size": "29,7"
+    },
+    "63": {
+     "id": "okoli1_063",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "zelen\u00fd ke\u0159",
+     "shadow_size": "40,7"
+    },
+    "64": {
+     "id": "okoli1_064",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower",
+     "label": "ke\u0159 s modr\u00fdmi kv\u011bty",
+     "shadow_size": "40,7"
+    },
+    "65": {
+     "id": "okoli1_065",
+     "kind": "bush",
+     "collision": "12",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "zelen\u00fd ke\u0159",
+     "shadow_size": "17,5"
+    },
+    "66": {
+     "id": "okoli1_066",
+     "kind": "bush",
+     "collision": "11",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "zelen\u00fd ke\u0159",
+     "shadow_size": "16,5"
+    },
+    "67": {
+     "id": "okoli1_067",
+     "kind": "bush",
+     "collision": "12",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower",
+     "label": "ke\u0159 s oran\u017eov\u00fdmi plody",
+     "shadow_size": "17,5"
+    },
+    "68": {
+     "id": "okoli1_068",
+     "kind": "bush",
+     "collision": "11",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower",
+     "label": "ke\u0159 s oran\u017eov\u00fdmi plody",
+     "shadow_size": "16,5"
+    },
+    "69": {
+     "id": "okoli1_069",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "kl\u00ed\u010dek"
+    },
+    "70": {
+     "id": "okoli1_070",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "kl\u00ed\u010dek"
+    },
+    "71": {
+     "id": "okoli1_071",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "kl\u00ed\u010dek"
+    },
+    "72": {
+     "id": "okoli1_072",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower",
+     "label": "ke\u0159 s modr\u00fdmi kv\u011bty",
+     "shadow_size": "38,12"
+    },
+    "73": {
+     "id": "okoli1_073",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "log,wood,forest,solid",
+     "label": "padl\u00fd kmen",
+     "shadow_size": "40,5"
+    },
+    "74": {
+     "id": "okoli1_074",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "log,wood,forest,solid",
+     "label": "padl\u00fd kmen",
+     "shadow_size": "40,5"
+    },
+    "75": {
+     "id": "okoli1_075",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "tags": "sack,container,farm,village",
+     "label": "pytel",
+     "shadow_size": "14,6"
+    },
+    "76": {
+     "id": "okoli1_076",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "tags": "sack,container,farm,village",
+     "label": "pytel",
+     "shadow_size": "14,5"
+    },
+    "77": {
+     "id": "okoli1_077",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "tags": "sack,container,farm,village",
+     "label": "pytel",
+     "shadow_size": "14,5"
+    },
+    "78": {
+     "id": "okoli1_078",
+     "kind": "prop",
+     "collision": "22",
+     "sway": false,
+     "shadow": true,
+     "tags": "hay,farm,village",
+     "label": "kupka sena",
+     "shadow_size": "27,12"
+    },
+    "79": {
+     "id": "okoli1_079",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "hay,farm,village",
+     "label": "kupka sena",
+     "shadow_size": "34,10"
+    },
+    "80": {
+     "id": "okoli1_080",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "81": {
+     "id": "okoli1_081",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "82": {
+     "id": "okoli1_082",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "83": {
+     "id": "okoli1_083",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "84": {
+     "id": "okoli1_084",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "mushroom,forest,small",
+     "label": "muchom\u016frka"
+    },
+    "85": {
+     "id": "okoli1_085",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "tags": "stump,wood,forest",
+     "label": "pa\u0159ez",
+     "shadow_size": "12,5"
+    },
+    "86": {
+     "id": "okoli1_086",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "87": {
+     "id": "okoli1_087",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "88": {
+     "id": "okoli1_088",
+     "kind": "prop",
+     "collision": "13",
+     "sway": false,
+     "shadow": true,
+     "tags": "sack,container,farm,village",
+     "label": "pytel",
+     "shadow_size": "16,7"
+    },
+    "89": {
+     "id": "okoli1_089",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "tags": "sack,container,farm,village",
+     "label": "pytel",
+     "shadow_size": "14,5"
+    },
+    "90": {
+     "id": "okoli1_090",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "tags": "sack,container,farm,village",
+     "label": "pytel",
+     "shadow_size": "14,5"
+    },
+    "91": {
+     "id": "okoli1_091",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "92": {
+     "id": "okoli1_092",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "93": {
+     "id": "okoli1_093",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "94": {
+     "id": "okoli1_094",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    },
+    "95": {
+     "id": "okoli1_095",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "mushroom,forest,small",
+     "label": "muchom\u016frka"
+    },
+    "96": {
+     "id": "okoli1_096",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "tags": "stump,wood,forest",
+     "label": "pa\u0159ez",
+     "shadow_size": "15,5"
+    },
+    "97": {
+     "id": "okoli1_097",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,fern,forest,small",
+     "label": "mlad\u00e1 rostlina / kaprad\u00ed"
+    }
+   },
+   "images": {
+    "0": {
+     "image": "res://assets/tilesets/babrak/okoli1_000.png",
+     "w": 46,
+     "h": 34
+    },
+    "1": {
+     "image": "res://assets/tilesets/babrak/okoli1_001.png",
+     "w": 36,
+     "h": 32
+    },
+    "2": {
+     "image": "res://assets/tilesets/babrak/okoli1_002.png",
+     "w": 40,
+     "h": 33
+    },
+    "3": {
+     "image": "res://assets/tilesets/babrak/okoli1_003.png",
+     "w": 92,
+     "h": 34
+    },
+    "4": {
+     "image": "res://assets/tilesets/babrak/okoli1_004.png",
+     "w": 36,
+     "h": 32
+    },
+    "5": {
+     "image": "res://assets/tilesets/babrak/okoli1_005.png",
+     "w": 42,
+     "h": 33
+    },
+    "6": {
+     "image": "res://assets/tilesets/babrak/okoli1_006.png",
+     "w": 52,
+     "h": 34
+    },
+    "7": {
+     "image": "res://assets/tilesets/babrak/okoli1_007.png",
+     "w": 132,
+     "h": 40
+    },
+    "8": {
+     "image": "res://assets/tilesets/babrak/okoli1_008.png",
+     "w": 136,
+     "h": 40
+    },
+    "9": {
+     "image": "res://assets/tilesets/babrak/okoli1_009.png",
+     "w": 132,
+     "h": 40
+    },
+    "10": {
+     "image": "res://assets/tilesets/babrak/okoli1_010.png",
+     "w": 136,
+     "h": 40
+    },
+    "11": {
+     "image": "res://assets/tilesets/babrak/okoli1_011.png",
+     "w": 260,
+     "h": 190
+    },
+    "12": {
+     "image": "res://assets/tilesets/babrak/okoli1_012.png",
+     "w": 114,
+     "h": 129
+    },
+    "13": {
+     "image": "res://assets/tilesets/babrak/okoli1_013.png",
+     "w": 128,
+     "h": 87
+    },
+    "14": {
+     "image": "res://assets/tilesets/babrak/okoli1_014.png",
+     "w": 192,
+     "h": 87
+    },
+    "15": {
+     "image": "res://assets/tilesets/babrak/okoli1_015.png",
+     "w": 134,
+     "h": 87
+    },
+    "16": {
+     "image": "res://assets/tilesets/babrak/okoli1_016.png",
+     "w": 30,
+     "h": 16
+    },
+    "17": {
+     "image": "res://assets/tilesets/babrak/okoli1_017.png",
+     "w": 50,
+     "h": 46
+    },
+    "18": {
+     "image": "res://assets/tilesets/babrak/okoli1_018.png",
+     "w": 38,
+     "h": 34
+    },
+    "19": {
+     "image": "res://assets/tilesets/babrak/okoli1_019.png",
+     "w": 26,
+     "h": 33
+    },
+    "20": {
+     "image": "res://assets/tilesets/babrak/okoli1_020.png",
+     "w": 24,
+     "h": 33
+    },
+    "21": {
+     "image": "res://assets/tilesets/babrak/okoli1_021.png",
+     "w": 40,
+     "h": 34
+    },
+    "22": {
+     "image": "res://assets/tilesets/babrak/okoli1_022.png",
+     "w": 86,
+     "h": 84
+    },
+    "23": {
+     "image": "res://assets/tilesets/babrak/okoli1_023.png",
+     "w": 90,
+     "h": 85
+    },
+    "24": {
+     "image": "res://assets/tilesets/babrak/okoli1_024.png",
+     "w": 150,
+     "h": 120
+    },
+    "25": {
+     "image": "res://assets/tilesets/babrak/okoli1_025.png",
+     "w": 60,
+     "h": 36
+    },
+    "26": {
+     "image": "res://assets/tilesets/babrak/okoli1_026.png",
+     "w": 36,
+     "h": 33
+    },
+    "27": {
+     "image": "res://assets/tilesets/babrak/okoli1_027.png",
+     "w": 32,
+     "h": 33
+    },
+    "28": {
+     "image": "res://assets/tilesets/babrak/okoli1_028.png",
+     "w": 56,
+     "h": 36
+    },
+    "29": {
+     "image": "res://assets/tilesets/babrak/okoli1_029.png",
+     "w": 260,
+     "h": 185
+    },
+    "30": {
+     "image": "res://assets/tilesets/babrak/okoli1_030.png",
+     "w": 124,
+     "h": 74
+    },
+    "31": {
+     "image": "res://assets/tilesets/babrak/okoli1_031.png",
+     "w": 128,
+     "h": 74
+    },
+    "32": {
+     "image": "res://assets/tilesets/babrak/okoli1_032.png",
+     "w": 42,
+     "h": 85
+    },
+    "33": {
+     "image": "res://assets/tilesets/babrak/okoli1_033.png",
+     "w": 40,
+     "h": 85
+    },
+    "34": {
+     "image": "res://assets/tilesets/babrak/okoli1_034.png",
+     "w": 46,
+     "h": 71
+    },
+    "35": {
+     "image": "res://assets/tilesets/babrak/okoli1_035.png",
+     "w": 50,
+     "h": 71
+    },
+    "36": {
+     "image": "res://assets/tilesets/babrak/okoli1_036.png",
+     "w": 20,
+     "h": 19
+    },
+    "37": {
+     "image": "res://assets/tilesets/babrak/okoli1_037.png",
+     "w": 98,
+     "h": 89
+    },
+    "38": {
+     "image": "res://assets/tilesets/babrak/okoli1_038.png",
+     "w": 192,
+     "h": 47
+    },
+    "39": {
+     "image": "res://assets/tilesets/babrak/okoli1_039.png",
+     "w": 38,
+     "h": 36
+    },
+    "40": {
+     "image": "res://assets/tilesets/babrak/okoli1_040.png",
+     "w": 40,
+     "h": 36
+    },
+    "41": {
+     "image": "res://assets/tilesets/babrak/okoli1_041.png",
+     "w": 46,
+     "h": 83
+    },
+    "42": {
+     "image": "res://assets/tilesets/babrak/okoli1_042.png",
+     "w": 50,
+     "h": 83
+    },
+    "43": {
+     "image": "res://assets/tilesets/babrak/okoli1_043.png",
+     "w": 244,
+     "h": 93
+    },
+    "44": {
+     "image": "res://assets/tilesets/babrak/okoli1_044.png",
+     "w": 106,
+     "h": 65
+    },
+    "45": {
+     "image": "res://assets/tilesets/babrak/okoli1_045.png",
+     "w": 376,
+     "h": 86
+    },
+    "46": {
+     "image": "res://assets/tilesets/babrak/okoli1_046.png",
+     "w": 36,
+     "h": 31
+    },
+    "47": {
+     "image": "res://assets/tilesets/babrak/okoli1_047.png",
+     "w": 36,
+     "h": 31
+    },
+    "48": {
+     "image": "res://assets/tilesets/babrak/okoli1_048.png",
+     "w": 36,
+     "h": 27
+    },
+    "49": {
+     "image": "res://assets/tilesets/babrak/okoli1_049.png",
+     "w": 34,
+     "h": 27
+    },
+    "50": {
+     "image": "res://assets/tilesets/babrak/okoli1_050.png",
+     "w": 36,
+     "h": 46
+    },
+    "51": {
+     "image": "res://assets/tilesets/babrak/okoli1_051.png",
+     "w": 36,
+     "h": 46
+    },
+    "52": {
+     "image": "res://assets/tilesets/babrak/okoli1_052.png",
+     "w": 146,
+     "h": 91
+    },
+    "53": {
+     "image": "res://assets/tilesets/babrak/okoli1_053.png",
+     "w": 96,
+     "h": 77
+    },
+    "54": {
+     "image": "res://assets/tilesets/babrak/okoli1_054.png",
+     "w": 36,
+     "h": 48
+    },
+    "55": {
+     "image": "res://assets/tilesets/babrak/okoli1_055.png",
+     "w": 34,
+     "h": 48
+    },
+    "56": {
+     "image": "res://assets/tilesets/babrak/okoli1_056.png",
+     "w": 90,
+     "h": 66
+    },
+    "57": {
+     "image": "res://assets/tilesets/babrak/okoli1_057.png",
+     "w": 90,
+     "h": 66
+    },
+    "58": {
+     "image": "res://assets/tilesets/babrak/okoli1_058.png",
+     "w": 174,
+     "h": 240
+    },
+    "59": {
+     "image": "res://assets/tilesets/babrak/okoli1_059.png",
+     "w": 72,
+     "h": 40
+    },
+    "60": {
+     "image": "res://assets/tilesets/babrak/okoli1_060.png",
+     "w": 72,
+     "h": 40
+    },
+    "61": {
+     "image": "res://assets/tilesets/babrak/okoli1_061.png",
+     "w": 70,
+     "h": 40
+    },
+    "62": {
+     "image": "res://assets/tilesets/babrak/okoli1_062.png",
+     "w": 70,
+     "h": 40
+    },
+    "63": {
+     "image": "res://assets/tilesets/babrak/okoli1_063.png",
+     "w": 96,
+     "h": 40
+    },
+    "64": {
+     "image": "res://assets/tilesets/babrak/okoli1_064.png",
+     "w": 96,
+     "h": 40
+    },
+    "65": {
+     "image": "res://assets/tilesets/babrak/okoli1_065.png",
+     "w": 40,
+     "h": 30
+    },
+    "66": {
+     "image": "res://assets/tilesets/babrak/okoli1_066.png",
+     "w": 38,
+     "h": 30
+    },
+    "67": {
+     "image": "res://assets/tilesets/babrak/okoli1_067.png",
+     "w": 40,
+     "h": 30
+    },
+    "68": {
+     "image": "res://assets/tilesets/babrak/okoli1_068.png",
+     "w": 38,
+     "h": 30
+    },
+    "69": {
+     "image": "res://assets/tilesets/babrak/okoli1_069.png",
+     "w": 18,
+     "h": 19
+    },
+    "70": {
+     "image": "res://assets/tilesets/babrak/okoli1_070.png",
+     "w": 30,
+     "h": 16
+    },
+    "71": {
+     "image": "res://assets/tilesets/babrak/okoli1_071.png",
+     "w": 20,
+     "h": 19
+    },
+    "72": {
+     "image": "res://assets/tilesets/babrak/okoli1_072.png",
+     "w": 90,
+     "h": 66
+    },
+    "73": {
+     "image": "res://assets/tilesets/babrak/okoli1_073.png",
+     "w": 96,
+     "h": 29
+    },
+    "74": {
+     "image": "res://assets/tilesets/babrak/okoli1_074.png",
+     "w": 96,
+     "h": 27
+    },
+    "75": {
+     "image": "res://assets/tilesets/babrak/okoli1_075.png",
+     "w": 34,
+     "h": 38
+    },
+    "76": {
+     "image": "res://assets/tilesets/babrak/okoli1_076.png",
+     "w": 34,
+     "h": 33
+    },
+    "77": {
+     "image": "res://assets/tilesets/babrak/okoli1_077.png",
+     "w": 34,
+     "h": 33
+    },
+    "78": {
+     "image": "res://assets/tilesets/babrak/okoli1_078.png",
+     "w": 64,
+     "h": 75
+    },
+    "79": {
+     "image": "res://assets/tilesets/babrak/okoli1_079.png",
+     "w": 80,
+     "h": 65
+    },
+    "80": {
+     "image": "res://assets/tilesets/babrak/okoli1_080.png",
+     "w": 48,
+     "h": 31
+    },
+    "81": {
+     "image": "res://assets/tilesets/babrak/okoli1_081.png",
+     "w": 34,
+     "h": 38
+    },
+    "82": {
+     "image": "res://assets/tilesets/babrak/okoli1_082.png",
+     "w": 44,
+     "h": 31
+    },
+    "83": {
+     "image": "res://assets/tilesets/babrak/okoli1_083.png",
+     "w": 44,
+     "h": 32
+    },
+    "84": {
+     "image": "res://assets/tilesets/babrak/okoli1_084.png",
+     "w": 20,
+     "h": 18
+    },
+    "85": {
+     "image": "res://assets/tilesets/babrak/okoli1_085.png",
+     "w": 28,
+     "h": 22
+    },
+    "86": {
+     "image": "res://assets/tilesets/babrak/okoli1_086.png",
+     "w": 50,
+     "h": 45
+    },
+    "87": {
+     "image": "res://assets/tilesets/babrak/okoli1_087.png",
+     "w": 50,
+     "h": 44
+    },
+    "88": {
+     "image": "res://assets/tilesets/babrak/okoli1_088.png",
+     "w": 38,
+     "h": 44
+    },
+    "89": {
+     "image": "res://assets/tilesets/babrak/okoli1_089.png",
+     "w": 34,
+     "h": 33
+    },
+    "90": {
+     "image": "res://assets/tilesets/babrak/okoli1_090.png",
+     "w": 34,
+     "h": 33
+    },
+    "91": {
+     "image": "res://assets/tilesets/babrak/okoli1_091.png",
+     "w": 46,
+     "h": 39
+    },
+    "92": {
+     "image": "res://assets/tilesets/babrak/okoli1_092.png",
+     "w": 30,
+     "h": 24
+    },
+    "93": {
+     "image": "res://assets/tilesets/babrak/okoli1_093.png",
+     "w": 42,
+     "h": 26
+    },
+    "94": {
+     "image": "res://assets/tilesets/babrak/okoli1_094.png",
+     "w": 42,
+     "h": 26
+    },
+    "95": {
+     "image": "res://assets/tilesets/babrak/okoli1_095.png",
+     "w": 28,
+     "h": 27
+    },
+    "96": {
+     "image": "res://assets/tilesets/babrak/okoli1_096.png",
+     "w": 36,
+     "h": 24
+    },
+    "97": {
+     "image": "res://assets/tilesets/babrak/okoli1_097.png",
+     "w": 44,
+     "h": 32
+    }
+   }
+  },
+  {
+   "firstgid": 3363,
+   "name": "okoli2",
+   "tilewidth": 266,
+   "tileheight": 285,
+   "columns": 0,
+   "tilecount": 44,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "id": "okoli2_000",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "bouquet,indoor,cultivated",
+     "label": "kytice (\u0159ezan\u00e9 kv\u011btiny)"
+    },
+    "1": {
+     "id": "okoli2_001",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "bouquet,indoor,cultivated",
+     "label": "kytice (\u0159ezan\u00e9 kv\u011btiny)"
+    },
+    "2": {
+     "id": "okoli2_002",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "bouquet,indoor,cultivated",
+     "label": "kytice (\u0159ezan\u00e9 kv\u011btiny)"
+    },
+    "3": {
+     "id": "okoli2_003",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "bouquet,indoor,cultivated",
+     "label": "kytice (\u0159ezan\u00e9 kv\u011btiny)"
+    },
+    "4": {
+     "id": "okoli2_004",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "r\u016f\u017ee"
+    },
+    "5": {
+     "id": "okoli2_005",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "r\u016f\u017ee"
+    },
+    "6": {
+     "id": "okoli2_006",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "r\u016f\u017ee"
+    },
+    "7": {
+     "id": "okoli2_007",
+     "kind": "tree",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,autumn,solid",
+     "label": "podzimn\u00ed strom",
+     "shadow_size": "44,10"
+    },
+    "8": {
+     "id": "okoli2_008",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover",
+     "label": "sv\u011btl\u00e1 tr\u00e1va"
+    },
+    "9": {
+     "id": "okoli2_009",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "r\u016f\u017eov\u00e9 kv\u00edtky"
+    },
+    "10": {
+     "id": "okoli2_010",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,ground_cover",
+     "label": "sv\u011btl\u00e1 tr\u00e1va"
+    },
+    "11": {
+     "id": "okoli2_011",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "r\u016f\u017eov\u00e9 kv\u00edtky"
+    },
+    "12": {
+     "id": "okoli2_012",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny / kytice"
+    },
+    "13": {
+     "id": "okoli2_013",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny / kytice"
+    },
+    "14": {
+     "id": "okoli2_014",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny / kytice"
+    },
+    "15": {
+     "id": "okoli2_015",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny / kytice"
+    },
+    "16": {
+     "id": "okoli2_016",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny / kytice"
+    },
+    "17": {
+     "id": "okoli2_017",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny / kytice"
+    },
+    "18": {
+     "id": "okoli2_018",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny / kytice"
+    },
+    "19": {
+     "id": "okoli2_019",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,autumn,solid",
+     "label": "podzimn\u00ed strom",
+     "shadow_size": "51,12"
+    },
+    "20": {
+     "id": "okoli2_020",
+     "kind": "bush",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "mal\u00fd tmav\u00fd ke\u0159\u00edk",
+     "shadow_size": "20,7"
+    },
+    "21": {
+     "id": "okoli2_021",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower,cultivated",
+     "label": "ke\u0159 r\u016f\u017e\u00ed",
+     "shadow_size": "95,7"
+    },
+    "22": {
+     "id": "okoli2_022",
+     "kind": "bush",
+     "collision": "11",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower,cultivated",
+     "label": "ke\u0159 r\u016f\u017e\u00ed",
+     "shadow_size": "16,8"
+    },
+    "23": {
+     "id": "okoli2_023",
+     "kind": "bush",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,flower,cultivated",
+     "label": "ke\u0159 r\u016f\u017e\u00ed",
+     "shadow_size": "19,7"
+    },
+    "24": {
+     "id": "okoli2_024",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "wood,small",
+     "label": "v\u011btvi\u010dka"
+    },
+    "25": {
+     "id": "okoli2_025",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "hedge,cultivated,solid",
+     "label": "\u017eiv\u00fd plot",
+     "shadow_size": "61,8"
+    },
+    "26": {
+     "id": "okoli2_026",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,autumn,solid",
+     "label": "podzimn\u00ed strom",
+     "shadow_size": "61,14"
+    },
+    "27": {
+     "id": "okoli2_027",
+     "kind": "bush",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "hedge,cultivated,solid",
+     "label": "\u017eiv\u00fd plot",
+     "shadow_size": "20,25"
+    },
+    "28": {
+     "id": "okoli2_028",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "cliff,hole,solid",
+     "label": "hlinit\u00e1 j\u00e1ma / \u00fates",
+     "shadow_size": "87,38"
+    },
+    "29": {
+     "id": "okoli2_029",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,canopy",
+     "label": "velk\u00e1 koruna (shora)",
+     "shadow_size": "92,30"
+    },
+    "30": {
+     "id": "okoli2_030",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "mound,earth",
+     "label": "hlin\u011bn\u00fd pahorek",
+     "shadow_size": "57,23"
+    },
+    "31": {
+     "id": "okoli2_031",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "hedge,cultivated,solid",
+     "label": "dlouh\u00fd \u017eiv\u00fd plot s plody",
+     "shadow_size": "81,17"
+    },
+    "32": {
+     "id": "okoli2_032",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,conifer,cultivated,solid",
+     "label": "cyp\u0159i\u0161",
+     "shadow_size": "13,8"
+    },
+    "33": {
+     "id": "okoli2_033",
+     "kind": "tree",
+     "collision": "12",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "41,10"
+    },
+    "34": {
+     "id": "okoli2_034",
+     "kind": "tree",
+     "collision": "11",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "38,9"
+    },
+    "35": {
+     "id": "okoli2_035",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,solid",
+     "label": "ploch\u00fd k\u00e1men",
+     "shadow_size": "48,12"
+    },
+    "36": {
+     "id": "okoli2_036",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "rock,small,ground_cover",
+     "label": "drobn\u00e9 kameny"
+    },
+    "37": {
+     "id": "okoli2_037",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "rock,small,ground_cover",
+     "label": "drobn\u00e9 kameny"
+    },
+    "38": {
+     "id": "okoli2_038",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "rock,small,ground_cover",
+     "label": "drobn\u00e9 kameny"
+    },
+    "39": {
+     "id": "okoli2_039",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "rock,small,ground_cover",
+     "label": "drobn\u00e9 kameny"
+    },
+    "40": {
+     "id": "okoli2_040",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "rock,small,ground_cover",
+     "label": "drobn\u00e9 kameny"
+    },
+    "41": {
+     "id": "okoli2_041",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "paving,structure,path_ok",
+     "label": "dla\u017eba / kamenn\u00fd most",
+     "shadow_size": "62,46"
+    },
+    "42": {
+     "id": "okoli2_042",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,pile,solid",
+     "label": "skaln\u00ed \u00fatvar + menhir",
+     "shadow_size": "112,21"
+    },
+    "43": {
+     "id": "okoli2_043",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,pile,solid",
+     "label": "hromada kamen\u00ed",
+     "shadow_size": "45,10"
+    }
+   },
+   "images": {
+    "0": {
+     "image": "res://assets/tilesets/babrak/okoli2_000.png",
+     "w": 52,
+     "h": 34
+    },
+    "1": {
+     "image": "res://assets/tilesets/babrak/okoli2_001.png",
+     "w": 36,
+     "h": 34
+    },
+    "2": {
+     "image": "res://assets/tilesets/babrak/okoli2_002.png",
+     "w": 44,
+     "h": 37
+    },
+    "3": {
+     "image": "res://assets/tilesets/babrak/okoli2_003.png",
+     "w": 46,
+     "h": 34
+    },
+    "4": {
+     "image": "res://assets/tilesets/babrak/okoli2_004.png",
+     "w": 36,
+     "h": 37
+    },
+    "5": {
+     "image": "res://assets/tilesets/babrak/okoli2_005.png",
+     "w": 34,
+     "h": 42
+    },
+    "6": {
+     "image": "res://assets/tilesets/babrak/okoli2_006.png",
+     "w": 26,
+     "h": 30
+    },
+    "7": {
+     "image": "res://assets/tilesets/babrak/okoli2_007.png",
+     "w": 146,
+     "h": 154
+    },
+    "8": {
+     "image": "res://assets/tilesets/babrak/okoli2_008.png",
+     "w": 36,
+     "h": 26
+    },
+    "9": {
+     "image": "res://assets/tilesets/babrak/okoli2_009.png",
+     "w": 32,
+     "h": 32
+    },
+    "10": {
+     "image": "res://assets/tilesets/babrak/okoli2_010.png",
+     "w": 34,
+     "h": 26
+    },
+    "11": {
+     "image": "res://assets/tilesets/babrak/okoli2_011.png",
+     "w": 32,
+     "h": 26
+    },
+    "12": {
+     "image": "res://assets/tilesets/babrak/okoli2_012.png",
+     "w": 122,
+     "h": 41
+    },
+    "13": {
+     "image": "res://assets/tilesets/babrak/okoli2_013.png",
+     "w": 30,
+     "h": 26
+    },
+    "14": {
+     "image": "res://assets/tilesets/babrak/okoli2_014.png",
+     "w": 36,
+     "h": 31
+    },
+    "15": {
+     "image": "res://assets/tilesets/babrak/okoli2_015.png",
+     "w": 148,
+     "h": 39
+    },
+    "16": {
+     "image": "res://assets/tilesets/babrak/okoli2_016.png",
+     "w": 42,
+     "h": 32
+    },
+    "17": {
+     "image": "res://assets/tilesets/babrak/okoli2_017.png",
+     "w": 28,
+     "h": 29
+    },
+    "18": {
+     "image": "res://assets/tilesets/babrak/okoli2_018.png",
+     "w": 26,
+     "h": 41
+    },
+    "19": {
+     "image": "res://assets/tilesets/babrak/okoli2_019.png",
+     "w": 170,
+     "h": 265
+    },
+    "20": {
+     "image": "res://assets/tilesets/babrak/okoli2_020.png",
+     "w": 48,
+     "h": 38
+    },
+    "21": {
+     "image": "res://assets/tilesets/babrak/okoli2_021.png",
+     "w": 226,
+     "h": 39
+    },
+    "22": {
+     "image": "res://assets/tilesets/babrak/okoli2_022.png",
+     "w": 38,
+     "h": 44
+    },
+    "23": {
+     "image": "res://assets/tilesets/babrak/okoli2_023.png",
+     "w": 46,
+     "h": 41
+    },
+    "24": {
+     "image": "res://assets/tilesets/babrak/okoli2_024.png",
+     "w": 24,
+     "h": 8
+    },
+    "25": {
+     "image": "res://assets/tilesets/babrak/okoli2_025.png",
+     "w": 146,
+     "h": 44
+    },
+    "26": {
+     "image": "res://assets/tilesets/babrak/okoli2_026.png",
+     "w": 204,
+     "h": 174
+    },
+    "27": {
+     "image": "res://assets/tilesets/babrak/okoli2_027.png",
+     "w": 48,
+     "h": 137
+    },
+    "28": {
+     "image": "res://assets/tilesets/babrak/okoli2_028.png",
+     "w": 206,
+     "h": 240
+    },
+    "29": {
+     "image": "res://assets/tilesets/babrak/okoli2_029.png",
+     "w": 220,
+     "h": 165
+    },
+    "30": {
+     "image": "res://assets/tilesets/babrak/okoli2_030.png",
+     "w": 136,
+     "h": 142
+    },
+    "31": {
+     "image": "res://assets/tilesets/babrak/okoli2_031.png",
+     "w": 194,
+     "h": 95
+    },
+    "32": {
+     "image": "res://assets/tilesets/babrak/okoli2_032.png",
+     "w": 44,
+     "h": 186
+    },
+    "33": {
+     "image": "res://assets/tilesets/babrak/okoli2_033.png",
+     "w": 136,
+     "h": 178
+    },
+    "34": {
+     "image": "res://assets/tilesets/babrak/okoli2_034.png",
+     "w": 128,
+     "h": 219
+    },
+    "35": {
+     "image": "res://assets/tilesets/babrak/okoli2_035.png",
+     "w": 114,
+     "h": 78
+    },
+    "36": {
+     "image": "res://assets/tilesets/babrak/okoli2_036.png",
+     "w": 44,
+     "h": 27
+    },
+    "37": {
+     "image": "res://assets/tilesets/babrak/okoli2_037.png",
+     "w": 56,
+     "h": 34
+    },
+    "38": {
+     "image": "res://assets/tilesets/babrak/okoli2_038.png",
+     "w": 42,
+     "h": 23
+    },
+    "39": {
+     "image": "res://assets/tilesets/babrak/okoli2_039.png",
+     "w": 74,
+     "h": 30
+    },
+    "40": {
+     "image": "res://assets/tilesets/babrak/okoli2_040.png",
+     "w": 12,
+     "h": 17
+    },
+    "41": {
+     "image": "res://assets/tilesets/babrak/okoli2_041.png",
+     "w": 148,
+     "h": 285
+    },
+    "42": {
+     "image": "res://assets/tilesets/babrak/okoli2_042.png",
+     "w": 266,
+     "h": 134
+    },
+    "43": {
+     "image": "res://assets/tilesets/babrak/okoli2_043.png",
+     "w": 106,
+     "h": 65
+    }
+   }
+  },
+  {
+   "firstgid": 3407,
+   "name": "okoli3",
+   "tilewidth": 352,
+   "tileheight": 324,
+   "columns": 0,
+   "tilecount": 46,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "id": "okoli3_000",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,dark_forest",
+     "label": "velk\u00fd ke\u0159 (tyrkysov\u00fd)",
+     "shadow_size": "52,16"
+    },
+    "1": {
+     "id": "okoli3_001",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,dark_forest,solid",
+     "label": "strom (tyrkysov\u00fd)",
+     "shadow_size": "67,16"
+    },
+    "2": {
+     "id": "okoli3_002",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "cliff,wall,solid",
+     "label": "kamenn\u00e1 st\u011bna",
+     "shadow_size": "61,21"
+    },
+    "3": {
+     "id": "okoli3_003",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,dark_forest,solid",
+     "label": "strom (tyrkysov\u00fd)",
+     "shadow_size": "70,16"
+    },
+    "4": {
+     "id": "okoli3_004",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "cave,rock,solid",
+     "label": "jeskyn\u011b + sk\u00e1la",
+     "shadow_size": "81,15"
+    },
+    "5": {
+     "id": "okoli3_005",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,solid",
+     "label": "\u0161ed\u00e9 kameny",
+     "shadow_size": "44,14"
+    },
+    "6": {
+     "id": "okoli3_006",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "drobn\u00e9 kv\u00edtky"
+    },
+    "7": {
+     "id": "okoli3_007",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "tree,stump,wood",
+     "label": "kompozit kmeny + pa\u0159ez",
+     "shadow_size": "60,13"
+    },
+    "8": {
+     "id": "okoli3_008",
+     "kind": "prop",
+     "collision": "15",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,solid",
+     "label": "\u0161ed\u00e9 kameny",
+     "shadow_size": "18,8"
+    },
+    "9": {
+     "id": "okoli3_009",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "tags": "rock,solid",
+     "label": "\u0161ed\u00e9 kameny",
+     "shadow_size": "18,5"
+    },
+    "10": {
+     "id": "okoli3_010",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "log,wood,forest,solid",
+     "label": "padl\u00fd kmen",
+     "shadow_size": "30,6"
+    },
+    "11": {
+     "id": "okoli3_011",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "paving,path_ok,small",
+     "label": "\u0161lapac\u00ed kameny"
+    },
+    "12": {
+     "id": "okoli3_012",
+     "kind": "prop",
+     "collision": "13",
+     "sway": false,
+     "shadow": true,
+     "tags": "stump,wood,forest,solid",
+     "label": "dut\u00fd kmen",
+     "shadow_size": "16,14"
+    },
+    "13": {
+     "id": "okoli3_013",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "mushroom,forest,small",
+     "label": "\u010derven\u00e9 houbi\u010dky"
+    },
+    "14": {
+     "id": "okoli3_014",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "mushroom,forest,small",
+     "label": "\u010derven\u00e9 houbi\u010dky"
+    },
+    "15": {
+     "id": "okoli3_015",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "mushroom,forest,small",
+     "label": "\u010derven\u00e9 houbi\u010dky"
+    },
+    "16": {
+     "id": "okoli3_016",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "mushroom,forest,small",
+     "label": "\u010derven\u00e9 houbi\u010dky"
+    },
+    "17": {
+     "id": "okoli3_017",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,rock",
+     "label": "ke\u0159e s kamenem",
+     "shadow_size": "71,17"
+    },
+    "18": {
+     "id": "okoli3_018",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,conifer,dark_forest",
+     "label": "koruna smrku (okraj lesa)",
+     "shadow_size": "29,8"
+    },
+    "19": {
+     "id": "okoli3_019",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "20": {
+     "id": "okoli3_020",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "21": {
+     "id": "okoli3_021",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "22": {
+     "id": "okoli3_022",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "23": {
+     "id": "okoli3_023",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "24": {
+     "id": "okoli3_024",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "25": {
+     "id": "okoli3_025",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "26": {
+     "id": "okoli3_026",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "27": {
+     "id": "okoli3_027",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "28": {
+     "id": "okoli3_028",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "29": {
+     "id": "okoli3_029",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "30": {
+     "id": "okoli3_030",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "31": {
+     "id": "okoli3_031",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "modr\u00e9 / \u010derven\u00e9 kv\u00edtky"
+    },
+    "32": {
+     "id": "okoli3_032",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "drobn\u00e9 kv\u00edtky"
+    },
+    "33": {
+     "id": "okoli3_033",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "drobn\u00e9 kv\u00edtky"
+    },
+    "34": {
+     "id": "okoli3_034",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "drobn\u00e9 kv\u00edtky"
+    },
+    "35": {
+     "id": "okoli3_035",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "drobn\u00e9 kv\u00edtky"
+    },
+    "36": {
+     "id": "okoli3_036",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "earth,ground_cover",
+     "label": "tmav\u00fd pruh zeminy"
+    },
+    "37": {
+     "id": "okoli3_037",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,dark_forest",
+     "label": "velk\u00fd ke\u0159",
+     "shadow_size": "148,33"
+    },
+    "38": {
+     "id": "okoli3_038",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "mound,terrain_piece",
+     "label": "kope\u010dky tr\u00e1vy (okraje)"
+    },
+    "39": {
+     "id": "okoli3_039",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "drobn\u00e9 kv\u00edtky"
+    },
+    "40": {
+     "id": "okoli3_040",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "drobn\u00e9 kv\u00edtky"
+    },
+    "41": {
+     "id": "okoli3_041",
+     "kind": "tree",
+     "collision": "11",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,conifer,dark_forest,solid",
+     "label": "vysok\u00fd smrk",
+     "shadow_size": "40,9"
+    },
+    "42": {
+     "id": "okoli3_042",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,small",
+     "label": "trs tr\u00e1vy"
+    },
+    "43": {
+     "id": "okoli3_043",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush,dark_forest",
+     "label": "velk\u00fd ke\u0159 (tyrkysov\u00fd)",
+     "shadow_size": "81,24"
+    },
+    "44": {
+     "id": "okoli3_044",
+     "kind": "prop",
+     "collision": "18",
+     "sway": false,
+     "shadow": true,
+     "tags": "stump,wood,forest,solid",
+     "label": "dut\u00fd kmen",
+     "shadow_size": "22,17"
+    },
+    "45": {
+     "id": "okoli3_045",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "cliff,solid",
+     "label": "\u00fates s tr\u00e1vou",
+     "shadow_size": "97,24"
+    }
+   },
+   "images": {
+    "0": {
+     "image": "res://assets/tilesets/babrak/okoli3_000.png",
+     "w": 124,
+     "h": 89
+    },
+    "1": {
+     "image": "res://assets/tilesets/babrak/okoli3_001.png",
+     "w": 224,
+     "h": 213
+    },
+    "2": {
+     "image": "res://assets/tilesets/babrak/okoli3_002.png",
+     "w": 146,
+     "h": 134
+    },
+    "3": {
+     "image": "res://assets/tilesets/babrak/okoli3_003.png",
+     "w": 234,
+     "h": 324
+    },
+    "4": {
+     "image": "res://assets/tilesets/babrak/okoli3_004.png",
+     "w": 192,
+     "h": 95
+    },
+    "5": {
+     "image": "res://assets/tilesets/babrak/okoli3_005.png",
+     "w": 104,
+     "h": 89
+    },
+    "6": {
+     "image": "res://assets/tilesets/babrak/okoli3_006.png",
+     "w": 332,
+     "h": 124
+    },
+    "7": {
+     "image": "res://assets/tilesets/babrak/okoli3_007.png",
+     "w": 142,
+     "h": 80
+    },
+    "8": {
+     "image": "res://assets/tilesets/babrak/okoli3_008.png",
+     "w": 44,
+     "h": 53
+    },
+    "9": {
+     "image": "res://assets/tilesets/babrak/okoli3_009.png",
+     "w": 42,
+     "h": 28
+    },
+    "10": {
+     "image": "res://assets/tilesets/babrak/okoli3_010.png",
+     "w": 72,
+     "h": 39
+    },
+    "11": {
+     "image": "res://assets/tilesets/babrak/okoli3_011.png",
+     "w": 50,
+     "h": 43
+    },
+    "12": {
+     "image": "res://assets/tilesets/babrak/okoli3_012.png",
+     "w": 38,
+     "h": 86
+    },
+    "13": {
+     "image": "res://assets/tilesets/babrak/okoli3_013.png",
+     "w": 24,
+     "h": 15
+    },
+    "14": {
+     "image": "res://assets/tilesets/babrak/okoli3_014.png",
+     "w": 12,
+     "h": 10
+    },
+    "15": {
+     "image": "res://assets/tilesets/babrak/okoli3_015.png",
+     "w": 10,
+     "h": 10
+    },
+    "16": {
+     "image": "res://assets/tilesets/babrak/okoli3_016.png",
+     "w": 10,
+     "h": 10
+    },
+    "17": {
+     "image": "res://assets/tilesets/babrak/okoli3_017.png",
+     "w": 170,
+     "h": 95
+    },
+    "18": {
+     "image": "res://assets/tilesets/babrak/okoli3_018.png",
+     "w": 96,
+     "h": 83
+    },
+    "19": {
+     "image": "res://assets/tilesets/babrak/okoli3_019.png",
+     "w": 10,
+     "h": 10
+    },
+    "20": {
+     "image": "res://assets/tilesets/babrak/okoli3_020.png",
+     "w": 12,
+     "h": 10
+    },
+    "21": {
+     "image": "res://assets/tilesets/babrak/okoli3_021.png",
+     "w": 12,
+     "h": 10
+    },
+    "22": {
+     "image": "res://assets/tilesets/babrak/okoli3_022.png",
+     "w": 10,
+     "h": 7
+    },
+    "23": {
+     "image": "res://assets/tilesets/babrak/okoli3_023.png",
+     "w": 10,
+     "h": 7
+    },
+    "24": {
+     "image": "res://assets/tilesets/babrak/okoli3_024.png",
+     "w": 10,
+     "h": 7
+    },
+    "25": {
+     "image": "res://assets/tilesets/babrak/okoli3_025.png",
+     "w": 10,
+     "h": 7
+    },
+    "26": {
+     "image": "res://assets/tilesets/babrak/okoli3_026.png",
+     "w": 10,
+     "h": 7
+    },
+    "27": {
+     "image": "res://assets/tilesets/babrak/okoli3_027.png",
+     "w": 10,
+     "h": 7
+    },
+    "28": {
+     "image": "res://assets/tilesets/babrak/okoli3_028.png",
+     "w": 10,
+     "h": 7
+    },
+    "29": {
+     "image": "res://assets/tilesets/babrak/okoli3_029.png",
+     "w": 10,
+     "h": 7
+    },
+    "30": {
+     "image": "res://assets/tilesets/babrak/okoli3_030.png",
+     "w": 10,
+     "h": 7
+    },
+    "31": {
+     "image": "res://assets/tilesets/babrak/okoli3_031.png",
+     "w": 10,
+     "h": 7
+    },
+    "32": {
+     "image": "res://assets/tilesets/babrak/okoli3_032.png",
+     "w": 22,
+     "h": 32
+    },
+    "33": {
+     "image": "res://assets/tilesets/babrak/okoli3_033.png",
+     "w": 22,
+     "h": 18
+    },
+    "34": {
+     "image": "res://assets/tilesets/babrak/okoli3_034.png",
+     "w": 10,
+     "h": 9
+    },
+    "35": {
+     "image": "res://assets/tilesets/babrak/okoli3_035.png",
+     "w": 10,
+     "h": 9
+    },
+    "36": {
+     "image": "res://assets/tilesets/babrak/okoli3_036.png",
+     "w": 136,
+     "h": 29
+    },
+    "37": {
+     "image": "res://assets/tilesets/babrak/okoli3_037.png",
+     "w": 352,
+     "h": 184
+    },
+    "38": {
+     "image": "res://assets/tilesets/babrak/okoli3_038.png",
+     "w": 194,
+     "h": 96
+    },
+    "39": {
+     "image": "res://assets/tilesets/babrak/okoli3_039.png",
+     "w": 22,
+     "h": 18
+    },
+    "40": {
+     "image": "res://assets/tilesets/babrak/okoli3_040.png",
+     "w": 22,
+     "h": 18
+    },
+    "41": {
+     "image": "res://assets/tilesets/babrak/okoli3_041.png",
+     "w": 132,
+     "h": 261
+    },
+    "42": {
+     "image": "res://assets/tilesets/babrak/okoli3_042.png",
+     "w": 42,
+     "h": 45
+    },
+    "43": {
+     "image": "res://assets/tilesets/babrak/okoli3_043.png",
+     "w": 194,
+     "h": 133
+    },
+    "44": {
+     "image": "res://assets/tilesets/babrak/okoli3_044.png",
+     "w": 52,
+     "h": 104
+    },
+    "45": {
+     "image": "res://assets/tilesets/babrak/okoli3_045.png",
+     "w": 230,
+     "h": 152
+    }
+   }
+  },
+  {
+   "firstgid": 3453,
+   "name": "doplnky",
+   "tilewidth": 672,
+   "tileheight": 533,
+   "columns": 0,
+   "tilecount": 44,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "id": "doplnky_000",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "tags": "barrel,container,village,camp,solid",
+     "label": "sud",
+     "shadow_size": "18,7"
+    },
+    "1": {
+     "id": "doplnky_001",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "tags": "grave,graveyard,solid",
+     "label": "hrob se k\u0159\u00ed\u017eem",
+     "shadow_size": "17,8"
+    },
+    "2": {
+     "id": "doplnky_002",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "tags": "grave,graveyard,solid",
+     "label": "n\u00e1hrobek",
+     "shadow_size": "18,8"
+    },
+    "3": {
+     "id": "doplnky_003",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "tags": "pot,container,village,camp",
+     "label": "d\u017eb\u00e1n / hlin\u011bn\u00e1 n\u00e1doba",
+     "shadow_size": "17,7"
+    },
+    "4": {
+     "id": "doplnky_004",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "tags": "bucket,container,village,camp",
+     "label": "v\u011bdro / \u0161kopek",
+     "shadow_size": "15,6"
+    },
+    "5": {
+     "id": "doplnky_005",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "tags": "bucket,container,village,camp",
+     "label": "v\u011bdro / \u0161kopek",
+     "shadow_size": "15,6"
+    },
+    "6": {
+     "id": "doplnky_006",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "sign,wood,village,path_ok",
+     "label": "d\u0159ev\u011bn\u00e1 cedule",
+     "shadow_size": "50,7"
+    },
+    "7": {
+     "id": "doplnky_007",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "portal,ritual,ruin,solid",
+     "label": "kamenn\u00e1 br\u00e1na / ritu\u00e1ln\u00ed port\u00e1l",
+     "shadow_size": "41,14"
+    },
+    "8": {
+     "id": "doplnky_008",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "portal,ritual,ruin,solid",
+     "label": "kamenn\u00e1 br\u00e1na / ritu\u00e1ln\u00ed port\u00e1l",
+     "shadow_size": "41,14"
+    },
+    "9": {
+     "id": "doplnky_009",
+     "kind": "prop",
+     "collision": "13",
+     "sway": false,
+     "shadow": true,
+     "tags": "crate,container,village,camp",
+     "label": "bedna",
+     "shadow_size": "16,6"
+    },
+    "10": {
+     "id": "doplnky_010",
+     "kind": "prop",
+     "collision": "20",
+     "sway": false,
+     "shadow": true,
+     "tags": "campfire,camp,fire",
+     "label": "ohni\u0161t\u011b z klack\u016f",
+     "shadow_size": "24,6"
+    },
+    "11": {
+     "id": "doplnky_011",
+     "kind": "prop",
+     "collision": "17",
+     "sway": false,
+     "shadow": true,
+     "tags": "chest,container,camp,solid",
+     "label": "truhla",
+     "shadow_size": "21,8"
+    },
+    "12": {
+     "id": "doplnky_012",
+     "kind": "prop",
+     "collision": "17",
+     "sway": false,
+     "shadow": true,
+     "tags": "statue,graveyard,ruin,solid",
+     "label": "socha and\u011bla",
+     "shadow_size": "21,15"
+    },
+    "13": {
+     "id": "doplnky_013",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "composite",
+     "label": "kompozit: ohni\u0161t\u011b, studna, truhly, kmeny",
+     "shadow_size": "173,46"
+    },
+    "14": {
+     "id": "doplnky_014",
+     "kind": "prop",
+     "collision": "16",
+     "sway": false,
+     "shadow": true,
+     "tags": "sign,wood,path_ok,village",
+     "label": "rozcestn\u00edk",
+     "shadow_size": "19,8"
+    },
+    "15": {
+     "id": "doplnky_015",
+     "kind": "prop",
+     "collision": "15",
+     "sway": false,
+     "shadow": true,
+     "tags": "barrel,container,village,camp,solid",
+     "label": "sud",
+     "shadow_size": "18,10"
+    },
+    "16": {
+     "id": "doplnky_016",
+     "kind": "prop",
+     "collision": "15",
+     "sway": false,
+     "shadow": true,
+     "tags": "wall,ruin,solid",
+     "label": "kamenn\u00fd sloup",
+     "shadow_size": "18,19"
+    },
+    "17": {
+     "id": "doplnky_017",
+     "kind": "building",
+     "collision": "190,26",
+     "sway": false,
+     "shadow": true,
+     "tags": "tent,camp,solid",
+     "label": "stan",
+     "shadow_size": "122,14"
+    },
+    "18": {
+     "id": "doplnky_018",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "composite",
+     "label": "kompozit: zdi, most, truhl\u00edk",
+     "shadow_size": "282,85"
+    },
+    "19": {
+     "id": "doplnky_019",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "composite",
+     "label": "kompozit: sk\u00e1la, \u017eeb\u0159\u00edk, seno",
+     "shadow_size": "79,52"
+    },
+    "20": {
+     "id": "doplnky_020",
+     "kind": "prop",
+     "collision": "17",
+     "sway": false,
+     "shadow": true,
+     "tags": "ladder,wood,structure",
+     "label": "\u017eeb\u0159\u00edk",
+     "shadow_size": "21,18"
+    },
+    "21": {
+     "id": "doplnky_021",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "composite",
+     "label": "kompozit: pytle, seno, n\u00e1doby",
+     "shadow_size": "60,44"
+    },
+    "22": {
+     "id": "doplnky_022",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "tags": "pot,container,village,camp",
+     "label": "d\u017eb\u00e1n / hlin\u011bn\u00e1 n\u00e1doba",
+     "shadow_size": "17,7"
+    },
+    "23": {
+     "id": "doplnky_023",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "tags": "crate,container,village,camp",
+     "label": "bedna",
+     "shadow_size": "15,5"
+    },
+    "24": {
+     "id": "doplnky_024",
+     "kind": "prop",
+     "collision": "17",
+     "sway": false,
+     "shadow": true,
+     "tags": "ore,rock,pile",
+     "label": "hromada rudy / kamen\u00ed",
+     "shadow_size": "21,7"
+    },
+    "25": {
+     "id": "doplnky_025",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "tags": "door,wood,structure",
+     "label": "dve\u0159e / deska",
+     "shadow_size": "11,6"
+    },
+    "26": {
+     "id": "doplnky_026",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "firewood,wood,camp",
+     "label": "\u0161t\u00edpan\u00e9 d\u0159\u00edv\u00ed",
+     "shadow_size": "40,7"
+    },
+    "27": {
+     "id": "doplnky_027",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "tags": "shelf,furniture,indoor,village",
+     "label": "police / reg\u00e1l",
+     "shadow_size": "13,7"
+    },
+    "28": {
+     "id": "doplnky_028",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "tags": "crate,container,village,camp",
+     "label": "bedna",
+     "shadow_size": "15,5"
+    },
+    "29": {
+     "id": "doplnky_029",
+     "kind": "prop",
+     "collision": "13",
+     "sway": false,
+     "shadow": true,
+     "tags": "crate,container,village,camp",
+     "label": "bedna",
+     "shadow_size": "16,5"
+    },
+    "30": {
+     "id": "doplnky_030",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "tags": "tool,wood,village,camp",
+     "label": "d\u0159ev\u011bn\u00fd kozl\u00edk",
+     "shadow_size": "13,8"
+    },
+    "31": {
+     "id": "doplnky_031",
+     "kind": "prop",
+     "collision": "21",
+     "sway": false,
+     "shadow": true,
+     "tags": "tool,small,camp",
+     "label": "kladivo",
+     "shadow_size": "26,7"
+    },
+    "32": {
+     "id": "doplnky_032",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "tags": "door,wood,structure",
+     "label": "dve\u0159e / deska",
+     "shadow_size": "12,6"
+    },
+    "33": {
+     "id": "doplnky_033",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "tool,small,camp",
+     "label": "krump\u00e1\u010d",
+     "shadow_size": "32,6"
+    },
+    "34": {
+     "id": "doplnky_034",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "tags": "crate,small,village",
+     "label": "bed\u00fdnka (vejce?)",
+     "shadow_size": "14,7"
+    },
+    "35": {
+     "id": "doplnky_035",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "rope,small,camp,ship",
+     "label": "svinut\u00e9 lano",
+     "shadow_size": "54,7"
+    },
+    "36": {
+     "id": "doplnky_036",
+     "kind": "prop",
+     "collision": "15",
+     "sway": false,
+     "shadow": true,
+     "tags": "treasure,small",
+     "label": "hrom\u00e1dka zlata",
+     "shadow_size": "18,8"
+    },
+    "37": {
+     "id": "doplnky_037",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "tags": "structure,ritual,solid",
+     "label": "kamenn\u00fd stojan",
+     "shadow_size": "12,8"
+    },
+    "38": {
+     "id": "doplnky_038",
+     "kind": "prop",
+     "collision": "17",
+     "sway": false,
+     "shadow": true,
+     "tags": "crate,container,village,camp",
+     "label": "velk\u00e1 bedna",
+     "shadow_size": "21,8"
+    },
+    "39": {
+     "id": "doplnky_039",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "hay,barrel,village,solid",
+     "label": "stoh sud\u016f / sena",
+     "shadow_size": "38,14"
+    },
+    "40": {
+     "id": "doplnky_040",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "tags": "bucket,container,village,camp",
+     "label": "v\u011bdro / \u0161kopek",
+     "shadow_size": "15,6"
+    },
+    "41": {
+     "id": "doplnky_041",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "tags": "bucket,container,village,camp",
+     "label": "v\u011bdro / \u0161kopek",
+     "shadow_size": "15,6"
+    },
+    "42": {
+     "id": "doplnky_042",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "bucket,container,village,camp",
+     "label": "v\u011bdro / \u0161kopek",
+     "shadow_size": "41,23"
+    },
+    "43": {
+     "id": "doplnky_043",
+     "kind": "prop",
+     "collision": "17",
+     "sway": false,
+     "shadow": true,
+     "tags": "hay,farm,village",
+     "label": "kolo sena",
+     "shadow_size": "21,23"
+    }
+   },
+   "images": {
+    "0": {
+     "image": "res://assets/tilesets/babrak/doplnky_000.png",
+     "w": 42,
+     "h": 46
+    },
+    "1": {
+     "image": "res://assets/tilesets/babrak/doplnky_001.png",
+     "w": 40,
+     "h": 47
+    },
+    "2": {
+     "image": "res://assets/tilesets/babrak/doplnky_002.png",
+     "w": 42,
+     "h": 48
+    },
+    "3": {
+     "image": "res://assets/tilesets/babrak/doplnky_003.png",
+     "w": 40,
+     "h": 45
+    },
+    "4": {
+     "image": "res://assets/tilesets/babrak/doplnky_004.png",
+     "w": 36,
+     "h": 39
+    },
+    "5": {
+     "image": "res://assets/tilesets/babrak/doplnky_005.png",
+     "w": 36,
+     "h": 39
+    },
+    "6": {
+     "image": "res://assets/tilesets/babrak/doplnky_006.png",
+     "w": 118,
+     "h": 41
+    },
+    "7": {
+     "image": "res://assets/tilesets/babrak/doplnky_007.png",
+     "w": 98,
+     "h": 90
+    },
+    "8": {
+     "image": "res://assets/tilesets/babrak/doplnky_008.png",
+     "w": 98,
+     "h": 90
+    },
+    "9": {
+     "image": "res://assets/tilesets/babrak/doplnky_009.png",
+     "w": 38,
+     "h": 38
+    },
+    "10": {
+     "image": "res://assets/tilesets/babrak/doplnky_010.png",
+     "w": 58,
+     "h": 37
+    },
+    "11": {
+     "image": "res://assets/tilesets/babrak/doplnky_011.png",
+     "w": 50,
+     "h": 48
+    },
+    "12": {
+     "image": "res://assets/tilesets/babrak/doplnky_012.png",
+     "w": 50,
+     "h": 96
+    },
+    "13": {
+     "image": "res://assets/tilesets/babrak/doplnky_013.png",
+     "w": 412,
+     "h": 287
+    },
+    "14": {
+     "image": "res://assets/tilesets/babrak/doplnky_014.png",
+     "w": 46,
+     "h": 48
+    },
+    "15": {
+     "image": "res://assets/tilesets/babrak/doplnky_015.png",
+     "w": 44,
+     "h": 60
+    },
+    "16": {
+     "image": "res://assets/tilesets/babrak/doplnky_016.png",
+     "w": 44,
+     "h": 120
+    },
+    "17": {
+     "image": "res://assets/tilesets/babrak/doplnky_017.png",
+     "w": 272,
+     "h": 380
+    },
+    "18": {
+     "image": "res://assets/tilesets/babrak/doplnky_018.png",
+     "w": 672,
+     "h": 533
+    },
+    "19": {
+     "image": "res://assets/tilesets/babrak/doplnky_019.png",
+     "w": 188,
+     "h": 324
+    },
+    "20": {
+     "image": "res://assets/tilesets/babrak/doplnky_020.png",
+     "w": 50,
+     "h": 111
+    },
+    "21": {
+     "image": "res://assets/tilesets/babrak/doplnky_021.png",
+     "w": 142,
+     "h": 277
+    },
+    "22": {
+     "image": "res://assets/tilesets/babrak/doplnky_022.png",
+     "w": 40,
+     "h": 45
+    },
+    "23": {
+     "image": "res://assets/tilesets/babrak/doplnky_023.png",
+     "w": 36,
+     "h": 31
+    },
+    "24": {
+     "image": "res://assets/tilesets/babrak/doplnky_024.png",
+     "w": 50,
+     "h": 42
+    },
+    "25": {
+     "image": "res://assets/tilesets/babrak/doplnky_025.png",
+     "w": 26,
+     "h": 35
+    },
+    "26": {
+     "image": "res://assets/tilesets/babrak/doplnky_026.png",
+     "w": 96,
+     "h": 44
+    },
+    "27": {
+     "image": "res://assets/tilesets/babrak/doplnky_027.png",
+     "w": 32,
+     "h": 43
+    },
+    "28": {
+     "image": "res://assets/tilesets/babrak/doplnky_028.png",
+     "w": 36,
+     "h": 29
+    },
+    "29": {
+     "image": "res://assets/tilesets/babrak/doplnky_029.png",
+     "w": 38,
+     "h": 30
+    },
+    "30": {
+     "image": "res://assets/tilesets/babrak/doplnky_030.png",
+     "w": 32,
+     "h": 48
+    },
+    "31": {
+     "image": "res://assets/tilesets/babrak/doplnky_031.png",
+     "w": 62,
+     "h": 43
+    },
+    "32": {
+     "image": "res://assets/tilesets/babrak/doplnky_032.png",
+     "w": 28,
+     "h": 35
+    },
+    "33": {
+     "image": "res://assets/tilesets/babrak/doplnky_033.png",
+     "w": 76,
+     "h": 38
+    },
+    "34": {
+     "image": "res://assets/tilesets/babrak/doplnky_034.png",
+     "w": 34,
+     "h": 45
+    },
+    "35": {
+     "image": "res://assets/tilesets/babrak/doplnky_035.png",
+     "w": 128,
+     "h": 43
+    },
+    "36": {
+     "image": "res://assets/tilesets/babrak/doplnky_036.png",
+     "w": 44,
+     "h": 47
+    },
+    "37": {
+     "image": "res://assets/tilesets/babrak/doplnky_037.png",
+     "w": 28,
+     "h": 47
+    },
+    "38": {
+     "image": "res://assets/tilesets/babrak/doplnky_038.png",
+     "w": 50,
+     "h": 48
+    },
+    "39": {
+     "image": "res://assets/tilesets/babrak/doplnky_039.png",
+     "w": 90,
+     "h": 88
+    },
+    "40": {
+     "image": "res://assets/tilesets/babrak/doplnky_040.png",
+     "w": 36,
+     "h": 39
+    },
+    "41": {
+     "image": "res://assets/tilesets/babrak/doplnky_041.png",
+     "w": 36,
+     "h": 39
+    },
+    "42": {
+     "image": "res://assets/tilesets/babrak/doplnky_042.png",
+     "w": 98,
+     "h": 141
+    },
+    "43": {
+     "image": "res://assets/tilesets/babrak/doplnky_043.png",
+     "w": 50,
+     "h": 143
+    }
+   }
+  },
+  {
+   "firstgid": 3497,
+   "name": "stromy02",
+   "tilewidth": 322,
+   "tileheight": 285,
+   "columns": 0,
+   "tilecount": 51,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "id": "stromy02_000",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "1": {
+     "id": "stromy02_001",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "2": {
+     "id": "stromy02_002",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "3": {
+     "id": "stromy02_003",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "4": {
+     "id": "stromy02_004",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "5": {
+     "id": "stromy02_005",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "6": {
+     "id": "stromy02_006",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "bones,dead,grim,small",
+     "label": "lebka"
+    },
+    "7": {
+     "id": "stromy02_007",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "bones,dead,grim",
+     "label": "kostra"
+    },
+    "8": {
+     "id": "stromy02_008",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "9": {
+     "id": "stromy02_009",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "10": {
+     "id": "stromy02_010",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "11": {
+     "id": "stromy02_011",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "12": {
+     "id": "stromy02_012",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "13": {
+     "id": "stromy02_013",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "14": {
+     "id": "stromy02_014",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "15": {
+     "id": "stromy02_015",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "16": {
+     "id": "stromy02_016",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "17": {
+     "id": "stromy02_017",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "18": {
+     "id": "stromy02_018",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "19": {
+     "id": "stromy02_019",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "20": {
+     "id": "stromy02_020",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "21": {
+     "id": "stromy02_021",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "22": {
+     "id": "stromy02_022",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,swamp,small,wood",
+     "label": "such\u00e9 v\u011btve, ko\u0159eny, kosti"
+    },
+    "23": {
+     "id": "stromy02_023",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "log,dead,wood,solid",
+     "label": "padl\u00fd such\u00fd kmen",
+     "shadow_size": "106,15"
+    },
+    "24": {
+     "id": "stromy02_024",
+     "kind": "deco",
+     "collision": "none",
+     "sway": false,
+     "shadow": false,
+     "tags": "dead,small",
+     "label": "hrom\u00e1dka ko\u0159en\u016f"
+    },
+    "25": {
+     "id": "stromy02_025",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid,big",
+     "label": "velk\u00fd zelen\u00fd strom",
+     "shadow_size": "71,17"
+    },
+    "26": {
+     "id": "stromy02_026",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "stump,wood,solid",
+     "label": "pa\u0159ez / dut\u00fd pa\u0159ez",
+     "shadow_size": "135,15"
+    },
+    "27": {
+     "id": "stromy02_027",
+     "kind": "prop",
+     "collision": "10",
+     "sway": false,
+     "shadow": true,
+     "tags": "stump,wood,solid",
+     "label": "pa\u0159ez / dut\u00fd pa\u0159ez",
+     "shadow_size": "13,7"
+    },
+    "28": {
+     "id": "stromy02_028",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,dead,swamp,solid",
+     "label": "such\u00fd strom",
+     "shadow_size": "26,8"
+    },
+    "29": {
+     "id": "stromy02_029",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "log,dead,wood,solid",
+     "label": "padl\u00fd such\u00fd kmen",
+     "shadow_size": "40,7"
+    },
+    "30": {
+     "id": "stromy02_030",
+     "kind": "prop",
+     "collision": "24",
+     "sway": false,
+     "shadow": true,
+     "tags": "stump,wood,solid",
+     "label": "pa\u0159ez / dut\u00fd pa\u0159ez",
+     "shadow_size": "64,7"
+    },
+    "31": {
+     "id": "stromy02_031",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "tags": "stump,wood,solid",
+     "label": "pa\u0159ez / dut\u00fd pa\u0159ez",
+     "shadow_size": "18,8"
+    },
+    "32": {
+     "id": "stromy02_032",
+     "kind": "tree",
+     "collision": "11",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,dead,swamp,solid",
+     "label": "such\u00fd strom",
+     "shadow_size": "39,9"
+    },
+    "33": {
+     "id": "stromy02_033",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,dead,swamp,solid",
+     "label": "such\u00fd strom",
+     "shadow_size": "26,8"
+    },
+    "34": {
+     "id": "stromy02_034",
+     "kind": "tree",
+     "collision": "12",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,dead,swamp,solid",
+     "label": "such\u00fd strom",
+     "shadow_size": "43,10"
+    },
+    "35": {
+     "id": "stromy02_035",
+     "kind": "tree",
+     "collision": "12",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,autumn,swamp,solid",
+     "label": "\u017elut\u00fd strom (ba\u017einat\u00fd/podzimn\u00ed)",
+     "shadow_size": "43,10"
+    },
+    "36": {
+     "id": "stromy02_036",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,autumn,swamp,solid",
+     "label": "\u017elut\u00fd strom (ba\u017einat\u00fd/podzimn\u00ed)",
+     "shadow_size": "57,13"
+    },
+    "37": {
+     "id": "stromy02_037",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,autumn,swamp,solid",
+     "label": "\u017elut\u00fd strom (ba\u017einat\u00fd/podzimn\u00ed)",
+     "shadow_size": "59,14"
+    },
+    "38": {
+     "id": "stromy02_038",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,autumn,swamp,solid",
+     "label": "\u017elut\u00fd strom (ba\u017einat\u00fd/podzimn\u00ed)",
+     "shadow_size": "68,16"
+    },
+    "39": {
+     "id": "stromy02_039",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "mal\u00e1 rostlina"
+    },
+    "40": {
+     "id": "stromy02_040",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "mal\u00e1 rostlina"
+    },
+    "41": {
+     "id": "stromy02_041",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "mal\u00e1 rostlina"
+    },
+    "42": {
+     "id": "stromy02_042",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "mal\u00e1 rostlina"
+    },
+    "43": {
+     "id": "stromy02_043",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "fern,plant,forest,small",
+     "label": "kaprad\u00ed / listy"
+    },
+    "44": {
+     "id": "stromy02_044",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "fern,plant,forest,small",
+     "label": "kaprad\u00ed / listy"
+    },
+    "45": {
+     "id": "stromy02_045",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "fern,plant,forest,small",
+     "label": "kaprad\u00ed / listy"
+    },
+    "46": {
+     "id": "stromy02_046",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "fern,plant,forest,small",
+     "label": "kaprad\u00ed / listy"
+    },
+    "47": {
+     "id": "stromy02_047",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "fern,plant,forest,small",
+     "label": "kaprad\u00ed / listy"
+    },
+    "48": {
+     "id": "stromy02_048",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "fern,plant,forest,small",
+     "label": "kaprad\u00ed / listy"
+    },
+    "49": {
+     "id": "stromy02_049",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "fern,plant,forest,small",
+     "label": "kaprad\u00ed / listy"
+    },
+    "50": {
+     "id": "stromy02_050",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "fern,plant,forest,small",
+     "label": "kaprad\u00ed / listy"
+    }
+   },
+   "images": {
+    "0": {
+     "image": "res://assets/tilesets/babrak/stromy02_000.png",
+     "w": 50,
+     "h": 31
+    },
+    "1": {
+     "image": "res://assets/tilesets/babrak/stromy02_001.png",
+     "w": 46,
+     "h": 31
+    },
+    "2": {
+     "image": "res://assets/tilesets/babrak/stromy02_002.png",
+     "w": 30,
+     "h": 37
+    },
+    "3": {
+     "image": "res://assets/tilesets/babrak/stromy02_003.png",
+     "w": 38,
+     "h": 38
+    },
+    "4": {
+     "image": "res://assets/tilesets/babrak/stromy02_004.png",
+     "w": 42,
+     "h": 26
+    },
+    "5": {
+     "image": "res://assets/tilesets/babrak/stromy02_005.png",
+     "w": 40,
+     "h": 22
+    },
+    "6": {
+     "image": "res://assets/tilesets/babrak/stromy02_006.png",
+     "w": 22,
+     "h": 24
+    },
+    "7": {
+     "image": "res://assets/tilesets/babrak/stromy02_007.png",
+     "w": 58,
+     "h": 48
+    },
+    "8": {
+     "image": "res://assets/tilesets/babrak/stromy02_008.png",
+     "w": 26,
+     "h": 41
+    },
+    "9": {
+     "image": "res://assets/tilesets/babrak/stromy02_009.png",
+     "w": 48,
+     "h": 15
+    },
+    "10": {
+     "image": "res://assets/tilesets/babrak/stromy02_010.png",
+     "w": 50,
+     "h": 31
+    },
+    "11": {
+     "image": "res://assets/tilesets/babrak/stromy02_011.png",
+     "w": 50,
+     "h": 24
+    },
+    "12": {
+     "image": "res://assets/tilesets/babrak/stromy02_012.png",
+     "w": 36,
+     "h": 26
+    },
+    "13": {
+     "image": "res://assets/tilesets/babrak/stromy02_013.png",
+     "w": 46,
+     "h": 22
+    },
+    "14": {
+     "image": "res://assets/tilesets/babrak/stromy02_014.png",
+     "w": 48,
+     "h": 23
+    },
+    "15": {
+     "image": "res://assets/tilesets/babrak/stromy02_015.png",
+     "w": 36,
+     "h": 30
+    },
+    "16": {
+     "image": "res://assets/tilesets/babrak/stromy02_016.png",
+     "w": 44,
+     "h": 20
+    },
+    "17": {
+     "image": "res://assets/tilesets/babrak/stromy02_017.png",
+     "w": 46,
+     "h": 31
+    },
+    "18": {
+     "image": "res://assets/tilesets/babrak/stromy02_018.png",
+     "w": 44,
+     "h": 16
+    },
+    "19": {
+     "image": "res://assets/tilesets/babrak/stromy02_019.png",
+     "w": 32,
+     "h": 26
+    },
+    "20": {
+     "image": "res://assets/tilesets/babrak/stromy02_020.png",
+     "w": 34,
+     "h": 30
+    },
+    "21": {
+     "image": "res://assets/tilesets/babrak/stromy02_021.png",
+     "w": 38,
+     "h": 20
+    },
+    "22": {
+     "image": "res://assets/tilesets/babrak/stromy02_022.png",
+     "w": 40,
+     "h": 18
+    },
+    "23": {
+     "image": "res://assets/tilesets/babrak/stromy02_023.png",
+     "w": 252,
+     "h": 91
+    },
+    "24": {
+     "image": "res://assets/tilesets/babrak/stromy02_024.png",
+     "w": 46,
+     "h": 26
+    },
+    "25": {
+     "image": "res://assets/tilesets/babrak/stromy02_025.png",
+     "w": 236,
+     "h": 285
+    },
+    "26": {
+     "image": "res://assets/tilesets/babrak/stromy02_026.png",
+     "w": 322,
+     "h": 91
+    },
+    "27": {
+     "image": "res://assets/tilesets/babrak/stromy02_027.png",
+     "w": 30,
+     "h": 44
+    },
+    "28": {
+     "image": "res://assets/tilesets/babrak/stromy02_028.png",
+     "w": 86,
+     "h": 133
+    },
+    "29": {
+     "image": "res://assets/tilesets/babrak/stromy02_029.png",
+     "w": 96,
+     "h": 46
+    },
+    "30": {
+     "image": "res://assets/tilesets/babrak/stromy02_030.png",
+     "w": 152,
+     "h": 41
+    },
+    "31": {
+     "image": "res://assets/tilesets/babrak/stromy02_031.png",
+     "w": 42,
+     "h": 48
+    },
+    "32": {
+     "image": "res://assets/tilesets/babrak/stromy02_032.png",
+     "w": 130,
+     "h": 178
+    },
+    "33": {
+     "image": "res://assets/tilesets/babrak/stromy02_033.png",
+     "w": 88,
+     "h": 120
+    },
+    "34": {
+     "image": "res://assets/tilesets/babrak/stromy02_034.png",
+     "w": 144,
+     "h": 141
+    },
+    "35": {
+     "image": "res://assets/tilesets/babrak/stromy02_035.png",
+     "w": 142,
+     "h": 193
+    },
+    "36": {
+     "image": "res://assets/tilesets/babrak/stromy02_036.png",
+     "w": 190,
+     "h": 199
+    },
+    "37": {
+     "image": "res://assets/tilesets/babrak/stromy02_037.png",
+     "w": 196,
+     "h": 149
+    },
+    "38": {
+     "image": "res://assets/tilesets/babrak/stromy02_038.png",
+     "w": 226,
+     "h": 249
+    },
+    "39": {
+     "image": "res://assets/tilesets/babrak/stromy02_039.png",
+     "w": 22,
+     "h": 18
+    },
+    "40": {
+     "image": "res://assets/tilesets/babrak/stromy02_040.png",
+     "w": 36,
+     "h": 28
+    },
+    "41": {
+     "image": "res://assets/tilesets/babrak/stromy02_041.png",
+     "w": 34,
+     "h": 30
+    },
+    "42": {
+     "image": "res://assets/tilesets/babrak/stromy02_042.png",
+     "w": 36,
+     "h": 21
+    },
+    "43": {
+     "image": "res://assets/tilesets/babrak/stromy02_043.png",
+     "w": 64,
+     "h": 29
+    },
+    "44": {
+     "image": "res://assets/tilesets/babrak/stromy02_044.png",
+     "w": 46,
+     "h": 29
+    },
+    "45": {
+     "image": "res://assets/tilesets/babrak/stromy02_045.png",
+     "w": 54,
+     "h": 32
+    },
+    "46": {
+     "image": "res://assets/tilesets/babrak/stromy02_046.png",
+     "w": 52,
+     "h": 31
+    },
+    "47": {
+     "image": "res://assets/tilesets/babrak/stromy02_047.png",
+     "w": 50,
+     "h": 35
+    },
+    "48": {
+     "image": "res://assets/tilesets/babrak/stromy02_048.png",
+     "w": 40,
+     "h": 28
+    },
+    "49": {
+     "image": "res://assets/tilesets/babrak/stromy02_049.png",
+     "w": 52,
+     "h": 33
+    },
+    "50": {
+     "image": "res://assets/tilesets/babrak/stromy02_050.png",
+     "w": 38,
+     "h": 28
+    }
+   }
+  },
+  {
+   "firstgid": 3548,
+   "name": "rm_stromy01",
+   "tilewidth": 330,
+   "tileheight": 502,
+   "columns": 0,
+   "tilecount": 22,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "id": "rm_stromy01_000",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "45,16"
+    },
+    "1": {
+     "id": "rm_stromy01_001",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "34,7"
+    },
+    "2": {
+     "id": "rm_stromy01_002",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "68,16"
+    },
+    "3": {
+     "id": "rm_stromy01_003",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "80,19"
+    },
+    "4": {
+     "id": "rm_stromy01_004",
+     "kind": "bush",
+     "collision": "22",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "31,7"
+    },
+    "5": {
+     "id": "rm_stromy01_005",
+     "kind": "bush",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "19,6"
+    },
+    "6": {
+     "id": "rm_stromy01_006",
+     "kind": "bush",
+     "collision": "12",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "18,5"
+    },
+    "7": {
+     "id": "rm_stromy01_007",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "45,7"
+    },
+    "8": {
+     "id": "rm_stromy01_008",
+     "kind": "tree",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "\u0161t\u00edhl\u00fd strom",
+     "shadow_size": "45,11"
+    },
+    "9": {
+     "id": "rm_stromy01_009",
+     "kind": "tree",
+     "collision": "10",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "35,8"
+    },
+    "10": {
+     "id": "rm_stromy01_010",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "79,18"
+    },
+    "11": {
+     "id": "rm_stromy01_011",
+     "kind": "tree",
+     "collision": "12",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "43,10"
+    },
+    "12": {
+     "id": "rm_stromy01_012",
+     "kind": "tree",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "44,10"
+    },
+    "13": {
+     "id": "rm_stromy01_013",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "14,8"
+    },
+    "14": {
+     "id": "rm_stromy01_014",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "89,21"
+    },
+    "15": {
+     "id": "rm_stromy01_015",
+     "kind": "bush",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "19,6"
+    },
+    "16": {
+     "id": "rm_stromy01_016",
+     "kind": "bush",
+     "collision": "15",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "21,7"
+    },
+    "17": {
+     "id": "rm_stromy01_017",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "99,23"
+    },
+    "18": {
+     "id": "rm_stromy01_018",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "16,8"
+    },
+    "19": {
+     "id": "rm_stromy01_019",
+     "kind": "bush",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "19,6"
+    },
+    "20": {
+     "id": "rm_stromy01_020",
+     "kind": "bush",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159 (\u017elutozelen\u00fd)",
+     "shadow_size": "18,6"
+    },
+    "21": {
+     "id": "rm_stromy01_021",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "plant,small",
+     "label": "listy"
+    }
+   },
+   "images": {
+    "0": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_000.png",
+     "w": 106,
+     "h": 87
+    },
+    "1": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_001.png",
+     "w": 80,
+     "h": 40
+    },
+    "2": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_002.png",
+     "w": 228,
+     "h": 232
+    },
+    "3": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_003.png",
+     "w": 266,
+     "h": 248
+    },
+    "4": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_004.png",
+     "w": 74,
+     "h": 37
+    },
+    "5": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_005.png",
+     "w": 46,
+     "h": 36
+    },
+    "6": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_006.png",
+     "w": 42,
+     "h": 30
+    },
+    "7": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_007.png",
+     "w": 108,
+     "h": 39
+    },
+    "8": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_008.png",
+     "w": 150,
+     "h": 502
+    },
+    "9": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_009.png",
+     "w": 118,
+     "h": 133
+    },
+    "10": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_010.png",
+     "w": 262,
+     "h": 188
+    },
+    "11": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_011.png",
+     "w": 142,
+     "h": 190
+    },
+    "12": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_012.png",
+     "w": 148,
+     "h": 179
+    },
+    "13": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_013.png",
+     "w": 48,
+     "h": 92
+    },
+    "14": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_014.png",
+     "w": 296,
+     "h": 284
+    },
+    "15": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_015.png",
+     "w": 46,
+     "h": 34
+    },
+    "16": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_016.png",
+     "w": 50,
+     "h": 40
+    },
+    "17": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_017.png",
+     "w": 330,
+     "h": 279
+    },
+    "18": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_018.png",
+     "w": 54,
+     "h": 94
+    },
+    "19": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_019.png",
+     "w": 46,
+     "h": 36
+    },
+    "20": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_020.png",
+     "w": 44,
+     "h": 33
+    },
+    "21": {
+     "image": "res://assets/tilesets/babrak/rm_stromy01_021.png",
+     "w": 50,
+     "h": 39
+    }
+   }
+  },
+  {
+   "firstgid": 3570,
+   "name": "rm_stromy",
+   "tilewidth": 496,
+   "tileheight": 252,
+   "columns": 0,
+   "tilecount": 46,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "id": "rm_stromy_000",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid,big",
+     "label": "ob\u0159\u00ed dub",
+     "shadow_size": "88,21"
+    },
+    "1": {
+     "id": "rm_stromy_001",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,conifer,solid",
+     "label": "smrk",
+     "shadow_size": "28,8"
+    },
+    "2": {
+     "id": "rm_stromy_002",
+     "kind": "tree",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "44,10"
+    },
+    "3": {
+     "id": "rm_stromy_003",
+     "kind": "tree",
+     "collision": "9",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "30,8"
+    },
+    "4": {
+     "id": "rm_stromy_004",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "40,12"
+    },
+    "5": {
+     "id": "rm_stromy_005",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,plant,small",
+     "label": "trs tr\u00e1vy / rostliny"
+    },
+    "6": {
+     "id": "rm_stromy_006",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,plant,small",
+     "label": "trs tr\u00e1vy / rostliny"
+    },
+    "7": {
+     "id": "rm_stromy_007",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,plant,small",
+     "label": "trs tr\u00e1vy / rostliny"
+    },
+    "8": {
+     "id": "rm_stromy_008",
+     "kind": "tree",
+     "collision": "12",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,conifer,solid",
+     "label": "smrk",
+     "shadow_size": "43,10"
+    },
+    "9": {
+     "id": "rm_stromy_009",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "40,13"
+    },
+    "10": {
+     "id": "rm_stromy_010",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,plant,small",
+     "label": "trs tr\u00e1vy / rostliny"
+    },
+    "11": {
+     "id": "rm_stromy_011",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny"
+    },
+    "12": {
+     "id": "rm_stromy_012",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny"
+    },
+    "13": {
+     "id": "rm_stromy_013",
+     "kind": "tree",
+     "collision": "10",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "35,8"
+    },
+    "14": {
+     "id": "rm_stromy_014",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "57,13"
+    },
+    "15": {
+     "id": "rm_stromy_015",
+     "kind": "bush",
+     "collision": "22",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "32,10"
+    },
+    "16": {
+     "id": "rm_stromy_016",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny"
+    },
+    "17": {
+     "id": "rm_stromy_017",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "flower,small",
+     "label": "kv\u011btiny"
+    },
+    "18": {
+     "id": "rm_stromy_018",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,plant,small",
+     "label": "trs tr\u00e1vy / rostliny"
+    },
+    "19": {
+     "id": "rm_stromy_019",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "56,16"
+    },
+    "20": {
+     "id": "rm_stromy_020",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "60,17"
+    },
+    "21": {
+     "id": "rm_stromy_021",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,conifer,cultivated,solid",
+     "label": "\u0161t\u00edhl\u00fd ke\u0159 / cyp\u0159i\u0161",
+     "shadow_size": "20,8"
+    },
+    "22": {
+     "id": "rm_stromy_022",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "hedge,cultivated,solid",
+     "label": "\u017eiv\u00fd plot",
+     "shadow_size": "79,6"
+    },
+    "23": {
+     "id": "rm_stromy_023",
+     "kind": "bush",
+     "collision": "22",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "32,7"
+    },
+    "24": {
+     "id": "rm_stromy_024",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "35,8"
+    },
+    "25": {
+     "id": "rm_stromy_025",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,small_tree,solid",
+     "label": "men\u0161\u00ed strom",
+     "shadow_size": "28,8"
+    },
+    "26": {
+     "id": "rm_stromy_026",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,conifer,cultivated,solid",
+     "label": "\u0161t\u00edhl\u00fd ke\u0159 / cyp\u0159i\u0161",
+     "shadow_size": "14,8"
+    },
+    "27": {
+     "id": "rm_stromy_027",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,small_tree,solid",
+     "label": "men\u0161\u00ed strom",
+     "shadow_size": "27,8"
+    },
+    "28": {
+     "id": "rm_stromy_028",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,small_tree,solid",
+     "label": "men\u0161\u00ed strom",
+     "shadow_size": "27,8"
+    },
+    "29": {
+     "id": "rm_stromy_029",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,conifer,cultivated,solid",
+     "label": "\u0161t\u00edhl\u00fd ke\u0159 / cyp\u0159i\u0161",
+     "shadow_size": "14,8"
+    },
+    "30": {
+     "id": "rm_stromy_030",
+     "kind": "bush",
+     "collision": "12",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "18,7"
+    },
+    "31": {
+     "id": "rm_stromy_031",
+     "kind": "bush",
+     "collision": "10",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "15,6"
+    },
+    "32": {
+     "id": "rm_stromy_032",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,plant,small",
+     "label": "trs tr\u00e1vy / rostliny"
+    },
+    "33": {
+     "id": "rm_stromy_033",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,exotic,solid",
+     "label": "ak\u00e1cie / bonsaj",
+     "shadow_size": "96,22"
+    },
+    "34": {
+     "id": "rm_stromy_034",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,plant,small",
+     "label": "trs tr\u00e1vy / rostliny"
+    },
+    "35": {
+     "id": "rm_stromy_035",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "61,25"
+    },
+    "36": {
+     "id": "rm_stromy_036",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,exotic,solid",
+     "label": "ak\u00e1cie / bonsaj",
+     "shadow_size": "49,11"
+    },
+    "37": {
+     "id": "rm_stromy_037",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,small_tree,solid",
+     "label": "men\u0161\u00ed strom",
+     "shadow_size": "23,8"
+    },
+    "38": {
+     "id": "rm_stromy_038",
+     "kind": "tree",
+     "collision": "11",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,exotic,solid",
+     "label": "ak\u00e1cie / bonsaj",
+     "shadow_size": "40,9"
+    },
+    "39": {
+     "id": "rm_stromy_039",
+     "kind": "bush",
+     "collision": "18",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "26,7"
+    },
+    "40": {
+     "id": "rm_stromy_040",
+     "kind": "bush",
+     "collision": "13",
+     "sway": true,
+     "shadow": true,
+     "tags": "bush",
+     "label": "ke\u0159",
+     "shadow_size": "19,7"
+    },
+    "41": {
+     "id": "rm_stromy_041",
+     "kind": "bush",
+     "collision": "24",
+     "sway": true,
+     "shadow": true,
+     "tags": "hedge,cultivated,solid",
+     "label": "\u017eiv\u00fd plot",
+     "shadow_size": "61,8"
+    },
+    "42": {
+     "id": "rm_stromy_042",
+     "kind": "plant",
+     "collision": "none",
+     "sway": true,
+     "shadow": false,
+     "tags": "grass,plant,small",
+     "label": "trs tr\u00e1vy / rostliny"
+    },
+    "43": {
+     "id": "rm_stromy_043",
+     "kind": "tree",
+     "collision": "14",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "149,35"
+    },
+    "44": {
+     "id": "rm_stromy_044",
+     "kind": "tree",
+     "collision": "8",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "25,8"
+    },
+    "45": {
+     "id": "rm_stromy_045",
+     "kind": "tree",
+     "collision": "9",
+     "sway": true,
+     "shadow": true,
+     "tags": "tree,deciduous,solid",
+     "label": "listnat\u00fd strom",
+     "shadow_size": "32,8"
+    }
+   },
+   "images": {
+    "0": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_000.png",
+     "w": 294,
+     "h": 182
+    },
+    "1": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_001.png",
+     "w": 94,
+     "h": 143
+    },
+    "2": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_002.png",
+     "w": 146,
+     "h": 126
+    },
+    "3": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_003.png",
+     "w": 100,
+     "h": 134
+    },
+    "4": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_004.png",
+     "w": 96,
+     "h": 69
+    },
+    "5": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_005.png",
+     "w": 94,
+     "h": 46
+    },
+    "6": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_006.png",
+     "w": 36,
+     "h": 39
+    },
+    "7": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_007.png",
+     "w": 40,
+     "h": 43
+    },
+    "8": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_008.png",
+     "w": 144,
+     "h": 252
+    },
+    "9": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_009.png",
+     "w": 96,
+     "h": 70
+    },
+    "10": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_010.png",
+     "w": 52,
+     "h": 44
+    },
+    "11": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_011.png",
+     "w": 38,
+     "h": 36
+    },
+    "12": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_012.png",
+     "w": 50,
+     "h": 81
+    },
+    "13": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_013.png",
+     "w": 118,
+     "h": 182
+    },
+    "14": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_014.png",
+     "w": 190,
+     "h": 168
+    },
+    "15": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_015.png",
+     "w": 76,
+     "h": 56
+    },
+    "16": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_016.png",
+     "w": 78,
+     "h": 41
+    },
+    "17": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_017.png",
+     "w": 34,
+     "h": 44
+    },
+    "18": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_018.png",
+     "w": 76,
+     "h": 36
+    },
+    "19": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_019.png",
+     "w": 134,
+     "h": 88
+    },
+    "20": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_020.png",
+     "w": 144,
+     "h": 93
+    },
+    "21": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_021.png",
+     "w": 66,
+     "h": 95
+    },
+    "22": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_022.png",
+     "w": 188,
+     "h": 33
+    },
+    "23": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_023.png",
+     "w": 76,
+     "h": 40
+    },
+    "24": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_024.png",
+     "w": 84,
+     "h": 43
+    },
+    "25": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_025.png",
+     "w": 94,
+     "h": 80
+    },
+    "26": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_026.png",
+     "w": 46,
+     "h": 79
+    },
+    "27": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_027.png",
+     "w": 90,
+     "h": 88
+    },
+    "28": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_028.png",
+     "w": 90,
+     "h": 93
+    },
+    "29": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_029.png",
+     "w": 46,
+     "h": 95
+    },
+    "30": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_030.png",
+     "w": 42,
+     "h": 39
+    },
+    "31": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_031.png",
+     "w": 36,
+     "h": 34
+    },
+    "32": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_032.png",
+     "w": 46,
+     "h": 57
+    },
+    "33": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_033.png",
+     "w": 320,
+     "h": 186
+    },
+    "34": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_034.png",
+     "w": 86,
+     "h": 43
+    },
+    "35": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_035.png",
+     "w": 146,
+     "h": 138
+    },
+    "36": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_036.png",
+     "w": 162,
+     "h": 93
+    },
+    "37": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_037.png",
+     "w": 76,
+     "h": 88
+    },
+    "38": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_038.png",
+     "w": 132,
+     "h": 90
+    },
+    "39": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_039.png",
+     "w": 62,
+     "h": 40
+    },
+    "40": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_040.png",
+     "w": 46,
+     "h": 40
+    },
+    "41": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_041.png",
+     "w": 146,
+     "h": 44
+    },
+    "42": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_042.png",
+     "w": 318,
+     "h": 142
+    },
+    "43": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_043.png",
+     "w": 496,
+     "h": 142
+    },
+    "44": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_044.png",
+     "w": 84,
+     "h": 141
+    },
+    "45": {
+     "image": "res://assets/tilesets/babrak/rm_stromy_045.png",
+     "w": 108,
+     "h": 85
+    }
+   }
+  },
+  {
+   "firstgid": 3616,
+   "name": "mesto",
+   "tilewidth": 510,
+   "tileheight": 606,
+   "columns": 0,
+   "tilecount": 28,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "id": "v_dum_cerveny",
+     "kind": "building",
+     "collision": "276,32",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "173,21"
+    },
+    "1": {
+     "id": "v_zbrojirna",
+     "kind": "building",
+     "collision": "276,31",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "173,20"
+    },
+    "2": {
+     "id": "v_dum_vysoky",
+     "kind": "building",
+     "collision": "198,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "124,26"
+    },
+    "3": {
+     "id": "v_dum_uzky",
+     "kind": "building",
+     "collision": "122,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "76,26"
+    },
+    "4": {
+     "id": "v_dum_hodiny",
+     "kind": "building",
+     "collision": "177,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "111,26"
+    },
+    "5": {
+     "id": "v_dum_cihla_a",
+     "kind": "building",
+     "collision": "172,37",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "108,24"
+    },
+    "6": {
+     "id": "v_dum_cihla_b",
+     "kind": "building",
+     "collision": "106,36",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "67,24"
+    },
+    "7": {
+     "id": "v_dum_cihla_c",
+     "kind": "building",
+     "collision": "154,36",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "96,24"
+    },
+    "8": {
+     "id": "v_kovarna",
+     "kind": "building",
+     "collision": "303,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "190,26"
+    },
+    "9": {
+     "id": "v_kouzelnik",
+     "kind": "building",
+     "collision": "283,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "177,26"
+    },
+    "10": {
+     "id": "v_vez",
+     "kind": "building",
+     "collision": "367,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "230,26"
+    },
+    "11": {
+     "id": "v_dum_velky",
+     "kind": "building",
+     "collision": "306,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "192,26"
+    },
+    "12": {
+     "id": "v_dum_stit",
+     "kind": "building",
+     "collision": "133,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "84,26"
+    },
+    "13": {
+     "id": "v_kostel",
+     "kind": "building",
+     "collision": "187,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "117,26"
+    },
+    "14": {
+     "id": "v_hostinec",
+     "kind": "building",
+     "collision": "241,40",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "151,26"
+    },
+    "15": {
+     "id": "v_stodola",
+     "kind": "building",
+     "collision": "249,26",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "156,15"
+    },
+    "16": {
+     "id": "v_stanek_lektvary",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "57,8"
+    },
+    "17": {
+     "id": "v_stanek_zbrane",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "44,8"
+    },
+    "18": {
+     "id": "v_ukazatel_a",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "17,6"
+    },
+    "19": {
+     "id": "v_ukazatel_b",
+     "kind": "prop",
+     "collision": "13",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "24,6"
+    },
+    "20": {
+     "id": "v_klada",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "65,6"
+    },
+    "21": {
+     "id": "v_bedna",
+     "kind": "prop",
+     "collision": "10",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "19,6"
+    },
+    "22": {
+     "id": "v_zelenina_a",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "55,6"
+    },
+    "23": {
+     "id": "v_zelenina_b",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "55,6"
+    },
+    "24": {
+     "id": "v_lavice",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "64,6"
+    },
+    "25": {
+     "id": "v_lampa",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "32,8"
+    },
+    "26": {
+     "id": "v_sud_a",
+     "kind": "prop",
+     "collision": "8",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "15,6"
+    },
+    "27": {
+     "id": "v_sud_b",
+     "kind": "prop",
+     "collision": "8",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "15,6"
+    }
+   },
+   "images": {
+    "0": {
+     "image": "res://assets/tilesets/babrak/v_dum_cerveny.png",
+     "w": 384,
+     "h": 263
+    },
+    "1": {
+     "image": "res://assets/tilesets/babrak/v_zbrojirna.png",
+     "w": 384,
+     "h": 255
+    },
+    "2": {
+     "image": "res://assets/tilesets/babrak/v_dum_vysoky.png",
+     "w": 276,
+     "h": 371
+    },
+    "3": {
+     "image": "res://assets/tilesets/babrak/v_dum_uzky.png",
+     "w": 170,
+     "h": 408
+    },
+    "4": {
+     "image": "res://assets/tilesets/babrak/v_dum_hodiny.png",
+     "w": 246,
+     "h": 388
+    },
+    "5": {
+     "image": "res://assets/tilesets/babrak/v_dum_cihla_a.png",
+     "w": 240,
+     "h": 301
+    },
+    "6": {
+     "image": "res://assets/tilesets/babrak/v_dum_cihla_b.png",
+     "w": 148,
+     "h": 294
+    },
+    "7": {
+     "image": "res://assets/tilesets/babrak/v_dum_cihla_c.png",
+     "w": 214,
+     "h": 294
+    },
+    "8": {
+     "image": "res://assets/tilesets/babrak/v_kovarna.png",
+     "w": 422,
+     "h": 326
+    },
+    "9": {
+     "image": "res://assets/tilesets/babrak/v_kouzelnik.png",
+     "w": 394,
+     "h": 383
+    },
+    "10": {
+     "image": "res://assets/tilesets/babrak/v_vez.png",
+     "w": 510,
+     "h": 606
+    },
+    "11": {
+     "image": "res://assets/tilesets/babrak/v_dum_velky.png",
+     "w": 426,
+     "h": 381
+    },
+    "12": {
+     "image": "res://assets/tilesets/babrak/v_dum_stit.png",
+     "w": 186,
+     "h": 373
+    },
+    "13": {
+     "image": "res://assets/tilesets/babrak/v_kostel.png",
+     "w": 260,
+     "h": 475
+    },
+    "14": {
+     "image": "res://assets/tilesets/babrak/v_hostinec.png",
+     "w": 336,
+     "h": 382
+    },
+    "15": {
+     "image": "res://assets/tilesets/babrak/v_stodola.png",
+     "w": 346,
+     "h": 188
+    },
+    "16": {
+     "image": "res://assets/tilesets/babrak/v_stanek_lektvary.png",
+     "w": 126,
+     "h": 97
+    },
+    "17": {
+     "image": "res://assets/tilesets/babrak/v_stanek_zbrane.png",
+     "w": 98,
+     "h": 95
+    },
+    "18": {
+     "image": "res://assets/tilesets/babrak/v_ukazatel_a.png",
+     "w": 38,
+     "h": 41
+    },
+    "19": {
+     "image": "res://assets/tilesets/babrak/v_ukazatel_b.png",
+     "w": 54,
+     "h": 75
+    },
+    "20": {
+     "image": "res://assets/tilesets/babrak/v_klada.png",
+     "w": 144,
+     "h": 50
+    },
+    "21": {
+     "image": "res://assets/tilesets/babrak/v_bedna.png",
+     "w": 42,
+     "h": 40
+    },
+    "22": {
+     "image": "res://assets/tilesets/babrak/v_zelenina_a.png",
+     "w": 122,
+     "h": 48
+    },
+    "23": {
+     "image": "res://assets/tilesets/babrak/v_zelenina_b.png",
+     "w": 122,
+     "h": 47
+    },
+    "24": {
+     "image": "res://assets/tilesets/babrak/v_lavice.png",
+     "w": 142,
+     "h": 56
+    },
+    "25": {
+     "image": "res://assets/tilesets/babrak/v_lampa.png",
+     "w": 72,
+     "h": 102
+    },
+    "26": {
+     "image": "res://assets/tilesets/babrak/v_sud_a.png",
+     "w": 34,
+     "h": 39
+    },
+    "27": {
+     "image": "res://assets/tilesets/babrak/v_sud_b.png",
+     "w": 34,
+     "h": 64
+    }
+   }
+  },
+  {
+   "firstgid": 3644,
+   "name": "hrbitov",
+   "tilewidth": 310,
+   "tileheight": 228,
+   "columns": 0,
+   "tilecount": 29,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "id": "g_mauzoleum",
+     "kind": "building",
+     "collision": "103,26",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "65,14"
+    },
+    "1": {
+     "id": "g_krypta",
+     "kind": "building",
+     "collision": "105,26",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "66,11"
+    },
+    "2": {
+     "id": "g_hrobka",
+     "kind": "building",
+     "collision": "100,26",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "63,14"
+    },
+    "3": {
+     "id": "g_brana",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "140,8"
+    },
+    "4": {
+     "id": "g_brana_mala",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "43,6"
+    },
+    "5": {
+     "id": "g_oblouk",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "51,8"
+    },
+    "6": {
+     "id": "g_lampa_a",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "16,6"
+    },
+    "7": {
+     "id": "g_lampa_b",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "22,10"
+    },
+    "8": {
+     "id": "g_lampa_c",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "50,10"
+    },
+    "9": {
+     "id": "g_andel",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "21,6"
+    },
+    "10": {
+     "id": "g_socha",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "22,6"
+    },
+    "11": {
+     "id": "g_hrob_a",
+     "kind": "prop",
+     "collision": "10",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "19,6"
+    },
+    "12": {
+     "id": "g_kriz_a",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "16,6"
+    },
+    "13": {
+     "id": "g_hrob_b",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "16,6"
+    },
+    "14": {
+     "id": "g_kriz_b",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "16,6"
+    },
+    "15": {
+     "id": "g_hrob_c",
+     "kind": "prop",
+     "collision": "6",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "12,6"
+    },
+    "16": {
+     "id": "g_kriz_c",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "17,6"
+    },
+    "17": {
+     "id": "g_kriz_d",
+     "kind": "prop",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "17,7"
+    },
+    "18": {
+     "id": "g_lavice",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "44,6"
+    },
+    "19": {
+     "id": "g_kamen_a",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "47,6"
+    },
+    "20": {
+     "id": "g_kamen_b",
+     "kind": "prop",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "68,6"
+    },
+    "21": {
+     "id": "g_rakev",
+     "kind": "prop",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "21,7"
+    },
+    "22": {
+     "id": "g_mrtvy_strom_a",
+     "kind": "tree",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "89,18"
+    },
+    "23": {
+     "id": "g_mrtvy_strom_b",
+     "kind": "tree",
+     "collision": "9",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "49,14"
+    },
+    "24": {
+     "id": "g_mrtvy_strom_c",
+     "kind": "tree",
+     "collision": "14",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "77,10"
+    },
+    "25": {
+     "id": "g_mrtvy_strom_d",
+     "kind": "tree",
+     "collision": "11",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "57,13"
+    },
+    "26": {
+     "id": "g_mrtvy_strom_e",
+     "kind": "tree",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "63,11"
+    },
+    "27": {
+     "id": "g_mrtvy_strom_f",
+     "kind": "tree",
+     "collision": "8",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "38,10"
+    },
+    "28": {
+     "id": "g_parez",
+     "kind": "prop",
+     "collision": "12",
+     "sway": false,
+     "shadow": true,
+     "shadow_size": "22,6"
+    }
+   },
+   "images": {
+    "0": {
+     "image": "res://assets/tilesets/babrak/g_mauzoleum.png",
+     "w": 144,
+     "h": 180
+    },
+    "1": {
+     "image": "res://assets/tilesets/babrak/g_krypta.png",
+     "w": 146,
+     "h": 138
+    },
+    "2": {
+     "image": "res://assets/tilesets/babrak/g_hrobka.png",
+     "w": 140,
+     "h": 174
+    },
+    "3": {
+     "image": "res://assets/tilesets/babrak/g_brana.png",
+     "w": 310,
+     "h": 95
+    },
+    "4": {
+     "image": "res://assets/tilesets/babrak/g_brana_mala.png",
+     "w": 96,
+     "h": 69
+    },
+    "5": {
+     "image": "res://assets/tilesets/babrak/g_oblouk.png",
+     "w": 114,
+     "h": 95
+    },
+    "6": {
+     "image": "res://assets/tilesets/babrak/g_lampa_a.png",
+     "w": 36,
+     "h": 80
+    },
+    "7": {
+     "image": "res://assets/tilesets/babrak/g_lampa_b.png",
+     "w": 48,
+     "h": 126
+    },
+    "8": {
+     "image": "res://assets/tilesets/babrak/g_lampa_c.png",
+     "w": 112,
+     "h": 129
+    },
+    "9": {
+     "image": "res://assets/tilesets/babrak/g_andel.png",
+     "w": 46,
+     "h": 67
+    },
+    "10": {
+     "image": "res://assets/tilesets/babrak/g_socha.png",
+     "w": 48,
+     "h": 59
+    },
+    "11": {
+     "image": "res://assets/tilesets/babrak/g_hrob_a.png",
+     "w": 42,
+     "h": 53
+    },
+    "12": {
+     "image": "res://assets/tilesets/babrak/g_kriz_a.png",
+     "w": 36,
+     "h": 58
+    },
+    "13": {
+     "image": "res://assets/tilesets/babrak/g_hrob_b.png",
+     "w": 36,
+     "h": 52
+    },
+    "14": {
+     "image": "res://assets/tilesets/babrak/g_kriz_b.png",
+     "w": 36,
+     "h": 76
+    },
+    "15": {
+     "image": "res://assets/tilesets/babrak/g_hrob_c.png",
+     "w": 26,
+     "h": 62
+    },
+    "16": {
+     "image": "res://assets/tilesets/babrak/g_kriz_c.png",
+     "w": 38,
+     "h": 71
+    },
+    "17": {
+     "image": "res://assets/tilesets/babrak/g_kriz_d.png",
+     "w": 38,
+     "h": 82
+    },
+    "18": {
+     "image": "res://assets/tilesets/babrak/g_lavice.png",
+     "w": 98,
+     "h": 75
+    },
+    "19": {
+     "image": "res://assets/tilesets/babrak/g_kamen_a.png",
+     "w": 104,
+     "h": 45
+    },
+    "20": {
+     "image": "res://assets/tilesets/babrak/g_kamen_b.png",
+     "w": 152,
+     "h": 45
+    },
+    "21": {
+     "image": "res://assets/tilesets/babrak/g_rakev.png",
+     "w": 46,
+     "h": 91
+    },
+    "22": {
+     "image": "res://assets/tilesets/babrak/g_mrtvy_strom_a.png",
+     "w": 198,
+     "h": 228
+    },
+    "23": {
+     "image": "res://assets/tilesets/babrak/g_mrtvy_strom_b.png",
+     "w": 108,
+     "h": 174
+    },
+    "24": {
+     "image": "res://assets/tilesets/babrak/g_mrtvy_strom_c.png",
+     "w": 172,
+     "h": 120
+    },
+    "25": {
+     "image": "res://assets/tilesets/babrak/g_mrtvy_strom_d.png",
+     "w": 126,
+     "h": 165
+    },
+    "26": {
+     "image": "res://assets/tilesets/babrak/g_mrtvy_strom_e.png",
+     "w": 140,
+     "h": 134
+    },
+    "27": {
+     "image": "res://assets/tilesets/babrak/g_mrtvy_strom_f.png",
+     "w": 84,
+     "h": 120
+    },
+    "28": {
+     "image": "res://assets/tilesets/babrak/g_parez.png",
+     "w": 48,
+     "h": 47
+    }
+   }
+  },
+  {
+   "firstgid": 3673,
+   "name": "blocker",
+   "tilewidth": 24,
+   "tileheight": 24,
+   "columns": 1,
+   "tilecount": 1,
+   "margin": 0,
+   "spacing": 0,
+   "tiles": {
+    "0": {
+     "solid": true
+    }
+   },
+   "images": {},
+   "image": "res://assets/tilesets/babrak/blocker.png"
+  }
+ ],
+ "markers": [
+  {
+   "type": "player_start",
+   "name": "",
+   "x": -456.0,
+   "y": -268.97560975609764,
+   "w": 0,
+   "h": 0,
+   "rot": 0,
+   "props": {},
+   "layer": "objects"
+  }
+ ],
+ "chunks": [
+  "-2_-2",
+  "-2_-1",
+  "-2_0",
+  "-2_1",
+  "-1_-2",
+  "-1_-1",
+  "-1_0",
+  "-1_1",
+  "0_-2",
+  "0_-1",
+  "0_0",
+  "0_1",
+  "1_-2",
+  "1_-1",
+  "1_0",
+  "1_1"
+ ]
+}

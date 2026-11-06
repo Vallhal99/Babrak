@@ -5,7 +5,7 @@ Spuštění: otevřít projekt, F5. Ovládání: WASD/šipky, Shift = běh, Spac
 ## Struktura
 - `scripts/data/` – `ItemData` (Resource), `ItemDB` (autoload, čte `data/items/*.tres`), `Inventory`, `Equipment`
 - `scripts/character/` – `AnimCatalog` (layout sheetu), `CharacterVisual` (vrstvy + animace), `Character` (základ: staty, boj, vybavení), `Hero` (vstup hráče), `Enemy` (AI)
-- `scripts/world/hd2d_world.gd` – HD-2D svět (palouk, `TiledWorld` + 3D vykreslení), `scripts/ui/inventory_panel.gd` – inventář
+- `scripts/world/hd2d_world.gd` – HD-2D svět (mapa Babrak, `TiledWorld` + 3D vykreslení), `scripts/ui/inventory_panel.gd` – inventář
 - `tools/build_hero.py` – z balíčku `tools/source_hero/` (renderované kompletní postavy) vyrobí tělo, vrstvy vybavení (rozdíl proti holému tělu), ikony a `data/items/*.tres`; vypíše chybějící animace u každé věci
 - `archive/hero_v1/` – původní postava, předměty a nástroje (`.gdignore`, Godot je ignoruje)
 

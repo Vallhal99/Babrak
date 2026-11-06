@@ -63,6 +63,22 @@
   {
    "name": "mossy_ground",
    "texture": "res://assets/world/terrain/mossy_ground.png"
+  },
+  {
+   "name": "water",
+   "texture": "res://assets/world/terrain/water.png"
+  },
+  {
+   "name": "deep_water",
+   "texture": "res://assets/world/terrain/deep_water.png"
+  },
+  {
+   "name": "rock",
+   "texture": "res://assets/world/terrain/rock.png"
+  },
+  {
+   "name": "rock_dark",
+   "texture": "res://assets/world/terrain/rock_dark.png"
   }
  ]
 }

@@ -21,11 +21,35 @@ P = lambda n, t, v: {"name": n, "type": t, "value": v}
 tilesets = []            # (jmeno, tsj dict, tilecount)
 
 # ---------- 1) paleta terenu ----------
+def periodic(rng, n=48, octaves=((3, .5), (6, .3), (12, .2))):
+    """bezešvý šum 0..1 (součet kosinusů s celočíselnými frekvencemi)"""
+    yy, xx = np.mgrid[0:n, 0:n] / n * 2 * np.pi
+    v = np.zeros((n, n))
+    for freq, amp in octaves:
+        for _ in range(4):
+            fx, fy = rng.integers(-freq, freq + 1, 2); v += amp * np.cos(fx * xx + fy * yy + rng.random() * 6.28) / 4
+    return (v - v.min()) / (v.max() - v.min() + 1e-9)
+
+
+def gen_terrain(name):
+    rng = np.random.default_rng(abs(hash(name)) % 1000 + len(name))
+    base = {"water": (58, 120, 158), "deep_water": (36, 86, 128), "rock": (122, 114, 104), "rock_dark": (78, 72, 70)}[name]
+    n = periodic(rng); f = periodic(rng, octaves=((9, .5), (18, .5)))
+    water = "water" in name
+    shade = (n - .5) * (46 if water else 60) + (f - .5) * (26 if water else 36)
+    px = np.clip(np.array(base)[None, None] + shade[..., None], 0, 255)
+    if water:   # jemné světlé vlnky
+        crest = (f > .8) & (n > .45); px[crest] = np.clip(px[crest] + 38, 0, 255)
+    else:       # praskliny: tmavé hrany mezi bloky šumu
+        edge = np.abs(np.gradient(np.round(f * 6))[0]) + np.abs(np.gradient(np.round(f * 6))[1]) > 0
+        px[edge] = px[edge] * .78
+    return Image.fromarray(px.astype(np.uint8)).convert("RGBA")
+
 os.makedirs("assets/world/terrain", exist_ok=True)
 cols = 8; rows = math.ceil(len(TERRAINS) / cols)
 pal = Image.new("RGBA", (cols * G, rows * G)); tiles = []
 for i, (name, sh, x, y) in enumerate(TERRAINS):
-    tex = Image.open(f"{SRC}/{sh}.png").convert("RGBA").crop((x, y, x + 48, y + 48))
+    tex = gen_terrain(name) if sh == "gen" else Image.open(f"{SRC}/{sh}.png").convert("RGBA").crop((x, y, x + 48, y + 48))
     tex.convert("RGB").save(f"assets/world/terrain/{name}.png")
     pal.paste(tex.crop((12, 12, 12 + G, 12 + G)), ((i % cols) * G, (i // cols) * G))
     tiles.append({"id": i, "properties": [P("terrain", "string", name)]})
@@ -101,6 +125,36 @@ def extract(sheet, key):
 for sheet, key in (("tileset_okoli", "okoli1"), ("tileset_okoli2", "okoli2"), ("tileset_okoli3", "okoli3"), ("tileset_doplnky", "doplnky"),
                    ("Trees02", "stromy02"), ("Trees01", "rm_stromy01"), ("trees", "rm_stromy")):
     ts = extract(sheet, key); tilesets.append((key, ts)); print(f"  {key}: {ts['tilecount']} objektu")
+
+# ---------- 3b) osada a hřbitov (ruční výřezy) + neviditelná kolizní dlaždice ----------
+import world_crops
+SRC_CACHE = {}
+crop_tiles = {}
+for key, name, sh, box, kind in world_crops.CROPS:
+    a = SRC_CACHE.setdefault(sh, np.array(Image.open(f"{SRC}/{sh}.png").convert("RGBA")))
+    c = a[box[1]:box[3], box[0]:box[2]].copy()
+    c[(c[:, :, :3].max(2) < 60) & (c[:, :, 3] < 235)] = 0
+    alpha = c[:, :, 3] > 24
+    lab, n = ndi.label(ndi.binary_dilation(alpha, iterations=3))
+    if n > 1:                                                            # jen největší souvislý kus (okolní sprity vypadnou)
+        keep = np.argmax(ndi.sum(alpha, lab, range(1, n + 1))) + 1; c[lab != keep] = 0
+    img = Image.fromarray(c); img = img.crop(img.getbbox()); arr = np.array(img)[:, :, 3]
+    base = np.where(arr.max(1) > 60)[0].max(); xs = np.where(arr[max(0, base - 5):base + 1].max(0) > 60)[0]; ax = int(xs.mean()) if len(xs) else img.width // 2
+    half = max(ax, img.width - ax); canvas = Image.new("RGBA", (half * 2, img.height)); canvas.paste(img, (half - ax, 0))
+    os.makedirs(f"{R}/tilesety/objekty/{key}", exist_ok=True); canvas.save(f"{R}/tilesety/objekty/{key}/{name}.png")
+    w, h = canvas.size
+    col = {"building": f"{int(w * .72)},{min(40, max(26, h // 8))}", "tree": str(max(8, min(14, int(w * .09)))), "prop": str(max(5, min(14, int(w * .25))))}.get(kind, "none")
+    pr = [P("id", "string", name), P("kind", "string", kind), P("collision", "string", col), P("sway", "bool", False), P("shadow", "bool", True),
+          P("shadow_size", "string", f"{w * .45:.0f},{max(6, min(26, h * .08)):.0f}")]
+    crop_tiles.setdefault(key, []).append({"id": len(crop_tiles.get(key, [])), "image": f"objekty/{key}/{name}.png", "imagewidth": w, "imageheight": h, "properties": pr})
+for key, tl in crop_tiles.items():
+    ts = {"type": "tileset", "version": "1.10", "name": key, "tilewidth": max(t["imagewidth"] for t in tl), "tileheight": max(t["imageheight"] for t in tl),
+          "columns": 0, "tilecount": len(tl), "margin": 0, "spacing": 0, "objectalignment": "bottom", "tiles": tl}
+    tilesets.append((key, ts)); print(f"  {key}: {len(tl)} objektů")
+Image.new("RGBA", (G, G)).save(f"{R}/tilesety/obrazky/blocker.png")          # průhledná dlaždice s kolizí (voda, hory)
+tilesets.append(("blocker", {"type": "tileset", "version": "1.10", "name": "blocker", "image": "obrazky/blocker.png", "imagewidth": G, "imageheight": G,
+                             "tilewidth": G, "tileheight": G, "columns": 1, "tilecount": 1, "margin": 0, "spacing": 0,
+                             "tiles": [{"id": 0, "properties": [P("solid", "bool", True)]}]}))
 
 # ---------- 4) zapis tilesetu + gidy ----------
 first, refs = 1, {}

@@ -6,7 +6,7 @@ const OUT := "/tmp/claude-0/-home-claude/4ece88d8-ed95-5e17-bf08-a245a240eb47/sc
 func _ready() -> void:
 	DirAccess.make_dir_recursive_absolute(OUT)
 	var demo: Node2D = load("res://scenes/demo/tiled_demo.tscn").instantiate()
-	demo.get_node("World").world_dir = "res://data/world/palouk"
+	demo.get_node("World").world_dir = "res://data/world/babrak"
 	add_child(demo)
 	var world: TiledWorld = demo.get_node("World")
 	for _i in 240:

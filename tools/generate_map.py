@@ -13,6 +13,7 @@ Pravidla (tag_rules) jsou v data/world/object_catalog.json - objekt se zamitne, 
 import argparse, json, math, os, random, sys
 import numpy as np
 from PIL import Image
+from scipy import ndimage
 
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import object_catalog
@@ -81,6 +82,15 @@ def main():
                 if (n1 if k % 2 == 0 else n2)[y, x] > 1 - frac * 1.6: t = mt; break
             m.set("ground", x + ox, y + oy, tid[t])
             if z.get("profile") == "path": path_mask[y, x] = True
+    # --- pevné zóny ("solid": true): neprůchozí dlaždice (vrstva walls) jen u průchozího okraje, hluboko uvnitř netřeba
+    blocker = next(ts["firstgid"] for ts in base["tilesets"] if ts["source"].endswith("blocker.tsj"))
+    solid = np.isin(zone, [n for n, z in zdef.items() if z.get("solid")])
+    near_open = ndimage.binary_dilation(~solid, np.ones((5, 5), bool))
+    for y, x in zip(*np.where(solid & near_open)): m.set("walls", int(x) + ox, int(y) + oy, blocker)
+    dist = {}
+    def zone_dist(name):
+        if name not in dist: dist[name] = ndimage.distance_transform_edt(zone == name)
+        return dist[name]
     # --- objekty
     def px_zone(px, py):
         x, y = int(px // G) - ox, int(py // G) - oy
@@ -102,22 +112,26 @@ def main():
     def candidates(profile, tags, none_tags=()):
         pr = trules.get(profile, {}); forbid = set(pr.get("forbid", [])) | set(none_tags)
         return [t for t in tiles.values() if set(tags) & t["tags"] and not (t["tags"] & forbid) and "composite" not in t["tags"] and t["kind"] != ""]
+    for pl in leg.get("place", []):   # pevně umístěné objekty: {"id", "x", "y"} (dlaždice skici; y = spodní okraj), "r" = odstup ostatních
+        t = tiles[pl["id"]]
+        put(t, (pl["x"] + ox) * G, (pl["y"] + oy) * G, pl.get("r", t["w"] * .45))
     stats = {}
     for zname, z in zdef.items():
         ys, xs = np.where(zone == zname)
         if len(xs) == 0: continue
         profile = z.get("profile", zname); n = 0
         for r in z.get("scatter", []):
-            pool = candidates(profile, r["tags"], r.get("none_tags", []))
+            pool = [tiles[i] for i in r["ids"] if i in tiles] if "ids" in r else candidates(profile, r["tags"], r.get("none_tags", []))
             if r.get("max_h"): pool = [t for t in pool if t["h"] <= r["max_h"]]
             if r.get("min_h"): pool = [t for t in pool if t["h"] >= r["min_h"]]
-            if not pool: print(f"! zona {zname}: pravidlo {r['tags']} nema zadne objekty"); continue
+            if not pool: print(f"! zona {zname}: pravidlo {r.get('tags', r.get('ids'))} nema zadne objekty"); continue
             target = int(len(xs) * r.get("density", .01)); tries = 0; ok = 0
             while ok < target and tries < target * 25:
                 tries += 1
                 i = rng.integers(len(xs)); px = (xs[i] + ox + rng.random()) * G; py = (ys[i] + oy + rng.random()) * G
                 t = pool[rng.integers(len(pool))]
                 if px_zone(px, py) != zname or not clear(px, py, r.get("min_dist", 40)): continue
+                if "dist" in r and not r["dist"][0] <= zone_dist(zname)[int(py // G) - oy, int(px // G) - ox] <= r["dist"][1]: continue
                 if profile != "path" and near_path(px, py, t["w"] * .35) and not (t["tags"] <= set(trules["path"]["allow"]) | {"path_ok"}): continue
                 put(t, px, py, r.get("min_dist", 40)); ok += 1
             n += ok

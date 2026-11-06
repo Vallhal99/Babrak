@@ -8,7 +8,7 @@ func _ready() -> void:
 	DirAccess.make_dir_recursive_absolute(OUT)
 	var scn: PackedScene = load("res://scenes/demo/tiled_demo.tscn")
 	var demo: Node2D = scn.instantiate()
-	demo.get_node("World").world_dir = "res://data/world/palouk"
+	demo.get_node("World").world_dir = "res://data/world/babrak"
 	add_child(demo)
 	var world: TiledWorld = demo.get_node("World")
 	var hero: Hero = world.objects.get_node("Hero")

@@ -20,4 +20,8 @@ TERRAINS = [
     ("wood_floor",   Z2, *t(6, 3)),     # drevena podlaha
     ("marble",       Z1, *t(12, 0)),    # mramor
     ("mossy_ground", Z1, *t(0, 15)),    # zarostla zem
+    ("water",        "gen", 0, 0),      # mělká voda (generovaná textura)
+    ("deep_water",   "gen", 0, 0),      # hluboká voda
+    ("rock",         "gen", 0, 0),      # horská skála
+    ("rock_dark",    "gen", 0, 0),      # tmavá skála (úpatí, jeskyně)
 ]
