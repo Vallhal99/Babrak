@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1p0m5ahb6iqt"
-path="res://.godot/imported/axe.png-d5e6255bcf74edbe20e91a2f26a16015.ctex"
+uid="uid://djeyn0aj7s7yk"
+path="res://.godot/imported/hair.png-f1feb62f7806951bcd28a20783f0b6dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/hero/weapons/axe.png"
-dest_files=["res://.godot/imported/axe.png-d5e6255bcf74edbe20e91a2f26a16015.ctex"]
+source_file="res://assets/characters/hero/body/hair.png"
+dest_files=["res://.godot/imported/hair.png-f1feb62f7806951bcd28a20783f0b6dd.ctex"]
 
 [params]
 

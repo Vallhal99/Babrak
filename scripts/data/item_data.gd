@@ -24,8 +24,10 @@ const SLOT_NAMES := {
 @export var price := 10
 ## Vrstva postavy ve standardním layoutu sheetu (viz AnimCatalog).
 @export var layer_sheet: Texture2D
-## Vrstva pro "extra" pózy (např. plamen pochodně), layout viz AnimCatalog (extra: true).
-@export var extra_sheet: Texture2D
+## Animace, které mají v sheetu oversize variantu (efekt útoku 192px); jen zbraně.
+@export var big_anims: Array[StringName] = []
+## Přilba/kápě: skryje vlasy.
+@export var hides_hair := false
 ## Postoj: předmět mění chůzi/stání na animace "<stance>_idle/_walk/_run" (pochodeň = &"torch").
 @export var stance: StringName = &""
 ## Poloměr světla v px (0 = nesvítí).
@@ -37,6 +39,8 @@ const SLOT_NAMES := {
 @export var max_mana := 0
 ## Jen zbraně: animace útoku (slash / backslash / halfslash / thrust ...).
 @export var attack_anim: StringName = &"slash"
+## Jen zbraně: střelná (útok vystřelí projektil ve snímku zásahu).
+@export var ranged := false
 
 
 func stats_text() -> String:

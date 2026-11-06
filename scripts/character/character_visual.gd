@@ -1,24 +1,21 @@
 class_name CharacterVisual
 extends Node2D
 ## Skládá postavu z vrstev (tělo + sloty vybavení) a přehrává animace ze sheetů.
-## Každá vrstva = 2 sprity (horní/dolní půlka), aby šly kombinovat animace (viz AnimCatalog "top").
 ## Všechny vrstvy sdílejí jeden čas/snímek, takže jsou vždy synchronní.
 
 signal finished(anim: StringName)
 signal frame_changed(anim: StringName, frame: int)
 
+const HAIR := 99  # pseudo-slot: vlasy (vrstva nad tělem, skrytá přilbou)
 ## Pořadí kreslení zdola nahoru. Slot NONE = tělo.
 const DRAW_ORDER: Array[int] = [
-	ItemData.Slot.NONE, ItemData.Slot.TORSO, ItemData.Slot.FEET, ItemData.Slot.HANDS, ItemData.Slot.HEAD,
+	ItemData.Slot.NONE, HAIR, ItemData.Slot.TORSO, ItemData.Slot.FEET, ItemData.Slot.HANDS, ItemData.Slot.HEAD,
 	ItemData.Slot.OFFHAND, ItemData.Slot.WEAPON,
 ]
 const ORIGIN := Vector2(-32, -61)  # levý horní roh 64px snímku vůči patám postavy
-const SPLIT_Y := 42  # pas: hranice horní/dolní půlky
-const TOP := 0
-const BOTTOM := 1
 
 @export var body_sheet: Texture2D
-@export var body_extra_sheet: Texture2D
+@export var hair_sheet: Texture2D
 
 var anim: StringName = &"idle"
 var dir: int = AnimCatalog.Dir.DOWN
@@ -27,23 +24,26 @@ var _time := 0.0
 var _last_frame := 0
 var _done := false
 var _equipment: Equipment
-var _sheets: Dictionary = {}  # Slot -> [hlavní sheet, extra sheet]
-var _parts: Dictionary = {}  # Slot -> [horní Sprite2D, dolní Sprite2D]
+var _sheets: Dictionary = {}  # Slot -> Texture2D
+var _big_anims: Dictionary = {}  # Slot -> animace, které má sheet v oversize variantě
+var _sprites: Dictionary = {}  # Slot -> Sprite2D
 
 
 func _ready() -> void:
 	for slot in DRAW_ORDER:
-		_sheets[slot] = [null, null]
-		_parts[slot] = [_make_sprite(), _make_sprite()]
-	_sheets[ItemData.Slot.NONE] = [body_sheet, body_extra_sheet]
+		_sprites[slot] = _make_sprite()
+		_sheets[slot] = null
+	_sheets[ItemData.Slot.NONE] = body_sheet
+	_sheets[HAIR] = hair_sheet
 	_apply()
 
 
 ## Změna těla za běhu (např. figurína v inventáři).
-func set_body(sheet: Texture2D, extra_sheet: Texture2D = null) -> void:
+func set_body(sheet: Texture2D, hair: Texture2D = null) -> void:
 	body_sheet = sheet
-	body_extra_sheet = extra_sheet
-	_sheets[ItemData.Slot.NONE] = [sheet, extra_sheet]
+	hair_sheet = hair
+	_sheets[ItemData.Slot.NONE] = sheet
+	_sheets[HAIR] = hair
 	_apply()
 
 
@@ -114,52 +114,29 @@ func _set_layer(slot: int) -> void:
 	if slot == ItemData.Slot.NONE or not _sheets.has(slot):
 		return
 	var item := _equipment.get_item(slot)
-	_sheets[slot] = [item.layer_sheet, item.extra_sheet] if item else [null, null]
+	_sheets[slot] = item.layer_sheet if item else null
+	_big_anims[slot] = item.big_anims if item else []
 	_apply()
+
+
+func _hair_hidden() -> bool:
+	for slot in DRAW_ORDER:
+		var item := _equipment.get_item(slot) if _equipment and slot != HAIR else null
+		if item and item.hides_hair:
+			return true
+	return false
 
 
 func _apply() -> void:
 	var frame := mini(int(_time), AnimCatalog.frame_count(anim) - 1)
+	var hair_hidden := _hair_hidden()
 	for slot in DRAW_ORDER:
-		for part in 2:
-			var sprite: Sprite2D = _parts[slot][part]
-			var src := _resolve(slot, part, frame)
-			sprite.visible = not src.is_empty()
-			if sprite.visible:
-				sprite.texture = src["tex"]
-				sprite.region_rect = src["rect"]
-				sprite.position = src["pos"]
-
-
-## Odkud vzít obrázek pro danou vrstvu a půlku. Prázdný výsledek = nekreslit.
-func _resolve(slot: int, part: int, frame: int) -> Dictionary:
-	var a := anim
-	var f := frame
-	var split := AnimCatalog.is_split(a)
-	if split and part == TOP:
-		a = AnimCatalog.top_of(a)
-		f = frame % AnimCatalog.frame_count(a)
-	var tex: Texture2D = _sheets[slot][0]
-	var extra: Texture2D = _sheets[slot][1]
-	if AnimCatalog.is_extra(a):
-		if extra:
-			tex = extra
-		else:  # vrstva nemá vlastní extra snímky -> použije alias (např. idle)
-			f /= AnimCatalog.alias_div(a)
-			a = AnimCatalog.alias_of(a)
-	if tex == null:
-		return {}
-	# Oversize efekt útoku má jen zbraň a jen pokud ho její sheet obsahuje.
-	if slot == ItemData.Slot.WEAPON and not split and AnimCatalog.has_big(a) and tex.get_height() > AnimCatalog.BIG_Y:
-		if part == BOTTOM:
-			return {}
-		return {"tex": tex, "rect": AnimCatalog.rect(a, dir, f, true), "pos": ORIGIN - Vector2.ONE * AnimCatalog.BIG_OFFSET}
-	var rect := AnimCatalog.rect(a, dir, f)
-	if not split:
-		return {} if part == BOTTOM else {"tex": tex, "rect": rect, "pos": ORIGIN}
-	if part == TOP:
-		rect.size.y = SPLIT_Y
-		return {"tex": tex, "rect": rect, "pos": ORIGIN}
-	rect.position.y += SPLIT_Y
-	rect.size.y = AnimCatalog.FRAME - SPLIT_Y
-	return {"tex": tex, "rect": rect, "pos": ORIGIN + Vector2(0, SPLIT_Y)}
+		var sprite: Sprite2D = _sprites[slot]
+		var tex: Texture2D = _sheets[slot]
+		sprite.visible = tex != null and not (slot == HAIR and hair_hidden)
+		if not sprite.visible:
+			continue
+		var big: bool = AnimCatalog.has_big(anim) and anim in _big_anims.get(slot, [])
+		sprite.texture = tex
+		sprite.region_rect = AnimCatalog.rect(anim, dir, frame, big)
+		sprite.position = ORIGIN - Vector2.ONE * AnimCatalog.BIG_OFFSET if big else ORIGIN

@@ -12,6 +12,6 @@ description = "Rychlá a lehká."
 icon = ExtResource("2")
 slot = 1
 layer_sheet = ExtResource("3")
-attack_anim = &"halfslash"
+attack_anim = &"slash"
 damage = 2
 price = 40

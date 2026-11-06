@@ -12,5 +12,6 @@ description = "Ocelová kroužková kapuce."
 icon = ExtResource("2")
 slot = 2
 layer_sheet = ExtResource("3")
+hides_hair = true
 defense = 2
 price = 60

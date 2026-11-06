@@ -8,10 +8,11 @@
 script = ExtResource("1")
 id = &"bow"
 display_name = "Luk"
-description = "Střelná zbraň (střelba zatím není)."
+description = "Střelná zbraň."
 icon = ExtResource("2")
 slot = 1
 layer_sheet = ExtResource("3")
 attack_anim = &"shoot"
+ranged = true
 damage = 3
 price = 100

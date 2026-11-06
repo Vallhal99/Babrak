@@ -37,7 +37,7 @@ func _ready() -> void:
 
 func setup(hero: Hero) -> void:
 	_hero = hero
-	_doll.set_body(hero.visual.body_sheet, hero.visual.body_extra_sheet)
+	_doll.set_body(hero.visual.body_sheet, hero.visual.hair_sheet)
 	_doll.modulate = hero.tint
 	_doll.bind(hero.equipment)
 	hero.inventory.changed.connect(_refresh)

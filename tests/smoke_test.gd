@@ -14,7 +14,7 @@ func _ready() -> void:
 	var merchant: Npc = main.get_node("Merchant")
 	_check(merchant.invulnerable and merchant.team == &"npc", "obchodník je neutrální")
 	var n := ItemDB.all().size()
-	_check(hero.inventory.ids().size() == n and n == 18, "batoh má 18 předmětů")
+	_check(hero.inventory.ids().size() == n and n == 17, "batoh má 17 předmětů")
 	for id in [&"longsword", &"close_helm", &"boots"]:
 		_check(hero.equipment.equip(ItemDB.get_item(id), hero.inventory), "equip " + id)
 	_check(hero.attack_power() == 7 and hero.defense() == 5, "staty z vybavení")

@@ -251,14 +251,19 @@ func _release_spell() -> void:
 		SpellData.Effect.HEAL:
 			heal(spell.power + level)
 		SpellData.Effect.PROJECTILE:
-			var shot := Projectile.new()
-			shot.direction = DIR_VECTORS[facing]
-			shot.damage = spell.power + level
-			shot.team = team
-			shot.caster = self
-			shot.color = spell.color
-			get_parent().add_child(shot)
-			shot.global_position = global_position + BODY_CENTER + shot.direction * 18.0
+			_fire(spell.power + level, spell.color)
+
+
+## Vystřelí projektil ve směru pohledu (kouzlo nebo šíp).
+func _fire(damage: int, color: Color) -> void:
+	var shot := Projectile.new()
+	shot.direction = DIR_VECTORS[facing]
+	shot.damage = damage
+	shot.team = team
+	shot.caster = self
+	shot.color = color
+	get_parent().add_child(shot)
+	shot.global_position = global_position + BODY_CENTER + shot.direction * 18.0
 
 
 func heal(amount: int) -> void:
@@ -282,6 +287,10 @@ func _emit_mana() -> void:
 
 
 func _strike() -> void:
+	var weapon := equipment.get_item(ItemData.Slot.WEAPON)
+	if weapon and weapon.ranged:
+		_fire(attack_power(), Color(0.85, 0.7, 0.45))
+		return
 	var center := global_position + DIR_VECTORS[facing] * attack_reach + BODY_CENTER
 	for node in get_tree().get_nodes_in_group(&"characters"):
 		var other := node as Character

@@ -13,5 +13,6 @@ icon = ExtResource("2")
 slot = 1
 layer_sheet = ExtResource("3")
 attack_anim = &"backslash"
+big_anims = Array[StringName]([&"slash", &"backslash", &"halfslash"])
 damage = 3
 price = 60

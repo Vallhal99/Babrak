@@ -12,5 +12,6 @@ description = "Keramická uzavřená přilba."
 icon = ExtResource("2")
 slot = 2
 layer_sheet = ExtResource("3")
+hides_hair = true
 defense = 4
 price = 120

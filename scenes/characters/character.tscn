@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/character/character.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/character/character_visual.gd" id="2"]
 [ext_resource type="Texture2D" path="res://assets/characters/hero/body/body.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/characters/hero/body/hair.png" id="4"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(16, 10)
@@ -18,6 +19,7 @@ shape = SubResource("1")
 [node name="Visual" type="Node2D" parent="."]
 script = ExtResource("2")
 body_sheet = ExtResource("3")
+hair_sheet = ExtResource("4")
 
 [node name="Light" type="PointLight2D" parent="."]
 position = Vector2(0, -40)
