@@ -211,3 +211,44 @@ def complete(layer, body, anims, modes, walk_rows, idle_row, force=False):
                 existing[:] = _over(existing, fitted)
                 added += 1
     return out, added
+
+
+# --- zbraň v ruce ve všech pózách -------------------------------------------------------------------
+def _shift(c: np.ndarray, dy: int, dx: int) -> np.ndarray:
+    out = np.zeros_like(c)
+    ys, xs = np.nonzero(c[..., 3])
+    ty, tx = ys + dy, xs + dx
+    ok = (ty >= 0) & (ty < CELL) & (tx >= 0) & (tx < CELL)
+    out[ty[ok], tx[ok]] = c[ys[ok], xs[ok]]
+    return out
+
+
+def carry(weapon: np.ndarray, body: np.ndarray, anims, fill, ref_order) -> int:
+    """Zbraň ve zdrojových animacích často chybí (stání, běh...). Do animací `fill` bez jediného pixelu zbraně přenese
+    zbraň z referenční pózy (první snímek první animace z `ref_order`, která ji má) posunutou za hlavou těla.
+
+    anims = {název: (řádek, snímků, směrů)}; fill = [(název, ref_směr_funkce)]. Mění `weapon` na místě, vrací počet buněk."""
+    def has(name, d):
+        row, frames, _ = anims[name]
+        return any(cell(weapon, row + d, f)[..., 3].any() for f in range(frames))
+    added = 0
+    for name, ref_dir in fill:
+        row, frames, dirs = anims[name]
+        if any(has(name, d) for d in range(dirs)):
+            continue
+        for d in range(dirs):
+            rd = ref_dir(d)
+            ref = next(((anims[r][0] + rd, cell(weapon, anims[r][0] + rd, 0)) for r in ref_order
+                        if cell(weapon, anims[r][0] + rd, 0)[..., 3].any()), None)
+            if ref is None:
+                continue
+            ref_body = cell(body, ref[0], 0)
+            t0, x0 = _head_box(ref_body)
+            for f in range(frames):
+                b = cell(body, row + d, f)
+                if not b[..., 3].any():
+                    continue
+                t1, x1 = _head_box(b)
+                cell(weapon, row + d, f)[:] = _shift(ref[1], int(round(t1 - t0)), int(round(x1 - x0)))
+                added += 1
+    return added

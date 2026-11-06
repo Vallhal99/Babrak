@@ -140,6 +140,10 @@ BASES = {"armed": armed, "plain": plain, "shirt": np.where(shirt_comp[..., 3:] >
 FILL = [(row, frames, dirs, (lambda d: d) if dirs == 4 else (lambda d: 2)) for name, (row, frames, dirs, _) in CARDINAL.items()]
 FILL.append((WALK_DIAG, ANIMS["walk_diag"][1], 4, lambda d: 0 if d < 2 else 2))
 
+# animace, ve kterých musí mít postava zbraň v ruce: (název, směr klidové pózy podle směru buňky)
+CARRY = [("idle", lambda d: d), ("combat", lambda d: d), ("walk", lambda d: d), ("run", lambda d: d), ("spellcast", lambda d: d),
+         ("hurt", lambda d: d), ("walk_diag", lambda d: 1 if d % 2 == 0 else 3), ("run_diag", lambda d: 1 if d % 2 == 0 else 3)]
+
 
 def trim(a: np.ndarray) -> np.ndarray:
     a = a.copy()
@@ -225,6 +229,9 @@ for it in ITEMS:
         main = comp if it["base"] == "none" else diff(comp, BASES[it["base"]])
     if it.get("fit"):
         main, _ = fit.complete(main, plain, FILL, it["fit"], range(WALK, WALK + 4), IDLE, it.get("force", False))
+    if weapon:
+        n = fit.carry(main, plain, {k: (v[0], v[1], v[2]) for k, v in ANIMS.items()}, CARRY, ("idle", "walk", "combat", "hurt", "spellcast", it["attack"]))
+        print(f"{it['id']}: zbraň v ruce doplněna do {n} buněk")
     big, big_anims = big_region(it) if weapon else (None, [])
     sheet = canvas(BIG_Y + (BIG_ROWS * BIG if big_anims else 0), W_BIG if big_anims else W)
     sheet[:BIG_Y, :W] = main

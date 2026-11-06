@@ -164,3 +164,5 @@ Text k vložení jako první zpráva:
 - Postava: `body.png` (bez zbraně, bez vlasů) + `hair.png`; zbraň vždy jako vrstva s vlastními animacemi; helma s `hides_hair` skryje vlasy. Katalog animací `AnimCatalog` (BIG = 192, BIG_Y = 3968, 8 směrů jen pro chůzi/běh, `pickup` experimentálně). Generuje `python3 tools/build_hero.py` (z kořene projektu; zdroje v `tools/source_hero/`).
 - Doplněné vybavení je algoritmické (přebarvení těla + přenos hlavy, `tools/hero_fit.py`), ne ručně kreslené; chybí opasek s mečem v animacích, kde ho zdroj nemá; sekera vyřazena; kouzelnický klobouk vlasy neskrývá.
 - Test: `tests/smoke_test.tscn` (SMOKE OK), screenshoty v `/tmp/claude-0/shot_*.png`.
+- Zbraň v ruce: zdrojové sheety zbraní (mimo meč) mají zbraň jen v útoku/chůzi; `hero_fit.carry` ji přenese do idle/combat/walk/run/spellcast/hurt a diagonál z referenční pózy podle pohybu hlavy.
+- Obchodník: `tools/build_merchant.py` z `tools/source_merchant/caba64.jpg` (pixel art 55×55 bloků) → `assets/characters/merchant/merchant.png`; sprite je ve všech buňkách (stojí čelem, bez vlasové vrstvy, bez vybavení).

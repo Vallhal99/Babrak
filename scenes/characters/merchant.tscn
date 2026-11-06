@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/characters/character.tscn" id="1"]
 [ext_resource type="Script" path="res://scripts/character/npc.gd" id="2"]
@@ -19,11 +19,15 @@
 [ext_resource type="Resource" path="res://data/items/plate.tres" id="i_plate"]
 [ext_resource type="Resource" path="res://data/items/gloves.tres" id="i_gloves"]
 
+[ext_resource type="Texture2D" path="res://assets/characters/merchant/merchant.png" id="m_body"]
+
 [node name="Merchant" instance=ExtResource("1")]
 script = ExtResource("2")
 display_name = "Obchodník"
 team = &"npc"
-tint = Color(1, 0.92, 0.7, 1)
 invulnerable = true
-start_items = Array[ExtResource("3")]([ExtResource("i_hood"), ExtResource("i_boots")])
 shop_stock = Array[ExtResource("3")]([ExtResource("i_sword"), ExtResource("i_longsword"), ExtResource("i_dagger"), ExtResource("i_blunt"), ExtResource("i_staff"), ExtResource("i_hood"), ExtResource("i_mail_coif"), ExtResource("i_close_helm"), ExtResource("i_wizard_hat"), ExtResource("i_shirt"), ExtResource("i_chainmail"), ExtResource("i_frock_coat"), ExtResource("i_plate"), ExtResource("i_boots"), ExtResource("i_gloves")])
+
+[node name="Visual" parent="." index="1"]
+body_sheet = ExtResource("m_body")
+hair_sheet = null

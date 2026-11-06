@@ -111,7 +111,7 @@ func _make_sprite() -> Sprite2D:
 
 
 func _set_layer(slot: int) -> void:
-	if slot == ItemData.Slot.NONE or not _sheets.has(slot):
+	if slot == ItemData.Slot.NONE or slot == HAIR or not _sheets.has(slot):
 		return
 	var item := _equipment.get_item(slot)
 	_sheets[slot] = item.layer_sheet if item else null
