@@ -118,6 +118,28 @@ func _ready() -> void:
 	for i in 28:
 		await get_tree().physics_frame
 	await _shot("/tmp/claude-0/shot_hud.png")
+	# luk: animace "shoot" vypustí šíp, který zraní nepřítele
+	hero.equipment.unequip_all(hero.inventory)
+	_check(hero.equipment.equip(ItemDB.get_item(&"bow"), hero.inventory), "equip luk")
+	e2.hp = e2.max_hp()
+	e2.global_position = hero.global_position + Vector2(100, 0)
+	hero.facing = AnimCatalog.Dir.RIGHT
+	hero.mana = 0.0
+	while hero._attacking:
+		await get_tree().physics_frame
+	hero._start_attack()
+	var arrows := 0
+	var seen := false
+	for i in 90:
+		await get_tree().physics_frame
+		for c in main.world.actors.get_children():
+			if c is Projectile and c.arrow:
+				seen = true
+				if arrows == 0:
+					await _shot("/tmp/claude-0/shot_bow.png")
+				arrows += 1
+	_check(seen, "luk vystřelil šíp")
+	_check(e2.hp < e2.max_hp(), "šíp zranil nepřítele (%d)" % e2.hp)
 	print("SMOKE OK")
 	get_tree().quit()
 
