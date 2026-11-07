@@ -62,7 +62,8 @@ ZONES = {  # název: (barva, terén, mix, profil, scatter, solid)
     "meadow": ("#5aa83a", "grass", [["grass_meadow", .25], ["flowers", .08]], "meadow",
                [{"tags": ["grass"], "density": .025, "min_dist": 16, "max_h": 50}, {"tags": ["flower"], "density": .014, "min_dist": 22, "max_h": 60},
                 {"tags": ["bush"], "density": .004, "min_dist": 70}, {"tags": ["tree"], "density": .0015, "min_dist": 160, "min_h": 110},
-                {"tags": ["rock"], "density": .0008, "min_dist": 90, "max_h": 80}], False),
+                {"tags": ["rock"], "density": .0008, "min_dist": 90, "max_h": 80}, {"tags": ["log", "stump"], "density": .0007, "min_dist": 100, "max_h": 80},
+               {"tags": ["mushroom", "fern"], "density": .004, "min_dist": 40}], False),
     "edge1": ("#4a9a3a", "grass", [["leaf_grass", .3], ["grass_dark", .2]], "meadow",
               [{"tags": ["tree"], "density": .03, "min_dist": 90, "min_h": 110}, {"tags": ["bush"], "density": .014, "min_dist": 45},
                {"tags": ["grass", "fern"], "density": .02, "min_dist": 18, "max_h": 50}], False),
@@ -80,15 +81,19 @@ ZONES = {  # název: (barva, terén, mix, profil, scatter, solid)
     "camp": ("#966466", "dirt", [["dirt_rock", .2]], "camp", [{"tags": ["grass"], "density": .01, "min_dist": 30, "max_h": 30}], False),
     "village": ("#8a9a5a", "grass", [["grass_meadow", .3], ["flowers", .06]], "village",
                 [{"tags": ["flowerbed"], "density": .004, "min_dist": 70}, {"tags": ["grass"], "density": .012, "min_dist": 20, "max_h": 40},
-                 {"tags": ["hay"], "density": .0025, "min_dist": 50}, {"tags": ["hedge"], "density": .0015, "min_dist": 90}], False),
+                 {"tags": ["hay"], "density": .0025, "min_dist": 50}, {"tags": ["hedge"], "density": .0015, "min_dist": 90},
+                 {"tags": ["barrel", "crate", "sack", "bucket", "pot"], "density": .009, "min_dist": 36, "max_h": 70}, {"tags": ["firewood", "log", "stump"], "density": .003, "min_dist": 50, "max_h": 70},
+                 {"ids": ["v_sud_a", "v_sud_b", "v_bedna", "v_zelenina_a", "v_zelenina_b", "v_klada"], "density": .006, "min_dist": 40}], False),
     "square": ("#a0a0a0", "cobble", [["dirt_rock", .08]], "village", [], False),
     "graveyard": ("#5a5a48", "mossy_ground", [["dry_grass", .3], ["dirt_rock", .1]], "village",
                   [{"ids": ["g_hrob_a", "g_hrob_b", "g_hrob_c", "g_kriz_a", "g_kriz_b", "g_kriz_c", "g_kriz_d"], "density": .06, "min_dist": 34},
                    {"ids": ["g_kamen_a", "g_kamen_b", "g_andel", "g_socha", "g_lavice", "g_rakev"], "density": .006, "min_dist": 60},
                    {"ids": ["g_mrtvy_strom_a", "g_mrtvy_strom_b", "g_mrtvy_strom_c", "g_mrtvy_strom_d", "g_mrtvy_strom_e", "g_mrtvy_strom_f"],
-                    "density": .012, "min_dist": 90}, {"ids": ["g_lampa_a", "g_lampa_b"], "density": .003, "min_dist": 120}], False),
+                    "density": .012, "min_dist": 90}, {"ids": ["g_lampa_a", "g_lampa_b"], "density": .003, "min_dist": 120}, {"tags": ["bones", "grave"], "density": .004, "min_dist": 50},
+                   {"ids": ["g_parez"], "density": .004, "min_dist": 50}], False),
     "yard": ("#8a6a40", "dirt", [["dirt_rock", .1], ["grass", .2]], "village",
-             [{"tags": ["hay"], "density": .01, "min_dist": 50}, {"tags": ["grass"], "density": .02, "min_dist": 20, "max_h": 30}], False),
+             [{"tags": ["hay"], "density": .01, "min_dist": 50}, {"tags": ["grass"], "density": .02, "min_dist": 20, "max_h": 30},
+             {"tags": ["barrel", "crate", "sack", "bucket", "pot"], "density": .08, "min_dist": 36, "max_h": 70}, {"tags": ["firewood", "log", "stump", "tool"], "density": .015, "min_dist": 45, "max_h": 70}], False),
     "court": ("#444455", "stone_dark", [["cobble", .3]], "forest", [{"tags": ["rock"], "density": .03, "min_dist": 50, "max_h": 80}], False),
     "mountain_edge": ("#787878", "rock", [["rock_dark", .35]], "forest",
                       [{"tags": ["boulder", "cliff"], "density": .05, "min_dist": 60, "dist": [1, 13]},
@@ -173,6 +178,8 @@ def place():
     # kostel a hřbitov
     for i, x, y in [("v_kostel", 262, 800), ("g_mauzoleum", 140, 805), ("g_krypta", 188, 800), ("g_brana", 215, 868), ("g_lampa_c", 170, 860),
                     ("g_andel", 235, 835), ("g_lavice", 130, 848)]: add(i, x, y)
+    # rozcestníky a cedule u cest
+    for i, x, y in [("doplnky_014", 455, 470), ("doplnky_006", 440, 625), ("doplnky_014", 665, 450), ("doplnky_006", 335, 700)]: add(i, x, y, 30)
     # vchod do dungeonu (zatím nefunkční, jen vzhled)
     add("okoli3_004", 590, 200, 60)
     return out

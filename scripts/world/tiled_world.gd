@@ -556,11 +556,13 @@ func _add_prop(ch: Chunk, id: String, tex: Texture2D, pos: Vector2, pr: Dictiona
 	var swayed: bool = pr.get("sway", id.begins_with("tree_"))
 	var body := PropFactory.build(tex, pos, collision, _tree_mat if swayed else null, pr.get("flip", false))
 	objects.add_child(body)
+	body.set_meta("prop_id", id)
 	if pr.get("shadow", true):
 		var sv := PropFactory.shadow_for(id, tex)
 		if pr.has("shadow_size"):
 			var q := String(pr.shadow_size).split(",")
 			sv = Vector2(float(q[0]), float(q[1]))
+		body.set_meta("shadow_size", sv)
 		var sh := Fx.shadow_sprite(sv.x, sv.y)
 		sh.position = pos + Vector2(sv.x * 0.18, -sv.y * 0.2)
 		_shadows.add_child(sh)

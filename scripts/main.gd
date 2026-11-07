@@ -17,6 +17,7 @@ const ENEMY_OFFSETS: Array[Vector2] = [Vector2(260, 40), Vector2(-120, 190)]
 
 var hero: Hero
 var merchant: Npc
+var _lab: LightingLab
 
 
 func _ready() -> void:
@@ -41,6 +42,17 @@ func _ready() -> void:
 	for offset in ENEMY_OFFSETS:
 		_spawn_enemy(world.start_position + offset)
 	started.emit()
+
+
+func _unhandled_key_input(e: InputEvent) -> void:
+	if e is InputEventKey and e.pressed and not e.echo and e.keycode == KEY_F2 and hero:
+		if _lab == null:
+			_lab = LightingLab.new()
+			add_child(_lab)
+			_lab.setup(world, hero)
+		else:
+			_lab.queue_free()
+			_lab = null
 
 
 func _spawn_enemy(pos: Vector2) -> void:

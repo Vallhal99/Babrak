@@ -2,7 +2,7 @@ class_name Hd2dWorld
 extends Node3D
 ## Herní svět v HD-2D (styl Octopath). Logika zůstává 2D (postavy žijí v `actors` ve 2D světě), vykreslení je 3D:
 ## země = vyrenderovaný 2D svět na rovině, props a každá postava = svislý sprite (billboard) se skutečnými stíny,
-## kamera nakloněná s perspektivou, 3D světla, glow, mlha, tilt-shift. Dny: 0 den, 1 soumrak, 2 noc.
+## kamera nakloněná s perspektivou, 3D světla, glow, mlha, tilt-shift. Osvětlení řídí LightingProfile podle hodiny (set_time).
 ##
 ## Postava / předmět / projektil přidaný do `actors` dostane vlastní SubViewport a billboard (viditelnost
 ## přes samostatnou 2D vrstvu, takže se nevykreslují do země).
@@ -15,6 +15,7 @@ const SIZES := {"character": [192, 70.0], "small": [128, 32.0]}  # [velikost vie
 const MAX_LAYERS := 19           # bit 0 = země, bity 1.. = jednotlivé billboardy
 const TILT := 44.0                   # náklon spritů k+kameře (°), plný náklon = kolmo na pohled
 const UP := Vector3(0, 0.7193, -0.6947)  # směr „nahoru“ naklonného spritu (cos/sin TILT)
+const STAGE_HOURS := [12.0, 19.0, 22.0]   # den, soumrak, noc
 const HERO_FEET := 70.0               # px nad zemí, kam míří střed kamery hrdinova viewportu
 
 var focus: Node2D                      ## co kamera sleduje (hrdina)
@@ -26,11 +27,19 @@ var _ground_vp: SubViewport
 var _cam: Camera3D
 var _sun: DirectionalLight3D
 var _env: Environment
-var _lights: Array[OmniLight3D] = []
+var _lights: Array[OmniLight3D] = []         # táborák
 var _flames: Array[CPUParticles3D] = []
+var profile: LightingProfile
+var hour := 12.0                       ## denní doba 0–24 (řídí set_time)
+var day_length := 0.0                  ## sekundy reálného času na 24 h (0 = čas stojí)
 var _stage := 0
-var _cur := [0.0, 0.0]
-var _light_base := 2.0
+var _post: ShaderMaterial
+var _attr: CameraAttributesPractical
+var _cloud_mat: ShaderMaterial
+var _contact: MultiMeshInstance3D
+var _motes: CPUParticles3D
+var _lamps: Array[OmniLight3D] = []
+var _cur: Dictionary = {}
 var _is_built := false
 var _tween: Tween
 var _free_layers: Array[int] = []
@@ -38,6 +47,7 @@ var _billboards: Dictionary = {}       # Node2D -> [SubViewport, Camera2D, Sprit
 
 
 func _ready() -> void:
+	profile = LightingProfile.load_file()
 	for i in range(MAX_LAYERS, 0, -1):
 		_free_layers.append(i)
 	_ground_vp = SubViewport.new()
@@ -60,6 +70,7 @@ func _ready() -> void:
 	actors.child_entered_tree.connect(_on_actor_added)
 	root2d.add_child(actors)
 	_build_environment()
+	apply_quality()
 	await _wait_world()
 	var rect := tiled.bounds_px
 	center.position = rect.get_center()
@@ -73,7 +84,7 @@ func _ready() -> void:
 	_is_built = true
 	for a in actors.get_children():
 		_on_actor_added(a)
-	_apply_stage(0.0, 0.0)
+	set_time(hour)
 	built.emit()
 
 
@@ -159,6 +170,7 @@ func _build_environment() -> void:
 	_env.fog_density = 0.006
 	we.environment = _env
 	var attr := CameraAttributesPractical.new()   # hloubka ostrosti (Forward+/Mobile; Compatibility ji ignoruje)
+	_attr = attr
 	attr.dof_blur_far_enabled = true
 	attr.dof_blur_far_distance = 26.0
 	attr.dof_blur_far_transition = 14.0
@@ -174,6 +186,9 @@ func _build_environment() -> void:
 	_sun.directional_shadow_max_distance = 60.0
 	_sun.shadow_bias = 0.03
 	_sun.shadow_normal_bias = 0.6
+	_sun.shadow_blur = 1.6
+	_sun.light_angular_distance = 0.6          # měkké stíny (Forward+/Mobile)
+	_sun.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS
 	add_child(_sun)
 	_cam = Camera3D.new()
 	_cam.fov = 26.0
@@ -192,6 +207,7 @@ func _build_environment() -> void:
 	m.set_shader_parameter("tilt_width", 0.2)
 	m.set_shader_parameter("vignette", 0.35)
 	r.material = m
+	_post = m
 	layer.add_child(r)
 
 
@@ -214,6 +230,7 @@ func _build_ground(rect: Rect2) -> void:
 
 func _build_props() -> void:
 	var n := 0
+	var contacts: Array[Transform3D] = []
 	for c in tiled.objects.get_children():
 		if not (c is Node2D):
 			continue
@@ -237,6 +254,22 @@ func _build_props() -> void:
 			p.position = Vector3(gp.x * S, 0, gp.y * S) + UP * h * 0.5 * S
 			add_child(p)
 			n += 1
+		var pid := String(c.get_meta("prop_id", ""))
+		if c.has_meta("shadow_size"):
+			var sv: Vector2 = c.get_meta("shadow_size")
+			var gp2 := (c as Node2D).global_position
+			contacts.append(Transform3D(Basis.from_scale(Vector3(sv.x * S * 1.5, 1.0, sv.y * S * 2.4)), Vector3(gp2.x * S + sv.x * S * 0.1, 0.02, gp2.y * S)))
+		if "lampa" in pid and spr and spr.texture:
+			var gp3 := (c as Node2D).global_position
+			var lamp := OmniLight3D.new()
+			lamp.position = Vector3(gp3.x * S, spr.texture.get_height() * S * 0.8, gp3.y * S + 0.3)
+			lamp.light_color = Color(1.0, 0.78, 0.45)
+			lamp.omni_range = 6.0
+			lamp.omni_attenuation = 1.8
+			lamp.light_energy = 0.0
+			lamp.visible = false
+			add_child(lamp)
+			_lamps.append(lamp)
 		if c is Campfire:
 			var gp := (c as Node2D).global_position
 			var o := OmniLight3D.new()
@@ -251,7 +284,96 @@ func _build_props() -> void:
 			add_child(fl)
 			_flames.append(fl)
 		c.visible = false
-	print("HD-2D: ", n, " spritů")
+	_build_contact_shadows(contacts)
+	_build_atmosphere()
+	print("HD-2D: ", n, " spritů, ", _lamps.size(), " lamp")
+
+
+## Měkké „okluzní“ stíny pod props (falešné AO): jeden MultiMesh, průhledná tmavá skvrna s měkkým okrajem.
+func _build_contact_shadows(list: Array[Transform3D]) -> void:
+	var g := Gradient.new()
+	g.colors = PackedColorArray([Color(0.04, 0.03, 0.09, 0.62), Color(0.04, 0.03, 0.09, 0.0)])
+	g.offsets = PackedFloat32Array([0.0, 1.0])
+	var tex := GradientTexture2D.new()
+	tex.gradient = g
+	tex.fill = GradientTexture2D.FILL_RADIAL
+	tex.fill_from = Vector2(0.5, 0.5)
+	tex.fill_to = Vector2(1.0, 0.5)
+	tex.width = 64
+	tex.height = 64
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.albedo_texture = tex
+	mat.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_DISABLED
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	var q := QuadMesh.new()
+	q.orientation = PlaneMesh.FACE_Y
+	q.size = Vector2.ONE
+	q.material = mat
+	var mm := MultiMesh.new()
+	mm.transform_format = MultiMesh.TRANSFORM_3D
+	mm.mesh = q
+	mm.instance_count = list.size()
+	for i in list.size():
+		mm.set_instance_transform(i, list[i])
+	_contact = MultiMeshInstance3D.new()
+	_contact.multimesh = mm
+	_contact.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(_contact)
+	_contact.visible = profile.quality.contact_shadows
+
+
+## Stíny plovoucích mraků po zemi a poletující prach / světlušky kolem hrdiny.
+func _build_atmosphere() -> void:
+	var noise := FastNoiseLite.new()
+	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
+	noise.frequency = 0.01
+	noise.fractal_octaves = 3
+	var nt := NoiseTexture2D.new()
+	nt.noise = noise
+	nt.seamless = true
+	nt.width = 512
+	nt.height = 512
+	var sm := ShaderMaterial.new()
+	sm.shader = load("res://shaders/cloud_shadow3d.gdshader")
+	sm.set_shader_parameter("noise_tex", nt)
+	sm.set_shader_parameter("strength", 0.0)
+	_cloud_mat = sm
+	var plane := MeshInstance3D.new()
+	var pm := PlaneMesh.new()
+	pm.size = tiled.bounds_px.size * S
+	plane.mesh = pm
+	plane.material_override = sm
+	plane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	plane.position = Vector3(tiled.bounds_px.get_center().x * S, 0.04, tiled.bounds_px.get_center().y * S)
+	add_child(plane)
+	_motes = CPUParticles3D.new()
+	_motes.amount = 90
+	_motes.lifetime = 7.0
+	_motes.preprocess = 7.0
+	_motes.emission_shape = CPUParticles3D.EMISSION_SHAPE_BOX
+	_motes.emission_box_extents = Vector3(14, 2.5, 10)
+	_motes.direction = Vector3(0.3, 0.2, 0.1)
+	_motes.spread = 180.0
+	_motes.initial_velocity_min = 0.05
+	_motes.initial_velocity_max = 0.35
+	_motes.gravity = Vector3.ZERO
+	_motes.scale_amount_min = 0.5
+	_motes.scale_amount_max = 1.3
+	var mq := QuadMesh.new()
+	mq.size = Vector2(0.07, 0.07)
+	var mm2 := StandardMaterial3D.new()
+	mm2.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mm2.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	mm2.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	mm2.albedo_color = Color(1.0, 0.95, 0.55, 0.9)
+	mm2.vertex_color_use_as_albedo = false
+	mq.material = mm2
+	_motes.mesh = mq
+	_motes.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(_motes)
+	_apply(_cur if not _cur.is_empty() else profile.sample(hour))
 
 
 func _flame(pos: Vector3) -> CPUParticles3D:
@@ -303,42 +425,96 @@ func _process(delta: float) -> void:
 		var offs := Vector3(0, 17.0, 14.0)
 		_cam.position = _cam.position.lerp(target + offs, clampf(delta * 5.0, 0.0, 1.0))
 		_cam.look_at(_cam.position - offs)
+	if day_length > 0.0:
+		set_time(hour + delta * 24.0 / day_length)
 	var t := Time.get_ticks_msec() / 1000.0
+	var fire: float = _cur.get("fire_energy", 2.0)
 	for o in _lights:
-		o.light_energy = o.light_energy * 0.9 + (_light_base * (1.0 + 0.12 * sin(t * 17.0) * sin(t * 6.3))) * 0.1
+		o.light_energy = fire * (1.0 + 0.12 * sin(t * 17.0) * sin(t * 6.3))
+	if _motes and focus:
+		_motes.position = Vector3(focus.global_position.x * S, 1.6, focus.global_position.y * S)
 
 
-func _apply_stage(night: float, dusk: float) -> void:
-	var day_col := Color(1.0, 0.96, 0.88)
-	var dusk_col := Color(1.0, 0.55, 0.3)
-	var night_col := Color(0.35, 0.45, 0.85)
-	_sun.light_color = day_col.lerp(dusk_col, dusk).lerp(night_col, night)
-	_sun.light_energy = lerpf(lerpf(0.85, 0.8, dusk), 0.25, night)
-	_sun.rotation_degrees.x = lerpf(-52.0, -16.0, dusk) + night * -30.0
-	_env.ambient_light_color = Color(0.62, 0.7, 0.85).lerp(Color(0.7, 0.5, 0.5), dusk).lerp(Color(0.12, 0.16, 0.34), night)
-	_env.ambient_light_energy = lerpf(0.5, 0.4, maxf(dusk, night))
-	_env.background_color = Color(0.55, 0.7, 0.85).lerp(Color(0.95, 0.6, 0.4), dusk).lerp(Color(0.05, 0.07, 0.15), night)
-	_env.fog_light_color = _env.background_color
-	_env.glow_intensity = lerpf(0.5, 1.2, maxf(dusk, night))
-	_env.glow_hdr_threshold = lerpf(1.0, 0.7, night)
-	_light_base = lerpf(0.5, 4.0, maxf(dusk * 0.6, night))
+## Nastaví denní dobu (0–24 h) a promítne ji do světel, prostředí a post-processingu.
+func set_time(h: float) -> void:
+	hour = fposmod(h, 24.0)
+	_cur = profile.sample(hour)
+	_apply(_cur)
+
+
+func _apply(v: Dictionary) -> void:
+	_sun.light_color = v.sun_color
+	_sun.light_energy = v.sun_energy
+	_sun.shadow_opacity = v.shadow_opacity
+	_sun.rotation_degrees = Vector3(-v.sun_elev, v.sun_azim, 0.0)
+	_env.ambient_light_color = v.ambient_color
+	_env.ambient_light_energy = v.ambient_energy
+	_env.background_color = v.sky_color
+	_env.fog_light_color = v.fog_color
+	_env.fog_density = v.fog_density
+	_env.glow_intensity = v.glow_intensity
+	_env.glow_hdr_threshold = v.glow_threshold
+	var night: float = clampf(v.lamp_energy / 3.0, 0.0, 1.0)
 	for f in _flames:
-		f.visible = maxf(dusk, night) > 0.15
+		f.visible = night > 0.12
+	for l in _lamps:
+		l.light_energy = v.lamp_energy
+		l.visible = v.lamp_energy > 0.05
+	if _cloud_mat:
+		_cloud_mat.set_shader_parameter("strength", v.cloud_shadow)
+	if _motes:
+		(_motes.mesh.material as StandardMaterial3D).albedo_color.a = clampf(v.fireflies, 0.0, 1.0)
+		_motes.emitting = v.fireflies > 0.02
+	if _post:
+		_post.set_shader_parameter("tilt_px", v.tilt_px)
+		_post.set_shader_parameter("tilt_width", v.tilt_width)
+		_post.set_shader_parameter("bloom_strength", v.bloom)
+		_post.set_shader_parameter("saturation", v.saturation)
+		_post.set_shader_parameter("contrast", v.contrast)
+		_post.set_shader_parameter("gain", v.gain)
+		_post.set_shader_parameter("shadow_tint", v.shadow_tint)
+		_post.set_shader_parameter("vignette", v.vignette)
 
-## Nastaví denní dobu (0 den, 1 soumrak, 2 noc); plynule, nebo hned.
-func set_stage(stage: int, instant := false) -> void:
-	_stage = stage
-	var goal: Array = [[0.0, 0.0], [0.0, 1.0], [1.0, 0.0]][stage]
+
+## Kvalita a efekty z profile.quality (SSAO, DOF, objemová mlha, vzdálenost stínů, kontaktní stíny).
+func apply_quality() -> void:
+	var q := profile.quality
+	_env.ssao_enabled = q.ssao
+	_env.ssao_radius = q.ssao_radius
+	_env.ssao_intensity = q.ssao_intensity
+	_env.volumetric_fog_enabled = q.volumetric_fog
+	_env.volumetric_fog_density = q.volumetric_density
+	_attr.dof_blur_far_enabled = q.dof
+	_attr.dof_blur_near_enabled = q.dof
+	_attr.dof_blur_amount = q.dof_amount
+	_sun.directional_shadow_max_distance = q.shadow_distance
+	if _contact:
+		_contact.visible = q.contact_shadows
+
+
+## Plynulý přechod na denní dobu `to` (vždy dopředu, přes půlnoc), nebo hned.
+func transition_to(to: float, instant := false, duration := 1.6) -> void:
 	if _tween:
 		_tween.kill()
 	if instant:
-		_cur = goal
-		_apply_stage(goal[0], goal[1])
+		set_time(to)
 		return
-	var from := _cur
+	var from := hour
+	var goal := to if to >= from else to + 24.0
 	_tween = create_tween()
-	_tween.tween_method(func(k: float) -> void: _apply_stage(lerpf(from[0], goal[0], k), lerpf(from[1], goal[1], k)), 0.0, 1.0, 1.5)
-	_tween.finished.connect(func() -> void: _cur = goal)
+	_tween.tween_method(set_time, from, goal, duration)
+
+
+## Okamžitě přesune kameru na sledovaný cíl (po teleportu).
+func snap_camera() -> void:
+	if focus:
+		var hp := focus.global_position
+		_cam.position = Vector3(hp.x * S, 0.6, hp.y * S) + Vector3(0, 17.0, 14.0)
+
+
+func set_stage(stage: int, instant := false) -> void:
+	_stage = stage
+	transition_to(STAGE_HOURS[stage], instant)
 
 
 func cycle_stage() -> void:

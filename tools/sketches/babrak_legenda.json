@@ -107,6 +107,23 @@
      "density": 0.0008,
      "min_dist": 90,
      "max_h": 80
+    },
+    {
+     "tags": [
+      "log",
+      "stump"
+     ],
+     "density": 0.0007,
+     "min_dist": 100,
+     "max_h": 80
+    },
+    {
+     "tags": [
+      "mushroom",
+      "fern"
+     ],
+     "density": 0.004,
+     "min_dist": 40
     }
    ],
    "mix": [
@@ -358,6 +375,40 @@
      ],
      "density": 0.0015,
      "min_dist": 90
+    },
+    {
+     "tags": [
+      "barrel",
+      "crate",
+      "sack",
+      "bucket",
+      "pot"
+     ],
+     "density": 0.009,
+     "min_dist": 36,
+     "max_h": 70
+    },
+    {
+     "tags": [
+      "firewood",
+      "log",
+      "stump"
+     ],
+     "density": 0.003,
+     "min_dist": 50,
+     "max_h": 70
+    },
+    {
+     "ids": [
+      "v_sud_a",
+      "v_sud_b",
+      "v_bedna",
+      "v_zelenina_a",
+      "v_zelenina_b",
+      "v_klada"
+     ],
+     "density": 0.006,
+     "min_dist": 40
     }
    ],
    "mix": [
@@ -430,6 +481,21 @@
      ],
      "density": 0.003,
      "min_dist": 120
+    },
+    {
+     "tags": [
+      "bones",
+      "grave"
+     ],
+     "density": 0.004,
+     "min_dist": 50
+    },
+    {
+     "ids": [
+      "g_parez"
+     ],
+     "density": 0.004,
+     "min_dist": 50
     }
    ],
    "mix": [
@@ -461,6 +527,29 @@
      "density": 0.02,
      "min_dist": 20,
      "max_h": 30
+    },
+    {
+     "tags": [
+      "barrel",
+      "crate",
+      "sack",
+      "bucket",
+      "pot"
+     ],
+     "density": 0.08,
+     "min_dist": 36,
+     "max_h": 70
+    },
+    {
+     "tags": [
+      "firewood",
+      "log",
+      "stump",
+      "tool"
+     ],
+     "density": 0.015,
+     "min_dist": 45,
+     "max_h": 70
     }
    ],
    "mix": [
@@ -769,6 +858,30 @@
    "id": "g_lavice",
    "x": 25.0,
    "y": 128.0
+  },
+  {
+   "id": "doplnky_014",
+   "x": 79.17,
+   "y": 65.0,
+   "r": 30
+  },
+  {
+   "id": "doplnky_006",
+   "x": 76.67,
+   "y": 90.83,
+   "r": 30
+  },
+  {
+   "id": "doplnky_014",
+   "x": 114.17,
+   "y": 61.67,
+   "r": 30
+  },
+  {
+   "id": "doplnky_006",
+   "x": 59.17,
+   "y": 103.33,
+   "r": 30
   },
   {
    "id": "okoli3_004",
