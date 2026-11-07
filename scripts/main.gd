@@ -41,10 +41,13 @@ func _ready() -> void:
 		get_tree().reload_current_scene())
 	for offset in ENEMY_OFFSETS:
 		_spawn_enemy(world.start_position + offset)
+	world.fx.ui_nodes = [_panel, _shop]
 	started.emit()
 
 
 func _unhandled_key_input(e: InputEvent) -> void:
+	if e is InputEventKey and e.pressed and not e.echo and e.keycode == KEY_F3 and world.fx:
+		print("Počasí: ", world.fx.cycle_weather())
 	if e is InputEventKey and e.pressed and not e.echo and e.keycode == KEY_F2 and hero:
 		if _lab == null:
 			_lab = LightingLab.new()

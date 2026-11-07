@@ -154,6 +154,17 @@ def build():
     img = np.zeros((H, W, 3), np.uint8)
     for n, i in idx.items(): img[z == i] = [int(ZONES[n][0][k:k + 2], 16) for k in (1, 3, 5)]
     Image.fromarray(img).save(os.path.join(HERE, "babrak.png"))
+    # masky pro hru (1 px = 1 dlaždice): R = voda (255 hluboká, 170 mělká), G = nálada oblasti (barevný grading),
+    # B = vlhkost břehu (louže, mokrý písek)
+    mood = {"forest": 1, "edge1": 1, "edge2": 1, "village": 2, "square": 2, "yard": 2, "path": 2, "camp": 2, "graveyard": 3,
+            "mountain_edge": 4, "mountain_deep": 4, "court": 4}
+    m = np.zeros((H, W, 3), np.uint8)
+    m[..., 0] = np.where(z == idx["deep_water"], 255, np.where(z == idx["water"], 170, 0))
+    for n, v in mood.items(): m[z == idx[n], 1] = v * 50
+    wet = dist_to(np.isin(z, [idx["deep_water"], idx["water"]]))
+    m[..., 2] = np.clip((1.0 - wet / 6.0) * 255, 0, 255).astype(np.uint8)
+    out = os.path.join(HERE, "..", "..", "data", "world", "babrak", "zones.png")
+    Image.fromarray(m).save(out)
     return names
 
 

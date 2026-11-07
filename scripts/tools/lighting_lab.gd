@@ -93,7 +93,23 @@ func _build_quality(box: VBoxContainer) -> void:
 	l.text = "— Kvalita (Forward+/Mobile) —"
 	l.add_theme_color_override("font_color", Color(1, 0.85, 0.5))
 	box.add_child(l)
-	for q in [["ssao", "SSAO (okluze)"], ["dof", "Hloubka ostrosti"], ["volumetric_fog", "Objemová mlha"], ["contact_shadows", "Kontaktní stíny props"]]:
+	var presets := HBoxContainer.new()
+	for pn in LightingProfile.PRESETS:
+		presets.add_child(_button(pn, func() -> void:
+			world.profile.quality.merge(LightingProfile.PRESETS[pn], true)
+			world.apply_quality()
+			_rebuild_panel()))
+	box.add_child(presets)
+	var wl := Label.new()
+	wl.text = "Počasí (F3 přepíná):"
+	box.add_child(wl)
+	var wrow := HFlowContainer.new()
+	for wn in WorldFx.WEATHER_ORDER:
+		wrow.add_child(_button(wn, func() -> void: world.fx.set_weather(wn)))
+	box.add_child(wrow)
+	for q in [["ssao", "SSAO (okluze)"], ["ssil", "SSIL (odražené světlo)"], ["dof", "Hloubka ostrosti"], ["volumetric_fog", "Objemová mlha"],
+			["contact_shadows", "Kontaktní stíny props"], ["shafts", "Světelné paprsky"], ["sway", "Vítr na rostlinách"],
+			["ambient_life", "Ptáci, motýli, listí, kouř"], ["foreground", "Listí v popředí"]]:
 		var c := CheckBox.new()
 		c.text = q[1]
 		c.button_pressed = world.profile.quality[q[0]]
@@ -105,6 +121,11 @@ func _build_quality(box: VBoxContainer) -> void:
 		box.add_child(_slider_row(q[1], q[2], q[3], (q[3] - q[2]) / 200.0, float(world.profile.quality[q[0]]), func(v: float) -> void:
 			world.profile.quality[q[0]] = v
 			world.apply_quality()))
+
+
+func _rebuild_panel() -> void:
+	_panel.queue_free()
+	setup(world, hero)
 
 
 func _button(text: String, cb: Callable) -> Button:

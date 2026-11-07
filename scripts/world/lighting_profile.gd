@@ -31,10 +31,27 @@ const PARAMS := [
 	["gain", "Barva světel (grading)", "Obraz", "color"],
 	["shadow_tint", "Barva stínů (grading)", "Obraz", "color"],
 	["vignette", "Vinětace", "Obraz", 0.0, 1.0, 0.01],
+	["grain", "Filmové zrno", "Obraz", 0.0, 1.0, 0.01],
+	["chroma", "Chromatická aberace", "Obraz", 0.0, 1.0, 0.01],
+	["lut_mix", "Síla barevné nálady oblasti (LUT)", "Obraz", 0.0, 1.0, 0.01],
+	["shafts", "Světelné paprsky (god rays)", "Atmosféra", 0.0, 1.0, 0.01],
+	["wind", "Vítr", "Atmosféra", 0.0, 1.0, 0.01],
+	["wetness", "Mokrost země (louže)", "Atmosféra", 0.0, 1.0, 0.01],
+	["window_glow", "Svítící okna domů", "Světla", 0.0, 2.0, 0.02],
 ]
+const DEFAULTS := {"shafts": 0.2, "wind": 0.3, "wetness": 0.0, "window_glow": 0.0, "grain": 0.2, "chroma": 0.2, "lut_mix": 0.7}
 ## Kvalita/efekty (jen Forward+/Mobile umí SSAO, DOF, objemovou mlhu; Compatibility je ignoruje)
-const QUALITY := {"ssao": true, "ssao_radius": 1.2, "ssao_intensity": 1.6, "dof": true, "dof_amount": 0.08,
-	"volumetric_fog": false, "volumetric_density": 0.012, "contact_shadows": true, "shadow_distance": 60.0}
+const QUALITY := {"ssao": true, "ssao_radius": 1.2, "ssao_intensity": 1.6, "ssil": false, "dof": true, "dof_amount": 0.08,
+	"volumetric_fog": false, "volumetric_density": 0.012, "contact_shadows": true, "shadow_distance": 60.0,
+	"sway": true, "particles": 1.0, "foreground": true, "ambient_life": true, "prop_range": 90.0, "shafts": true}
+## Přednastavené úrovně kvality (panel F2 / nastavení)
+const PRESETS := {
+	"Nízká": {"ssao": false, "ssil": false, "dof": false, "volumetric_fog": false, "contact_shadows": false, "shadow_distance": 30.0, "sway": false,
+		"particles": 0.3, "foreground": false, "ambient_life": false, "prop_range": 45.0, "shafts": false},
+	"Střední": {"ssao": true, "ssil": false, "dof": true, "volumetric_fog": false, "contact_shadows": true, "shadow_distance": 45.0, "sway": true,
+		"particles": 0.6, "foreground": true, "ambient_life": true, "prop_range": 70.0, "shafts": true},
+	"Vysoká": {"ssao": true, "ssil": true, "dof": true, "volumetric_fog": true, "contact_shadows": true, "shadow_distance": 70.0, "sway": true,
+		"particles": 1.0, "foreground": true, "ambient_life": true, "prop_range": 110.0, "shafts": true}}
 
 var keys: Array = []
 var quality: Dictionary = QUALITY.duplicate()
@@ -46,6 +63,10 @@ static func load_file(path := PATH) -> LightingProfile:
 	if d is Dictionary:
 		p.keys = d.get("keys", [])
 		p.quality.merge(d.get("quality", {}), true)
+		for k in p.keys:
+			for q in PARAMS:
+				if not k.has(q[0]):
+					k[q[0]] = DEFAULTS.get(q[0], "#ffffff" if q[3] is String else 0.0)
 	p.keys.sort_custom(func(a, b): return float(a.hour) < float(b.hour))
 	return p
 

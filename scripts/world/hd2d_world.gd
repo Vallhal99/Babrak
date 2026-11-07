@@ -34,6 +34,13 @@ var hour := 12.0                       ## denní doba 0–24 (řídí set_time)
 var day_length := 0.0                  ## sekundy reálného času na 24 h (0 = čas stojí)
 var _stage := 0
 var _post: ShaderMaterial
+var fx: WorldFx                       ## počasí, nálada oblasti, ambientní život
+var weather_cover := 0.0              ## 0 jasno … 1 zataženo (tlumí slunce a paprsky), nastavuje WorldFx
+var _ground_mat: ShaderMaterial
+var _noise_tex: Texture2D
+var _prop_mats: Array = []            # [ShaderMaterial, síla pohupování]
+var _glow_cache: Dictionary = {}
+var fx_chimneys: Array = []           # [id, pata (px), velikost textury] – komíny pro kouř
 var _attr: CameraAttributesPractical
 var _cloud_mat: ShaderMaterial
 var _contact: MultiMeshInstance3D
@@ -47,6 +54,7 @@ var _billboards: Dictionary = {}       # Node2D -> [SubViewport, Camera2D, Sprit
 
 
 func _ready() -> void:
+	WorldFx.register_globals()
 	profile = LightingProfile.load_file()
 	for i in range(MAX_LAYERS, 0, -1):
 		_free_layers.append(i)
@@ -81,7 +89,14 @@ func _ready() -> void:
 	_ground_vp.add_child(gcam)
 	_build_ground(rect)
 	_build_props()
+	fx = WorldFx.new()
+	fx.name = "Fx"
+	fx.world = self
+	add_child(fx)
 	_is_built = true
+	fx.build()
+	for e in fx_chimneys:
+		fx.add_chimney(e[0], e[1], e[2])
 	for a in actors.get_children():
 		_on_actor_added(a)
 	set_time(hour)
@@ -214,15 +229,19 @@ func _build_environment() -> void:
 func _build_ground(rect: Rect2) -> void:
 	# vlastní hrdina a props se do země nevykreslují (props jsou ve 3D)
 	tiled.objects.visible = false
-	_ground_vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	_ground_vp.render_target_update_mode = SubViewport.UPDATE_ONCE   # svět je celý načtený; dál se nepřekresluje
 	var mi := MeshInstance3D.new()
 	var pm := PlaneMesh.new()
 	pm.size = rect.size * S
 	mi.mesh = pm
-	var mat := StandardMaterial3D.new()
-	mat.albedo_texture = _ground_vp.get_texture()
-	mat.roughness = 1.0
-	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	var mat := ShaderMaterial.new()
+	mat.shader = load("res://shaders/ground3d.gdshader")
+	mat.set_shader_parameter("ground_tex", _ground_vp.get_texture())
+	if ResourceLoader.exists(WorldFx.ZONES_PATH):
+		mat.set_shader_parameter("zones_tex", load(WorldFx.ZONES_PATH))
+	mat.set_shader_parameter("noise_tex", noise_texture())
+	mat.set_shader_parameter("world_size", rect.size * S)
+	_ground_mat = mat
 	mi.material_override = mat
 	mi.position = Vector3(rect.get_center().x * S, 0, rect.get_center().y * S)
 	add_child(mi)
@@ -238,23 +257,35 @@ func _build_props() -> void:
 		for s in c.find_children("*", "Sprite2D", true, false):
 			spr = s
 			break
+		var pid := String(c.get_meta("prop_id", ""))
 		if spr and spr.texture:
 			var p := Sprite3D.new()
 			p.texture = spr.texture
 			p.pixel_size = S
-			p.flip_h = spr.flip_h
+			var gp := (c as Node2D).global_position
+			var rnd := _hash01(gp)                       # variace: každá instance trochu jiná (zrcadlení, velikost, barva)
+			var natural := _sway_of(pid) > 0.0
+			p.flip_h = spr.flip_h != (natural and rnd > 0.5)
+			var sc := 1.0 + ((rnd * 7.0) - floorf(rnd * 7.0) - 0.5) * 0.16 if natural else 1.0
+			p.scale = Vector3(sc, sc, 1.0)
 			p.rotation_degrees.x = -TILT
 			p.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 			p.alpha_scissor_threshold = 0.5
 			p.shaded = true
 			p.double_sided = true
 			p.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+			p.material_override = _prop_material(spr.texture, pid, rnd, natural)
 			var h := float(spr.texture.get_height())
-			var gp := (c as Node2D).global_position
-			p.position = Vector3(gp.x * S, 0, gp.y * S) + UP * h * 0.5 * S
+			p.position = Vector3(gp.x * S, 0, gp.y * S) + UP * h * 0.5 * S * sc
+			var vr: float = profile.quality.get("prop_range", 90.0)
+			if natural and h < 90.0:
+				p.visibility_range_end = vr * 0.6    # drobnosti se ve dálce vypínají (výkon)
+				p.visibility_range_end_margin = 4.0
+				p.visibility_range_fade_mode = GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
 			add_child(p)
 			n += 1
-		var pid := String(c.get_meta("prop_id", ""))
+			if pid.begins_with("v_"):
+				fx_chimneys.append([pid, gp, Vector2(spr.texture.get_size())])
 		if c.has_meta("shadow_size"):
 			var sv: Vector2 = c.get_meta("shadow_size")
 			var gp2 := (c as Node2D).global_position
@@ -287,6 +318,119 @@ func _build_props() -> void:
 	_build_contact_shadows(contacts)
 	_build_atmosphere()
 	print("HD-2D: ", n, " spritů, ", _lamps.size(), " lamp")
+
+
+## Deterministické „náhodné“ číslo 0–1 z pozice (stejný svět = stejné variace).
+func _hash01(p: Vector2) -> float:
+	return fposmod(sin(p.x * 12.9898 + p.y * 78.233) * 43758.5453, 1.0)
+
+
+## Jak moc se objekt pohupuje ve větru (0 = pevný): stromy, keře, tráva, kvítí.
+func _sway_of(pid: String) -> float:
+	var id := pid.to_lower()
+	for k in ["trs", "stéblo", "trav", "kapradí", "kvít", "květ", "kytic", "levand", "růž", "rostlin", "cibul"]:
+		if k in id:
+			return 1.0
+	for k in ["keř", "keří", "plot"]:
+		if k in id:
+			return 0.55
+	for k in ["strom", "smrk", "dub", "akác", "cypř", "koruna", "lián"]:
+		if k in id:
+			return 0.5
+	return 0.0
+
+
+func _prop_material(tex: Texture2D, pid: String, rnd: float, natural: bool) -> ShaderMaterial:
+	var m := ShaderMaterial.new()
+	m.shader = load("res://shaders/prop3d.gdshader")
+	m.set_shader_parameter("tex", tex)
+	m.set_shader_parameter("glow_tex", _window_mask(tex, pid))
+	_prop_mats.append([m, _sway_of(pid)])
+	m.set_shader_parameter("sway", _sway_of(pid) if profile.quality.get("sway", true) else 0.0)
+	m.set_shader_parameter("phase", rnd * 40.0)
+	var v := (rnd * 13.0) - floorf(rnd * 13.0)
+	var t := Vector3(1, 1, 1)
+	if natural:   # odstín listí a světlost lehce kolísá
+		t = Vector3(0.93 + v * 0.12, 0.95 + (1.0 - v) * 0.08, 0.92 + v * 0.06)
+	m.set_shader_parameter("tint", t)
+	return m
+
+
+## Maska svítících oken: modré/tyrkysové sklo v textuře budovy (+ oranžové žhnutí kovárny). Ostatní props = prázdná.
+func _window_mask(tex: Texture2D, pid: String) -> Texture2D:
+	if _glow_cache.has(tex):
+		return _glow_cache[tex]
+	var result: Texture2D
+	if (pid.begins_with("v_") and not pid.begins_with("v_stanek")) or pid == "g_krypta" or pid == "g_mauzoleum":
+		var img := tex.get_image()
+		if img.is_compressed():
+			img.decompress()
+		var out := Image.create(img.get_width(), img.get_height(), false, Image.FORMAT_R8)
+		var any := false
+		for y in img.get_height():
+			for x in img.get_width():
+				var c := img.get_pixel(x, y)
+				var r := c.r * 255.0
+				var g := c.g * 255.0
+				var b := c.b * 255.0
+				if c.a > 0.78 and b > 115.0 and b > r + 35.0 and g > r + 10.0:
+					out.set_pixel(x, y, Color(1, 0, 0))
+					any = true
+		result = ImageTexture.create_from_image(out) if any else _black_tex()
+	else:
+		result = _black_tex()
+	_glow_cache[tex] = result
+	return result
+
+
+var _black: Texture2D
+func _black_tex() -> Texture2D:
+	if _black == null:
+		var img := Image.create(1, 1, false, Image.FORMAT_R8)
+		_black = ImageTexture.create_from_image(img)
+	return _black
+
+
+## Sdílená šumová textura (kanály R/G/B = různé frekvence) pro vodu, louže, mech.
+func noise_texture() -> Texture2D:
+	if _noise_tex == null:
+		var imgs: Array[Image] = []
+		for i in 3:
+			var n := FastNoiseLite.new()
+			n.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
+			n.frequency = 0.012 + i * 0.006
+			n.fractal_octaves = 4
+			n.seed = 100 + i * 17
+			imgs.append(n.get_seamless_image(256, 256))
+		var out := Image.create(256, 256, false, Image.FORMAT_RGB8)
+		for y in 256:
+			for x in 256:
+				out.set_pixel(x, y, Color(imgs[0].get_pixel(x, y).r, imgs[1].get_pixel(x, y).r, imgs[2].get_pixel(x, y).r))
+		out.generate_mipmaps()
+		_noise_tex = ImageTexture.create_from_image(out)
+	return _noise_tex
+
+
+func set_post_param(name: String, v: Variant) -> void:
+	if _post:
+		_post.set_shader_parameter(name, v)
+
+
+## Pozice bodu na zemi (px) → UV na obrazovce (0–1).
+func screen_uv_of(px: Vector2) -> Vector2:
+	var vs := get_viewport().get_visible_rect().size
+	var p := _cam.unproject_position(Vector3(px.x * S, 0.8, px.y * S))
+	return Vector2(p.x / vs.x, p.y / vs.y)
+
+
+## Aktuální síla větru 0–1 (profil + počasí).
+func current_wind() -> float:
+	return clampf(float(_cur.get("wind", 0.3)) + (fx.wind_add if fx else 0.0), 0.0, 1.0)
+
+
+func refresh() -> void:
+	if _is_built and not _cur.is_empty():
+		_apply(_cur)
 
 
 ## Měkké „okluzní“ stíny pod props (falešné AO): jeden MultiMesh, průhledná tmavá skvrna s měkkým okrajem.
@@ -443,15 +587,19 @@ func set_time(h: float) -> void:
 
 
 func _apply(v: Dictionary) -> void:
-	_sun.light_color = v.sun_color
-	_sun.light_energy = v.sun_energy
+	var cover: float = fx.cover if fx else 0.0
+	weather_cover = cover
+	var wet: float = maxf(v.wetness, fx.wet if fx else 0.0)
+	var wind: float = current_wind()
+	_sun.light_color = (v.sun_color as Color).lerp(Color(0.72, 0.78, 0.9), cover * 0.8)
+	_sun.light_energy = v.sun_energy * (1.0 - 0.65 * cover)
 	_sun.shadow_opacity = v.shadow_opacity
 	_sun.rotation_degrees = Vector3(-v.sun_elev, v.sun_azim, 0.0)
 	_env.ambient_light_color = v.ambient_color
-	_env.ambient_light_energy = v.ambient_energy
+	_env.ambient_light_energy = v.ambient_energy * (1.0 + 0.2 * cover)
 	_env.background_color = v.sky_color
-	_env.fog_light_color = v.fog_color
-	_env.fog_density = v.fog_density
+	_env.fog_light_color = (v.fog_color as Color).lerp(Color(0.6, 0.64, 0.7) * clampf(v.ambient_energy + 0.3, 0.3, 1.0), cover * 0.6)
+	_env.fog_density = v.fog_density + (fx.fog_add if fx else 0.0)
 	_env.glow_intensity = v.glow_intensity
 	_env.glow_hdr_threshold = v.glow_threshold
 	var night: float = clampf(v.lamp_energy / 3.0, 0.0, 1.0)
@@ -460,8 +608,17 @@ func _apply(v: Dictionary) -> void:
 	for l in _lamps:
 		l.light_energy = v.lamp_energy
 		l.visible = v.lamp_energy > 0.05
+	RenderingServer.global_shader_parameter_set("fx_glow", v.window_glow)
+	RenderingServer.global_shader_parameter_set("fx_wind", wind)
+	if _ground_mat:
+		_ground_mat.set_shader_parameter("sky_color", (v.sky_color as Color).lerp(v.fog_color, 0.4) * clampf(0.5 + v.ambient_energy, 0.4, 1.4))
+		_ground_mat.set_shader_parameter("sun_color", v.sun_color)
+		_ground_mat.set_shader_parameter("sun_power", v.sun_energy * (1.0 - cover))
+		_ground_mat.set_shader_parameter("wetness", wet)
+		_ground_mat.set_shader_parameter("rain", fx.rain if fx else 0.0)
+		_ground_mat.set_shader_parameter("snow", fx.snow if fx else 0.0)
 	if _cloud_mat:
-		_cloud_mat.set_shader_parameter("strength", v.cloud_shadow)
+		_cloud_mat.set_shader_parameter("strength", v.cloud_shadow * (1.0 - cover * 0.8))
 	if _motes:
 		(_motes.mesh.material as StandardMaterial3D).albedo_color.a = clampf(v.fireflies, 0.0, 1.0)
 		_motes.emitting = v.fireflies > 0.02
@@ -469,11 +626,17 @@ func _apply(v: Dictionary) -> void:
 		_post.set_shader_parameter("tilt_px", v.tilt_px)
 		_post.set_shader_parameter("tilt_width", v.tilt_width)
 		_post.set_shader_parameter("bloom_strength", v.bloom)
-		_post.set_shader_parameter("saturation", v.saturation)
+		_post.set_shader_parameter("saturation", v.saturation * (1.0 - 0.3 * cover))
 		_post.set_shader_parameter("contrast", v.contrast)
-		_post.set_shader_parameter("gain", v.gain)
+		_post.set_shader_parameter("gain", (v.gain as Color).lerp(Color(0.85, 0.9, 1.0), cover * 0.75))
 		_post.set_shader_parameter("shadow_tint", v.shadow_tint)
 		_post.set_shader_parameter("vignette", v.vignette)
+		_post.set_shader_parameter("grain", v.grain)
+		_post.set_shader_parameter("chroma", v.chroma)
+		_post.set_shader_parameter("shafts", v.shafts * (1.0 if profile.quality.get("shafts", true) else 0.0) * (1.0 - weather_cover))
+		_post.set_shader_parameter("shaft_color", v.sun_color)
+		_post.set_shader_parameter("sun_uv", Vector2(0.5 + 0.55 * sin(deg_to_rad(v.sun_azim)), -0.4))
+		_post.set_shader_parameter("lut_mix", v.lut_mix if _post.get_shader_parameter("lut_a") else 0.0)
 
 
 ## Kvalita a efekty z profile.quality (SSAO, DOF, objemová mlha, vzdálenost stínů, kontaktní stíny).
@@ -482,14 +645,20 @@ func apply_quality() -> void:
 	_env.ssao_enabled = q.ssao
 	_env.ssao_radius = q.ssao_radius
 	_env.ssao_intensity = q.ssao_intensity
+	_env.ssil_enabled = q.get("ssil", false)
 	_env.volumetric_fog_enabled = q.volumetric_fog
 	_env.volumetric_fog_density = q.volumetric_density
 	_attr.dof_blur_far_enabled = q.dof
 	_attr.dof_blur_near_enabled = q.dof
 	_attr.dof_blur_amount = q.dof_amount
 	_sun.directional_shadow_max_distance = q.shadow_distance
+	for e in _prop_mats:
+		(e[0] as ShaderMaterial).set_shader_parameter("sway", e[1] if q.get("sway", true) else 0.0)
+	_sun.shadow_blur = 1.6 if q.shadow_distance > 40.0 else 0.8
 	if _contact:
 		_contact.visible = q.contact_shadows
+	if fx:
+		fx.apply_quality()
 
 
 ## Plynulý přechod na denní dobu `to` (vždy dopředu, přes půlnoc), nebo hned.

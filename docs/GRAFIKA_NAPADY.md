@@ -38,3 +38,12 @@ Billboardy se skutečnými stíny, nakloněná kamera s perspektivou, tilt-shift
 
 ## Jak ladit
 Ve hře **F2** → vyber denní dobu, posuvníky, **Uložit** zapíše `data/lighting.json`. **F12** = screenshot bez panelu (`user://shots`). Kontaktní arch všech denních dob na vybraných místech: `tests/light_sheet.tscn` (proměnná `LIGHT_SPOTS`).
+
+## Stav implementace (body 1–16 a 21; postavy a boj 17–20 záměrně vynechány)
+Kód: `scripts/world/world_fx.gd` (počasí, nálada oblasti, život), `shaders/ground3d.gdshader` (voda, louže, sníh, mech),
+`shaders/prop3d.gdshader` (vítr, okna, sníh na střechách), `shaders/post_fx.gdshader` (paprsky, zrno, aberace, LUT, ostření dialogu),
+`tools/make_luts.py` (LUT nálady), `zones.png` z `tools/sketches/make_babrak.py` (maska vody a oblastí).
+Ovládání: F2 laboratoř (počasí, předvolby kvality Nízká/Střední/Vysoká), F3 přepíná počasí.
+- Ověřeno snímky (Compatibility): teplá/studená grading, LUT nálady, okna svítí v noci, počasí (déšť/bouřka/sníh/mlha) včetně desaturace a zatažení, listí v popředí, variace spritů, vítr.
+- NEOVĚŘENO (jen Forward+, v sandboxu nelze spustit): SSAO/SSIL, objemová mlha, DOF kamery, měkké stíny (PCSS). Jsou zapojené a přepínatelné v F2.
+- Zjednodušeno: odrazy v loužích a vodě jsou falešné (barva oblohy + fresnel), ne screen-space; koleje vozů nejsou; stopy jsou plošné otisky.

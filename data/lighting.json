@@ -26,7 +26,14 @@
 			"contrast": 1.06,
 			"gain": "#cdd8ff",
 			"shadow_tint": "#98a8ee",
-			"vignette": 0.5
+			"vignette": 0.5,
+			"shafts": 0.0,
+			"wind": 0.3,
+			"wetness": 0.0,
+			"window_glow": 1.2,
+			"grain": 0.22,
+			"chroma": 0.22,
+			"lut_mix": 0.7
 		},
 		{
 			"hour": 5.5,
@@ -54,7 +61,14 @@
 			"contrast": 1.04,
 			"gain": "#fff0dc",
 			"shadow_tint": "#b8b0e0",
-			"vignette": 0.4
+			"vignette": 0.4,
+			"shafts": 0.5,
+			"wind": 0.25,
+			"wetness": 0.0,
+			"window_glow": 0.6,
+			"grain": 0.22,
+			"chroma": 0.22,
+			"lut_mix": 0.7
 		},
 		{
 			"hour": 8,
@@ -82,7 +96,14 @@
 			"contrast": 1.04,
 			"gain": "#fff2e0",
 			"shadow_tint": "#c8d4f4",
-			"vignette": 0.35
+			"vignette": 0.35,
+			"shafts": 0.45,
+			"wind": 0.3,
+			"wetness": 0.0,
+			"window_glow": 0.0,
+			"grain": 0.22,
+			"chroma": 0.22,
+			"lut_mix": 0.7
 		},
 		{
 			"hour": 12,
@@ -110,7 +131,14 @@
 			"contrast": 1.04,
 			"gain": "#fff8ee",
 			"shadow_tint": "#dfe8ff",
-			"vignette": 0.35
+			"vignette": 0.35,
+			"shafts": 0.12,
+			"wind": 0.35,
+			"wetness": 0.0,
+			"window_glow": 0.0,
+			"grain": 0.22,
+			"chroma": 0.22,
+			"lut_mix": 0.7
 		},
 		{
 			"hour": 16.5,
@@ -138,7 +166,14 @@
 			"contrast": 1.05,
 			"gain": "#fff0d8",
 			"shadow_tint": "#d0d4f4",
-			"vignette": 0.38
+			"vignette": 0.38,
+			"shafts": 0.3,
+			"wind": 0.3,
+			"wetness": 0.0,
+			"window_glow": 0.0,
+			"grain": 0.22,
+			"chroma": 0.22,
+			"lut_mix": 0.7
 		},
 		{
 			"hour": 19,
@@ -166,7 +201,14 @@
 			"contrast": 1.05,
 			"gain": "#ffe6c8",
 			"shadow_tint": "#b8a0d8",
-			"vignette": 0.45
+			"vignette": 0.45,
+			"shafts": 0.6,
+			"wind": 0.25,
+			"wetness": 0.0,
+			"window_glow": 1.0,
+			"grain": 0.22,
+			"chroma": 0.22,
+			"lut_mix": 0.7
 		},
 		{
 			"hour": 20.5,
@@ -194,7 +236,14 @@
 			"contrast": 1.06,
 			"gain": "#e0d0f0",
 			"shadow_tint": "#a898e0",
-			"vignette": 0.5
+			"vignette": 0.5,
+			"shafts": 0.1,
+			"wind": 0.2,
+			"wetness": 0.0,
+			"window_glow": 1.2,
+			"grain": 0.22,
+			"chroma": 0.22,
+			"lut_mix": 0.7
 		}
 	],
 	"quality": {}
