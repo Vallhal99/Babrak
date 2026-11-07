@@ -55,20 +55,16 @@ Konverzace byla jednou komprimována; části z doby před kompresí (postava, b
 - Camera3D fov 26°, offset (0,17,14) m, post_fx přes CanvasLayer (tilt-shift), Environment: filmic, glow, fog; oheň = OmniLight3D + CPUParticles3D; N cykluje den/soumrak/noc.
 
 ---
-## 3. AKTUÁLNÍ STAV
-**Funguje:** vše výše v „Hotovo" (ověřeno screenshoty přes xvfb/opengl3).
-**Rozpracované / nedotažené:**
-- Rozhodnutí uživatele, zda jít **2D styl** (pak body 3–4) nebo **HD-2D** (přepis loaderu) – čeká se na něj.
-- Slovník: položky `uncertain` nepotvrzeny uživatelem.
-**Nefunguje / známé vady:**
-- HD-2D: plamen přes den bílá skvrna; stíny korun stromů vypadají jako světelné pruhy; tráva/drobné květiny jen ploché na zemi; DoF ověřen NENÍ (xvfb/Compatibility ho nepodporuje; v Forward+/Mobile má fungovat **[předpoklad]**); chybí sway; hrdina se čte z dočasného snímku, žádné HUD.
-- Déšť v 2D atmosféře je jen slabé čáry.
-- `doplnky_017` je rozložený stan (vypadá jako velký hnědý čtverec), druhý obrázek v souboru je hotový stan.
-- Kompozity k ručnímu rozřezání (generátor je přeskakuje): `doplnky_013/018/019/021`, `okoli3_004/007/017/038`.
-- Nejisté štítky: `doplnky_007/008` (kamenná brána – rituál/dungeon?), `doplnky_037` (stojan?), `okoli2_028/030` (jáma a pahorek – terén či ozdoba?), `okoli2_041`, `okoli1_045`.
-- Netestováno: transponované (rotované) dlaždice z Tiledu.
-- Klasifikace druhů v `classify()` byla odhad podle tvaru/barvy; slovník ji nyní přepisuje.
-- Renderer: `project.godot` ho nenastavuje (výchozí Forward+ **[předpoklad]**); u uživatele nepotvrzeno. Screenshoty se dělaly v Compatibility (opengl3).
+## 3. AKTUÁLNÍ STAV (7. 11. 2026)
+**Rozhodnuto:** jdeme **HD-2D** (2D styl opuštěn, první level smazán). Hra běží na mapě **Babrak** s denní dobou, počasím a efekty (viz 9c, 9d).
+**Funguje (ověřeno screenshoty v Compatibility/opengl3):** HD-2D svět, hrdina s 8 směry a vybavením, luk se skutečným projektilem, obchodník, mapa Babrak, osvětlení podle denní doby, lab F2, počasí (F3), LUT nálady, svítící okna, animovaná voda, vítr, ambientní život.
+**NEOVĚŘENO (jen Forward+, v sandboxu nelze spustit):** SSAO, SSIL, objemová mlha, DOF kamery, měkké stíny. Jsou zapojené a přepínatelné v F2.
+**Známé vady / zjednodušení:**
+- Odrazy v loužích a vodě jsou falešné (barva oblohy + fresnel); koleje vozů nejsou; stopy jsou plošné otisky; bouřka bez zvuku.
+- Komíny (kouř) mají polohu odhadnutou podle textur, nezkontrolováno na snímku.
+- Doplněné vybavení hrdiny je algoritmické, ne ručně kreslené; obchodník nemá animaci; vchod do dungeonu je jen vizuální.
+- Netestováno: transponované dlaždice z Tiledu; nejisté štítky ve slovníku (`doplnky_007/008`, `doplnky_037`, `okoli2_028/030`).
+- Renderer: `project.godot` ho nenastavuje (výchozí Forward+); u uživatele nepotvrzeno.
 
 ---
 ## 4. TECHNICKÉ INFORMACE
@@ -109,15 +105,13 @@ Konverzace byla jednou komprimována; části z doby před kompresí (postava, b
 
 ---
 ## 6. OTEVŘENÉ ÚKOLY
-**Nejvyšší priorita:** získat od uživatele **rozhodnutí 2D vs. HD-2D** (viz bod 8).
-Dál:
-- Pokud 2D: bod 3 (skutečné stíny slunce/ohně), 4 (normal mapy), 5 (voda/decaly), 6 (rim light postav), 7 (UI).
-- Pokud HD-2D: přepsat loader na 3D (objekty jako Sprite3D přímo z chunků, ne ze snímku 2D světa), opravit plamen/stíny/trávu, sway, DoF ověřit ve Forward+, HUD, výkon.
-- Potvrzení nejistých štítků ve slovníku; rozřezání kompozitů; rozdělení `doplnky_017` na dva stany.
-- Kosmetika: silnější déšť v 2D atmosféře.
-- Testy: transponované dlaždice z Tiledu.
-- Uživatel pošle svou mapu z Tiledu (ještě nedodal) → AI upraví/obohatí.
-- Po změnách objektů přegenerovat balíček a znovu pushnout.
+1. Spustit na stroji s Forward+ a doladit SSAO/SSIL/DOF/objemovou mlhu/měkké stíny (F2, `data/lighting.json` quality) – uživatel pošle screenshoty.
+2. Funkční dungeon (vchod je na mapě, zatím nefunkční) a další oblasti/obsah hry (příběh, questy – cíle hry nejsou v dokumentu, zeptat se uživatele).
+3. Postavy a boj: kvalita doplněného vybavení, animace obchodníka, vylepšení bojových efektů (body 17–20 v `docs/GRAFIKA_NAPADY.md` jsou záměrně nedělané).
+4. Skutečné odrazy (SSR/planární), koleje a další dekály, zvuk (bouřka, déšť, vítr, kroky).
+5. Výkon na slabším HW: ověřit předvolby kvality (Nízká/Střední/Vysoká v F2), limit 19 billboardů postav současně.
+6. Potvrzení nejistých štítků ve slovníku, rozřezání kompozitů (`doplnky_013/018/019/021`, `okoli3_004/007/017/038`).
+7. Po změnách objektů/mapy přegenerovat balíček a pushnout.
 
 ---
 ## 7. PRACOVNÍ STYL A SPOLUPRÁCE
@@ -131,19 +125,19 @@ Dál:
 
 ---
 ## 8. PŘESNÝ BOD NAVÁZÁNÍ
-Poslední hotové: HD-2D ukázka (snímky den/soumrak/noc vs. 2D) byla doručena a nahrána na GitHub (`4140dec`); uživatel následně chtěl tento předávací dokument. **Čeká se na rozhodnutí uživatele, zda pokračovat 2D, nebo HD-2D.** Aktuální úkol: nová AI má
-1. přečíst tento dokument a `docs/GENERATOR_A_GRAFIKA.md`, naklonovat/otevřít repo, ověřit, že `tiled_demo.tscn`, `hd2d_demo.tscn` a `data/world/palouk` fungují;
-2. zeptat se uživatele jednou krátkou otázkou, kterou cestou jít (2D body 3–4 / HD-2D) a zda potvrdí nejisté objekty;
-3. mezitím nic nemazat ani nepřepisovat.
+Poslední hotové: balík grafických efektů HD-2D (commit `ccf7d5d`, větev main): počasí, voda, vítr, okna, LUT, god rays, zrno/aberace, ostření dialogu, ambientní život, předvolby kvality. Smoke test: SMOKE OK. Nová AI má:
+1. naklonovat repo, přečíst tento dokument (hlavně 9c, 9d) a `README.md`, spustit `tests/smoke_test.tscn` (viz 4);
+2. požádat uživatele o screenshoty z Forward+ (SSAO/DOF/mlha) a podle nich doladit hodnoty;
+3. zeptat se na herní cíle (příběh, dungeon, questy) a navrhnout další blok práce; nic nemazat ani nepřepisovat bez dotazu.
 
 ---
 # INSTRUKCE PRO NOVÝ CHAT
 Text k vložení jako první zpráva:
 
-> Pokračuješ v mém projektu **Hero RPG** (Godot 4.7, GDScript, Final Fantasy/Zelda styl). Repozitář: `https://github.com/Vallhal99/Babrak` (dřív babrak), větev main, soubor **`docs/PREDAVACI_DOKUMENT.md`** je kompletní předávací dokument – přečti ho celý a také `README.md` (základy hry: staty, vybavení, kouzla, vrstvená postava), `docs/GENERATOR_A_GRAFIKA.md` a `docs/TILED.md`. Neznáš naši předchozí konverzaci (příběh a herní cíle jsem ti nemohl předat – zeptej se mě na ně); vše potřebné je v dokumentu.
-> Stručně: mapu dělám v Tiledu (24 px mřížka, mé vlastní tilesety), ty ji doplňuješ nástroji v `tools/` (importér, merge, generátor mapy ze skici podle slovníku objektů `data/world/object_catalog.json`). Godot streamuje chunky přes `TiledWorld`. Máme hotovou 2D atmosféru/post-processing a oddělenou HD-2D ukázku (`scenes/demo/hd2d_demo.tscn`, 3D se stíny); stávající 2D verzi nikdy nepřepisuj.
-> Pravidla: odpovídej česky a stručně, šetři tokeny; neměň mřížku 24 px ani pořadí tilesetů; změny testuj screenshotem (xvfb + godot, viz dokument; `pkill -f` nepoužívat; import spouštět na pozadí); ukazuj vizuální výsledky; commit zakonči řádky Co-Authored-By/Claude-Session podle dokumentu.
-> Nejdřív ověř, že projekt běží, a pak se mě krátce zeptej: (1) zůstaneme u 2D (stíny slunce/ohně, normal mapy) nebo půjdeme do HD-2D? (2) potvrdím ti nejisté objekty ze slovníku (brána `doplnky_007/008`, stojan `doplnky_037`, jáma/pahorek `okoli2_028/030`). Do mé odpovědi nic nepřepisuj ani nemaž.
+> Pokračuješ v mém projektu **Hero RPG** (Godot 4.7, GDScript, HD-2D styl). Repozitář: `https://github.com/Vallhal99/Babrak`, větev main. Přečti celý **`docs/PREDAVACI_DOKUMENT.md`** (hlavně sekce 3, 6, 8, 9c, 9d), dále `README.md`, `docs/GRAFIKA_NAPADY.md` a `docs/TILED.md`. Neznáš naši předchozí konverzaci; příběh a herní cíle jsem ti nepředal – zeptej se.
+> Stručně: svět `Hd2dWorld` (2D logika v SubViewportu, země i props ve 3D, postavy jako billboardy), mapa Babrak generovaná z mého nákresu (`tools/sketches/make_babrak.py`), osvětlení z `data/lighting.json`, efekty a počasí ve `scripts/world/world_fx.gd`, ladicí panel F2, počasí F3.
+> Pravidla: odpovídej česky a stručně, šetři tokeny; poctivě hlas limity (co je neověřené); změny testuj screenshotem (xvfb + godot opengl3, `tests/smoke_test.tscn` musí vypsat SMOKE OK; `pkill -f` nepoužívat); efekty jen pro Forward+ nejsou v sandboxu ověřitelné; commit zakonči řádky Co-Authored-By/Claude-Session.
+> Nejdřív ověř, že projekt běží, pak se mě krátce zeptej, co dál (dungeon, příběh, ladění ve Forward+).
 
 ---
 ## 9. POSTAVA V2 (5. 11. 2026)
@@ -171,3 +165,11 @@ Text k vložení jako první zpráva:
 - **Osvětlení** (`scripts/world/lighting_profile.gd`, `data/lighting.json`): klíčové snímky dne (hodina → slunce/měsíc, ambient, mlha, glow, lampy, táborák, stíny mraků, světlušky, grading, tilt-shift), mezi nimi plynulý přechod; `Hd2dWorld.set_time(h)`, `transition_to`, `day_length` (cyklus), klávesa N přepíná den/soumrak/noc. Kontaktní stíny pod props (MultiMesh), stíny mraků (`shaders/cloud_shadow3d.gdshader`), lampy (`*lampa*`) jako OmniLight3D. POZOR: `blend_mul` materiály s glow ztmavily celou zem v Compatibility – používat alpha blend.
 - **Ladicí nástroj**: F2 ve hře (`scripts/tools/lighting_lab.gd`) – čas, klíčové snímky, posuvníky, kvalita (SSAO/DOF/objemová mlha), teleport na místa, Uložit/Načíst, F12 screenshot. Arch všech dob: `tests/light_sheet.tscn` (`LIGHT_SPOTS`). SSAO/DOF/objemová mlha/měkké stíny platí jen ve Forward+; v Compatibility (kde jsem ověřoval) se neprojeví – nevyzkoušeno.
 - Nápady na další grafiku: `docs/GRAFIKA_NAPADY.md`.
+
+## 9d. Grafické efekty (7. 11. 2026, commit ccf7d5d)
+- **Profil**: `LightingProfile` má nové parametry (shafts, grain, chroma, lut_mix, wind, wetness, window_glow; chybějící klíče se doplní z `DEFAULTS`) a `PRESETS` kvality Nízká/Střední/Vysoká (`quality`: ssao, ssil, dof, volumetric_fog, contact_shadows, shadow_distance, sway, particles, foreground, ambient_life, prop_range, shafts).
+- **`scripts/world/world_fx.gd` (`WorldFx`, uzel `Fx` ve světě)**: počasí (`WEATHER`: jasno, zataženo, déšť, bouřka s blesky, sníh, mlha; `set_weather`, `cycle_weather`, F3), LUT nálady oblasti podle `zones.png` (`mood_at`), zaostření při dialogu (`ui_nodes` = panel + obchod, nastavuje `main.gd`), stopy, ptáci, motýli, padající listí, kouř z komínů (`add_chimney`), kruhy po rybách, rozmazané listí v popředí. Světu předává `cover, fog_add, wet, rain, snow, wind_add` (čte `Hd2dWorld._apply`).
+- **Shadery**: `shaders/ground3d.gdshader` (voda, pěna, odlesky, louže, kruhy deště, sníh, mech; masky `data/world/babrak/zones.png` – R voda, G nálada, B vlhkost; generuje `make_babrak.py`), `shaders/prop3d.gdshader` (vítr, svítící okna z masky modrého skla, sníh na střechách, variace barev), `shaders/post_fx.gdshader` (god rays, zrno, aberace, LUT, blesk, ostření dialogu). Globální shader parametry `fx_wind/fx_wet/fx_snow/fx_glow` registruje `WorldFx.register_globals()`.
+- **LUT**: `python3 tools/make_luts.py` → `data/lut/*.png` (neutral, forest, village, graveyard, mountain, water).
+- **Výkon**: `ground_vp` se po načtení kreslí jednou (`UPDATE_ONCE`); drobné props mají `visibility_range`. Smoke test ~1 min.
+- **Testy**: `tests/weather_sheet.tscn` (`WX_SPOT=Osada` → `/tmp/claude-0/weather_<místo>.png`), `tests/light_sheet.tscn`. Lab F2 má předvolby kvality a tlačítka počasí.
