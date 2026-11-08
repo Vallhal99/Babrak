@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/characters/enemy.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/character/turn_enemy2.gd" id="2"]
+
+[node name="TurnEnemy2" instance=ExtResource("1")]
+script = ExtResource("2")
+shield_points = 3
+battle_speed = 8

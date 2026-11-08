@@ -3,6 +3,7 @@ extends Control
 
 const GAME := "res://scenes/main.tscn"
 const GAME_TURN := "res://scenes/main_turn.tscn"  # testovací varianta s tahovým soubojem
+const GAME_TURN2 := "res://scenes/main_turn2.tscn"  # tah 2: tah v1 + nové prvky
 
 
 func _ready() -> void:
@@ -24,6 +25,7 @@ func _ready() -> void:
 	box.add_child(title)
 	var start := _button(box, "Nová hra", func() -> void: get_tree().change_scene_to_file(GAME))
 	_button(box, "Nová hra tah", func() -> void: get_tree().change_scene_to_file(GAME_TURN))
+	_button(box, "Nová hra tah 2", func() -> void: get_tree().change_scene_to_file(GAME_TURN2))
 	var exit := ExitDialog.new()
 	add_child(exit)
 	_button(box, "Konec", exit.popup_centered)

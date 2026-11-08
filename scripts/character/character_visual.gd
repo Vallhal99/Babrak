@@ -20,6 +20,9 @@ const ORIGIN := Vector2(-32, -61)  # levý horní roh 64px snímku vůči patám
 var anim: StringName = &"idle"
 var dir: int = AnimCatalog.Dir.DOWN
 
+## Vrstvy vybavení skryté (poškození v tahovém souboji). Výchozí prázdné = beze změny.
+var hidden_slots: Array[int] = []
+
 var _time := 0.0
 var _last_frame := 0
 var _done := false
@@ -133,7 +136,7 @@ func _apply() -> void:
 	for slot in DRAW_ORDER:
 		var sprite: Sprite2D = _sprites[slot]
 		var tex: Texture2D = _sheets[slot]
-		sprite.visible = tex != null and not (slot == HAIR and hair_hidden)
+		sprite.visible = tex != null and not (slot == HAIR and hair_hidden) and not hidden_slots.has(slot)
 		if not sprite.visible:
 			continue
 		var big: bool = AnimCatalog.has_big(anim) and anim in _big_anims.get(slot, [])
