@@ -1,0 +1,199 @@
+<title>Dialogy a questy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Rozvržení: horní lišta se záložkami, vlevo seznam, vpravo formulář, dole náhled a kontrola. */
+:root{--bg:#f4f5f2;--panel:#fff;--ink:#1d2320;--mute:#5e6a64;--line:#d5dbd6;--accent:#2f6f5a;--accent-ink:#fff;--warn:#b4531a;--bad:#b3261e;--good:#2e7d32;--soft:#e6eee9;--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141815;--panel:#1d2320;--ink:#e6ece8;--mute:#9aa8a0;--line:#33403a;--accent:#5fb89a;--accent-ink:#0d1a14;--warn:#e69a5c;--bad:#f2867f;--good:#7fcf84;--soft:#26332d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141815;--panel:#1d2320;--ink:#e6ece8;--mute:#9aa8a0;--line:#33403a;--accent:#5fb89a;--accent-ink:#0d1a14;--warn:#e69a5c;--bad:#f2867f;--good:#7fcf84;--soft:#26332d;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px}
+h1{font-size:18px;margin:0}
+header{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+button,select,input,textarea{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:5px 8px;min-width:0}
+button{cursor:pointer}
+button:hover{border-color:var(--accent)}
+button.on,button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button.x{color:var(--bad);padding:3px 8px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+textarea{width:100%;min-height:78px;resize:vertical}
+.wrap{display:grid;grid-template-columns:230px minmax(0,1fr);gap:12px;align-items:start}
+@media (max-width:760px){.wrap{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
+.list{display:flex;flex-direction:column;gap:4px;max-height:60vh;overflow:auto}
+.list button{text-align:left;display:flex;justify-content:space-between;gap:6px}
+.tag{font-size:11px;color:var(--mute)}
+.bad{color:var(--bad)}.ok{color:var(--good)}.warn{color:var(--warn)}
+label{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--mute)}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:flex-end;margin:4px 0}
+.row>*{flex:1 1 120px}.row>button{flex:0 0 auto}
+.grp{border-top:1px dashed var(--line);margin-top:10px;padding-top:8px}
+.grp h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin:0 0 4px}
+.choice{background:var(--soft);border-radius:6px;padding:8px;margin:6px 0}
+pre,.mono{font-family:var(--mono);font-size:12px}
+.log{background:var(--soft);border-radius:6px;padding:8px;max-height:260px;overflow:auto}
+.say{margin:4px 0}.say b{color:var(--accent)}
+.hint{font-size:12px;color:var(--mute)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+</style>
+<body>
+<header><h1>Dialogy a questy</h1>
+<nav id="tabs"></nav><span class="hint" id="saved"></span></header>
+<div id="app"></div>
+<script>
+const SAMPLE_D = __DIALOGUES__;
+const SAMPLE_Q = __QUESTS__;
+const COND = ['flag','not_flag','quest_new','quest_active','quest_ready','quest_done','class','gold','level','in_party','party_space'];
+const ACT = ['set','clear','gold','xp','item','quest_start','quest_complete','talk','recruit','shop'];
+const CLASSES = ['warrior','ranger','mage','rogue','chronicler'];
+const S = {tab:'dialog', dlg:'merchant', node:null, quest:null, dialogues:SAMPLE_D, quests:SAMPLE_Q,
+  mock:{cls:'warrior',gold:50,party:1,flags:'',quests:''}, run:null};
+try{const v=JSON.parse(localStorage.getItem('hero-authoring')||'null'); if(v&&v.dialogues&&v.quests){S.dialogues=v.dialogues;S.quests=v.quests;S.dlg=Object.keys(v.dialogues)[0]||'';}}catch(e){}
+const $=s=>document.querySelector(s);
+function h(tag,attrs={},...kids){const e=document.createElement(tag);for(const k in attrs){const v=attrs[k];if(k==='class')e.className=v;else if(k.startsWith('on'))e.addEventListener(k.slice(2),v);else if(v!==false&&v!==null&&v!==undefined)e.setAttribute(k,v===true?'':v);}
+  kids.flat().forEach(c=>e.append(c instanceof Node?c:document.createTextNode(c??'')));return e}
+function save(){try{localStorage.setItem('hero-authoring',JSON.stringify({dialogues:S.dialogues,quests:S.quests}));$('#saved').textContent='uloženo v prohlížeči';}catch(e){$('#saved').textContent='';}}
+const D=()=>S.dialogues[S.dlg]; const N=()=>D()&&D().nodes[S.node];
+function nodeIds(){return D()?Object.keys(D().nodes):[]}
+function questIds(){return S.quests.map(q=>q.id)}
+function render(){
+  $('#tabs').replaceChildren(...[['dialog','Dialog'],['quest','Questy'],['data','Data']].map(([k,t])=>h('button',{class:S.tab===k?'on':'',onclick:()=>{S.tab=k;render()}},t)));
+  const app=$('#app'); app.replaceChildren(S.tab==='dialog'?viewDialog():S.tab==='quest'?viewQuests():viewData());
+}
+function sel(opts,val,on,empty){const s=h('select',{onchange:e=>on(e.target.value)});if(empty!==undefined)s.append(h('option',{value:''},empty));
+  opts.forEach(o=>s.append(h('option',{value:o,selected:o===val},o)));if(val&&!opts.includes(val))s.append(h('option',{value:val,selected:true},val+' (chybí)'));return s}
+function field(l,input){return h('label',{},l,input)}
+function kvEditor(list,keys,onChange,kind){ // podmínky a akce: [{klíč: hodnota}]
+  const box=h('div');
+  list.forEach((obj,i)=>{const k=Object.keys(obj).find(x=>keys.includes(x))||keys[0];let v=obj[k];
+    const row=h('div',{class:'row'},
+      sel(keys,k,nk=>{const o={};o[nk]=(nk==='party_space'||nk==='shop')?true:'';list[i]=o;onChange();}),
+      ['party_space','shop'].includes(k)?h('select',{onchange:e=>{obj[k]=e.target.value==='true';onChange(false)}},h('option',{value:'true',selected:v===true},'ano'),h('option',{value:'false',selected:v===false},'ne')):
+      h('input',{value:v,placeholder:hintFor(k),oninput:e=>{obj[k]=['gold','xp','level'].includes(k)&&e.target.value!==''&&!isNaN(e.target.value)?Number(e.target.value):e.target.value;onChange(false)}}),
+      h('button',{class:'x',onclick:()=>{list.splice(i,1);onChange()}},'×'));box.append(row)});
+  box.append(h('button',{onclick:()=>{const o={};o[keys[0]]='';list.push(o);onChange()}},kind==='if'?'+ podmínka':'+ akce'));return box}
+function hintFor(k){return {flag:'příznak',not_flag:'příznak',quest_new:'id questu',quest_active:'id questu',quest_ready:'id questu',quest_done:'id questu',class:'warrior…',gold:'min. zlato',level:'min. úroveň',in_party:'id společníka',set:'příznak',clear:'příznak',gold_:'',xp:'počet',item:'id předmětu',quest_start:'id questu',quest_complete:'id questu',talk:'id postavy',recruit:'id společníka'}[k]||''}
+function cond(obj,key){obj[key]=obj[key]||{};const wrap=h('div');const list=Object.entries(obj[key]).map(([k,v])=>({[k]:v}));
+  const sync=()=>{const o={};list.forEach(x=>Object.assign(o,x));obj[key]=o;};
+  const mk=(redraw=true)=>{sync();save();if(redraw){const n=cond(obj,key);wrap.replaceWith(n);}};
+  const ed=kvEditor(list,COND,mk,'if');wrap.append(ed);return wrap}
+function acts(obj,key){obj[key]=obj[key]||[];const wrap=h('div');
+  const mk=(redraw=true)=>{save();if(redraw){const n=acts(obj,key);wrap.replaceWith(n);}};
+  wrap.append(kvEditor(obj[key],ACT,mk,'do'));return wrap}
+function viewDialog(){
+  const ids=Object.keys(S.dialogues);
+  if(!D()){S.dlg=ids[0]||'';}
+  const left=h('div',{class:'card'},
+    h('div',{class:'row'},sel(ids,S.dlg,v=>{S.dlg=v;S.node=null;S.run=null;render()}),
+      h('button',{onclick:()=>{const id=prompt0('nový_dialog');S.dialogues[id]={id,start:'start',nodes:{start:{speaker:'',text:'',next:''}}};S.dlg=id;S.node='start';save();render()}},'+ dialog')),
+    D()?field('Počáteční uzel',sel(nodeIds(),D().start,v=>{D().start=v;save();render()})):'',
+    h('div',{class:'list'},nodeIds().map(id=>{const n=D().nodes[id];return h('button',{class:S.node===id?'on':'',onclick:()=>{S.node=id;render()}},h('span',{},id),h('span',{class:'tag'},n.branch?'rozcestník':(n.choices&&n.choices.length?n.choices.length+' voleb':'text')))})),
+    h('button',{onclick:()=>{let i=1;while(D().nodes['uzel'+i])i++;D().nodes['uzel'+i]={speaker:'',text:'',next:''};S.node='uzel'+i;save();render()}},'+ uzel'));
+  const right=h('div',{},N()?nodeForm():h('div',{class:'card hint'},'Vyber uzel vlevo nebo přidej nový.'),runPanel(),validationPanel());
+  return h('div',{class:'wrap'},left,right)}
+let promptN=0;function prompt0(base){promptN++;return base+promptN}
+function nodeForm(){const n=N();const id=S.node;const nodes=D().nodes;const ids=nodeIds();
+  const kind=n.branch?'branch':'text';
+  const nexts=(v,on)=>sel(ids,v||'',on,'(konec dialogu)');
+  const card=h('div',{class:'card'},
+    h('div',{class:'row'},
+      field('ID uzlu',h('input',{value:id,onchange:e=>{const nid=e.target.value.trim();if(!nid||nodes[nid]){e.target.value=id;return}
+        nodes[nid]=nodes[id];delete nodes[id];Object.values(nodes).forEach(x=>{if(x.next===id)x.next=nid;(x.choices||[]).forEach(c=>{if(c.next===id)c.next=nid});(x.branch||[]).forEach(b=>{if(b.next===id)b.next=nid})});if(D().start===id)D().start=nid;S.node=nid;save();render()}})),
+      field('Typ',sel(['text','branch'],kind,v=>{if(v==='branch'){delete n.speaker;delete n.text;delete n.choices;delete n.next;n.branch=[{if:{},next:''}]}else{delete n.branch;n.speaker='';n.text='';n.next=''}save();render()})),
+      h('button',{class:'x',onclick:()=>{delete nodes[id];S.node=null;save();render()}},'smazat uzel')));
+  if(kind==='branch'){
+    card.append(h('div',{class:'grp'},h('h3',{},'Rozcestník: první splněná podmínka vyhrává, poslední bez podmínky je výchozí'),
+      n.branch.map((b,i)=>h('div',{class:'choice'},cond(b,'if'),h('div',{class:'row'},field('Pokračuj na',nexts(b.next,v=>{b.next=v;save()})),h('button',{class:'x',onclick:()=>{n.branch.splice(i,1);save();render()}},'×')))),
+      h('button',{onclick:()=>{n.branch.push({if:{},next:''});save();render()}},'+ větev')));
+    return card}
+  card.append(field('Mluví',h('input',{value:n.speaker||'',oninput:e=>{n.speaker=e.target.value;save()},placeholder:'jméno nebo prázdné'})),
+    field('Text ({hero} = jméno hrdiny, {class} = povolání)',h('textarea',{oninput:e=>{n.text=e.target.value;save()}},n.text||'')),
+    h('div',{class:'grp'},h('h3',{},'Akce při vstupu do uzlu'),acts(n,'do')));
+  n.choices=n.choices||[];
+  card.append(h('div',{class:'grp'},h('h3',{},'Volby hráče (prázdné = uzel pokračuje na "Dál")'),
+    n.choices.map((c,i)=>h('div',{class:'choice'},
+      h('div',{class:'row'},field('Text volby',h('input',{value:c.text||'',oninput:e=>{c.text=e.target.value;save()}})),field('Pokračuj na',nexts(c.next,v=>{c.next=v;save()})),
+        h('button',{onclick:()=>{if(i>0){[n.choices[i-1],n.choices[i]]=[n.choices[i],n.choices[i-1]];save();render()}}},'↑'),h('button',{class:'x',onclick:()=>{n.choices.splice(i,1);save();render()}},'×')),
+      h('div',{class:'hint'},'Zobrazí se, když:'),cond(c,'if'),h('div',{class:'hint'},'Akce po výběru:'),acts(c,'do'))),
+    h('button',{onclick:()=>{n.choices.push({text:'',next:''});save();render()}},'+ volba')));
+  if(!n.choices.length)card.append(h('div',{class:'grp'},field('Dál na (bez voleb)',nexts(n.next,v=>{n.next=v;save()}))));
+  return card}
+// ---------- náhled
+function mockState(){const m=S.mock;const flags={};m.flags.split(',').map(s=>s.trim()).filter(Boolean).forEach(f=>flags[f]=1);
+  const q={};m.quests.split(',').map(s=>s.trim()).filter(Boolean).forEach(p=>{const[a,b]=p.split('=');q[a]=b||'active'});return{flags,q,gold:Number(m.gold)||0,cls:m.cls,party:Number(m.party)||1,level:1}}
+function check(c,st){for(const k in c){const v=c[k];
+  if(k==='flag'&&!st.flags[v])return false;if(k==='not_flag'&&st.flags[v])return false;
+  const qs=id=>st.q[id]||'new';
+  if(k==='quest_new'&&qs(v)!=='new')return false;if(k==='quest_active'&&qs(v)!=='active')return false;
+  if(k==='quest_ready'&&qs(v)!=='ready')return false;if(k==='quest_done'&&qs(v)!=='done')return false;
+  if(k==='class'&&st.cls!==v)return false;if(k==='gold'&&st.gold<Number(v))return false;if(k==='level'&&st.level<Number(v))return false;
+  if(k==='party_space'&&((st.party<3)!==!!v))return false;if(k==='in_party'&&!st.flags[v+'_joined'])return false;}return true}
+function doActs(list,st,log){(list||[]).forEach(a=>{for(const k in a){const v=a[k];
+  if(k==='set'){st.flags[v]=1;log.push('příznak +'+v)}else if(k==='clear'){delete st.flags[v]}else if(k==='gold'){st.gold+=Number(v);log.push('zlato '+v)}
+  else if(k==='quest_start'){if(!st.q[v]){st.q[v]='active';log.push('quest začal: '+v)}}else if(k==='quest_complete'){st.q[v]='done';log.push('quest odevzdán: '+v)}
+  else if(k==='recruit'){st.flags[v+'_joined']=1;st.party++;log.push('společník: '+v)}else if(k==='shop'){log.push('otevře se obchod')}else if(k==='talk'){log.push('promluvil: '+v)}else log.push(k+' '+v)}})}
+function enter(id){const st=S.run;const nodes=D().nodes;let g=0;
+  while(nodes[id]&&nodes[id].branch&&g++<20){let t='';for(const b of nodes[id].branch){if(check(b.if||{},st)){t=b.next||'';break}}id=t}
+  if(!nodes[id]){st.log.push({end:true});st.cur=null;return}
+  const n=nodes[id];const l=[];doActs(n.do,st,l);l.forEach(x=>st.log.push({sys:x}));
+  const ch=(n.choices||[]).filter(c=>check(c.if||{},st));
+  if(!n.text&&!ch.length){enter(n.next||'');return}
+  st.log.push({say:true,who:n.speaker,text:(n.text||'').replace('{hero}','Hrdina').replace('{class}',st.cls)});st.cur={id,choices:ch,node:n}}
+function runPanel(){const m=S.mock;
+  const set=(k)=>e=>{m[k]=e.target.value};
+  const box=h('div',{class:'card',style:'margin-top:12px'},h('h3',{class:'tag'},'NÁHLED (simulace stavu hry)'),
+    h('div',{class:'row'},field('Třída',sel(CLASSES,m.cls,v=>{m.cls=v})),field('Zlato',h('input',{type:'number',value:m.gold,oninput:set('gold')})),field('Družina (1–3)',h('input',{type:'number',min:1,max:3,value:m.party,oninput:set('party')})),
+      field('Příznaky (čárkou)',h('input',{value:m.flags,oninput:set('flags'),placeholder:'merchant_paid, …'})),field('Questy (id=stav)',h('input',{value:m.quests,oninput:set('quests'),placeholder:'bandits=ready'}))),
+    h('button',{class:'pri',onclick:()=>{S.run={...mockState(),log:[]};enter(D().start);render()}},'▶ Spustit od začátku'));
+  if(S.run){const st=S.run;const log=h('div',{class:'log'});
+    st.log.forEach(e=>log.append(e.say?h('div',{class:'say'},h('b',{},e.who?e.who+': ':''),e.text):e.sys?h('div',{class:'tag'},'• '+e.sys):h('div',{class:'tag'},'— konec dialogu —')));
+    box.append(log);
+    if(st.cur){const c=st.cur.choices;
+      if(c.length)c.forEach((x,i)=>box.append(h('button',{style:'display:block;margin:4px 0',onclick:()=>{st.log.push({sys:'volba: '+x.text});const l=[];doActs(x.do,st,l);l.forEach(y=>st.log.push({sys:y}));enter(x.next||'');render()}},(i+1)+'. '+x.text)));
+      else box.append(h('button',{onclick:()=>{enter(st.cur.node.next||'');render()}},'Dál ▸'))}}
+  return box}
+function validationPanel(){const d=D();if(!d)return h('div');const msgs=[];const ids=Object.keys(d.nodes);const qs=questIds();
+  const ref=(x,from)=>{if(x&&!d.nodes[x])msgs.push(['bad',`Uzel „${from}“ míří na neexistující uzel „${x}“.`])};
+  const reach=new Set();const walk=id=>{if(!d.nodes[id]||reach.has(id))return;reach.add(id);const n=d.nodes[id];walk(n.next);(n.choices||[]).forEach(c=>walk(c.next));(n.branch||[]).forEach(b=>walk(b.next))};walk(d.start);
+  if(!d.nodes[d.start])msgs.push(['bad','Počáteční uzel neexistuje.']);
+  ids.forEach(id=>{const n=d.nodes[id];ref(n.next,id);(n.choices||[]).forEach(c=>{ref(c.next,id);if(!c.text)msgs.push(['warn',`Uzel „${id}“ má volbu bez textu.`]);(c.do||[]).forEach(a=>qcheck(a,id))});(n.branch||[]).forEach(b=>ref(b.next,id));(n.do||[]).forEach(a=>qcheck(a,id));
+    if(n.branch&&!n.branch.some(b=>!Object.keys(b.if||{}).length))msgs.push(['warn',`Rozcestník „${id}“ nemá výchozí větev bez podmínky.`]);
+    if(!reach.has(id))msgs.push(['warn',`Uzel „${id}“ není z počátku dosažitelný.`]);});
+  function qcheck(a,id){for(const k of['quest_start','quest_complete'])if(a[k]&&!qs.includes(a[k]))msgs.push(['bad',`Uzel „${id}“ odkazuje na neexistující quest „${a[k]}“.`])}
+  return h('div',{class:'card',style:'margin-top:12px'},h('h3',{class:'tag'},'KONTROLA'),msgs.length?msgs.map(([c,t])=>h('div',{class:c},(c==='bad'?'✗ ':'! ')+t)):h('div',{class:'ok'},'✓ Bez problémů ('+ids.length+' uzlů).'))}
+// ---------- questy
+function viewQuests(){const list=S.quests;if(S.quest===null||!list[S.quest])S.quest=list.length?0:null;
+  const left=h('div',{class:'card'},h('div',{class:'list'},list.map((q,i)=>h('button',{class:S.quest===i?'on':'',onclick:()=>{S.quest=i;render()}},h('span',{},q.title||q.id),h('span',{class:'tag'},q.id)))),
+    h('button',{onclick:()=>{let i=1;while(list.some(q=>q.id==='quest'+i))i++;list.push({id:'quest'+i,title:'Nový quest',desc:'',objectives:[],rewards:{gold:0,xp:0,items:[],flags:[]}});S.quest=list.length-1;save();render()}},'+ quest'));
+  const q=list[S.quest];if(!q)return h('div',{class:'wrap'},left,h('div',{class:'card hint'},'Žádný quest.'));
+  q.objectives=q.objectives||[];q.rewards=q.rewards||{};const r=q.rewards;
+  const csv=(k)=>(r[k]||[]).join(', ');
+  const right=h('div',{class:'card'},
+    h('div',{class:'row'},field('ID',h('input',{value:q.id,onchange:e=>{q.id=e.target.value.trim()||q.id;save();render()}})),field('Název',h('input',{value:q.title||'',oninput:e=>{q.title=e.target.value;save()}})),field('Zadavatel (id postavy)',h('input',{value:q.giver||'',oninput:e=>{q.giver=e.target.value;save()}})),
+      field('Odevzdání',sel(['ručně v dialogu','samo'],q.auto?'samo':'ručně v dialogu',v=>{q.auto=v==='samo';save()})),h('button',{class:'x',onclick:()=>{list.splice(S.quest,1);S.quest=null;save();render()}},'smazat')),
+    field('Popis',h('textarea',{oninput:e=>{q.desc=e.target.value;save()}},q.desc||'')),
+    h('div',{class:'grp'},h('h3',{},'Cíle (typy: kill = id nepřítele, talk = id postavy, collect = id předmětu, flag = příznak)'),
+      q.objectives.map((o,i)=>h('div',{class:'row'},field('id',h('input',{value:o.id||'',oninput:e=>{o.id=e.target.value;save()}})),field('typ',sel(['kill','talk','collect','flag'],o.type,v=>{o.type=v;save()})),
+        field('cíl',h('input',{value:o.target||'',oninput:e=>{o.target=e.target.value;save()}})),field('počet',h('input',{type:'number',min:1,value:o.count||1,oninput:e=>{o.count=Number(e.target.value)||1;save()}})),
+        field('text v deníku',h('input',{value:o.text||'',oninput:e=>{o.text=e.target.value;save()}})),h('button',{class:'x',onclick:()=>{q.objectives.splice(i,1);save();render()}},'×'))),
+      h('button',{onclick:()=>{q.objectives.push({id:'cil'+(q.objectives.length+1),type:'kill',target:'bandit',count:1,text:''});save();render()}},'+ cíl')),
+    h('div',{class:'grp'},h('h3',{},'Odměny'),h('div',{class:'row'},field('Zlato',h('input',{type:'number',value:r.gold||0,oninput:e=>{r.gold=Number(e.target.value)||0;save()}})),field('XP',h('input',{type:'number',value:r.xp||0,oninput:e=>{r.xp=Number(e.target.value)||0;save()}})),
+      field('Předměty (id, čárkou)',h('input',{value:csv('items'),oninput:e=>{r.items=e.target.value.split(',').map(s=>s.trim()).filter(Boolean);save()}})),
+      field('Příznaky po splnění',h('input',{value:csv('flags'),oninput:e=>{r.flags=e.target.value.split(',').map(s=>s.trim()).filter(Boolean);save()}})))));
+  return h('div',{class:'wrap'},left,right)}
+// ---------- data
+function viewData(){
+  const dj=D()?JSON.stringify({id:S.dlg,...D()},null,1):'';const qj=JSON.stringify(S.quests,null,1);
+  const copy=(txt,btn)=>{const done=()=>{btn.textContent='Zkopírováno'};navigator.clipboard.writeText(txt).then(done).catch(()=>{btn.textContent='Označ text a zkopíruj ručně'})};
+  const ta=(v,ro,id)=>h('textarea',{id,class:'mono',style:'min-height:240px',readonly:ro,onfocus:e=>ro&&e.target.select()},v);
+  const b1=h('button',{onclick:e=>copy(dj,e.target)},'Kopírovat dialog');const b2=h('button',{onclick:e=>copy(qj,e.target)},'Kopírovat questy');
+  const imp1=ta('',false,'imp-d'),imp2=ta('',false,'imp-q');const msg=h('div',{class:'hint'});
+  return h('div',{},h('div',{class:'two'},
+    h('div',{class:'card'},h('h3',{class:'tag'},'EXPORT DIALOGU → data/dialogues/'+S.dlg+'.json'),ta(dj,true,'out-d'),b1),
+    h('div',{class:'card'},h('h3',{class:'tag'},'EXPORT QUESTŮ → data/quests/main.json'),ta(qj,true,'out-q'),b2)),
+    h('div',{class:'two',style:'margin-top:12px'},
+    h('div',{class:'card'},h('h3',{class:'tag'},'IMPORT DIALOGU (vlož JSON)'),imp1,h('button',{onclick:()=>{try{const o=JSON.parse(imp1.value);if(!o.id||!o.nodes)throw 0;S.dialogues[o.id]=o;S.dlg=o.id;save();msg.textContent='Dialog načten.';render()}catch(e){msg.textContent='Neplatný JSON dialogu (chybí id nebo nodes).'}}},'Načíst dialog')),
+    h('div',{class:'card'},h('h3',{class:'tag'},'IMPORT QUESTŮ (vlož JSON pole)'),imp2,h('button',{onclick:()=>{try{const o=JSON.parse(imp2.value);if(!Array.isArray(o))throw 0;S.quests=o;save();msg.textContent='Questy načteny.';render()}catch(e){msg.textContent='Neplatný JSON questů (čekám pole).'}}},'Načíst questy'))),msg,
+    h('p',{class:'hint'},'Hotové JSON pošli do chatu s Claudem, nebo ulož do složek data/dialogues a data/quests v projektu. Hra je načte sama.'))}
+render();
+</script>

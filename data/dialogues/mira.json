@@ -1,0 +1,71 @@
+{
+ "id": "mira",
+ "start": "start",
+ "nodes": {
+  "start": {
+   "branch": [
+    {
+     "if": {
+      "in_party": "mira"
+     },
+     "next": "inparty"
+    },
+    {
+     "next": "intro"
+    }
+   ]
+  },
+  "intro": {
+   "speaker": "Mira",
+   "text": "Jsem Mira, učím se léčit i pálit. Cestuji sama, ale ve dvou se to lépe nese. Vezmeš mě s sebou?",
+   "do": [
+    {
+     "talk": "mira"
+    }
+   ],
+   "choices": [
+    {
+     "text": "Pojď s námi.",
+     "if": {
+      "party_space": true
+     },
+     "next": "join"
+    },
+    {
+     "text": "Nemáme místo.",
+     "if": {
+      "party_space": false
+     },
+     "next": "full"
+    },
+    {
+     "text": "Možná jindy.",
+     "next": ""
+    }
+   ]
+  },
+  "join": {
+   "speaker": "Mira",
+   "text": "Výborně! Doufám, že vás nezpomalím.",
+   "do": [
+    {
+     "recruit": "mira"
+    },
+    {
+     "set": "mira_joined"
+    }
+   ],
+   "next": ""
+  },
+  "full": {
+   "speaker": "Mira",
+   "text": "Družina je plná (nejvýš 3). Vrať se, až bude místo.",
+   "next": ""
+  },
+  "inparty": {
+   "speaker": "Mira",
+   "text": "Jdu s tebou, {hero}.",
+   "next": ""
+  }
+ }
+}

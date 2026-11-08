@@ -1,0 +1,107 @@
+{
+ "id": "borek",
+ "start": "start",
+ "nodes": {
+  "start": {
+   "branch": [
+    {
+     "if": {
+      "in_party": "borek"
+     },
+     "next": "inparty"
+    },
+    {
+     "if": {
+      "class": "warrior",
+      "not_flag": "borek_joined"
+     },
+     "next": "warrior"
+    },
+    {
+     "next": "intro"
+    }
+   ]
+  },
+  "intro": {
+   "speaker": "Bořek",
+   "text": "Bořek, bývalý stráž. Meč mi zůstal, práce ne. Potřebuješ pěst do boje?",
+   "do": [
+    {
+     "talk": "borek"
+    }
+   ],
+   "choices": [
+    {
+     "text": "Pojď s námi.",
+     "if": {
+      "party_space": true
+     },
+     "next": "join"
+    },
+    {
+     "text": "Nemáme místo.",
+     "if": {
+      "party_space": false
+     },
+     "next": "full"
+    },
+    {
+     "text": "Možná jindy.",
+     "next": ""
+    }
+   ]
+  },
+  "join": {
+   "speaker": "Bořek",
+   "text": "Výborně! Doufám, že vás nezpomalím.",
+   "do": [
+    {
+     "recruit": "borek"
+    },
+    {
+     "set": "borek_joined"
+    }
+   ],
+   "next": ""
+  },
+  "full": {
+   "speaker": "Bořek",
+   "text": "Družina je plná (nejvýš 3). Vrať se, až bude místo.",
+   "next": ""
+  },
+  "inparty": {
+   "speaker": "Bořek",
+   "text": "Jdu s tebou, {hero}.",
+   "next": ""
+  },
+  "warrior": {
+   "speaker": "Bořek",
+   "text": "Další válečník! Mezi námi dvěma by to byla pořádná přední řada. Půjdu s tebou, jestli chceš.",
+   "do": [
+    {
+     "talk": "borek"
+    }
+   ],
+   "choices": [
+    {
+     "text": "Pojď s námi.",
+     "if": {
+      "party_space": true
+     },
+     "next": "join"
+    },
+    {
+     "text": "Nemáme místo.",
+     "if": {
+      "party_space": false
+     },
+     "next": "full"
+    },
+    {
+     "text": "Možná jindy.",
+     "next": ""
+    }
+   ]
+  }
+ }
+}

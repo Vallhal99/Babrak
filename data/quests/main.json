@@ -1,0 +1,76 @@
+[
+ {
+  "id": "companions",
+  "title": "Najdi společníky",
+  "desc": "Sám nic nezmůžeš. V okolí paloučku prý hledají práci dva dobrodruzi.",
+  "auto": true,
+  "objectives": [
+   {
+    "id": "mira",
+    "type": "talk",
+    "target": "mira",
+    "count": 1,
+    "text": "Promluv s Mirou"
+   },
+   {
+    "id": "borek",
+    "type": "talk",
+    "target": "borek",
+    "count": 1,
+    "text": "Promluv s Bořkem"
+   }
+  ],
+  "rewards": {
+   "gold": 20,
+   "xp": 10
+  }
+ },
+ {
+  "id": "bandits",
+  "title": "Zbojníci na cestě",
+  "desc": "Obchodník prosí o pomoc proti zbojníkům na cestě.",
+  "giver": "merchant",
+  "objectives": [
+   {
+    "id": "kill",
+    "type": "kill",
+    "target": "bandit",
+    "count": 3,
+    "text": "Poraz zbojníky"
+   }
+  ],
+  "rewards": {
+   "gold": 40,
+   "xp": 50,
+   "items": [],
+   "flags": [
+    "bandits_done"
+   ]
+  }
+ },
+ {
+  "id": "leader",
+  "title": "Vůdce zbojníků",
+  "desc": "Vůdce zbojníků se skrývá poblíž. Pokud padne, cesty budou bezpečné.",
+  "giver": "merchant",
+  "objectives": [
+   {
+    "id": "kill",
+    "type": "kill",
+    "target": "leader",
+    "count": 1,
+    "text": "Poraz vůdce zbojníků"
+   }
+  ],
+  "rewards": {
+   "gold": 80,
+   "xp": 120,
+   "items": [
+    "chainmail"
+   ],
+   "flags": [
+    "leader_done"
+   ]
+  }
+ }
+]

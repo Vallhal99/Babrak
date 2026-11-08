@@ -1,0 +1,104 @@
+{
+ "id": "merchant",
+ "start": "start",
+ "nodes": {
+  "start": {
+   "branch": [
+    {
+     "if": {
+      "quest_ready": "bandits"
+     },
+     "next": "turnin"
+    },
+    {
+     "next": "hello"
+    }
+   ]
+  },
+  "hello": {
+   "speaker": "Obchodník",
+   "text": "Vítej, {hero}! Pro někoho, jako jsi ty ({class}), se dobrá výbava vždycky hodí.",
+   "choices": [
+    {
+     "text": "Ukaž mi zboží.",
+     "do": [
+      {
+       "shop": true
+      }
+     ],
+     "next": ""
+    },
+    {
+     "text": "Nemáš nějakou práci?",
+     "if": {
+      "quest_new": "bandits"
+     },
+     "next": "offer"
+    },
+    {
+     "text": "Jak jde ten úkol se zbojníky?",
+     "if": {
+      "quest_active": "bandits"
+     },
+     "next": "reminder"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "offer": {
+   "speaker": "Obchodník",
+   "text": "Zbojníci mi přepadají povozy. Poraz tři z nich a dám ti 40 zlatých.",
+   "choices": [
+    {
+     "text": "Beru to.",
+     "do": [
+      {
+       "quest_start": "bandits"
+      }
+     ],
+     "next": "accepted"
+    },
+    {
+     "text": "Možná později.",
+     "next": "hello"
+    }
+   ]
+  },
+  "accepted": {
+   "speaker": "Obchodník",
+   "text": "Skvělé. Potulují se kolem paloučku. Dávej pozor na jejich lučištníky.",
+   "next": ""
+  },
+  "reminder": {
+   "speaker": "Obchodník",
+   "text": "Pořád se tu potulují. Buď opatrný.",
+   "next": "hello"
+  },
+  "turnin": {
+   "speaker": "Obchodník",
+   "text": "Slyšel jsem boj! Tady máš odměnu, {hero}.",
+   "do": [
+    {
+     "quest_complete": "bandits"
+    },
+    {
+     "set": "merchant_paid"
+    }
+   ],
+   "next": "after"
+  },
+  "after": {
+   "speaker": "Obchodník",
+   "text": "Jejich vůdce se ale pořád schovává kdesi poblíž. Kdybys ho našel, dostaneš ještě víc.",
+   "do": [
+    {
+     "quest_start": "leader"
+    }
+   ],
+   "next": ""
+  }
+ }
+}
