@@ -98,7 +98,7 @@ func _on_finished() -> void:
 func _process(delta: float) -> void:
 	if not visible:
 		return
-	_shown += SPEED * delta
+	_shown += SPEED * Settings.text_speed * delta
 	var total := _text.text.length()
 	_text.visible_characters = mini(total, int(_shown))
 	if _text.visible_characters >= total and _has_choices and not _choices.get_child(0).visible:

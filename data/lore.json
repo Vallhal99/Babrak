@@ -1,0 +1,47 @@
+[
+ {
+  "id": "udoli",
+  "title": "Údolí Babrak",
+  "text": "Údolí Babrak leží mezi lesem a horami. Říká se, že jeho jméno pochází ze starého slova pro „hlídače“ – kdysi tu stála strážní věž, po které zbyly jen kameny u paloučku."
+ },
+ {
+  "id": "vesnice",
+  "title": "Osada u paloučku",
+  "text": "Osada žije z obchodu s povozníky. Na návsi stojí hostinec, kovárna i stánky s bylinkami. Lidé se po setmění zamykají – za tmy se cesty nevyplatí."
+ },
+ {
+  "id": "zbojnici",
+  "title": "Zbojníci na cestě",
+  "text": "Zbojníci přepadají povozy na lesní cestě. Bývají to bývalí žoldnéři bez žoldu. Jsou lidé, a tak si občas dají říct – nebo koupit."
+ },
+ {
+  "id": "hrbitov",
+  "title": "Neklidný hřbitov",
+  "text": "Za osadou je starý hřbitov. Kostlivci se tu zvedají v noci a bojí se ohně. Staří lidé říkají, že tu leží vojáci z dávné bitvy."
+ },
+ {
+  "id": "vudce",
+  "title": "Vůdce zbojníků",
+  "text": "Vůdce zbojníků se nikdy neukazuje v první linii. Prý ho zradila vlastní družina a od té doby nikomu nevěří. Jeho slabinou jsou prý šípy a oheň."
+ },
+ {
+  "id": "cerny_rytir",
+  "title": "Černý rytíř",
+  "text": "Černý rytíř je přízrak zbroje, ve které už dávno nikdo není. Údery nabíjí a nesnáší ocel ani oheň. Kdo ho porazí, získá slávu – a nepřátele."
+ },
+ {
+  "id": "pochoden",
+  "title": "Světlo pochodní",
+  "text": "Za tmy nepřítele špatně vidíš a jeho slabiny zůstávají skryté. Pochodeň v druhé ruce to změní – plamen ti ukáže, kam udeřit."
+ },
+ {
+  "id": "kronikari",
+  "title": "Kronikáři",
+  "text": "Kronikáři zapisují vše, co vidí. Jejich knihy prý zachytily i slabiny netvorů, proto jsou na cestách vítaní, i když jim nikdo nevěří."
+ },
+ {
+  "id": "zamky",
+  "title": "Umění páčení zámků",
+  "text": "Dobrý zloděj nepáčí silou. Nejdřív cítí, kde zámek povolí, a pak otáčí jen tak daleko, kam válec pustí. Paklíč se láme, když tlačíš do ztracena."
+ }
+]

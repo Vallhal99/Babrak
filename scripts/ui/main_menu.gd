@@ -8,6 +8,7 @@ const GAME_TURN3 := "res://scenes/ui/class_select.tscn"  # tah 3: výběr tříd
 
 
 func _ready() -> void:
+	Settings.load_and_apply()
 	var bg := ColorRect.new()
 	bg.color = Color(0.06, 0.08, 0.06)
 	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -30,7 +31,16 @@ func _ready() -> void:
 	_button(box, "Nová hra tah 3", func() -> void: get_tree().change_scene_to_file(GAME_TURN3))
 	var slots := SaveSlots.new()
 	add_child(slots)
-	_button(box, "Načíst hru", func() -> void: slots.open(false, null))
+	_button(box, "Načíst hru", func() -> void:
+		center.visible = false
+		slots.open(false, null))
+	var settings := SettingsPanel.new()
+	add_child(settings)
+	settings.closed.connect(func() -> void: center.visible = true)
+	_button(box, "Nastavení", func() -> void:
+		center.visible = false
+		settings.open())
+	slots.closed.connect(func() -> void: center.visible = true)
 	var exit := ExitDialog.new()
 	add_child(exit)
 	_button(box, "Konec", exit.popup_centered)

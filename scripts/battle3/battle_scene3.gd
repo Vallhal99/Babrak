@@ -1240,7 +1240,7 @@ func _victory() -> void:
 		if m.source.level > before:
 			leveled.append("%s %d" % [m.display_name, m.source.level])
 	_hero.add_gold(gold)
-	_result = {"xp": xp, "gold": gold, "loot": loot, "leveled": leveled, "rank": rank, "kills": _kills}
+	_result = {"xp": xp, "gold": gold, "loot": loot, "leveled": leveled, "rank": rank, "kills": _kills, "seen": _seen_enemies()}
 	var tw := create_tween()
 	tw.set_loops(2)
 	for m in _party:
@@ -1831,3 +1831,11 @@ func _style_button(b: Button) -> void:
 	b.add_theme_color_override("font_disabled_color", Color(0.5, 0.5, 0.62))
 	b.add_theme_font_size_override("font_size", 18)
 	b.alignment = HORIZONTAL_ALIGNMENT_LEFT
+
+
+func _seen_enemies() -> Array:
+	var out := []
+	for u in _enemies:
+		if u.source is TurnEnemy3:
+			out.append({"id": String((u.source as TurnEnemy3).template_id), "revealed": u.revealed.map(func(w: StringName) -> String: return String(w))})
+	return out

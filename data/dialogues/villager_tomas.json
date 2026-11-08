@@ -1,0 +1,83 @@
+{
+ "id": "tomas",
+ "start": "start",
+ "nodes": {
+  "start": {
+   "branch": [
+    {
+     "if": {
+      "hour": [
+       6,
+       12
+      ]
+     },
+     "next": "morning"
+    },
+    {
+     "if": {
+      "hour": [
+       12,
+       18
+      ]
+     },
+     "next": "day"
+    },
+    {
+     "next": "evening"
+    }
+   ]
+  },
+  "morning": {
+   "speaker": "Tomáš",
+   "text": "Stůj, kdo… ah, ty. V pořádku, projdi.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "day": {
+   "speaker": "Tomáš",
+   "text": "Na návsi je klid. Jen ať to tak zůstane.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "evening": {
+   "speaker": "Tomáš",
+   "text": "Za tmy chodí kostlivci od hřbitova. Vem si pochodeň, ať vidíš, kam udeřit.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "news": {
+   "speaker": "Tomáš",
+   "text": "Pochodeň v druhé ruce ti za tmy ukáže slabiny nepřátel.",
+   "next": "",
+   "do": [
+    {
+     "lore": "pochoden"
+    }
+   ]
+  }
+ }
+}

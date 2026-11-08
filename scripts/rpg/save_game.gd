@@ -63,7 +63,8 @@ static func collect(main: Node) -> Dictionary:
 		cons[String(k)] = hero.get_meta(&"consumables")[k]
 	return {"version": 1, "time": Time.get_datetime_string_from_system().replace("T", " ").substr(0, 16),
 		"class": String(hero.get_meta(&"class_id", &"warrior")), "hero": _char(hero), "party": party,
-		"pos": [hero.global_position.x, hero.global_position.y], "hour": main.world.hour,
+		"pos": [main._door_out.x if main.inside_shop else hero.global_position.x, main._door_out.y if main.inside_shop else hero.global_position.y],
+		"codex": main.codex.to_dict(), "hour_set": true, "hour": main.world.hour,
 		"weather": main.world.fx.weather if main.world.fx else "jasno",
 		"quests": {"state": main.quests.state, "flags": main.quests.flags},
 		"chests": main.opened_chests, "cons": cons, "picks": int(hero.get_meta(&"lockpicks", 0))}
@@ -108,6 +109,8 @@ static func apply(main: Node, d: Dictionary) -> void:
 				c.global_position = hero.global_position + Vector2(-30, 20)
 				_apply_char(c, entry["c"])
 				main.party.append(c)
+	if d.has("codex"):
+		main.codex.from_dict(d["codex"])
 	main.quests.state = d["quests"]["state"]
 	main.quests.flags = d["quests"]["flags"]
 	main.quests.changed.emit()

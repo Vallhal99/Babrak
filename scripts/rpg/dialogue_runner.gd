@@ -20,6 +20,8 @@ const DIR := "res://data/dialogues/"
 
 var quests: QuestLog
 var hero: Character
+var codex: Codex
+var hour := 12.0          ## aktuální hodina (podmínka "hour": [od, do])
 var party: Array = []     ## členové družiny (hrdina první), hra ji drží aktuální
 var data := {}
 var _choices: Array = []  ## aktuálně viditelné volby (původní slovníky)
@@ -112,6 +114,11 @@ func check(c: Dictionary) -> bool:
 				if hero.level < int(v): return false
 			"in_party":
 				if not party.any(func(m: Character) -> bool: return str(m.get_meta(&"companion_id", "")) == str(v)): return false
+			"hour":
+				var from_h := float(v[0])
+				var to_h := float(v[1])
+				var inside := hour >= from_h and hour < to_h if from_h <= to_h else (hour >= from_h or hour < to_h)
+				if not inside: return false
 			"party_space":
 				if (party.size() < 3) != bool(v): return false
 	return true
@@ -132,3 +139,4 @@ func _do(list: Array) -> void:
 				"talk": quests.notify("talk", str(v))
 				"recruit": action.emit("recruit", str(v))
 				"shop": action.emit("shop", true)
+				"lore": if codex: codex.unlock(str(v))

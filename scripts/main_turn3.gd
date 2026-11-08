@@ -29,6 +29,17 @@ var hero: Hero
 var merchant: Npc
 var party: Array[Character] = []   ## hrdina + společníci (max 3)
 var quests := QuestLog.new()
+var codex := Codex.new()
+var interior: Interior
+var inside_shop := false
+var _door_out := Vector2.ZERO
+var _door: Door
+var _codex_panel: CodexPanel
+var _fade: ColorRect
+var villagers: Array[Villager] = []
+const SHOP_DOOR := Vector2(1296, 872)   ## vchod do hostince (obchodu)
+const VILLAGER := preload("res://scenes/characters/villager.tscn")
+const DAY_LENGTH := 720.0               ## reálných sekund na 24 h (0 = čas stojí)
 var opened_chests: Array[String] = []
 var in_battle := false
 var in_dialogue := false
@@ -48,9 +59,21 @@ func _ready() -> void:
 	var save: Dictionary = SaveGame.read(Session.pending_load) if Session.pending_load > 0 else {}
 	ClassDefs.apply(hero, StringName(save["class"]) if not save.is_empty() else Session.class_id)
 	party = [hero]
+	Settings.load_and_apply()
+	interior = Interior.new()
+	world.add_child(interior)
 	merchant = MERCHANT.instantiate()
 	merchant.name = "Merchant"
-	world.add_actor(merchant, world.start_position + MERCHANT_OFFSET)
+	merchant.shop_stock.append(ItemDB.get_item(&"torch"))   # pochodeň jen v Tahu 3
+	world.add_actor(merchant, interior.merchant_spot)
+	_door = Door.new()
+	world.add_actor(_door, SHOP_DOOR)
+	for id in Villager.VILLAGERS:
+		var v: Villager = VILLAGER.instantiate()
+		v.setup_villager(id, world)
+		world.add_actor(v, Villager.PLACES[Villager.VILLAGERS[id]["home"]])
+		villagers.append(v)
+	world.day_length = DAY_LENGTH
 	for id in COMPANION_OFFSETS:
 		var c: Companion = COMPANION.instantiate()
 		c.setup_companion(id)
@@ -75,6 +98,21 @@ func _ready() -> void:
 	_quest_panel = QuestPanel.new()
 	add_child(_quest_panel)
 	_quest_panel.setup(quests)
+	_codex_panel = CodexPanel.new()
+	add_child(_codex_panel)
+	_codex_panel.setup(codex)
+	codex.toast.connect(func(t: String) -> void: quests.toast.emit(t))
+	_fade = ColorRect.new()
+	_fade.color = Color(0, 0, 0, 0)
+	_fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_fade.set_anchors_preset(Control.PRESET_FULL_RECT)
+	var fl := CanvasLayer.new()
+	fl.layer = 50
+	fl.add_child(_fade)
+	add_child(fl)
+	if not hero.inventory.has(&"torch"):
+		hero.inventory.add(&"torch")
+	codex.unlock("udoli")
 	_spawn_chests()
 	if save.is_empty():
 		quests.start("companions")
@@ -82,6 +120,27 @@ func _ready() -> void:
 		SaveGame.apply(self, save)
 		Session.pending_load = 0
 	started.emit()
+
+
+func _go_shop(enter: bool) -> void:
+	hero.controls_enabled = false
+	var tw := create_tween()
+	tw.tween_property(_fade, "color:a", 1.0, 0.25)
+	await tw.finished
+	inside_shop = enter
+	if enter:
+		_door_out = SHOP_DOOR + Vector2(0, 30)
+		hero.global_position = interior.entrance
+		hero.invulnerable = true
+		codex.unlock("vesnice")
+	else:
+		hero.global_position = _door_out
+		hero.invulnerable = false
+	world.snap_camera()
+	await get_tree().create_timer(0.1).timeout
+	var tw2 := create_tween()
+	tw2.tween_property(_fade, "color:a", 0.0, 0.25)
+	hero.controls_enabled = not in_dialogue and not in_battle
 
 
 func save_game(slot: int) -> bool:
@@ -174,7 +233,8 @@ func _talk_target() -> Node2D:
 	var best: Node2D
 	var best_d := TALK_RANGE
 	for node in get_tree().get_nodes_in_group(&"characters"):
-		var ok := node == merchant or (node is Companion and not (node as Companion).joined)
+		var ok := node == merchant or (node is Companion and not (node as Companion).joined) \
+				or (node is Villager and (node as Villager).is_available())
 		if not ok:
 			continue
 		var d := (node as Node2D).global_position.distance_to(hero.global_position)
@@ -193,6 +253,8 @@ func start_dialogue(id: String) -> void:
 	runner.quests = quests
 	runner.hero = hero
 	runner.party = party
+	runner.codex = codex
+	runner.hour = world.hour
 	runner.action.connect(_on_dialogue_action)
 	if _dialogue.open(runner, id):
 		await _dialogue.closed
@@ -267,6 +329,10 @@ func _respawn_later(pos: Vector2, templates: Array) -> void:
 
 
 func _process(delta: float) -> void:
+	if inside_shop and hero != null:
+		hero.global_position = interior.clamp_hero(hero.global_position)
+		if interior.at_exit(hero.global_position) and hero.controls_enabled:
+			_go_shop(false)
 	if hero == null or hero.dead:
 		return
 	if not in_battle and not in_dialogue:   # pomalé hojení mimo souboj
@@ -322,6 +388,7 @@ func _battle(first_enemy: TurnEnemy3, first_side: StringName) -> void:
 	var result: Dictionary = await battle.finished
 	battle.queue_free()
 	get_tree().paused = false
+	codex.record_battle(result)
 	for k in result.get("kills", []):
 		quests.notify("kill", k)
 	match result.get("outcome", &"fled"):
@@ -357,11 +424,18 @@ func _battle_background(mood: String) -> Texture2D:
 func _input(event: InputEvent) -> void:
 	if in_battle or in_dialogue:
 		return
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_J:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_K:
+		_codex_panel.toggle()
+		get_viewport().set_input_as_handled()
+	elif event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_J:
 		_quest_panel.toggle()
 		get_viewport().set_input_as_handled()
 	elif event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E \
 			and hero.controls_enabled and not _shop.visible and not _panel.visible:
+		if not inside_shop and _door.is_near():
+			_go_shop(true)
+			get_viewport().set_input_as_handled()
+			return
 		var chest := _nearest_chest()
 		if chest != null:
 			_open_chest(chest)
@@ -369,7 +443,7 @@ func _input(event: InputEvent) -> void:
 			return
 		var t := _talk_target()
 		if t != null:
-			start_dialogue("merchant" if t == merchant else (t as Companion).dialogue_id)
+			start_dialogue("merchant" if t == merchant else (t as Villager).dialogue_id if t is Villager else (t as Companion).dialogue_id)
 			get_viewport().set_input_as_handled()
 	elif event.is_action_pressed(&"inventory") and not _shop.visible:
 		_panel.toggle()

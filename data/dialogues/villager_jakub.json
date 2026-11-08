@@ -1,0 +1,83 @@
+{
+ "id": "jakub",
+ "start": "start",
+ "nodes": {
+  "start": {
+   "branch": [
+    {
+     "if": {
+      "hour": [
+       6,
+       12
+      ]
+     },
+     "next": "morning"
+    },
+    {
+     "if": {
+      "hour": [
+       12,
+       18
+      ]
+     },
+     "next": "day"
+    },
+    {
+     "next": "evening"
+    }
+   ]
+  },
+  "morning": {
+   "speaker": "Jakub",
+   "text": "Zelenina sama nevyroste. Pomůžeš, nebo jen stojíš?",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "day": {
+   "speaker": "Jakub",
+   "text": "Je horko jako v peci. Ještě pár beden a půjdu na lavičku.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "evening": {
+   "speaker": "Jakub",
+   "text": "Voda ze studny je nejlepší po západu slunce.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "news": {
+   "speaker": "Jakub",
+   "text": "Na hřbitově se prý v noci zvedají mrtví. Já tam nechodím.",
+   "next": "",
+   "do": [
+    {
+     "lore": "hrbitov"
+    }
+   ]
+  }
+ }
+}

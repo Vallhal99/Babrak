@@ -1,0 +1,83 @@
+{
+ "id": "hana",
+ "start": "start",
+ "nodes": {
+  "start": {
+   "branch": [
+    {
+     "if": {
+      "hour": [
+       6,
+       12
+      ]
+     },
+     "next": "morning"
+    },
+    {
+     "if": {
+      "hour": [
+       12,
+       18
+      ]
+     },
+     "next": "day"
+    },
+    {
+     "next": "evening"
+    }
+   ]
+  },
+  "morning": {
+   "speaker": "Hana",
+   "text": "Dobré ráno! Bylinky jsou nejlepší, dokud na nich leží rosa.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "day": {
+   "speaker": "Hana",
+   "text": "Lektvar na zdraví, protilátka, co si přeješ? Zlato nechávej raději obchodníkovi, já beru jen díky.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "evening": {
+   "speaker": "Hana",
+   "text": "Už zavírám. Večer je v hostinci polévka a teplo.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "news": {
+   "speaker": "Hana",
+   "text": "Prý se v lese za osadou skrývají zbojníci. Dej na sebe pozor.",
+   "next": "",
+   "do": [
+    {
+     "lore": "zbojnici"
+    }
+   ]
+  }
+ }
+}

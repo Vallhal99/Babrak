@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/characters/character.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/character/villager.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/merchant/merchant.png" id="m_body"]
+
+[node name="Villager" instance=ExtResource("1")]
+script = ExtResource("2")
+display_name = "Vesničan"
+team = &"npc"
+invulnerable = true
+
+[node name="Visual" parent="." index="1"]
+body_sheet = ExtResource("m_body")
+hair_sheet = null

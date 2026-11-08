@@ -1,0 +1,83 @@
+{
+ "id": "eliska",
+ "start": "start",
+ "nodes": {
+  "start": {
+   "branch": [
+    {
+     "if": {
+      "hour": [
+       6,
+       12
+      ]
+     },
+     "next": "morning"
+    },
+    {
+     "if": {
+      "hour": [
+       12,
+       18
+      ]
+     },
+     "next": "day"
+    },
+    {
+     "next": "evening"
+    }
+   ]
+  },
+  "morning": {
+   "speaker": "Eliška",
+   "text": "Ahoj! Táta říká, že hostinec dělá obchod ještě lépe než pivo.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "day": {
+   "speaker": "Eliška",
+   "text": "Viděla jsem kronikáře. Zapsal i mě! Nebo aspoň říkal, že zapsal.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "evening": {
+   "speaker": "Eliška",
+   "text": "Večer je v hostinci plno. Pojď dál, obchodník má otevřeno.",
+   "choices": [
+    {
+     "text": "Co je nového?",
+     "next": "news"
+    },
+    {
+     "text": "Nashledanou.",
+     "next": ""
+    }
+   ]
+  },
+  "news": {
+   "speaker": "Eliška",
+   "text": "Kronikáři prý zapisují slabiny netvorů. Chtěla bych být taková.",
+   "next": "",
+   "do": [
+    {
+     "lore": "kronikari"
+    }
+   ]
+  }
+ }
+}

@@ -30,8 +30,19 @@ func _ready() -> void:
 	if host != null and host.has_method("save_game"):   # ukládání umí jen Tah 3
 		var slots := SaveSlots.new()
 		add_child(slots)
-		_button(box, "Uložit hru", func() -> void: slots.open(true, host))
-		_button(box, "Načíst hru", func() -> void: slots.open(false, host))
+		slots.closed.connect(func() -> void: box.visible = true)
+		_button(box, "Uložit hru", func() -> void:
+			box.visible = false
+			slots.open(true, host))
+		_button(box, "Načíst hru", func() -> void:
+			box.visible = false
+			slots.open(false, host))
+	var settings := SettingsPanel.new()
+	add_child(settings)
+	settings.closed.connect(func() -> void: box.visible = true)
+	_button(box, "Nastavení", func() -> void:
+		box.visible = false
+		settings.open())
 	_button(box, "Restart", func() -> void:
 		resume()
 		get_tree().reload_current_scene())
