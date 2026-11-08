@@ -2,6 +2,7 @@ extends Control
 ## Úvodní menu. Spouští se jako run/main_scene.
 
 const GAME := "res://scenes/main.tscn"
+const GAME_TURN := "res://scenes/main_turn.tscn"  # testovací varianta s tahovým soubojem
 
 
 func _ready() -> void:
@@ -22,11 +23,12 @@ func _ready() -> void:
 	title.add_theme_font_size_override("font_size", 48)
 	box.add_child(title)
 	var start := _button(box, "Nová hra", func() -> void: get_tree().change_scene_to_file(GAME))
+	_button(box, "Nová hra tah", func() -> void: get_tree().change_scene_to_file(GAME_TURN))
 	var exit := ExitDialog.new()
 	add_child(exit)
 	_button(box, "Konec", exit.popup_centered)
 	var help := Label.new()
-	help.text = "WASD/šipky pohyb · Shift běh · Space/J útok · Q kouzlo\nI/Tab inventář · N noc/den · Esc pauza"
+	help.text = "WASD/šipky pohyb · Shift běh · Space/J útok · Q kouzlo\nI/Tab inventář · N noc/den · Esc pauza\nNová hra tah: souboj po tazích (šipky + Enter, B = boost)"
 	help.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	help.add_theme_font_size_override("font_size", 12)
 	box.add_child(help)
