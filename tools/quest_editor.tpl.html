@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Editor questů</title>
+<style>
+:root{--bg:#f4f5f2;--panel:#fff;--ink:#1d2320;--mute:#5e6a64;--line:#d5dbd6;--accent:#2f6f5a;--ai:#fff;--bad:#b3261e;--soft:#e6eee9;--gold:#b8860b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141815;--panel:#1d2320;--ink:#e6ece8;--mute:#9aa8a0;--line:#33403a;--accent:#5fb89a;--ai:#0d1a14;--bad:#f2867f;--soft:#26332d;--gold:#e0b84c;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif;padding:12px max(16px,env(safe-area-inset-left,0px))}
+h1{font-size:18px;margin:0}h2{font-size:15px;margin:0 0 8px}
+header{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+button,select,input,textarea{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 9px;min-width:0}
+button{cursor:pointer}button:hover{border-color:var(--accent)}
+button.pri,button.on{background:var(--accent);color:var(--ai);border-color:var(--accent)}
+button.x{color:var(--bad)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:12px;align-items:start}
+@media(max-width:780px){.wrap{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:12px}
+.list{display:flex;flex-direction:column;gap:6px}
+.q{text-align:left;display:flex;flex-direction:column;gap:2px;padding:8px 10px}
+.q small{color:var(--mute)}.q.on small{color:inherit;opacity:.85}
+label{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--mute)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin:6px 0}.row>*{flex:1 1 130px}.row>button{flex:0 0 auto}
+.obj{display:grid;grid-template-columns:28px 120px minmax(120px,1fr) 70px minmax(140px,2fr) auto;gap:6px;align-items:center;margin:6px 0}
+@media(max-width:780px){.obj{grid-template-columns:1fr 1fr}.obj .n{display:none}}
+.n{width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--ai);display:grid;place-items:center;font-size:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{padding:3px 9px;border-radius:99px;border:1px solid var(--line);cursor:pointer;font-size:12px;user-select:none}
+.chip.on{background:var(--accent);color:var(--ai);border-color:var(--accent)}
+.hint{color:var(--mute);font-size:12px}.bad{color:var(--bad)}
+.sum{background:var(--soft);border-radius:6px;padding:8px 10px}
+pre{background:var(--soft);border-radius:6px;padding:8px;overflow:auto;max-height:260px;font-size:12px}
+svg{width:100%;height:auto;background:var(--soft);border-radius:8px}
+svg text{fill:var(--ink);font:12px system-ui}
+</style></head><body>
+<header><h1>Editor questů</h1>
+<button id="new" class="pri">+ Nový quest</button><button id="imp">Načíst JSON</button><button id="exp">Stáhnout JSON</button>
+<button id="cp">Kopírovat JSON</button><span class="hint" id="msg"></span></header>
+<div class="wrap"><div class="card"><h2>Questy</h2><div class="list" id="list"></div></div><div id="main"></div></div>
+<input type="file" id="file" accept=".json" hidden>
+<script>
+const DATA=__DATA__;           // {quests, enemies, npcs, items}
+let Q=DATA.quests.map(q=>JSON.parse(JSON.stringify(q)));
+let cur=Q[0]?.id||null, tab='edit';
+const $=s=>document.querySelector(s), el=(t,p={},...c)=>{const e=document.createElement(t);for(const k in p){if(k==='on')for(const ev in p.on)e.addEventListener(ev,p.on[ev]);else if(k==='class')e.className=p[k];else if(k==='value')e.value=p[k];else e.setAttribute(k,p[k])}c.flat().forEach(x=>e.append(x?.nodeType?x:document.createTextNode(x??'')));return e};
+const TYPES={kill:'Zabij',talk:'Promluv s',collect:'Sežeň předmět',flag:'Příznak (děj)'};
+const targets=t=>t==='kill'?DATA.enemies:t==='talk'?DATA.npcs:t==='collect'?DATA.items:null;
+const find=id=>Q.find(q=>q.id===id);
+const slug=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'quest';
+function flash(t){$('#msg').textContent=t;setTimeout(()=>$('#msg').textContent='',2200)}
+function issues(q){const r=[];if(!q.title)r.push('chybí název');if(!(q.objectives||[]).length)r.push('žádný cíl');
+ (q.objectives||[]).forEach((o,i)=>{if(!o.target)r.push(`cíl ${i+1} nemá cíl`)});
+ (q.requires||[]).forEach(id=>{if(!find(id))r.push('neexistující předchozí quest '+id);else if(cyc(q.id,id))r.push('cyklus se '+id)});
+ if(q.giver&&!q.auto&&!DATA.npcs.includes(q.giver))r.push('neznámý zadavatel');return r}
+function cyc(a,b,seen=new Set()){if(a===b)return true;if(seen.has(b))return false;seen.add(b);return (find(b)?.requires||[]).some(x=>cyc(a,x,seen))}
+function renderList(){const l=$('#list');l.replaceChildren(...Q.map(q=>el('button',{class:'q'+(q.id===cur?' on':''),on:{click:()=>{cur=q.id;render()}}},
+ el('b',{},q.title||q.id),el('small',{},(q.auto?'automatický · ':'')+((q.objectives||[]).length)+' cílů'+(issues(q).length?' · ⚠':'')))))}
+function render(){renderList();const m=$('#main');m.replaceChildren();
+ const q=find(cur);const tabs=el('div',{class:'row'},...[['edit','Úprava'],['graph','Návaznosti'],['dlg','Dialog zadavatele'],['sim','Zkouška'],['json','JSON']].map(([k,t])=>el('button',{class:tab===k?'on':'',on:{click:()=>{tab=k;render()}}},t)));
+ m.append(tabs);if(tab==='graph')return m.append(graph());if(!q)return m.append(el('div',{class:'card'},'Vytvoř první quest tlačítkem nahoře.'));
+ ({edit,dlg,sim,json})[tab](m,q)}
+function field(lbl,inp){return el('label',{},lbl,inp)}
+function bind(q,k,type='text'){return el('input',{type,value:q[k]??'',on:{input:e=>{q[k]=type==='number'?+e.target.value:e.target.value;renderList()}}})}
+function edit(m,q){
+ const c=el('div',{class:'card'});
+ c.append(el('div',{class:'row'},field('Název',bind(q,'title')),field('ID (do dialogů)',el('input',{value:q.id,on:{change:e=>{const n=slug(e.target.value);if(find(n)&&n!==q.id){flash('ID už existuje');e.target.value=q.id;return}Q.forEach(o=>o.requires=(o.requires||[]).map(r=>r===q.id?n:r));q.id=n;cur=n;render()}}}))));
+ c.append(field('Popis v deníku',el('textarea',{rows:2,on:{input:e=>q.desc=e.target.value}},q.desc||'')));
+ c.append(el('div',{class:'row'},field('Zadává',el('select',{on:{change:e=>{q.giver=e.target.value||undefined;renderList()}}},el('option',{value:''},'— nikdo (spustí se v ději) —'),...DATA.npcs.map(n=>el('option',{value:n,...(q.giver===n?{selected:''}:{})},n)))),
+  field('Odevzdání',el('select',{on:{change:e=>q.auto=e.target.value==='1'}},el('option',{value:'0',...(!q.auto?{selected:''}:{})},'ručně u zadavatele'),el('option',{value:'1',...(q.auto?{selected:''}:{})},'automaticky po splnění')))));
+ const req=el('div',{class:'chips'});Q.filter(o=>o.id!==q.id).forEach(o=>req.append(el('span',{class:'chip'+((q.requires||[]).includes(o.id)?' on':''),on:{click:()=>{q.requires=q.requires||[];const i=q.requires.indexOf(o.id);i<0?q.requires.push(o.id):q.requires.splice(i,1);if(!q.requires.length)delete q.requires;render()}}},o.title||o.id)));
+ c.append(el('h2',{},'Nejdřív musí být splněno'),req,el('div',{class:'hint'},'Quest se nedá přijmout, dokud nejsou označené questy odevzdané.'));
+ m.append(c);
+ const oc=el('div',{class:'card'},el('h2',{},'Cíle (plní se všechny)'));q.objectives=q.objectives||[];
+ q.objectives.forEach((o,i)=>{const ts=targets(o.type);
+  const tgt=ts?el('select',{on:{change:e=>{o.target=e.target.value;autotext(o);render()}}},...[...new Set([...ts,o.target].filter(Boolean))].map(t=>el('option',{value:t,...(o.target===t?{selected:''}:{})},t))):el('input',{value:o.target||'',placeholder:'název příznaku',on:{input:e=>o.target=e.target.value}});
+  oc.append(el('div',{class:'obj'},el('span',{class:'n'},i+1),
+   el('select',{on:{change:e=>{o.type=e.target.value;const t=targets(o.type);o.target=t?t[0]:'';autotext(o);render()}}},...Object.entries(TYPES).map(([k,v])=>el('option',{value:k,...(o.type===k?{selected:''}:{})},v))),
+   tgt,el('input',{type:'number',min:1,value:o.count||1,title:'počet',on:{input:e=>{o.count=Math.max(1,+e.target.value);autotext(o)}}}),
+   el('input',{value:o.text||'',placeholder:'text v deníku',on:{input:e=>o.text=e.target.value}}),
+   el('button',{class:'x',title:'Smazat cíl',on:{click:()=>{q.objectives.splice(i,1);render()}}},'✕')))});
+ oc.append(el('button',{on:{click:()=>{const o={id:'o'+(q.objectives.length+1),type:'kill',target:DATA.enemies[0],count:1,text:''};autotext(o);q.objectives.push(o);render()}}},'+ Přidat cíl'));m.append(oc);
+ const r=q.rewards=q.rewards||{};const rc=el('div',{class:'card'},el('h2',{},'Odměna'));
+ rc.append(el('div',{class:'row'},field('Zlato',el('input',{type:'number',min:0,value:r.gold||0,on:{input:e=>r.gold=+e.target.value}})),field('Zkušenosti',el('input',{type:'number',min:0,value:r.xp||0,on:{input:e=>r.xp=+e.target.value}})),
+  field('Příznak po odevzdání',el('input',{value:(r.flags||[]).join(', '),placeholder:'např. bandits_done',on:{input:e=>r.flags=e.target.value.split(',').map(s=>s.trim()).filter(Boolean)}}))));
+ const ic=el('div',{class:'chips'});DATA.items.forEach(it=>ic.append(el('span',{class:'chip'+((r.items||[]).includes(it)?' on':''),on:{click:()=>{r.items=r.items||[];const i=r.items.indexOf(it);i<0?r.items.push(it):r.items.splice(i,1);render()}}},it)));
+ rc.append(el('div',{class:'hint'},'Předměty:'),ic);m.append(rc);
+ const is=issues(q);m.append(el('div',{class:'sum'+(is.length?' bad':'')},is.length?'⚠ '+is.join(' · '):'✓ Quest je v pořádku. Shrnutí: '+(q.objectives||[]).map(o=>o.text||o.target).join(' → ')+` → odměna ${r.gold||0} zlata, ${r.xp||0} XP.`));
+ m.append(el('div',{class:'row'},el('button',{on:{click:()=>{const c=JSON.parse(JSON.stringify(q));c.id=slug(q.id+'_kopie');c.title+=' (kopie)';Q.push(c);cur=c.id;render()}}},'Duplikovat'),el('button',{class:'x',on:{click:()=>{if(confirm('Smazat quest?')){Q=Q.filter(o=>o!==q);Q.forEach(o=>{if(o.requires)o.requires=o.requires.filter(x=>x!==q.id)});cur=Q[0]?.id;render()}}}},'Smazat quest')))}
+function autotext(o){const n=o.count||1;o.text={kill:`Poraz: ${o.target}${n>1?' ×'+n:''}`,talk:`Promluv s: ${o.target}`,collect:`Sežeň: ${o.target}${n>1?' ×'+n:''}`,flag:`Splň: ${o.target}`}[o.type]}
+function graph(){const c=el('div',{class:'card'},el('h2',{},'Návaznosti questů'));const lvl={};const L=id=>lvl[id]??=((find(id)?.requires||[]).filter(find).reduce((a,r)=>Math.max(a,L(r)+1),0));
+ Q.forEach(q=>{try{L(q.id)}catch(e){lvl[q.id]=0}});const cols={};Q.forEach(q=>(cols[lvl[q.id]]??=[]).push(q));
+ const pos={};let W=0,H=0;Object.entries(cols).forEach(([l,a])=>a.forEach((q,i)=>{pos[q.id]=[20+l*220,20+i*70];W=Math.max(W,20+l*220+190);H=Math.max(H,20+i*70+50)}));
+ let s=`<svg viewBox="0 0 ${W+20} ${H+20}"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--mute)"/></marker></defs>`;
+ Q.forEach(q=>(q.requires||[]).forEach(r=>{if(pos[r]&&pos[q.id])s+=`<path d="M${pos[r][0]+190} ${pos[r][1]+20}C${pos[r][0]+210} ${pos[r][1]+20} ${pos[q.id][0]-20} ${pos[q.id][1]+20} ${pos[q.id][0]} ${pos[q.id][1]+20}" fill="none" stroke="var(--mute)" stroke-width="1.5" marker-end="url(#a)"/>`}));
+ Q.forEach(q=>{const [x,y]=pos[q.id];s+=`<g data-id="${q.id}" style="cursor:pointer"><rect x="${x}" y="${y}" width="190" height="40" rx="8" fill="${q.id===cur?'var(--accent)':'var(--panel)'}" stroke="var(--line)"/><text x="${x+10}" y="${y+25}" ${q.id===cur?'style="fill:var(--ai)"':''}>${(q.title||q.id).replace(/</g,'&lt;').slice(0,26)}</text></g>`});
+ c.insertAdjacentHTML('beforeend',s+'</svg>');c.querySelectorAll('g').forEach(g=>g.onclick=()=>{cur=g.dataset.id;tab='edit';render()});c.append(el('div',{class:'hint'},'Šipka vede od questu, který musí být splněn dřív. Kliknutím quest otevřeš.'));return c}
+function genDialog(q){const g=q.giver||'npc',id=q.id,n=q.objectives?.[0];const what=(q.objectives||[]).map(o=>o.text).join('; ');
+ return{id:g,start:'start',nodes:{start:{branch:[{if:{quest_ready:id},next:'turnin_'+id},{next:'hello'}]},
+ hello:{speaker:g,text:'Zdravím, {hero}. Co pro tebe mohu udělat?',choices:[{text:'Nemáš nějakou práci?',if:{quest_new:id},next:'offer_'+id},{text:'Jak jde ten úkol?',if:{quest_active:id},next:'remind_'+id},{text:'Nashledanou.',next:''}]},
+ ['offer_'+id]:{speaker:g,text:`${q.desc||'Potřebuju pomoc.'} Úkol: ${what}.`,choices:[{text:'Beru to.',do:[{quest_start:id}],next:'ok_'+id},{text:'Možná později.',next:'hello'}]},
+ ['ok_'+id]:{speaker:g,text:'Děkuji. Hodně štěstí.',next:''},['remind_'+id]:{speaker:g,text:'Ještě to není hotové: '+what+'.',next:'hello'},
+ ['turnin_'+id]:{speaker:g,text:'Výborně! Tady je tvoje odměna, {hero}.',do:[{quest_complete:id}],next:'hello'}}}}
+function dlg(m,q){const c=el('div',{class:'card'},el('h2',{},'Dialog zadavatele (vygenerovaný základ)'));
+ if(!q.giver||q.auto){c.append('Vyber zadavatele (a vypni automatické odevzdání) na kartě Úprava.');return m.append(c)}
+ const d=genDialog(q);const t=JSON.stringify(d,null,1);
+ c.append(el('div',{class:'hint'},`Vlož do data/dialogues/${q.giver}.json jako nové uzly, nebo otevři v editoru dialogů (tools/dialog_editor.html) a doladíš texty. Obsahuje nabídku, přijetí, připomenutí a odevzdání.`),el('pre',{},t),
+ el('div',{class:'row'},el('button',{on:{click:()=>{navigator.clipboard?.writeText(t);flash('Zkopírováno')}}},'Kopírovat'),el('button',{on:{click:()=>dl(`${q.giver}_${q.id}.json`,t)}},'Stáhnout')));m.append(c)}
+function sim(m,q){const c=el('div',{class:'card'},el('h2',{},'Zkouška průchodu'));const st={};let log=el('div');
+ const prog=q.objectives.map(o=>({o,n:0}));
+ const draw=()=>{log.replaceChildren(...prog.map(p=>el('div',{class:'row'},el('span',{},(p.n>=(p.o.count||1)?'✓ ':'☐ ')+p.o.text+` (${p.n}/${p.o.count||1})`),el('button',{on:{click:()=>{p.n=Math.min(p.o.count||1,p.n+1);draw()}}},'+1'))),
+  el('div',{class:'sum'},prog.every(p=>p.n>=(p.o.count||1))?`Quest splněn → ${q.auto?'odevzdá se sám':'odevzdej u '+(q.giver||'zadavatele')}. Odměna: ${q.rewards?.gold||0} zlata, ${q.rewards?.xp||0} XP${(q.rewards?.items||[]).length?', '+q.rewards.items.join(', '):''}.`:'Plň cíle tlačítky +1.'))};
+ draw();c.append(log);m.append(c)}
+function json(m,q){m.append(el('div',{class:'card'},el('h2',{},'JSON všech questů (data/quests/main.json)'),el('pre',{},JSON.stringify(Q,null,1))))}
+function dl(name,t){const a=el('a',{href:URL.createObjectURL(new Blob([t],{type:'application/json'})),download:name});a.click()}
+$('#new').onclick=()=>{let i=Q.length+1,id;while(find(id='novy_quest_'+i))i++;Q.push({id,title:'Nový quest',desc:'',giver:DATA.npcs.includes('merchant')?'merchant':undefined,objectives:[{id:'o1',type:'kill',target:DATA.enemies[0],count:1,text:'Poraz: '+DATA.enemies[0]}],rewards:{gold:20,xp:20}});cur=id;tab='edit';render()};
+$('#exp').onclick=()=>dl('main.json',JSON.stringify(Q,null,1));
+$('#cp').onclick=()=>{navigator.clipboard?.writeText(JSON.stringify(Q,null,1)).then(()=>flash('Zkopírováno'),()=>flash('Kopírování selhalo'))};
+$('#imp').onclick=()=>$('#file').click();
+$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{const p=JSON.parse(t);Q=Array.isArray(p)?p:[p];cur=Q[0]?.id;render();flash('Načteno')}catch(err){flash('Neplatný JSON')}})};
+render();
+</script></body></html>

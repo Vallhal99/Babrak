@@ -19,6 +19,7 @@ signal _menu_done(id: Variant)
 signal _picked(unit: Variant)
 signal _confirmed
 
+static var use_arena := true          # HD-2D 3D bojiště (false = ploché pozadí)
 const SCALE := 3.0                 # velikost postav na bojišti
 const MAX_BP := 5
 const MAX_BOOST := 3
@@ -1517,14 +1518,22 @@ func _build_ui(bg: Texture2D) -> void:
 	base.color = Color(0.05, 0.09, 0.05)
 	base.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(base)
-	if bg != null:
+	var tint := Color(0, 0, 0, 0)
+	if use_arena:   # 3D bojiště; obrázek pozadí slouží jako kulisa v dálce
+		var arena := BattleArena3D.new()
+		arena.backdrop = bg
+		arena.hour = float(_env.get("hour", 12.0))
+		arena.weather = String(_env.get("weather", "jasno"))
+		arena.mood = String(_env.get("mood", "forest"))
+		add_child(arena)
+	elif bg != null:
 		var pic := TextureRect.new()
 		pic.texture = bg
 		pic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		pic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		pic.set_anchors_preset(Control.PRESET_FULL_RECT)
 		add_child(pic)
-	var tint := _env_tint()
+	tint = _env_tint() if not use_arena else tint
 	if tint.a > 0.0:
 		var shade := ColorRect.new()
 		shade.color = tint

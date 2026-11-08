@@ -39,6 +39,9 @@ func status(id: String) -> String:
 func start(id: String) -> bool:
 	if not defs.has(id) or state.has(id):
 		return false
+	for req in defs[id].get("requires", []):   # předchozí questy musí být splněné
+		if status(String(req)) != "done":
+			return false
 	state[id] = {"state": "active", "progress": {}}
 	toast.emit("Nový úkol: %s" % defs[id]["title"])
 	refresh()

@@ -2,6 +2,7 @@ extends Node
 ## Elita + boss: zastrašení, předměty, stavy, řev a nabíjení. godot ... res://tests/battle3_test.tscn
 
 func _ready() -> void:
+	BattleScene3.use_arena = false   # software render by 3D bojiště zpomalil test
 	var main: Node = load("res://scenes/main_turn2.tscn").instantiate()
 	add_child(main)
 	await main.started
