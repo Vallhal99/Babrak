@@ -26,6 +26,12 @@ func _ready() -> void:
 	title.add_theme_font_size_override("font_size", 28)
 	box.add_child(title)
 	_button(box, "Pokračovat", resume)
+	var host := get_parent()
+	if host != null and host.has_method("save_game"):   # ukládání umí jen Tah 3
+		var slots := SaveSlots.new()
+		add_child(slots)
+		_button(box, "Uložit hru", func() -> void: slots.open(true, host))
+		_button(box, "Načíst hru", func() -> void: slots.open(false, host))
 	_button(box, "Restart", func() -> void:
 		resume()
 		get_tree().reload_current_scene())

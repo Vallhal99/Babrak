@@ -29,6 +29,7 @@ var hero: Hero
 var merchant: Npc
 var party: Array[Character] = []   ## hrdina + společníci (max 3)
 var quests := QuestLog.new()
+var opened_chests: Array[String] = []
 var in_battle := false
 var in_dialogue := false
 var _dialogue: DialogueBox
@@ -44,7 +45,8 @@ func _ready() -> void:
 	hero.name = "Hero"
 	world.add_actor(hero, world.start_position)
 	world.focus = hero
-	ClassDefs.apply(hero, Session.class_id)
+	var save: Dictionary = SaveGame.read(Session.pending_load) if Session.pending_load > 0 else {}
+	ClassDefs.apply(hero, StringName(save["class"]) if not save.is_empty() else Session.class_id)
 	party = [hero]
 	merchant = MERCHANT.instantiate()
 	merchant.name = "Merchant"
@@ -73,8 +75,96 @@ func _ready() -> void:
 	_quest_panel = QuestPanel.new()
 	add_child(_quest_panel)
 	_quest_panel.setup(quests)
-	quests.start("companions")
+	_spawn_chests()
+	if save.is_empty():
+		quests.start("companions")
+	else:
+		SaveGame.apply(self, save)
+		Session.pending_load = 0
 	started.emit()
+
+
+func save_game(slot: int) -> bool:
+	return SaveGame.write(slot, self)
+
+
+# ---------------------------------------------------------------- truhly
+
+## id, posun od startu, obtížnost zámku (0 = odemčeno, 1–3), kořist
+const CHESTS := [
+	{"id": "c_start", "off": Vector2(-60, 150), "diff": 0, "loot": {"gold": [15, 30], "cons": {&"potion": 1}}},
+	{"id": "c_lock", "off": Vector2(200, 160), "diff": 1, "loot": {"gold": [40, 70], "cons": {&"ether": 1, &"bomb": 1}, "picks": 2}},
+	{"id": "c_hard", "off": Vector2(-230, 60), "diff": 3, "loot": {"gold": [120, 200], "items": [&"mail_coif"], "cons": {&"potion": 2}}},
+]
+
+
+func _spawn_chests() -> void:
+	for def in CHESTS:
+		var c := Chest.new()
+		c.chest_id = def["id"]
+		c.difficulty = def["diff"]
+		c.loot = def["loot"]
+		c.add_to_group(&"chests")
+		world.add_actor(c, world.start_position + def["off"])
+
+
+func _nearest_chest() -> Chest:
+	var best: Chest
+	var best_d := Chest.NEAR
+	for node in get_tree().get_nodes_in_group(&"chests"):
+		var c := node as Chest
+		var d := c.global_position.distance_to(hero.global_position)
+		if not c.opened and d <= best_d:
+			best = c
+			best_d = d
+	return best
+
+
+func _open_chest(c: Chest) -> void:
+	if c.difficulty == 0:
+		_loot_chest(c)
+		return
+	var picks := int(hero.get_meta(&"lockpicks", 2))
+	if picks <= 0:
+		quests.toast.emit("Zamčeno – nemáš paklíč")
+		return
+	var game := LockpickGame.new()
+	var bonus := 5.0 if hero.get_meta(&"class_id", &"") == &"rogue" else 0.0
+	game.start(c.difficulty, picks, bonus)
+	add_child(game)
+	hero.controls_enabled = false
+	game.pick_broken.connect(func() -> void:
+		hero.set_meta(&"lockpicks", int(hero.get_meta(&"lockpicks", 2)) - 1)
+		quests.toast.emit("Paklíč se zlomil"))
+	var result: StringName = await game.finished
+	hero.controls_enabled = true
+	if result == &"opened":
+		_loot_chest(c)
+	elif result == &"failed":
+		quests.toast.emit("Zámek odolal – došly paklíče")
+
+
+func _loot_chest(c: Chest) -> void:
+	c.set_open(true)
+	if c.chest_id not in opened_chests:
+		opened_chests.append(c.chest_id)
+	var parts: PackedStringArray = []
+	var g: Array = c.loot.get("gold", [0, 0])
+	var gold := randi_range(int(g[0]), int(g[1]))
+	hero.gold += gold
+	parts.append("%d zlata" % gold)
+	var cons: Dictionary = BattleScene3.consumables_of(hero)
+	for id in c.loot.get("cons", {}):
+		cons[id] = int(cons.get(id, 0)) + int(c.loot["cons"][id])
+		parts.append("%s ×%d" % [id, c.loot["cons"][id]])
+	for id in c.loot.get("items", []):
+		hero.inventory.add(id)
+		parts.append(String(id))
+	var picks: int = int(c.loot.get("picks", 0))
+	if picks > 0:
+		hero.set_meta(&"lockpicks", int(hero.get_meta(&"lockpicks", 2)) + picks)
+		parts.append("paklíče ×%d" % picks)
+	quests.toast.emit("Truhla: " + ", ".join(parts))
 
 
 # ---------------------------------------------------------------- dialogy a společníci
@@ -272,6 +362,11 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	elif event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E \
 			and hero.controls_enabled and not _shop.visible and not _panel.visible:
+		var chest := _nearest_chest()
+		if chest != null:
+			_open_chest(chest)
+			get_viewport().set_input_as_handled()
+			return
 		var t := _talk_target()
 		if t != null:
 			start_dialogue("merchant" if t == merchant else (t as Companion).dialogue_id)

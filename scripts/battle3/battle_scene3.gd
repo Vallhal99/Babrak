@@ -1746,9 +1746,13 @@ func _env_tint() -> Color:
 
 
 func _ensure_items() -> Dictionary:
-	if not _hero.has_meta(&"consumables"):
-		_hero.set_meta(&"consumables", {&"potion": 3, &"ether": 2, &"bomb": 2, &"antidote": 1, &"smoke": 1})
-	return _hero.get_meta(&"consumables")
+	return consumables_of(_hero)
+
+
+static func consumables_of(hero: Character) -> Dictionary:
+	if not hero.has_meta(&"consumables"):
+		hero.set_meta(&"consumables", {&"potion": 3, &"ether": 2, &"bomb": 2, &"antidote": 1, &"smoke": 1})
+	return hero.get_meta(&"consumables")
 
 
 # ---------------------------------------------------------------- drobné UI pomůcky
