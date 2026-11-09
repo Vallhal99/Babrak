@@ -21,6 +21,8 @@ signal chunk_hidden(coord: Vector2i)
 @export var load_radius := 2             ## chunky kolem hráče, které jsou vidět
 @export var unload_margin := 1           ## o kolik dál se chunk uvolní (brání blikání na hranici)
 @export var rows_per_frame := 24         ## rozpočet vykreslování dlaždic na snímek
+@export var thin_radius := 700.0        ## kolem startu se výzdoba (stromy, keře…) ředí
+@export var thin_keep_min := 0.3        ## v samém středu zůstane tento podíl, k okraji roste k 1
 @export var tuft_density := 0.00012      ## trsy trávy na px²
 @export var edge_noise := 0.34
 @export var terrain_texture_size := 48.0   ## velikost opakující se textury terénu v px (nezávisí na mřížce mapy)
@@ -417,11 +419,25 @@ func _spawn_chunk_nodes(ch: Chunk) -> void:
 	for o in ch.data.get("objects", []):
 		var fn: Callable = spawners.get(String(o.type), Callable())
 		if not fn.is_valid() and o.has("gid"):
+			if _thinned_out(o):
+				continue
 			fn = _spawn_tile_object
 		if fn.is_valid():
 			var n: Node = fn.call(o, ch)
 			if n:
 				ch.nodes.append(n)
+
+
+## Deterministické ředění výzdoby kolem startu (stejný výsledek při každém načtení).
+func _thinned_out(o: Dictionary) -> bool:
+	if thin_radius <= 0.0:
+		return false
+	var d := Vector2(o.x, o.y).distance_to(start_position)
+	if d >= thin_radius:
+		return false
+	var keep := lerpf(thin_keep_min, 1.0, d / thin_radius)
+	var h := fposmod(sin(float(o.x) * 12.9898 + float(o.y) * 78.233) * 43758.5453, 1.0)
+	return h > keep
 
 
 func _build_ground(ch: Chunk) -> void:

@@ -136,6 +136,8 @@ static func load_texture(path: String) -> Texture2D:
 		if ResourceLoader.exists(path):
 			return load(path) as Texture2D
 		return null
+	if not FileAccess.file_exists(path):
+		return null
 	var img := Image.load_from_file(ProjectSettings.globalize_path(path))
 	if img == null:
 		return null

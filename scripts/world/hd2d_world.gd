@@ -12,7 +12,7 @@ signal built
 const S := 0.02                       # 1 px = 0.02 m (1 m = 50 px)
 const WORLD_DIR := "res://data/world/babrak"
 const SIZES := {"character": [192, 70.0], "small": [128, 32.0]}  # [velikost viewportu px, výška středu nad zemí px]
-const MAX_LAYERS := 19           # bit 0 = země, bity 1.. = jednotlivé billboardy
+const MAX_LAYERS := 31           # bit 0 = země, bity 1..31 = jednotlivé billboardy (canvas cull mask má 32 bitů)
 const TILT := 44.0                   # náklon spritů k+kameře (°), plný náklon = kolmo na pohled
 const UP := Vector3(0, 0.7193, -0.6947)  # směr „nahoru“ naklonného spritu (cos/sin TILT)
 const STAGE_HOURS := [12.0, 19.0, 22.0]   # den, soumrak, noc
@@ -65,7 +65,7 @@ func _ready() -> void:
 	add_child(_ground_vp)
 	var root2d := Node2D.new()
 	_ground_vp.add_child(root2d)
-	root2d.visibility_layer = 0xFFFFF   # kořen sám nic nekreslí; vrstvy řeší potomci (cull maska platí i pro podstrom)
+	root2d.visibility_layer = 0xFFFFFFFF   # kořen sám nic nekreslí; vrstvy řeší potomci (cull maska platí i pro podstrom)
 	tiled = TiledWorld.new()
 	tiled.world_dir = WORLD_DIR
 	tiled.load_radius = 8
@@ -75,7 +75,7 @@ func _ready() -> void:
 	root2d.add_child(tiled)
 	actors = Node2D.new()
 	actors.name = "Actors"
-	actors.visibility_layer = 0xFFFFF   # sám nic nekreslí; potomci se řídí vlastní vrstvou
+	actors.visibility_layer = 0xFFFFFFFF   # sám nic nekreslí; potomci se řídí vlastní vrstvou
 	actors.child_entered_tree.connect(_on_actor_added)
 	root2d.add_child(actors)
 	_build_environment()
@@ -125,6 +125,9 @@ func _on_actor_added(n: Node) -> void:
 	if not _is_built or not (n is Node2D) or _billboards.has(n):
 		return
 	var kind := "character" if n is Character else "small"
+	if _free_layers.is_empty():
+		push_warning("Hd2dWorld: došly vrstvy pro postavy, '%s' se nevykreslí" % n.name)
+		return
 	var layer_bit: int = 1 << _free_layers.pop_back()
 	_watch(n, layer_bit)
 	var size: int = SIZES[kind][0]
