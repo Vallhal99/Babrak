@@ -16,6 +16,10 @@ const TEMPLATES := {
 		"shield": 4, "weak": [&"bow", &"fire"], "speed": 9, "human": true, "row": 0, "rank": &"elite", "phases": 2},
 	&"knight": {"name": "Černý rytíř", "tint": Color(0.45, 0.45, 0.6), "hp": 90, "atk": 5, "xp": 200, "gold": 120,
 		"shield": 6, "weak": [&"blade", &"fire"], "speed": 8, "human": false, "row": 0, "rank": &"boss", "phases": 3},
+	&"guardian": {"name": "Strážce svatyně", "tint": Color(0.6, 0.85, 0.8), "hp": 46, "atk": 3, "xp": 80, "gold": 50,
+		"shield": 5, "weak": [&"blunt", &"fire"], "speed": 8, "human": false, "row": 0, "rank": &"elite", "phases": 2},
+	&"archivist": {"name": "Strážce archivu", "tint": Color(0.55, 1.0, 0.95), "hp": 110, "atk": 5, "xp": 260, "gold": 160,
+		"shield": 7, "weak": [&"bow", &"blunt"], "speed": 9, "human": false, "row": 0, "rank": &"boss", "phases": 3},
 }
 
 @export var shield_points := 3

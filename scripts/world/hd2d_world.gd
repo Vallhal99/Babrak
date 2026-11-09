@@ -26,6 +26,7 @@ var tiled: TiledWorld
 var _ground_vp: SubViewport
 var _cam: Camera3D
 var _sun: DirectionalLight3D
+var indoor_dark := 0.0               ## 0 venku, 0–1 ztmavení prostředí v interiérech a hrobce
 var _env: Environment
 var _lights: Array[OmniLight3D] = []         # táborák
 var _flames: Array[CPUParticles3D] = []
@@ -147,7 +148,9 @@ func _on_actor_added(n: Node) -> void:
 	spr.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 	add_child(spr)
 	_billboards[n] = [vp, cam, spr, lift, layer_bit]
-	n.tree_exiting.connect(_remove_billboard.bind(n))
+	var cb := _remove_billboard.bind(n)
+	if not n.tree_exiting.is_connected(cb):
+		n.tree_exiting.connect(cb)
 
 
 func _remove_billboard(n: Node) -> void:
@@ -579,6 +582,12 @@ func _process(delta: float) -> void:
 		_motes.position = Vector3(focus.global_position.x * S, 1.6, focus.global_position.y * S)
 
 
+func set_indoor(level: float) -> void:
+	indoor_dark = level
+	if _cur.size() > 0:
+		_apply(_cur)
+
+
 ## Nastaví denní dobu (0–24 h) a promítne ji do světel, prostředí a post-processingu.
 func set_time(h: float) -> void:
 	hour = fposmod(h, 24.0)
@@ -600,6 +609,9 @@ func _apply(v: Dictionary) -> void:
 	_env.background_color = v.sky_color
 	_env.fog_light_color = (v.fog_color as Color).lerp(Color(0.6, 0.64, 0.7) * clampf(v.ambient_energy + 0.3, 0.3, 1.0), cover * 0.6)
 	_env.fog_density = v.fog_density + (fx.fog_add if fx else 0.0)
+	if indoor_dark > 0.0:
+		_env.ambient_light_energy *= 1.0 - indoor_dark
+		_env.fog_density *= 1.0 - indoor_dark
 	_env.glow_intensity = v.glow_intensity
 	_env.glow_hdr_threshold = v.glow_threshold
 	var night: float = clampf(v.lamp_energy / 3.0, 0.0, 1.0)

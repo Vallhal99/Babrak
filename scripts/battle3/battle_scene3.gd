@@ -38,6 +38,9 @@ const ITEM_DEFS := {
 	&"bomb": {"name": "Ohnivá bomba", "desc": "14 ohně, hoření"},
 	&"antidote": {"name": "Protilátka", "desc": "léčí stavy"},
 	&"smoke": {"name": "Kouřová bomba", "desc": "jistý útěk"},
+	&"roast": {"name": "Pečené maso", "desc": "+35 HP"},
+	&"stew": {"name": "Lovecký guláš", "desc": "+60 HP"},
+	&"tea": {"name": "Bylinný čaj", "desc": "+15 MP"},
 }
 const RANK_MULT := {"S": 1.5, "A": 1.25, "B": 1.0, "C": 0.8}
 const BRIBE_COST := 15   ## za nepřítele (elita ×3)
@@ -487,7 +490,7 @@ func _item_choice(_u: BattleUnit3) -> Dictionary:
 		target = await _pick_enemy(_alive(_enemies))
 		if target == null:
 			return {}
-	elif id in [&"potion", &"ether", &"antidote"]:
+	elif id in [&"potion", &"ether", &"antidote", &"roast", &"stew", &"tea"]:
 		target = await _pick_enemy(_alive(_party))
 		if target == null:
 			return {}
@@ -672,11 +675,15 @@ func _use_item(u: BattleUnit3, id: StringName, t: BattleUnit3) -> void:
 		&"potion":
 			_heal(t, 20, Color(0.4, 1.0, 0.5))
 			await _wait(0.5)
-		&"ether":
-			t.source.mana = minf(float(t.source.max_mana()), t.source.mana + 12.0)
+		&"ether", &"tea":
+			var mp := 12 if id == &"ether" else 15
+			t.source.mana = minf(float(t.source.max_mana()), t.source.mana + mp)
 			t.source._emit_mana()
-			_popup(t, "+12 MP", Color(0.5, 0.7, 1.0), 28)
+			_popup(t, "+%d MP" % mp, Color(0.5, 0.7, 1.0), 28)
 			await _wait(0.6)
+		&"roast", &"stew":
+			_heal(t, 35 if id == &"roast" else 60, Color(1.0, 0.8, 0.4))
+			await _wait(0.5)
 		&"antidote":
 			for st in [&"bleed", &"burn", &"poison", &"fear", &"stun"]:
 				t.statuses.erase(st)

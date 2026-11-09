@@ -72,5 +72,27 @@
     "leader_done"
    ]
   }
+ },
+ {
+  "id": "tomb",
+  "title": "Hrobka kronikářů",
+  "desc": "Pod kopcem je hrobka. Projdi knihovnou, pasti i zrcadlovou síň a poraz Strážce archivu.",
+  "auto": true,
+  "objectives": [
+   {
+    "id": "boss",
+    "type": "kill",
+    "target": "archivist",
+    "count": 1,
+    "text": "Poraz Strážce archivu"
+   }
+  ],
+  "rewards": {
+   "gold": 300,
+   "xp": 250,
+   "flags": [
+    "tomb_done"
+   ]
+  }
  }
 ]

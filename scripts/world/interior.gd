@@ -11,6 +11,7 @@ const COUNTER_Y := -40.0               ## hráč nesmí za pult (y vůči střed
 const EXIT_Y := 92.0                   ## u spodního okraje = odchod
 
 var entrance: Vector2 = CENTER + Vector2(0, 80)
+var bed_spot: Vector2 = CENTER + Vector2(-140, 25)
 var merchant_spot: Vector2 = CENTER + Vector2(70, -62)
 
 
@@ -50,8 +51,11 @@ func _ready() -> void:
 		b.position = Vector3(c.x + sx * 2.9, 0.45, cz + 0.9)
 		b.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 		add_child(b)
-	_box(Vector3(1.2, 0.08, 0.8), c + Vector3(-2.2, 0.55, 0.6), wood)   # stůl
-	_box(Vector3(0.1, 0.55, 0.1), c + Vector3(-2.2, 0.27, 0.6), dark)
+	_box(Vector3(1.2, 0.08, 0.8), c + Vector3(2.2, 0.55, 0.6), wood)   # stůl
+	_box(Vector3(0.1, 0.55, 0.1), c + Vector3(2.2, 0.27, 0.6), dark)
+	_box(Vector3(1.0, 0.35, 2.0), c + Vector3(-3.0, 0.2, 0.5), dark)     # postel
+	_box(Vector3(0.9, 0.18, 1.5), c + Vector3(-3.0, 0.46, 0.7), _mat(Color(0.7, 0.62, 0.5)))
+	_box(Vector3(0.7, 0.14, 0.4), c + Vector3(-3.0, 0.6, -0.1), _mat(Color(0.9, 0.9, 0.85)))
 	_box(Vector3(w + 1.0, 0.05, d + 1.0), c + Vector3(0, 3.6, 0), wall, true)   # strop jen stíní
 	for lx in [-1.8, 1.8]:
 		var l := OmniLight3D.new()

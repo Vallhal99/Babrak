@@ -7,12 +7,14 @@ signal changed
 
 const LORE_FILE := "res://data/lore.json"
 ## Zápisek, který se odemkne prvním střetem s typem nepřítele.
-const ENEMY_LORE := {&"bandit": "zbojnici", &"archer": "zbojnici", &"skeleton": "hrbitov", &"leader": "vudce", &"knight": "cerny_rytir"}
+const ENEMY_LORE := {&"bandit": "zbojnici", &"archer": "zbojnici", &"skeleton": "hrbitov", &"leader": "vudce", &"knight": "cerny_rytir", &"guardian": "hrobka", &"archivist": "archivar"}
 const BEAST_TEXT := {
 	&"bandit": "Obyčejný lupič s mečem. Drží se v přední řadě a nechá se zastrašit i podplatit.",
 	&"archer": "Střílí zpoza zbojníků, proto je v zadní řadě. Zblízka je křehký.",
 	&"skeleton": "Probuzený voják. Nebojí se bolesti, ale drtivé zásahy a oheň ho rozbíjejí.",
 	&"leader": "Elitní nepřítel o dvou fázích. V druhé fázi krvácí a zuří.",
+	&"guardian": "Strážce svatyně u klíče archivaře. Dvě fáze, odolný proti čepelím.",
+	&"archivist": "Duch posledního archiváře. Tři fáze, slabý proti šípům a drtivým zásahům. Odráží se v zrcadlech.",
 	&"knight": "Přízračný rytíř. Tři fáze, nabíjený úder a řev, který nahání strach.",
 }
 const TYPE_NAMES := {"blade": "čepel", "blunt": "drtivé", "bow": "střelné", "fire": "oheň"}

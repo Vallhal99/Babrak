@@ -37,6 +37,18 @@ var _door: Door
 var _codex_panel: CodexPanel
 var _fade: ColorRect
 var villagers: Array[Villager] = []
+var days := 1
+var inside_dungeon := false
+var dungeon: Dungeon
+var props: Array[Prop] = []
+var _stash: Array[Node] = []
+var _prev := {}
+var _last_hour := 12.0
+var _clock: Label
+var _prompt: Label
+var _craft: CraftPanel
+var _tomb_enter := Vector2.ZERO
+const HARVEST := {&"iron_vein": [&"iron", 1, 3, "Železo"], &"herb_bush": [&"herb", 1, 2, "Bylina"], &"mushrooms": [&"mushroom", 1, 2, "Houba"], &"logs": [&"wood", 1, 3, "Dřevo"]}
 const SHOP_DOOR := Vector2(1296, 872)   ## vchod do hostince (obchodu)
 const VILLAGER := preload("res://scenes/characters/villager.tscn")
 const DAY_LENGTH := 720.0               ## reálných sekund na 24 h (0 = čas stojí)
@@ -113,6 +125,8 @@ func _ready() -> void:
 	if not hero.inventory.has(&"torch"):
 		hero.inventory.add(&"torch")
 	codex.unlock("udoli")
+	_build_hud_extras()
+	_spawn_props()
 	_spawn_chests()
 	if save.is_empty():
 		quests.start("companions")
@@ -120,6 +134,310 @@ func _ready() -> void:
 		SaveGame.apply(self, save)
 		Session.pending_load = 0
 	started.emit()
+
+
+# ---------------------------------------------------------------- hodiny, spánek, props
+
+func _build_hud_extras() -> void:
+	var layer := CanvasLayer.new()
+	layer.layer = 12
+	add_child(layer)
+	_clock = Label.new()
+	_clock.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	_clock.offset_left = -260.0
+	_clock.offset_right = -12.0
+	_clock.offset_top = 8.0
+	_clock.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_clock.add_theme_font_size_override("font_size", 22)
+	_clock.add_theme_color_override("font_outline_color", Color(0, 0, 0))
+	_clock.add_theme_constant_override("outline_size", 6)
+	layer.add_child(_clock)
+	_prompt = Label.new()
+	_prompt.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	_prompt.offset_left = -240.0
+	_prompt.offset_right = 240.0
+	_prompt.offset_top = -110.0
+	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_prompt.add_theme_font_size_override("font_size", 20)
+	_prompt.add_theme_color_override("font_outline_color", Color(0, 0, 0))
+	_prompt.add_theme_constant_override("outline_size", 6)
+	layer.add_child(_prompt)
+	_craft = CraftPanel.new()
+	add_child(_craft)
+	_craft.crafted.connect(func(r: Dictionary) -> void:
+		quests.toast.emit("Vyrobeno: %s" % r["name"])
+		codex.unlock("jidlo"))
+	_craft.visibility_changed.connect(func() -> void:
+		hero.controls_enabled = not _craft.visible and not in_dialogue and not in_battle)
+	_last_hour = world.hour
+
+
+func _update_clock() -> void:
+	if world.hour < _last_hour - 12.0:
+		_new_day()
+	_last_hour = world.hour
+	var h := int(world.hour)
+	var m := int((world.hour - h) * 60.0)
+	var night := world.hour < 5.5 or world.hour >= 20.5
+	var weather: String = world.fx.weather if world.fx else ""
+	_clock.text = "%s  %02d:%02d   Den %d%s" % ["☾" if night else "☀", h, m, days, ("  · " + weather) if weather != "" and weather != "jasno" else ""]
+	_clock.modulate = Color(0.7, 0.8, 1.0) if night else Color(1.0, 0.95, 0.7)
+
+
+func _new_day() -> void:
+	days += 1
+	for p in props:
+		if p.depleted and HARVEST.has(p.kind):
+			p.set_depleted(false)
+
+
+func _add_prop(kind: StringName, prompt: String, tex: String, pos: Vector2) -> Prop:
+	var p := Prop.new().setup(world, kind, prompt, tex)
+	add_child(p)
+	p.global_position = pos
+	props.append(p)
+	return p
+
+
+func _spawn_props() -> void:
+	var P := "res://assets/props/"
+	_add_prop(&"workbench", "[E] Pracovní stůl – kování", P + "workbench.png", Vector2(1420, 950))
+	_add_prop(&"campfire", "[E] Ohniště – vaření", P + "campfire.png", Vector2(1150, 972))
+	_add_prop(&"hay", "[E] Přespat na seně (6 h)", P + "hay.png", Vector2(700, 1010))
+	_add_prop(&"bed", "[E] Přespat v posteli (10 zlata, do rána)", "", interior.bed_spot)
+	var st := world.start_position
+	for e in [[&"iron_vein", Vector2(150, -80), "iron_vein"], [&"iron_vein", Vector2(-190, -120), "iron_vein"], [&"herb_bush", Vector2(-100, 90), "herb_bush"],
+			[&"herb_bush", Vector2(260, 60), "herb_bush"], [&"mushrooms", Vector2(60, -150), "mushrooms"], [&"mushrooms", Vector2(-260, -40), "mushrooms"],
+			[&"logs", Vector2(230, -120), "logs"], [&"logs", Vector2(-40, 200), "logs"]]:
+		_add_prop(e[0], "[E] Sebrat", P + "%s.png" % e[2], st + e[1])
+	_tomb_enter = Vector2(1640, 930)   # volné místo na návsi vpravo od stánku
+	_add_prop(&"tomb_entrance", "[E] Vstoupit do hrobky kronikářů", P + "tomb_entrance.png", _tomb_enter)
+
+
+func _nearest_prop() -> Prop:
+	var best: Prop
+	var best_d := Prop.NEAR
+	for p in props:
+		var d := p.global_position.distance_to(hero.global_position)
+		if p.usable() and d <= best_d:
+			best = p
+			best_d = d
+	return best
+
+
+func _use_prop(p: Prop) -> void:
+	match p.kind:
+		&"workbench", &"campfire":
+			_craft.open(hero, p.kind)
+		&"bed":
+			_sleep(true)
+		&"hay":
+			_sleep(false)
+		&"tomb_entrance":
+			_go_tomb(true)
+		&"gate":
+			_use_gate(p)
+		&"desk":
+			codex.unlock("archiv")
+			codex.unlock("hrobka")
+			quests.toast.emit("Čteš zápisky archiváře…")
+		_:
+			if HARVEST.has(p.kind):
+				var h: Array = HARVEST[p.kind]
+				var n := randi_range(int(h[1]), int(h[2]))
+				hero.inventory.add(h[0], n)
+				p.set_depleted(true)
+				quests.toast.emit("+%d× %s" % [n, h[3]])
+
+
+func _sleep(in_bed: bool) -> void:
+	if in_bed and not hero.spend_gold(10):
+		quests.toast.emit("Postel stojí 10 zlata")
+		return
+	hero.controls_enabled = false
+	var tw := create_tween()
+	tw.tween_property(_fade, "color:a", 1.0, 0.5)
+	await tw.finished
+	var hours := fposmod(7.0 - world.hour, 24.0) if in_bed else 6.0
+	if in_bed and hours < 4.0:
+		hours += 8.0
+	var new_hour := world.hour + hours
+	if new_hour >= 24.0:
+		_new_day()
+	world.set_time(new_hour)
+	_last_hour = world.hour
+	var frac := 1.0 if in_bed else 0.5
+	for m in party:
+		m.hp = mini(m.max_hp(), m.hp + int(ceil(m.max_hp() * frac)))
+		m.mana = minf(float(m.max_mana()), m.mana + float(m.max_mana()) * frac)
+		m.hp_changed.emit(m.hp, m.max_hp())
+		m._emit_mana()
+	for v in villagers:
+		v._snap_to_schedule()
+	await get_tree().create_timer(0.6).timeout
+	var tw2 := create_tween()
+	tw2.tween_property(_fade, "color:a", 0.0, 0.5)
+	hero.controls_enabled = not in_dialogue and not in_battle
+	quests.toast.emit("Spánek (%d h). Je %02d:%02d." % [int(round(hours)), int(world.hour), int((world.hour - int(world.hour)) * 60.0)])
+
+
+# ---------------------------------------------------------------- hrobka
+
+func _stash_outside() -> void:
+	for node in get_tree().get_nodes_in_group(&"characters"):
+		if node is TurnEnemy3 or node is Villager:
+			_stash.append(node)
+	for node in get_tree().get_nodes_in_group(&"chests"):
+		_stash.append(node)
+	for n in _stash:
+		n.get_parent().remove_child(n)
+
+
+func _unstash() -> void:
+	for n in _stash:
+		if is_instance_valid(n):
+			world.actors.add_child(n)
+	_stash.clear()
+	for v in villagers:
+		v._snap_to_schedule()
+
+
+func _go_tomb(enter: bool) -> void:
+	hero.controls_enabled = false
+	var tw := create_tween()
+	tw.tween_property(_fade, "color:a", 1.0, 0.3)
+	await tw.finished
+	if enter:
+		_door_out = _tomb_enter + Vector2(0, 46)
+		if dungeon == null:
+			dungeon = Dungeon.new()
+			world.add_child(dungeon)
+			if quests.has_flag("tomb_gate"):
+				dungeon.open_gate()
+		_stash_outside()
+		inside_dungeon = true
+		_prev.clear()
+		_spawn_dungeon()
+		_place_party(Dungeon.ORIGIN + Vector2(0, -30))
+		world.set_indoor(0.7)
+		quests.start("tomb")
+		codex.unlock("hrobka")
+	else:
+		_free_dungeon()
+		inside_dungeon = false
+		_unstash()
+		world.set_indoor(0.0)
+		_place_party(_door_out)
+	world.snap_camera()
+	await get_tree().create_timer(0.1).timeout
+	var tw2 := create_tween()
+	tw2.tween_property(_fade, "color:a", 0.0, 0.3)
+	hero.controls_enabled = not in_dialogue and not in_battle
+
+
+func _place_party(pos: Vector2) -> void:
+	hero.global_position = pos
+	for i in range(1, party.size()):
+		party[i].global_position = pos + Vector2(-26.0 * i, 14.0)
+
+
+func _spawn_dungeon() -> void:
+	for e in Dungeon.ENEMIES:
+		if quests.has_flag("tdead_%d" % e[0]):
+			continue
+		var enemy: TurnEnemy3 = ENEMY.instantiate()
+		enemy.apply_template(e[1])
+		enemy.set_meta(&"dungeon_idx", e[0])
+		world.add_actor(enemy, Dungeon.ORIGIN + e[2])
+		enemy.contact.connect(_on_contact)
+	_dungeon_chest("t_lib", Vector2(150, -330), 1, {"gold": [60, 100], "items": [&"iron", &"iron", &"iron", &"herb", &"herb"]})
+	_dungeon_chest("t_key", Vector2(450, -330), 2, {"gold": [30, 60], "items": [&"archive_key"]})
+	if quests.has_flag("tomb_cleared"):
+		_boss_chest()
+	var gate := _add_prop(&"gate", "[E] Mříž – odemknout klíčem nebo páčit", "", Dungeon.ORIGIN + Vector2(0, Dungeon.GATE_Y + 34.0))
+	gate.set_meta(&"tomb", true)
+	if dungeon.gate_open:
+		gate.set_depleted(true)
+	_add_prop(&"desk", "[E] Číst zápisky", "", Dungeon.ORIGIN + Vector2(0, -330)).set_meta(&"tomb", true)
+
+
+func _dungeon_chest(id: String, off: Vector2, diff: int, loot: Dictionary) -> void:
+	var c := Chest.new()
+	c.chest_id = id
+	c.difficulty = diff
+	c.loot = loot
+	c.opened = id in opened_chests
+	c.add_to_group(&"chests")
+	world.add_actor(c, Dungeon.ORIGIN + off)
+
+
+func _boss_chest() -> void:
+	_dungeon_chest("t_boss", Vector2(0, -1330), 0, {"gold": [250, 400], "items": [&"plate"], "cons": {&"potion": 3}, "lore": "archivar"})
+
+
+func _free_dungeon() -> void:
+	for node in get_tree().get_nodes_in_group(&"characters"):
+		if node is TurnEnemy3 and node.has_meta(&"dungeon_idx"):
+			node.get_parent().remove_child(node)   # hned uvolní vrstvu billboardu
+			node.queue_free()
+	for node in get_tree().get_nodes_in_group(&"chests"):
+		if (node as Chest).chest_id.begins_with("t_"):
+			node.get_parent().remove_child(node)
+			node.queue_free()
+	for p in props.duplicate():
+		if p.has_meta(&"tomb"):
+			props.erase(p)
+			p.queue_free()
+
+
+func _use_gate(p: Prop) -> void:
+	if hero.inventory.has(&"archive_key"):
+		hero.inventory.remove(&"archive_key")
+		_open_gate(p)
+		return
+	var picks := int(hero.get_meta(&"lockpicks", 2))
+	if picks <= 0:
+		quests.toast.emit("Mříž je zamčená – najdi klíč archivaře nebo paklíče")
+		return
+	var game := LockpickGame.new()
+	game.start(3, picks, 5.0 if hero.get_meta(&"class_id", &"") == &"rogue" else 0.0)
+	add_child(game)
+	hero.controls_enabled = false
+	game.pick_broken.connect(func() -> void:
+		hero.set_meta(&"lockpicks", int(hero.get_meta(&"lockpicks", 2)) - 1)
+		quests.toast.emit("Paklíč se zlomil"))
+	var result: StringName = await game.finished
+	hero.controls_enabled = true
+	if result == &"opened":
+		_open_gate(p)
+
+
+func _open_gate(p: Prop) -> void:
+	quests.set_flag("tomb_gate")
+	dungeon.open_gate()
+	p.set_depleted(true)
+	quests.toast.emit("Mříž se zvedá…")
+
+
+func _tomb_tick(delta: float) -> void:
+	var movers: Array = [hero]
+	for m in party:
+		if m != hero:
+			movers.append(m)
+	for node in get_tree().get_nodes_in_group(&"characters"):
+		if node is TurnEnemy3 and node.has_meta(&"dungeon_idx"):
+			movers.append(node)
+	for n in movers:
+		var prev: Vector2 = _prev.get(n, n.global_position)
+		n.global_position = dungeon.clamp_move(prev, n.global_position)
+		_prev[n] = n.global_position
+	var dmg := dungeon.update_traps(delta, hero.global_position)
+	if dmg > 0:
+		hero.hp = maxi(1, hero.hp - dmg)
+		hero.hp_changed.emit(hero.hp, hero.max_hp())
+		quests.toast.emit("Past! −%d HP" % dmg)
+	if dungeon.at_exit(hero.global_position) and hero.controls_enabled:
+		_go_tomb(false)
 
 
 func _go_shop(enter: bool) -> void:
@@ -131,10 +449,12 @@ func _go_shop(enter: bool) -> void:
 	if enter:
 		_door_out = SHOP_DOOR + Vector2(0, 30)
 		hero.global_position = interior.entrance
+		world.set_indoor(0.35)
 		hero.invulnerable = true
 		codex.unlock("vesnice")
 	else:
 		hero.global_position = _door_out
+		world.set_indoor(0.0)
 		hero.invulnerable = false
 	world.snap_camera()
 	await get_tree().create_timer(0.1).timeout
@@ -218,7 +538,10 @@ func _loot_chest(c: Chest) -> void:
 		parts.append("%s ×%d" % [id, c.loot["cons"][id]])
 	for id in c.loot.get("items", []):
 		hero.inventory.add(id)
-		parts.append(String(id))
+		var it := ItemDB.get_item(id)
+		parts.append(it.display_name if it else String(id))
+	if c.loot.has("lore"):
+		codex.unlock(String(c.loot["lore"]))
 	var picks: int = int(c.loot.get("picks", 0))
 	if picks > 0:
 		hero.set_meta(&"lockpicks", int(hero.get_meta(&"lockpicks", 2)) + picks)
@@ -324,11 +647,20 @@ func _spawn_pack(pos: Vector2, templates: Array) -> void:
 
 func _respawn_later(pos: Vector2, templates: Array) -> void:
 	await get_tree().create_timer(ENEMY_RESPAWN).timeout
+	while inside_dungeon and is_inside_tree():
+		await get_tree().create_timer(3.0).timeout
 	if is_inside_tree():
 		_spawn_pack(pos, templates)
 
 
 func _process(delta: float) -> void:
+	if _clock != null:
+		_update_clock()
+		var near := _nearest_prop()
+		var chest := _nearest_chest()
+		_prompt.text = near.prompt if near != null and hero.controls_enabled else ""
+		if inside_dungeon and dungeon != null and hero != null:
+			_tomb_tick(delta)
 	if inside_shop and hero != null:
 		hero.global_position = interior.clamp_hero(hero.global_position)
 		if interior.at_exit(hero.global_position) and hero.controls_enabled:
@@ -390,12 +722,23 @@ func _battle(first_enemy: TurnEnemy3, first_side: StringName) -> void:
 	get_tree().paused = false
 	codex.record_battle(result)
 	for k in result.get("kills", []):
+		if (k == &"bandit" or k == &"archer" or k == "bandit" or k == "archer") and randf() < 0.5:
+			hero.inventory.add(&"meat")
+			quests.toast.emit("Kořist: maso")
+	for k in result.get("kills", []):
 		quests.notify("kill", k)
 	match result.get("outcome", &"fled"):
 		&"victory", &"negotiated":
 			for e in group:
 				var spawn: Vector2 = e.get_meta(&"spawn", e.global_position)
 				var pack: Array = e.get_meta(&"pack", [&"bandit"])
+				if e.has_meta(&"dungeon_idx"):
+					quests.set_flag("tdead_%d" % int(e.get_meta(&"dungeon_idx")))
+					if (e as TurnEnemy3).template_id == &"archivist":
+						quests.set_flag("tomb_cleared")
+						_boss_chest()
+					e.queue_free()
+					continue
 				e.queue_free()
 				if e == group[0]:
 					_respawn_later(spawn, pack)
@@ -434,6 +777,11 @@ func _input(event: InputEvent) -> void:
 			and hero.controls_enabled and not _shop.visible and not _panel.visible:
 		if not inside_shop and _door.is_near():
 			_go_shop(true)
+			get_viewport().set_input_as_handled()
+			return
+		var prop := _nearest_prop()
+		if prop != null:
+			_use_prop(prop)
 			get_viewport().set_input_as_handled()
 			return
 		var chest := _nearest_chest()

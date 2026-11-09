@@ -43,5 +43,25 @@
   "id": "zamky",
   "title": "Umění páčení zámků",
   "text": "Dobrý zloděj nepáčí silou. Nejdřív cítí, kde zámek povolí, a pak otáčí jen tak daleko, kam válec pustí. Paklíč se láme, když tlačíš do ztracena."
+ },
+ {
+  "id": "hrobka",
+  "title": "Hrobka kronikářů",
+  "text": "Pod kopcem u osady leží hrobka kronikářů. Mrtví tu střeží vlastní knihy. Cesta vede knihovnou, kryptou plnou pastí a zrcadlovou síní až k archivu."
+ },
+ {
+  "id": "archiv",
+  "title": "Zápisky z knihovny",
+  "text": "„Co zapíšeš, zůstane. Co zapomeneš, vstane z hrobu.“ Poslední archivář uzamkl archiv mříží a klíč ukryl ve svatyni, kterou hlídá jeho nejvěrnější strážce."
+ },
+ {
+  "id": "archivar",
+  "title": "Strážce archivu",
+  "text": "Archivář zapsal do knih i vlastní jméno a už nikdy nemohl odejít. Zrcadla mu ukazují každého, kdo vstoupí. Šípy a drtivé rány ho zlomí nejdřív."
+ },
+ {
+  "id": "jidlo",
+  "title": "Vaření a kování",
+  "text": "U pracovního stolu se z železa ukuje zbraň, u ohniště se z masa a bylin uvaří jídlo. Vařené jídlo se v boji používá jako předmět."
  }
 ]

@@ -5,6 +5,9 @@ func _ready() -> void:
 	var main: Node = load("res://scenes/main_turn3.tscn").instantiate()
 	add_child(main)
 	await main.started
+	for n in get_tree().get_nodes_in_group(&"characters"):
+		if n is TurnEnemy3:
+			n.get_parent().remove_child(n)
 	var spots := OS.get_environment("SHOTS").split(";")
 	var i := 0
 	for s in spots:
