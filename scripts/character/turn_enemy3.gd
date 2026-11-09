@@ -22,11 +22,23 @@ const TEMPLATES := {
 		"shield": 7, "weak": [&"bow", &"blunt"], "speed": 9, "human": false, "row": 0, "rank": &"boss", "phases": 3},
 }
 
+static var CUSTOM := {}   ## nepřátelé z data/enemies/*.json (CustomData)
+
+
+static func tmpl(id: StringName) -> Dictionary:
+	return CUSTOM[id] if CUSTOM.has(id) else TEMPLATES[id]
+
+
+static func all_ids() -> Array:
+	return TEMPLATES.keys() + CUSTOM.keys()
+
+
 @export var shield_points := 3
 @export var weaknesses: Array[StringName] = [&"blunt", &"fire"]
 @export var battle_speed := 8
 
 var template_id: StringName = &""
+var sheet_path := ""        ## vlastní spritesheet těla (ze Studia)
 var human := true            ## s lidmi se dá vyjednávat
 var rank: StringName = &"normal"   ## normal / elite / boss
 var row := 0                 ## 0 přední řada, 1 zadní
@@ -37,8 +49,9 @@ var _triggered := false
 
 
 func apply_template(id: StringName) -> void:
-	var t: Dictionary = TEMPLATES[id]
+	var t: Dictionary = tmpl(id)
 	template_id = id
+	sheet_path = t.get("sheet", "")
 	display_name = t["name"]
 	tint = t["tint"]
 	base_max_hp = t["hp"]
@@ -57,6 +70,8 @@ func apply_template(id: StringName) -> void:
 
 func _ready() -> void:
 	super()
+	if sheet_path != "" and ResourceLoader.exists(sheet_path):
+		visual.body_sheet = load(sheet_path)
 	invulnerable = true   # v tahovém režimu se nebojuje v reálném čase
 
 

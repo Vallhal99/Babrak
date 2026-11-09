@@ -68,7 +68,7 @@ func record_battle(result: Dictionary) -> void:
 
 
 func beast_text(id: String) -> String:
-	var t: Dictionary = TurnEnemy3.TEMPLATES[StringName(id)]
+	var t: Dictionary = TurnEnemy3.tmpl(StringName(id))
 	var b: Dictionary = beasts.get(id, {"seen": 0, "kills": 0, "weak": []})
 	var weak: PackedStringArray = []
 	for w in t["weak"]:
@@ -76,7 +76,7 @@ func beast_text(id: String) -> String:
 	var rank: String = {&"elite": "elitní", &"boss": "boss"}.get(t.get("rank", &""), "běžný")
 	return "[b]%s[/b]  (%s)\n\nViděno: %d×   Poraženo: %d×\nZdraví: %d   Štít: %d   Rychlost: %d\nSlabiny: %s\n%s\n\n%s" % [
 		t["name"], rank, b["seen"], b["kills"], t["hp"], t["shield"], t["speed"], ", ".join(weak),
-		"Lidský nepřítel: lze s ním vyjednávat." if t["human"] else "Nelidský: nedá se uplatit.", BEAST_TEXT.get(StringName(id), "")]
+		"Lidský nepřítel: lze s ním vyjednávat." if t["human"] else "Nelidský: nedá se uplatit.", t.get("desc", BEAST_TEXT.get(StringName(id), ""))]
 
 
 func to_dict() -> Dictionary:

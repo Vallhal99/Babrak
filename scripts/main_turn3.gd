@@ -72,6 +72,7 @@ func _ready() -> void:
 	ClassDefs.apply(hero, StringName(save["class"]) if not save.is_empty() else Session.class_id)
 	party = [hero]
 	Settings.load_and_apply()
+	CustomData.load_all()
 	interior = Interior.new()
 	world.add_child(interior)
 	merchant = MERCHANT.instantiate()
@@ -80,10 +81,10 @@ func _ready() -> void:
 	world.add_actor(merchant, interior.merchant_spot)
 	_door = Door.new()
 	world.add_actor(_door, SHOP_DOOR)
-	for id in Villager.VILLAGERS:
+	for id in Villager.all():
 		var v: Villager = VILLAGER.instantiate()
 		v.setup_villager(id, world)
-		world.add_actor(v, Villager.PLACES[Villager.VILLAGERS[id]["home"]])
+		world.add_actor(v, Villager.PLACES[Villager.all()[id]["home"]])
 		villagers.append(v)
 	world.day_length = DAY_LENGTH
 	for id in COMPANION_OFFSETS:
@@ -632,7 +633,8 @@ func _pack_for(pos: Vector2, idx: int) -> Array:
 	var mood := world.fx.mood_at(pos) if world.fx else "forest"
 	if mood == "graveyard":
 		return [&"skeleton", &"skeleton", &"skeleton"]
-	return PACKS[idx % PACKS.size()]
+	var packs: Array = PACKS + CustomData.extra_packs
+	return packs[idx % packs.size()]
 
 
 func _spawn_pack(pos: Vector2, templates: Array) -> void:

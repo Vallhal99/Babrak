@@ -223,3 +223,13 @@ Text k vložení jako první zpráva:
 - **Prop:** rekvizita bez vlastního billboardu (Sprite3D přímo ve světě) – protože `Hd2dWorld.MAX_LAYERS` = 19 postav/předmětů najednou. Při vstupu do hrobky se venkovní nepřátelé, vesničané a truhly dočasně odpojí (`_stash_outside`) a vrátí.
 - **Hrobka kronikářů** (`scripts/world/dungeon.gd`, vstup na návsi 1640,930): vstupní síň → knihovna (zápisky, truhla) → krypta s pastmi (bodce v cyklech) → zrcadlová síň s mříží → síň archivu s bossem **Strážce archivu** (`archivist`, 3 fáze, slabý proti šípům a drtivým). Odbočka vpravo: svatyně se Strážcem svatyně (elita) a **klíčem archivaře** v truhle; mříž jde otevřít i páčením (obtížnost 3). Quest `tomb` (auto, odměna 300 zlata + 250 XP), po bossovi se objeví truhla s kořistí. Stavy: příznaky `tdead_N`, `tomb_gate`, `tomb_cleared`. Layout = slovník `Dungeon.R`, nepřátelé `Dungeon.ENEMIES`, pasti `Dungeon.TRAPS`; stěny se staví samy z obdélníků. Prostředí se uvnitř ztmaví (`Hd2dWorld.set_indoor`).
 - **Testy:** `tests/dungeon_test.tscn` (DUNGEON OK: hodiny, sběr, craft, vaření, spánek, hrobka, mříž, pasti).
+
+## 16. Babrak Studio (tools/studio.html)
+
+Jediný HTML soubor (bez serveru), generovaný `python3 tools/build_studio.py` ze `studio.tpl.html` + šablon editorů questů a dialogů. Záložky: **Postavy** (vzhled, výbava, staty, denní režim vesničanů, 🎲 náhodná postava), **Animace** (vlastní snímky nebo celý sheet z jednoho obrázku, formát 64 px / 832×3968), **Nepřátelé** (všechny parametry šablony, odhad obtížnosti, 🎲 náhodný), **Předměty** (staty, pixelová ikona, vrstva na postavě, překolorování, 🎲 náhodný), **Questy** (+ 🎲 náhodný quest) a **Dialogy** (nově podmínka `hour`, akce `lore`).
+
+Projekt se ukládá do localStorage; „Export pro hru (.zip)“ obsahuje jen nové/změněné soubory: `data/items/*.tres`, `assets/icons/*.png`, `data/enemies/*.json`, `data/villagers/*.json`, `data/quests/main.json`, `data/dialogues/*.json`, vlastní spritesheety. Rozbalí se do kořene projektu.
+
+`CustomData.load_all()` (scripts/rpg/custom_data.gd) načítá `data/enemies/*.json` do `TurnEnemy3.CUSTOM` a `data/villagers/*.json` do `Villager.CUSTOM` – nová data tedy nevyžadují změnu kódu.
+
+**Limit 19 postav:** každý herec je 2D billboard ve vlastním SubViewportu a vlastní vrstvě viditelnosti; Godot má 20 vrstev (19 použitelných). Statické objekty jsou proto Sprite3D (Prop) a při vstupu do interiéru/dungeonu se herci venku odkládají.

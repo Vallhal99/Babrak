@@ -1,0 +1,3 @@
+{"id": "wolf", "name": "Vlk", "tint": [0.8, 0.8, 0.85], "hp": 18, "atk": 2, "xp": 20, "gold": 0, "shield": 3,
+ "weak": ["fire", "blade"], "speed": 11, "human": false, "row": 0, "rank": "normal", "phases": 1, "ranged": false,
+ "desc": "Příklad vlastního nepřítele ze Studia. Rychlý a nelidský. Nepřidává se do světa, dokud nemá pole \"pack\"."}

@@ -33,7 +33,7 @@ svg{width:100%;height:auto;background:var(--soft);border-radius:8px}
 svg text{fill:var(--ink);font:12px system-ui}
 </style></head><body>
 <header><h1>Editor questů</h1>
-<button id="new" class="pri">+ Nový quest</button><button id="imp">Načíst JSON</button><button id="exp">Stáhnout JSON</button>
+<button id="new" class="pri">+ Nový quest</button><button id="rnd">🎲 Náhodný quest</button><button id="imp">Načíst JSON</button><button id="exp">Stáhnout JSON</button>
 <button id="cp">Kopírovat JSON</button><span class="hint" id="msg"></span></header>
 <div class="wrap"><div class="card"><h2>Questy</h2><div class="list" id="list"></div></div><div id="main"></div></div>
 <input type="file" id="file" accept=".json" hidden>
@@ -111,6 +111,10 @@ function sim(m,q){const c=el('div',{class:'card'},el('h2',{},'Zkouška průchodu
  draw();c.append(log);m.append(c)}
 function json(m,q){m.append(el('div',{class:'card'},el('h2',{},'JSON všech questů (data/quests/main.json)'),el('pre',{},JSON.stringify(Q,null,1))))}
 function dl(name,t){const a=el('a',{href:URL.createObjectURL(new Blob([t],{type:'application/json'})),download:name});a.click()}
+$('#rnd').onclick=()=>{const R=a=>a[Math.floor(Math.random()*a.length)];const T=['Ztracený','Prokletý','Poslední','Tajný','Zapomenutý','Dlužný'],N=['náklad','dluh','list','amulet','úkol','slib'];
+ const ty=R(['kill','kill','collect','talk']);const tg=R(targets(ty)||['x']);const cnt=ty==='kill'?1+Math.floor(Math.random()*4):ty==='collect'?1+Math.floor(Math.random()*3):1;
+ let title=R(T)+' '+R(N),id=slug(title),n=2;while(find(id))id=slug(title)+(n++);
+ Q.push({id,title,desc:'Zadání vygenerované náhodně – uprav podle potřeby.',giver:DATA.npcs.includes('merchant')?'merchant':undefined,objectives:[{id:'o1',type:ty,target:tg,count:cnt,text:(ty==='kill'?'Poraz: ':ty==='talk'?'Promluv s: ':'Sežeň: ')+tg+(cnt>1?' ×'+cnt:'')}],rewards:{gold:10*(cnt+1)+Math.floor(Math.random()*20),xp:15*(cnt+1)}});cur=id;render();flash('Náhodný quest vytvořen')};
 $('#new').onclick=()=>{let i=Q.length+1,id;while(find(id='novy_quest_'+i))i++;Q.push({id,title:'Nový quest',desc:'',giver:DATA.npcs.includes('merchant')?'merchant':undefined,objectives:[{id:'o1',type:'kill',target:DATA.enemies[0],count:1,text:'Poraz: '+DATA.enemies[0]}],rewards:{gold:20,xp:20}});cur=id;tab='edit';render()};
 $('#exp').onclick=()=>dl('main.json',JSON.stringify(Q,null,1));
 $('#cp').onclick=()=>{navigator.clipboard?.writeText(JSON.stringify(Q,null,1)).then(()=>flash('Zkopírováno'),()=>flash('Kopírování selhalo'))};

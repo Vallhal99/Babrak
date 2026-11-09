@@ -27,6 +27,15 @@ const VILLAGERS := {
 		{"h": 13.0, "at": "zbrane", "act": "kouká na zbraně"}, {"h": 16.0, "at": "lavice_l", "act": "si povídá"}, {"h": 19.0, "at": "hostinec", "act": "obsluhuje", "in": true}, {"h": 23.0, "at": "hostinec", "act": "spí", "in": true}]},
 }
 
+static var CUSTOM := {}   ## vesničané z data/villagers/*.json
+
+
+static func all() -> Dictionary:
+	var d := VILLAGERS.duplicate()
+	d.merge(CUSTOM)
+	return d
+
+
 var villager_id: StringName = &""
 var dialogue_id := ""
 var world: Hd2dWorld
@@ -44,7 +53,7 @@ var _last := Vector2.ZERO
 func setup_villager(id: StringName, w: Hd2dWorld) -> void:
 	villager_id = id
 	world = w
-	var d: Dictionary = VILLAGERS[id]
+	var d: Dictionary = all()[id]
 	display_name = d["name"]
 	tint = d["tint"]
 	_plan = d["plan"]
@@ -55,7 +64,7 @@ func setup_villager(id: StringName, w: Hd2dWorld) -> void:
 
 func _ready() -> void:
 	super()
-	var sheet: String = VILLAGERS[villager_id]["sheet"]
+	var sheet: String = all()[villager_id]["sheet"]
 	if sheet != "":
 		visual.body_sheet = load(sheet)
 	_last = global_position

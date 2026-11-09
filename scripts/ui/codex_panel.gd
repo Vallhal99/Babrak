@@ -88,9 +88,9 @@ func _fill() -> void:
 			_list.set_item_disabled(_list.item_count - 1, not known)
 			_ids.append(d["id"])
 	else:
-		for id in TurnEnemy3.TEMPLATES:
+		for id in TurnEnemy3.all_ids():
 			var seen := codex.beasts.has(String(id))
-			_list.add_item(TurnEnemy3.TEMPLATES[id]["name"] if seen else "???")
+			_list.add_item(TurnEnemy3.tmpl(id)["name"] if seen else "???")
 			_list.set_item_disabled(_list.item_count - 1, not seen)
 			_ids.append(String(id))
 	_text.text = "Vyber záznam vlevo." if _list.item_count > 0 else ""
